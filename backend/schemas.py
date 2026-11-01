@@ -23,7 +23,7 @@ class HealthResponse(BaseModel):
 
 
 class SimulationStartRequest(BaseModel):
-    mode: str = Field("coordinated", description="Simulation mode: 'baseline' or 'coordinated'")
+    mode: str = Field("coordinated", description="Simulation mode: 'baseline', 'coordinated', 'marl_ppo', or 'marl_dqn'")
     duration: int = Field(600, ge=10, le=7200, description="Simulation duration in seconds")
     seed: int = Field(42, description="Random seed for traffic generation")
     step_length: float = Field(1.0, gt=0.0, le=5.0, description="SUMO simulation step length in seconds")

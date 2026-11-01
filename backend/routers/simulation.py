@@ -26,7 +26,7 @@ def get_simulation_status() -> SimulationStatusResponse:
 @router.post("/start", response_model=CommandResponse)
 def start_simulation(payload: SimulationStartRequest) -> CommandResponse:
     """Starts a new simulation run with validated settings."""
-    valid_modes = {"baseline", "coordinated"}
+    valid_modes = {"baseline", "coordinated", "marl_ppo", "marl_dqn"}
     if payload.mode.lower() not in valid_modes:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

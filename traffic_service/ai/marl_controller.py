@@ -133,8 +133,12 @@ class MARLCorridorController:
             if ctrl and ctrl.emergency_locked:
                 decisions[j_id] = {
                     "action": ACTION_KEEP,
+                    "action_name": ACTION_NAMES.get(ACTION_KEEP, "KEEP"),
                     "target_phase": ctrl.emergency_priority_phase,
+                    "current_phase": ctrl.get_phase(),
+                    "observation_shape": (14,),
                     "reason": f"Emergency Priority Lock active at {j_id}. MARL actions bypassed.",
+                    "confidence": 1.0,
                     "is_fallback": False,
                     "is_emergency": True,
                 }
@@ -143,6 +147,21 @@ class MARLCorridorController:
             # Check validity of observation
             if not obs_dict or "phase" not in obs_dict:
                 decisions[j_id] = self._fallback_decision(j_id, obs_dict, sim_time, "Missing observation data")
+                continue
+
+            # Check if any raw observation field is NaN
+            has_raw_nan = False
+            for v in obs_dict.values():
+                if isinstance(v, float) and np.isnan(v):
+                    has_raw_nan = True
+                    break
+                elif isinstance(v, dict):
+                    for sub_v in v.values():
+                        if isinstance(sub_v, float) and np.isnan(sub_v):
+                            has_raw_nan = True
+                            break
+            if has_raw_nan:
+                decisions[j_id] = self._fallback_decision(j_id, obs_dict, sim_time, "Corrupted observation (NaNs)")
                 continue
 
             # Vectorize
@@ -182,8 +201,10 @@ class MARLCorridorController:
                 "action_name": ACTION_NAMES.get(action, "UNKNOWN"),
                 "target_phase": target_phase,
                 "current_phase": curr_phase,
+                "observation_shape": tuple(vec.shape),
                 "reason": f"MARL [{self.algorithm.upper()}] Agent {j_id}: {info.get('reason')}",
                 "q_values" if self.algorithm == "dqn" else "probabilities": info.get("q_values") or info.get("probabilities"),
+                "confidence": float(info.get("confidence", 1.0)),
                 "is_fallback": False,
                 "is_emergency": False,
             }
@@ -194,23 +215,35 @@ class MARLCorridorController:
         self,
         decisions: Dict[str, Dict[str, Any]],
         sim_time: float,
-    ) -> None:
+    ) -> Dict[str, str]:
         """
         Safely applies MARL decisions to traffic signal controllers.
         Respects safety transitions through yellow phases and min/max green times.
+        Returns a dictionary mapping junction ID to executed operation status.
         """
+        executed_ops: Dict[str, str] = {}
         for j_id, dec in decisions.items():
             ctrl = self.controllers.get(j_id)
-            if not ctrl or ctrl.emergency_locked:
+            if not ctrl:
+                executed_ops[j_id] = "NO_CONTROLLER"
+                continue
+            if ctrl.emergency_locked:
+                executed_ops[j_id] = "EMERGENCY_LOCKED_BYPASS"
                 continue
 
             action = dec.get("action", ACTION_KEEP)
             target_phase = dec.get("target_phase")
 
             if action == ACTION_SWITCH and target_phase is not None:
-                ctrl.request_switch(target_green_phase=target_phase, sim_time=sim_time)
+                switched = ctrl.request_switch(target_green_phase=target_phase, sim_time=sim_time)
+                executed_ops[j_id] = f"REQUEST_SWITCH_TARGET_{target_phase}_{'OK' if switched else 'REJECTED'}"
             elif action == ACTION_EXTEND:
-                ctrl.extend_current_green(sim_time)
+                extended = ctrl.extend_current_green(sim_time)
+                executed_ops[j_id] = f"EXTEND_GREEN_{'OK' if extended else 'REJECTED'}"
+            else:
+                executed_ops[j_id] = f"KEEP_PHASE_{dec.get('current_phase', ctrl.get_phase())}"
+
+        return executed_ops
 
     def _exchange_inter_intersection_messages(
         self, raw_observations: Dict[str, Dict[str, Any]], sim_time: float
@@ -223,10 +256,12 @@ class MARLCorridorController:
         j1_obs = raw_observations.get("J1", {})
         if j1_obs:
             q_hosur = j1_obs.get("approach_queues", {}).get("corridor_hosur", 0)
+            if not isinstance(q_hosur, (int, float)) or np.isnan(q_hosur):
+                q_hosur = 0.0
             phase = j1_obs.get("phase", 0)
             # If J1 is green on Hosur corridor, predict platoon departure
             if phase == self.corridor_green_phases["J1"]:
-                outflow_rate = min(3.0, q_hosur * 0.15 + 0.5)
+                outflow_rate = min(3.0, float(q_hosur) * 0.15 + 0.5)
                 self.hub.publish_upstream_inflow("J1", outflow_rate_veh_s=outflow_rate, timestamp=sim_time)
                 if q_hosur >= 5:
                     self.hub.announce_platoon(
@@ -241,9 +276,11 @@ class MARLCorridorController:
         j2_obs = raw_observations.get("J2", {})
         if j2_obs:
             q_hosur = j2_obs.get("approach_queues", {}).get("corridor_hosur", 0)
+            if not isinstance(q_hosur, (int, float)) or np.isnan(q_hosur):
+                q_hosur = 0.0
             phase = j2_obs.get("phase", 0)
             if phase == self.corridor_green_phases["J2"]:
-                outflow_rate = min(3.5, q_hosur * 0.15 + 0.5)
+                outflow_rate = min(3.5, float(q_hosur) * 0.15 + 0.5)
                 self.hub.publish_upstream_inflow("J2", outflow_rate_veh_s=outflow_rate, timestamp=sim_time)
 
     def _fallback_decision(
@@ -285,7 +322,9 @@ class MARLCorridorController:
             "action_name": ACTION_NAMES.get(action, "UNKNOWN"),
             "target_phase": target_p,
             "current_phase": curr_phase,
+            "observation_shape": (14,),
             "reason": f"Fallback Controller triggered for {j_id} ({reason_detail})",
+            "confidence": 0.0,
             "is_fallback": True,
             "is_emergency": False,
         }
@@ -315,7 +354,14 @@ class MARLCorridorController:
         try:
             with open(path, "r", encoding="utf-8") as f:
                 checkpoint_data = json.load(f)
+            if not isinstance(checkpoint_data, dict):
+                logger.error(f"Checkpoint data in {path} is not a valid JSON dictionary")
+                return False
             agents_dict = checkpoint_data.get("agents", {})
+            for j_id in self.junctions:
+                if j_id not in agents_dict:
+                    logger.error(f"Checkpoint {path} missing weights for junction '{j_id}'")
+                    return False
             for j_id, agent_state in agents_dict.items():
                 if j_id in self.agents:
                     self.agents[j_id].load_state_dict(agent_state)

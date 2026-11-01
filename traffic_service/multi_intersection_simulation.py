@@ -9,10 +9,13 @@ Provides clean observation/action hooks for external AI agents to attach later.
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple, TYPE_CHECKING
 if TYPE_CHECKING:
     import subprocess
+
+logger = logging.getLogger("simulation")
 
 from .communication import CorridorCommunicationHub
 from .corridor_metrics import CorridorMetricsCollector, CorridorMetricsSummary
@@ -33,13 +36,14 @@ class MultiIntersectionSimulation:
     def __init__(
         self,
         sumocfg_path: Path | str,
-        mode: str = "coordinated",  # 'baseline' or 'coordinated'
+        mode: str = "coordinated",  # 'baseline', 'coordinated', 'marl_ppo', or 'marl_dqn'
         gui: bool = False,
         step_length: float = 1.0,
         decision_interval: float = 5.0,
         enable_emergency: bool = True,
         label: str = "default",
         on_process_spawned: Optional[Callable[[subprocess.Popen, Optional[int]], None]] = None,
+        checkpoint_path: Optional[Path | str] = None,
     ) -> None:
         self.sumocfg_path = Path(sumocfg_path)
         self.mode = mode.lower()
@@ -142,6 +146,41 @@ class MultiIntersectionSimulation:
             step_length=step_length,
         )
 
+        # MARL Decision Controller for 'marl_dqn' and 'marl_ppo'
+        if self.mode in ("marl_dqn", "marl_ppo"):
+            from .ai.marl_controller import MARLCorridorController
+            algo = "ppo" if self.mode == "marl_ppo" else "dqn"
+            self.marl_controller: Optional[MARLCorridorController] = MARLCorridorController(
+                algorithm=algo,
+                junctions=["J1", "J2", "J3"],
+                controllers=self.controllers,
+                communication_hub=self.hub,
+            )
+            ckpt_file = (
+                Path(checkpoint_path)
+                if checkpoint_path is not None
+                else Path(__file__).resolve().parent.parent / "checkpoints" / f"marl_{algo}_corridor.json"
+            )
+            if not ckpt_file.is_file():
+                raise FileNotFoundError(
+                    f"MARL checkpoint file not found for mode '{self.mode}': {ckpt_file}"
+                )
+            loaded = self.marl_controller.load_checkpoint(ckpt_file)
+            if not loaded:
+                raise RuntimeError(
+                    f"Failed to load MARL checkpoint for mode '{self.mode}' from {ckpt_file}: invalid or corrupted checkpoint."
+                )
+            for j_id in ["J1", "J2", "J3"]:
+                if j_id not in self.marl_controller.agents:
+                    raise RuntimeError(
+                        f"Missing agent for junction '{j_id}' in MARL controller for mode '{self.mode}'"
+                    )
+            logger.info(
+                f"Successfully initialized MARL {algo.upper()} controller with checkpoint: {ckpt_file}"
+            )
+        else:
+            self.marl_controller = None
+
         self._next_decision_time: float = 0.0
 
     @property
@@ -230,6 +269,21 @@ class MultiIntersectionSimulation:
             if actions is not None:
                 # External AI Agent Action Execution
                 self._apply_ai_actions(actions, sim_time)
+            elif self.mode in ("marl_dqn", "marl_ppo") and self.marl_controller is not None:
+                # MARL Coordinated Decision Execution
+                ai_obs = self.get_ai_observations(states)
+                decisions = self.marl_controller.decide(ai_obs, sim_time, eval_mode=True)
+                executed_ops = self.marl_controller.apply_decisions(decisions, sim_time)
+                for j_id, dec in decisions.items():
+                    op_str = executed_ops.get(j_id, "NONE")
+                    logger.info(
+                        f"[MARL RUNTIME] SimTime={sim_time:.1f}s | Mode={self.mode} | Junction={j_id} | "
+                        f"Agent={self.marl_controller.algorithm.upper()} | "
+                        f"ObsShape={dec.get('observation_shape', (14,))} | "
+                        f"Action={dec.get('action_name')} ({dec.get('action')}) | "
+                        f"TargetPhase={dec.get('target_phase')} | ExecutedOp={op_str} | "
+                        f"Fallback={dec.get('is_fallback')}"
+                    )
             elif self.mode == "coordinated":
                 # Built-in Coordinated Adaptive Strategy
                 self._run_coordinated_control(states, sim_time)

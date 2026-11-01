@@ -879,10 +879,12 @@ class SimulationService:
                     sim.emergency_coordinator.update(sim_time)
                     self._check_emergency_progress(sim, sim_time)
 
-                # Coordinated / Baseline Decision Control
+                # Coordinated / MARL / Baseline Decision Control
                 if sim_time >= sim._next_decision_time:
                     sim._next_decision_time += sim.decision_interval
-                    if sim.mode == "coordinated":
+                    if sim.mode in ("marl_dqn", "marl_ppo") and sim.marl_controller is not None:
+                        self._run_marl_with_logging(sim, states, sim_time)
+                    elif sim.mode == "coordinated":
                         self._run_coordinated_with_logging(sim, states, sim_time)
 
                 # Collect Metrics
@@ -1098,6 +1100,41 @@ class SimulationService:
             self._emergency_events[-1].completed = True
             self._emergency_events[-1].preemption_active = False
             self._emergency_events[-1].traversal_duration = metrics.total_traversal_duration
+
+    def _run_marl_with_logging(
+        self,
+        sim: MultiIntersectionSimulation,
+        states: Dict[str, IntersectionState],
+        sim_time: float,
+    ) -> None:
+        """Executes MARL policy decisions while capturing rationales."""
+        if not sim.marl_controller:
+            return
+
+        ai_obs = sim.get_ai_observations(states)
+        decisions = sim.marl_controller.decide(ai_obs, sim_time, eval_mode=True)
+        executed_ops = sim.marl_controller.apply_decisions(decisions, sim_time)
+
+        for j_id, dec in decisions.items():
+            op_str = executed_ops.get(j_id, "NONE")
+            logger.info(
+                f"[MARL RUNTIME] SimTime={sim_time:.1f}s | Mode={sim.mode} | Junction={j_id} | "
+                f"Agent={sim.marl_controller.algorithm.upper()} | "
+                f"ObsShape={dec.get('observation_shape', (14,))} | "
+                f"Action={dec.get('action_name')} ({dec.get('action')}) | "
+                f"TargetPhase={dec.get('target_phase')} | ExecutedOp={op_str} | "
+                f"Fallback={dec.get('is_fallback')}"
+            )
+            if dec.get("action") != 0 or dec.get("is_emergency") or dec.get("is_fallback"):
+                action_name = dec.get("action_name", "ACT")
+                self._record_decision(
+                    sim_time=sim_time,
+                    junction_id=j_id,
+                    current_phase=dec.get("current_phase", 0),
+                    target_phase=dec.get("target_phase"),
+                    action=action_name,
+                    reason=dec.get("reason", "MARL policy decision executed."),
+                )
 
     def _run_coordinated_with_logging(
         self,
@@ -1687,7 +1724,15 @@ class SimulationService:
                 duration=self._duration,
                 mode=self._mode,
                 seed=self._seed,
-                controller="Coordinated Adaptive (Inflow-Aware + Green Wave)" if self._mode == "coordinated" else "Fixed-Time Baseline",
+                controller=(
+                    "MARL Deep Q-Network (Double-DQN Corridor)"
+                    if self._mode == "marl_dqn"
+                    else "MARL Proximal Policy Optimization (PPO Corridor)"
+                    if self._mode == "marl_ppo"
+                    else "Coordinated Adaptive (Inflow-Aware + Green Wave)"
+                    if self._mode == "coordinated"
+                    else "Fixed-Time Baseline"
+                ),
                 junctions=["J1", "J2", "J3"],
                 error=self._error_message,
                 status=current_status,

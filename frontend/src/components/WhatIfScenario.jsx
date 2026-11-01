@@ -71,6 +71,8 @@ export function WhatIfScenario({ onRunScenario }) {
             >
               <option value="coordinated">Coordinated Adaptive</option>
               <option value="baseline">Fixed-Time Baseline</option>
+              <option value="marl_ppo">MARL PPO (Actor-Critic)</option>
+              <option value="marl_dqn">MARL DQN (Double-DQN)</option>
             </select>
           </div>
           <div>
