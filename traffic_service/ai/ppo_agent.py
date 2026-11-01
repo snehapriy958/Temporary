@@ -105,6 +105,7 @@ class PPOAgent:
         observation: np.ndarray,
         eval_mode: bool = False,
         can_switch: bool = True,
+        action_mask: Optional[np.ndarray] = None,
     ) -> Tuple[int, Dict[str, Any]]:
         """
         Samples an action from the policy distribution with safety masking.
@@ -118,9 +119,13 @@ class PPOAgent:
             logits = logits[0]
             value = float(val_t[0].item())
 
-        # Masking: if min_green not elapsed, cannot switch
+        # Masking
         masked_logits = logits.clone()
-        if not can_switch:
+        if action_mask is not None:
+            for a_idx in range(self.num_actions):
+                if action_mask[a_idx] <= 0.0:
+                    masked_logits[a_idx] = -1e9
+        elif not can_switch:
             masked_logits[ACTION_SWITCH] = -1e9
 
         dist = torch.distributions.Categorical(logits=masked_logits)

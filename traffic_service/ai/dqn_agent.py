@@ -111,22 +111,31 @@ class DQNAgent:
         observation: np.ndarray,
         eval_mode: bool = False,
         can_switch: bool = True,
+        action_mask: Optional[np.ndarray] = None,
     ) -> Tuple[int, Dict[str, Any]]:
         """
         Selects action using epsilon-greedy policy with safety action masking.
-        If can_switch is False (e.g. min_green not elapsed), ACTION_SWITCH is masked out.
+        If action_mask is provided, invalid actions (mask <= 0) are set to -1e9.
+        Otherwise if can_switch is False (e.g. min_green not elapsed), ACTION_SWITCH is masked out.
         Returns (action, debug_info).
         """
         q_values = self.q_network.forward(observation)
 
-        # Action masking: if min_green not yet reached, cannot SWITCH
+        # Action masking
         masked_q = q_values.copy()
-        if not can_switch:
+        if action_mask is not None:
+            for a_idx in range(self.num_actions):
+                if action_mask[a_idx] <= 0.0:
+                    masked_q[a_idx] = -1e9
+        elif not can_switch:
             masked_q[ACTION_SWITCH] = -1e9
+
+        valid_actions = [a for a in range(self.num_actions) if masked_q[a] > -1e8]
+        if not valid_actions:
+            valid_actions = [ACTION_KEEP]
 
         if not eval_mode and (self.rng.rand() < self.epsilon):
             # Exploration
-            valid_actions = [ACTION_KEEP, ACTION_EXTEND] if not can_switch else [ACTION_KEEP, ACTION_SWITCH, ACTION_EXTEND]
             action = int(self.rng.choice(valid_actions))
             reason = f"DQN epsilon-greedy exploration (eps={self.epsilon:.2f})"
         else:

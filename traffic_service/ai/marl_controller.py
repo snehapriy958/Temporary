@@ -26,9 +26,14 @@ from .env import (
     ACTION_EXTEND,
     ACTION_NAMES,
     DEFAULT_JUNCTIONS,
+    CORRIDOR_OBSERVATION_DIM,
+    OBSERVATION_DIM_PER_JUNCTION,
 )
 from .dqn_agent import DQNAgent
 from .ppo_agent import PPOAgent
+from .mappo_agent import MAPPOAgent
+from .models import MAPPOCentralizedCriticNetwork
+from .starvation_tracker import StarvationTracker
 from traffic_service.communication import CorridorCommunicationHub
 from traffic_service.signal_controller import SignalController
 from traffic_service.state_extractor import IntersectionState
@@ -39,20 +44,25 @@ logger = logging.getLogger("marl_controller")
 class MARLCorridorController:
     """
     Coordinates multi-intersection signal control for J1, J2, and J3 using MARL.
+    Supports DQN, PPO, and MAPPO (Multi-Agent PPO with CTDE) algorithms with
+    anti-starvation action masking and platoon communication.
     """
 
     def __init__(
         self,
-        algorithm: str = "dqn",  # 'dqn' or 'ppo'
+        algorithm: str = "dqn",  # 'dqn', 'ppo', or 'mappo'
         junctions: Optional[List[str]] = None,
         controllers: Optional[Dict[str, SignalController]] = None,
         communication_hub: Optional[CorridorCommunicationHub] = None,
+        starvation_tracker: Optional[StarvationTracker] = None,
+        max_red_threshold_s: float = 60.0,
         seed: int = 42,
     ) -> None:
         self.algorithm = algorithm.lower()
         self.junctions = junctions or list(DEFAULT_JUNCTIONS)
         self.controllers = controllers or {}
         self.hub = communication_hub or CorridorCommunicationHub(corridor_sequence=self.junctions)
+        self.starvation_tracker = starvation_tracker or StarvationTracker(max_red_threshold_s=max_red_threshold_s)
         self.seed = seed
 
         self.obs_space = CorridorObservationSpace(junctions=self.junctions)
@@ -62,11 +72,27 @@ class MARLCorridorController:
         self.corridor_green_phases = {"J1": 2, "J2": 0, "J3": 2}
         self.conflicting_green_phases = {"J1": 0, "J2": 2, "J3": 0}
 
+        # Initialize shared centralized critic for MAPPO
+        self.shared_critic = None
+        if self.algorithm == "mappo":
+            self.shared_critic = MAPPOCentralizedCriticNetwork(
+                in_features=CORRIDOR_OBSERVATION_DIM, seed=seed + 100
+            )
+
         # Initialize agents per junction
-        self.agents: Dict[str, DQNAgent | PPOAgent] = {}
+        self.agents: Dict[str, DQNAgent | PPOAgent | MAPPOAgent] = {}
         for idx, j_id in enumerate(self.junctions):
             agent_seed = seed + (idx * 37)
-            if self.algorithm == "ppo":
+            if self.algorithm == "mappo":
+                self.agents[j_id] = MAPPOAgent(
+                    agent_id=j_id,
+                    in_features=OBSERVATION_DIM_PER_JUNCTION,
+                    corridor_features=CORRIDOR_OBSERVATION_DIM,
+                    num_actions=3,
+                    shared_critic=self.shared_critic,
+                    seed=agent_seed,
+                )
+            elif self.algorithm == "ppo":
                 self.agents[j_id] = PPOAgent(
                     agent_id=j_id,
                     in_features=self.obs_space.vectorize_junction(j_id, {}).shape[0],
@@ -124,7 +150,20 @@ class MARLCorridorController:
         # 1. Coordinate Inter-Intersection Communication Bus
         self._exchange_inter_intersection_messages(raw_observations, sim_time)
 
-        # 2. Compute Agent Decisions
+        # 2. Update Starvation Tracker with latest approach queues and phases
+        curr_phases = {}
+        app_queues = {}
+        for j in self.junctions:
+            obs = raw_observations.get(j, {})
+            raw_p = obs.get("phase", 0)
+            try:
+                curr_phases[j] = int(raw_p) if not (isinstance(raw_p, float) and np.isnan(raw_p)) else 0
+            except (ValueError, TypeError):
+                curr_phases[j] = 0
+            app_queues[j] = obs.get("approach_queues", {})
+        self.starvation_tracker.update(curr_phases, app_queues, step_length=1.0, sim_time=sim_time)
+
+        # 3. Compute Agent Decisions
         for j_id in self.junctions:
             obs_dict = raw_observations.get(j_id, {})
             ctrl = self.controllers.get(j_id)
@@ -178,10 +217,25 @@ class MARLCorridorController:
                 elapsed = float(obs_dict.get("phase_elapsed", 0.0))
                 can_switch = (elapsed >= 15.0)
 
+            # Anti-Starvation Action Masking
+            emergency_locked = bool(ctrl and ctrl.emergency_locked)
+            action_mask, mask_reason = self.starvation_tracker.get_action_mask(
+                j_id=j_id,
+                current_phase=int(obs_dict.get("phase", 0)),
+                can_switch=can_switch,
+                emergency_locked=emergency_locked,
+                sim_time=sim_time,
+            )
+
             # Select agent action
             agent = self.agents[j_id]
             try:
-                action, info = agent.select_action(vec, eval_mode=eval_mode, can_switch=can_switch)
+                action, info = agent.select_action(
+                    vec,
+                    eval_mode=eval_mode,
+                    can_switch=can_switch,
+                    action_mask=action_mask,
+                )
             except Exception as exc:
                 logger.warning(f"Agent {j_id} inference failed: {exc}. Using fallback.")
                 decisions[j_id] = self._fallback_decision(j_id, obs_dict, sim_time, f"Inference exception: {exc}")
@@ -196,14 +250,22 @@ class MARLCorridorController:
             if action == ACTION_SWITCH:
                 target_phase = conflicting_phase if curr_phase == corridor_phase else corridor_phase
 
+            is_starve_switch = ("STARVATION_PREVENTION" in mask_reason)
+            reason_str = f"MARL [{self.algorithm.upper()}] Agent {j_id}: {info.get('reason')}"
+            if is_starve_switch:
+                reason_str = f"MARL [{self.algorithm.upper()}] Agent {j_id}: Anti-Starvation Overrule ({mask_reason})"
+
             decisions[j_id] = {
                 "action": action,
                 "action_name": ACTION_NAMES.get(action, "UNKNOWN"),
                 "target_phase": target_phase,
                 "current_phase": curr_phase,
                 "observation_shape": tuple(vec.shape),
-                "reason": f"MARL [{self.algorithm.upper()}] Agent {j_id}: {info.get('reason')}",
+                "reason": reason_str,
                 "q_values" if self.algorithm == "dqn" else "probabilities": info.get("q_values") or info.get("probabilities"),
+                "action_mask": action_mask.tolist(),
+                "mask_reason": mask_reason,
+                "is_starvation_prevention": is_starve_switch,
                 "confidence": float(info.get("confidence", 1.0)),
                 "value": float(info.get("value", 0.0)),
                 "log_prob": float(info.get("log_prob", 0.0)),
@@ -346,6 +408,11 @@ class MARLCorridorController:
                 j_id: agent.get_state_dict() for j_id, agent in self.agents.items()
             },
         }
+        if self.algorithm == "mappo" and self.shared_critic is not None:
+            critic_w = self.shared_critic.get_weights()
+            checkpoint_data["shared_critic_weights"] = {
+                k: v.tolist() if hasattr(v, "tolist") else v for k, v in critic_w.items()
+            }
         with open(path, "w", encoding="utf-8") as f:
             json.dump(checkpoint_data, f, indent=2)
         logger.info(f"Saved MARL checkpoint (version: {version}) to: {path}")
@@ -370,6 +437,17 @@ class MARLCorridorController:
             for j_id, agent_state in agents_dict.items():
                 if j_id in self.agents:
                     self.agents[j_id].load_state_dict(agent_state)
+            if (
+                self.algorithm == "mappo"
+                and "shared_critic_weights" in checkpoint_data
+                and self.shared_critic is not None
+            ):
+                raw_cw = checkpoint_data["shared_critic_weights"]
+                converted_cw = {
+                    k: np.array(v, dtype=np.float32) if not isinstance(v, np.ndarray) else v
+                    for k, v in raw_cw.items()
+                }
+                self.shared_critic.set_weights(converted_cw)
             version = checkpoint_data.get("algorithm_version", "1.0-historical")
             logger.info(f"Loaded MARL checkpoint (version: {version}) from: {path}")
             return True

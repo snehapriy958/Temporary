@@ -474,3 +474,302 @@ class ActorCriticNetwork:
 
     def set_weights(self, weights: Dict[str, np.ndarray]) -> None:
         self._model.set_weights(weights)
+
+
+# =====================================================================
+# MAPPO: Decentralized Actor and Centralized Critic Architectures
+# =====================================================================
+
+class NumpyMAPPOActor:
+    """Decentralized Actor network in pure NumPy."""
+
+    def __init__(self, in_features: int = 14, num_actions: int = 3, seed: int = 42) -> None:
+        self.in_features = in_features
+        self.num_actions = num_actions
+        self.fc1 = NumpyDense(in_features, 64, seed=seed)
+        self.fc2 = NumpyDense(64, 64, seed=seed + 1)
+        self.actor_out = NumpyDense(64, num_actions, seed=seed + 2)
+
+    def forward(self, x: np.ndarray, mask: Optional[np.ndarray] = None) -> Tuple[np.ndarray, np.ndarray]:
+        is_1d = (x.ndim == 1)
+        if is_1d:
+            x = np.expand_dims(x, axis=0)
+        h1 = np.maximum(0.0, self.fc1.forward(x))
+        h2 = np.maximum(0.0, self.fc2.forward(h1))
+        logits = self.actor_out.forward(h2)
+        if mask is not None:
+            if mask.ndim == 1:
+                mask = np.expand_dims(mask, axis=0)
+            logits = logits + (1.0 - mask) * (-1e8)
+        probs = softmax(logits, axis=1)
+        if is_1d:
+            return logits[0], probs[0]
+        return logits, probs
+
+    def get_weights(self) -> Dict[str, np.ndarray]:
+        return {
+            "fc1_w": self.fc1.weights, "fc1_b": self.fc1.biases,
+            "fc2_w": self.fc2.weights, "fc2_b": self.fc2.biases,
+            "actor_out_w": self.actor_out.weights, "actor_out_b": self.actor_out.biases,
+        }
+
+    def set_weights(self, weights: Dict[str, np.ndarray]) -> None:
+        self.fc1.weights = weights["fc1_w"].copy()
+        self.fc1.biases = weights["fc1_b"].copy()
+        self.fc2.weights = weights["fc2_w"].copy()
+        self.fc2.biases = weights["fc2_b"].copy()
+        self.actor_out.weights = weights["actor_out_w"].copy()
+        self.actor_out.biases = weights["actor_out_b"].copy()
+
+
+class NumpyMAPPOCentralizedCritic:
+    """Centralized Corridor Critic in pure NumPy."""
+
+    def __init__(self, in_features: int = 42, seed: int = 42) -> None:
+        self.in_features = in_features
+        self.fc1 = NumpyDense(in_features, 128, seed=seed)
+        self.fc2 = NumpyDense(128, 64, seed=seed + 1)
+        self.critic_out = NumpyDense(64, 1, seed=seed + 2)
+
+    def forward(self, x: np.ndarray) -> Union[float, np.ndarray]:
+        is_1d = (x.ndim == 1)
+        if is_1d:
+            x = np.expand_dims(x, axis=0)
+        h1 = np.maximum(0.0, self.fc1.forward(x))
+        h2 = np.maximum(0.0, self.fc2.forward(h1))
+        val = self.critic_out.forward(h2).squeeze(-1)
+        if is_1d:
+            return float(val[0])
+        return val
+
+    def get_weights(self) -> Dict[str, np.ndarray]:
+        return {
+            "fc1_w": self.fc1.weights, "fc1_b": self.fc1.biases,
+            "fc2_w": self.fc2.weights, "fc2_b": self.fc2.biases,
+            "critic_out_w": self.critic_out.weights, "critic_out_b": self.critic_out.biases,
+        }
+
+    def set_weights(self, weights: Dict[str, np.ndarray]) -> None:
+        self.fc1.weights = weights["fc1_w"].copy()
+        self.fc1.biases = weights["fc1_b"].copy()
+        self.fc2.weights = weights["fc2_w"].copy()
+        self.fc2.biases = weights["fc2_b"].copy()
+        self.critic_out.weights = weights["critic_out_w"].copy()
+        self.critic_out.biases = weights["critic_out_b"].copy()
+
+
+if TORCH_AVAILABLE:
+
+    class PyTorchMAPPOActor(nn.Module):
+        """Decentralized Actor network in PyTorch with action masking support."""
+
+        def __init__(self, in_features: int = 14, num_actions: int = 3, seed: int = 42) -> None:
+            super().__init__()
+            torch.manual_seed(seed)
+            self.in_features = in_features
+            self.num_actions = num_actions
+            self.fc1 = nn.Linear(in_features, 64)
+            self.fc2 = nn.Linear(64, 64)
+            self.actor_out = nn.Linear(64, num_actions)
+            self._init_weights(seed)
+
+        def _init_weights(self, seed: int) -> None:
+            for m in [self.fc1, self.fc2, self.actor_out]:
+                nn.init.kaiming_normal_(m.weight, nonlinearity="relu")
+                nn.init.zeros_(m.bias)
+
+        def forward(
+            self, x: torch.Tensor, mask: Optional[torch.Tensor] = None
+        ) -> Tuple[torch.Tensor, torch.Tensor]:
+            h1 = F.relu(self.fc1(x))
+            h2 = F.relu(self.fc2(h1))
+            logits = self.actor_out(h2)
+            if mask is not None:
+                logits = logits + (1.0 - mask) * (-1e8)
+            probs = F.softmax(logits, dim=-1)
+            return logits, probs
+
+        def get_weights(self) -> Dict[str, np.ndarray]:
+            return {
+                "fc1_w": self.fc1.weight.detach().cpu().numpy().T.copy(),
+                "fc1_b": self.fc1.bias.detach().cpu().numpy().copy(),
+                "fc2_w": self.fc2.weight.detach().cpu().numpy().T.copy(),
+                "fc2_b": self.fc2.bias.detach().cpu().numpy().copy(),
+                "actor_out_w": self.actor_out.weight.detach().cpu().numpy().T.copy(),
+                "actor_out_b": self.actor_out.bias.detach().cpu().numpy().copy(),
+            }
+
+        def set_weights(self, weights: Dict[str, np.ndarray]) -> None:
+            with torch.no_grad():
+                self.fc1.weight.copy_(torch.from_numpy(weights["fc1_w"].T))
+                self.fc1.bias.copy_(torch.from_numpy(weights["fc1_b"]))
+                self.fc2.weight.copy_(torch.from_numpy(weights["fc2_w"].T))
+                self.fc2.bias.copy_(torch.from_numpy(weights["fc2_b"]))
+                self.actor_out.weight.copy_(torch.from_numpy(weights["actor_out_w"].T))
+                self.actor_out.bias.copy_(torch.from_numpy(weights["actor_out_b"]))
+
+
+    class PyTorchMAPPOCentralizedCritic(nn.Module):
+        """Centralized Critic network in PyTorch observing full corridor state."""
+
+        def __init__(self, in_features: int = 42, seed: int = 42) -> None:
+            super().__init__()
+            torch.manual_seed(seed)
+            self.in_features = in_features
+            self.fc1 = nn.Linear(in_features, 128)
+            self.fc2 = nn.Linear(128, 64)
+            self.critic_out = nn.Linear(64, 1)
+            self._init_weights(seed)
+
+        def _init_weights(self, seed: int) -> None:
+            for m in [self.fc1, self.fc2, self.critic_out]:
+                nn.init.kaiming_normal_(m.weight, nonlinearity="relu")
+                nn.init.zeros_(m.bias)
+
+        def forward(self, x: torch.Tensor) -> torch.Tensor:
+            h1 = F.relu(self.fc1(x))
+            h2 = F.relu(self.fc2(h1))
+            val = self.critic_out(h2).squeeze(-1)
+            return val
+
+        def get_weights(self) -> Dict[str, np.ndarray]:
+            return {
+                "fc1_w": self.fc1.weight.detach().cpu().numpy().T.copy(),
+                "fc1_b": self.fc1.bias.detach().cpu().numpy().copy(),
+                "fc2_w": self.fc2.weight.detach().cpu().numpy().T.copy(),
+                "fc2_b": self.fc2.bias.detach().cpu().numpy().copy(),
+                "critic_out_w": self.critic_out.weight.detach().cpu().numpy().T.copy(),
+                "critic_out_b": self.critic_out.bias.detach().cpu().numpy().copy(),
+            }
+
+        def set_weights(self, weights: Dict[str, np.ndarray]) -> None:
+            with torch.no_grad():
+                self.fc1.weight.copy_(torch.from_numpy(weights["fc1_w"].T))
+                self.fc1.bias.copy_(torch.from_numpy(weights["fc1_b"]))
+                self.fc2.weight.copy_(torch.from_numpy(weights["fc2_w"].T))
+                self.fc2.bias.copy_(torch.from_numpy(weights["fc2_b"]))
+                self.critic_out.weight.copy_(torch.from_numpy(weights["critic_out_w"].T))
+                self.critic_out.bias.copy_(torch.from_numpy(weights["critic_out_b"]))
+
+
+class MAPPOActorNetwork:
+    """Unified wrapper for MAPPO Decentralized Actor."""
+
+    def __init__(self, in_features: int = 14, num_actions: int = 3, seed: int = 42) -> None:
+        self.in_features = in_features
+        self.num_actions = num_actions
+        self.seed = seed
+        if TORCH_AVAILABLE:
+            self._model = PyTorchMAPPOActor(in_features=in_features, num_actions=num_actions, seed=seed)
+        else:
+            self._model = NumpyMAPPOActor(in_features=in_features, num_actions=num_actions, seed=seed)
+
+    @property
+    def model(self) -> Any:
+        return self._model
+
+    def parameters(self):
+        return self._model.parameters()
+
+    def named_parameters(self):
+        return self._model.named_parameters()
+
+    def train(self, mode: bool = True):
+        if hasattr(self._model, "train"):
+            self._model.train(mode)
+        return self
+
+    def eval(self):
+        if hasattr(self._model, "eval"):
+            self._model.eval()
+        return self
+
+    def forward(
+        self,
+        x: Union[np.ndarray, torch.Tensor],
+        mask: Optional[Union[np.ndarray, torch.Tensor]] = None,
+    ) -> Tuple[Any, Any]:
+        if TORCH_AVAILABLE and isinstance(self._model, nn.Module):
+            if isinstance(x, torch.Tensor):
+                mask_t = mask if (mask is None or isinstance(mask, torch.Tensor)) else torch.from_numpy(mask).float()
+                return self._model(x, mask_t)
+            is_1d = (x.ndim == 1)
+            t_x = torch.from_numpy(np.expand_dims(x, axis=0) if is_1d else x).float()
+            mask_t = None
+            if mask is not None:
+                mask_np = np.expand_dims(mask, axis=0) if (is_1d and mask.ndim == 1) else mask
+                mask_t = torch.from_numpy(mask_np).float()
+            with torch.no_grad():
+                logits, probs = self._model(t_x, mask_t)
+                logits_np = logits.numpy()
+                probs_np = probs.numpy()
+            if is_1d:
+                return logits_np[0], probs_np[0]
+            return logits_np, probs_np
+        else:
+            return self._model.forward(x, mask)
+
+    def forward_logits(
+        self, x: torch.Tensor, mask: Optional[torch.Tensor] = None
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        if TORCH_AVAILABLE and hasattr(self._model, "forward"):
+            return self._model(x, mask)
+        raise NotImplementedError("forward_logits requires PyTorch")
+
+    def get_weights(self) -> Dict[str, np.ndarray]:
+        return self._model.get_weights()
+
+    def set_weights(self, weights: Dict[str, np.ndarray]) -> None:
+        self._model.set_weights(weights)
+
+
+class MAPPOCentralizedCriticNetwork:
+    """Unified wrapper for MAPPO Centralized Corridor Critic."""
+
+    def __init__(self, in_features: int = 42, seed: int = 42) -> None:
+        self.in_features = in_features
+        self.seed = seed
+        if TORCH_AVAILABLE:
+            self._model = PyTorchMAPPOCentralizedCritic(in_features=in_features, seed=seed)
+        else:
+            self._model = NumpyMAPPOCentralizedCritic(in_features=in_features, seed=seed)
+
+    @property
+    def model(self) -> Any:
+        return self._model
+
+    def parameters(self):
+        return self._model.parameters()
+
+    def named_parameters(self):
+        return self._model.named_parameters()
+
+    def train(self, mode: bool = True):
+        if hasattr(self._model, "train"):
+            self._model.train(mode)
+        return self
+
+    def eval(self):
+        if hasattr(self._model, "eval"):
+            self._model.eval()
+        return self
+
+    def forward(self, x: Union[np.ndarray, torch.Tensor]) -> Any:
+        if TORCH_AVAILABLE and isinstance(self._model, nn.Module):
+            if isinstance(x, torch.Tensor):
+                return self._model(x)
+            is_1d = (x.ndim == 1)
+            t_x = torch.from_numpy(np.expand_dims(x, axis=0) if is_1d else x).float()
+            with torch.no_grad():
+                val = self._model(t_x).numpy()
+            if is_1d:
+                return float(val[0]) if val.ndim > 0 else float(val)
+            return val
+        else:
+            return self._model.forward(x)
+
+    def get_weights(self) -> Dict[str, np.ndarray]:
+        return self._model.get_weights()
+
+    def set_weights(self, weights: Dict[str, np.ndarray]) -> None:
+        self._model.set_weights(weights)

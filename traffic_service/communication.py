@@ -33,7 +33,13 @@ class CorridorCommunicationHub:
         self._inbox: Dict[str, Deque[IntersectionMessage]] = defaultdict(deque)
         self._latest_inflow: Dict[str, float] = defaultdict(float)
         self._active_platoons: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+        self._served_platoons: Dict[str, set[str]] = defaultdict(set)
         self._emergency_broadcast: Optional[Dict[str, Any]] = None
+
+    def reset_platoons(self) -> None:
+        """Clears active and served platoons across all junctions."""
+        self._active_platoons.clear()
+        self._served_platoons.clear()
 
     def send(self, msg: IntersectionMessage) -> None:
         """Sends a point-to-point message to a specific intersection."""
@@ -91,21 +97,28 @@ class CorridorCommunicationHub:
         speed_mps: float,
         eta_seconds: float,
         timestamp: float,
-    ) -> None:
+        platoon_id: Optional[str] = None,
+    ) -> str:
         """
         Notifies the immediate downstream intersection of a departing vehicle platoon
-        so it can prepare green-wave alignment.
+        so it can prepare green-wave alignment. Returns unique platoon_id.
         """
         if sender_id not in self.corridor_sequence:
-            return
+            return ""
 
         idx = self.corridor_sequence.index(sender_id)
         if idx + 1 < len(self.corridor_sequence):
             downstream_id = self.corridor_sequence[idx + 1]
+            p_id = platoon_id or f"PLT_{sender_id}_{timestamp:.1f}_{vehicle_count}_{len(self._active_platoons[downstream_id])}"
             platoon_info = {
+                "platoon_id": p_id,
                 "origin": sender_id,
+                "target": downstream_id,
                 "count": vehicle_count,
+                "vehicle_count": vehicle_count,
                 "speed_mps": speed_mps,
+                "departure_time": timestamp,
+                "eta_seconds": eta_seconds,
                 "arrival_time": timestamp + eta_seconds,
             }
             self._active_platoons[downstream_id].append(platoon_info)
@@ -117,6 +130,8 @@ class CorridorCommunicationHub:
                 payload=platoon_info,
             )
             self.send(msg)
+            return p_id
+        return ""
 
     def get_approaching_platoons(self, junction_id: str, current_time: float) -> List[Dict[str, Any]]:
         """Returns platoons expected to arrive within the next 30 seconds."""
@@ -124,6 +139,50 @@ class CorridorCommunicationHub:
         valid = [p for p in platoons if p["arrival_time"] >= current_time]
         self._active_platoons[junction_id] = valid
         return valid
+
+    def get_unserved_approaching_platoons(
+        self,
+        junction_id: str,
+        current_time: float,
+        window_before_s: float = 3.0,
+        window_after_s: float = 12.0,
+    ) -> List[Dict[str, Any]]:
+        """
+        Returns platoons whose arrival window [arrival_time - window_before_s, arrival_time + window_after_s]
+        overlaps with current_time and which have not yet been served.
+        """
+        served = self._served_platoons.get(junction_id, set())
+        platoons = self._active_platoons.get(junction_id, [])
+        # Prune fully expired platoons past arrival_time + window_after_s
+        active = [p for p in platoons if p["arrival_time"] + window_after_s >= current_time]
+        self._active_platoons[junction_id] = active
+
+        unserved = []
+        for p in active:
+            p_id = p.get("platoon_id", "")
+            if p_id in served:
+                continue
+            arr = p["arrival_time"]
+            if (arr - window_before_s) <= current_time <= (arr + window_after_s):
+                unserved.append(p)
+        return unserved
+
+    def mark_platoon_served(self, a: str, b: str) -> None:
+        """Marks a platoon as served by the junction to prevent double-counting rewards."""
+        if a in self.corridor_sequence:
+            j_id, p_id = a, b
+        else:
+            p_id, j_id = a, b
+        if p_id:
+            self._served_platoons[j_id].add(p_id)
+
+    def is_platoon_served(self, a: str, b: str) -> bool:
+        """Checks if a platoon has already been served by the junction."""
+        if a in self.corridor_sequence:
+            j_id, p_id = a, b
+        else:
+            p_id, j_id = a, b
+        return p_id in self._served_platoons.get(j_id, set())
 
     def broadcast_emergency(
         self,
