@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SYNTHETIC TEST FIXTURE — NOT REAL SILK BOARD DATA.
+
+  This is a minimal, hand-authored OSM XML file used only to validate
+  build_silk_board_network.py / identify_junctions.py / generate_demand.py /
+  validate_silk_board_network.py in an environment without Overpass API
+  access. It models a linear 3-junction corridor with named roads, loosely
+  patterned after Hosur Road, so the scripts have something real (if
+  fictional) to chew on. It must never be presented as Silk Board geometry.
+-->
+<osm version="0.6" generator="manual-test-fixture">
+  <node id="1001" lat="12.9130" lon="77.6160"/>
+  <node id="1002" lat="12.9172" lon="77.6180"/>  <!-- upstream feeder: J1 candidate -->
+  <node id="1003" lat="12.9172" lon="77.6228">  <!-- primary junction: J2 candidate -->
+    <tag k="highway" v="traffic_signals"/>
+  </node>
+  <node id="1004" lat="12.9172" lon="77.6276"/>  <!-- downstream feeder: J3 candidate -->
+  <node id="1005" lat="12.9130" lon="77.6296"/>
+  <node id="1006" lat="12.9220" lon="77.6228"/>  <!-- cross street north at J2 -->
+  <node id="1007" lat="12.9124" lon="77.6228"/>  <!-- cross street south at J2 -->
+
+  <way id="2001">
+    <nd ref="1001"/>
+    <nd ref="1002"/>
+    <tag k="highway" v="primary"/>
+    <tag k="name" v="Hosur Road"/>
+    <tag k="lanes" v="2"/>
+    <tag k="oneway" v="no"/>
+  </way>
+  <way id="2002">
+    <nd ref="1002"/>
+    <nd ref="1003"/>
+    <tag k="highway" v="primary"/>
+    <tag k="name" v="Hosur Road"/>
+    <tag k="lanes" v="2"/>
+    <tag k="oneway" v="no"/>
+  </way>
+  <way id="2003">
+    <nd ref="1003"/>
+    <nd ref="1004"/>
+    <tag k="highway" v="primary"/>
+    <tag k="name" v="Hosur Road"/>
+    <tag k="lanes" v="2"/>
+    <tag k="oneway" v="no"/>
+  </way>
+  <way id="2004">
+    <nd ref="1004"/>
+    <nd ref="1005"/>
+    <tag k="highway" v="primary"/>
+    <tag k="name" v="Hosur Road"/>
+    <tag k="lanes" v="2"/>
+    <tag k="oneway" v="no"/>
+  </way>
+  <way id="2005">
+    <nd ref="1006"/>
+    <nd ref="1003"/>
+    <nd ref="1007"/>
+    <tag k="highway" v="secondary"/>
+    <tag k="name" v="Outer Ring Road"/>
+    <tag k="lanes" v="2"/>
+    <tag k="oneway" v="no"/>
+  </way>
+
+</osm>

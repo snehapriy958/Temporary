@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <vType id="motorcycle" vClass="motorcycle"
+           length="2.2" minGap="1.0" maxSpeed="16.67"
+           accel="2.6" decel="4.5" sigma="0.5"
+           color="0.2,0.5,1.0"/>
+
+    <vType id="car" vClass="passenger"
+           length="4.5" minGap="2.0" maxSpeed="16.67"
+           accel="2.6" decel="4.5" sigma="0.5"
+           color="0.1,0.8,0.2"/>
+
+    <vType id="bmtc_bus" vClass="bus"
+           length="12.0" minGap="2.5" maxSpeed="13.89"
+           accel="1.2" decel="3.0" sigma="0.5"
+           color="0.9,0.5,0.1"/>
+
+    <vType id="heavy_vehicle" vClass="truck"
+           length="10.0" minGap="2.5" maxSpeed="13.89"
+           accel="1.0" decel="3.0" sigma="0.5"
+           color="0.5,0.5,0.5"/>
+
+    <vType id="ambulance" vClass="emergency"
+           length="5.0" minGap="2.0" maxSpeed="20.0"
+           accel="3.0" decel="5.0" sigma="0.2"
+           color="1.0,0.0,0.0"/>
+
+</routes>

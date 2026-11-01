@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="blr_traffic_ps_locs" id="blr_traffic_ps_locs">
+	<SimpleField name="OBJECTID" type="float"></SimpleField>
+	<SimpleField name="KGISCode" type="string"></SimpleField>
+	<SimpleField name="KGISWardID" type="float"></SimpleField>
+	<SimpleField name="DepartmentCode" type="string"></SimpleField>
+	<SimpleField name="KGISVillageID" type="float"></SimpleField>
+	<SimpleField name="KGISTRF_POL_STAID" type="int"></SimpleField>
+	<SimpleField name="TRF_POL_STAName" type="string"></SimpleField>
+	<SimpleField name="KGISTPSCode" type="string"></SimpleField>
+</Schema>
+<Folder><name>blr_traffic_ps_locs</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">8</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0004</SimpleData>
+		<SimpleData name="DepartmentCode">164431762</SimpleData>
+		<SimpleData name="KGISVillageID">15500</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">12</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Adugodi </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 12</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.608588888716,12.9415222221275</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">9</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0005</SimpleData>
+		<SimpleData name="DepartmentCode">164431770</SimpleData>
+		<SimpleData name="KGISVillageID">21433</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">13</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Airport Bengaluru</SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 13</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6825083328167,12.9553527779598</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">10</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0006</SimpleData>
+		<SimpleData name="DepartmentCode">164431761</SimpleData>
+		<SimpleData name="KGISVillageID">30092</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">14</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Ashoknagar </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 14</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6103305562667,12.9716333327417</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">11</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0007</SimpleData>
+		<SimpleData name="DepartmentCode">164431776</SimpleData>
+		<SimpleData name="KGISVillageID">15124</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">15</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Banasawadi </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 15</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6402194435504,13.0195027775533</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">12</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0008</SimpleData>
+		<SimpleData name="DepartmentCode">164431766</SimpleData>
+		<SimpleData name="KGISVillageID">30092</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">16</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Cubbonpark </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 16</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5978499995698,12.9759333330466</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">13</SimpleData>
+		<SimpleData name="KGISCode">29572055436130580000HMPOLPUOFFTPS0001</SimpleData>
+		<SimpleData name="DepartmentCode">164431896</SimpleData>
+		<SimpleData name="KGISVillageID">15514</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">17</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Electronic City </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 17</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6617833330928,12.8391916668387</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">14</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0009</SimpleData>
+		<SimpleData name="DepartmentCode">164431769</SimpleData>
+		<SimpleData name="KGISVillageID">30092</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">18</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Halasur Gate </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 18</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5871972223441,12.9665694437465</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">15</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0010</SimpleData>
+		<SimpleData name="DepartmentCode">164431775</SimpleData>
+		<SimpleData name="KGISVillageID">30092</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">19</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Halasur </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 19</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6253111106229,12.9747000002684</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">16</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0011</SimpleData>
+		<SimpleData name="DepartmentCode">164431767</SimpleData>
+		<SimpleData name="KGISVillageID">30092</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">20</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, High Grounds </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 20</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5830472220116,12.9847111107347</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">17</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0012</SimpleData>
+		<SimpleData name="DepartmentCode">164432001</SimpleData>
+		<SimpleData name="KGISVillageID">15685</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">21</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Hulimavu </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 21</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5889944438037,12.8565111111396</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">18</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0013</SimpleData>
+		<SimpleData name="DepartmentCode">164431773</SimpleData>
+		<SimpleData name="KGISVillageID">15118</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">22</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Jeevan Bhima Nagar (Indiranagar) </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 22</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6402527776574,12.9781749996656</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">19</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0014</SimpleData>
+		<SimpleData name="DepartmentCode">164432201</SimpleData>
+		<SimpleData name="KGISVillageID">15125</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">23</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, K.G.halli </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 23</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6190444442519,13.0195361113638</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">20</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0015</SimpleData>
+		<SimpleData name="DepartmentCode">164431774</SimpleData>
+		<SimpleData name="KGISVillageID">21420</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">24</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, K.R.Puram </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 24</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6938361113647,13.0079694436787</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">21</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0016</SimpleData>
+		<SimpleData name="DepartmentCode">164431763</SimpleData>
+		<SimpleData name="KGISVillageID">15536</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">25</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Madivala </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 25</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6207250004286,12.9209916672212</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">22</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0017</SimpleData>
+		<SimpleData name="DepartmentCode">164431764</SimpleData>
+		<SimpleData name="KGISVillageID">15532</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">26</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Mico Layout </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 26</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6000611111641,12.9132777784321</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">23</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0018</SimpleData>
+		<SimpleData name="DepartmentCode">164431772</SimpleData>
+		<SimpleData name="KGISVillageID">15123</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">27</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Pulakeshinagar </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 27</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.619652777813,12.9992749996265</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">24</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0019</SimpleData>
+		<SimpleData name="DepartmentCode">164431768</SimpleData>
+		<SimpleData name="KGISVillageID">15168</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">28</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Sadashivanagar </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 28</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.572563889212,13.0148472217016</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">25</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0020</SimpleData>
+		<SimpleData name="DepartmentCode">164431771</SimpleData>
+		<SimpleData name="KGISVillageID">30092</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">29</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Shivajinagar </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 29</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6034222217947,12.9879194436417</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">26</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0021</SimpleData>
+		<SimpleData name="DepartmentCode">164431895</SimpleData>
+		<SimpleData name="KGISVillageID">21356</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">30</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Whitefield </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 30</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.7571611107818,12.9942472220074</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">27</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0022</SimpleData>
+		<SimpleData name="DepartmentCode">164431765</SimpleData>
+		<SimpleData name="KGISVillageID">15153</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">31</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Wilsongarden </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 31</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5956167185657,12.9501435008387</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">29</SimpleData>
+		<SimpleData name="KGISCode">29572055426128970000HMPOLPUOFFTPS0001</SimpleData>
+		<SimpleData name="DepartmentCode">164431898</SimpleData>
+		<SimpleData name="KGISVillageID">15322</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">33</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Chikkajala </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 33</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6335682558611,13.1723696635458</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">30</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0023</SimpleData>
+		<SimpleData name="DepartmentCode">164431777</SimpleData>
+		<SimpleData name="KGISVillageID">15112</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">34</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Hebbal </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 34</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5889760000564,13.0424089995835</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">31</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0024</SimpleData>
+		<SimpleData name="DepartmentCode">164431782</SimpleData>
+		<SimpleData name="KGISVillageID">15447</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">35</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Yelahanka </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 35</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5940811109578,13.0949366661803</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">32</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0025</SimpleData>
+		<SimpleData name="DepartmentCode">164431794</SimpleData>
+		<SimpleData name="KGISVillageID">15480</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">36</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Yashwanthapura </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 36</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5581219999556,13.0181530004015</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">33</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0026</SimpleData>
+		<SimpleData name="DepartmentCode">164431778</SimpleData>
+		<SimpleData name="KGISVillageID">30090</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">37</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Malleshwaram </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 37</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5696064323857,12.9966521669095</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">34</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0027</SimpleData>
+		<SimpleData name="DepartmentCode">164431779</SimpleData>
+		<SimpleData name="KGISVillageID">15491</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">38</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Peenya </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 38</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5211641802431,13.0360555191998</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">35</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0028</SimpleData>
+		<SimpleData name="DepartmentCode">164431792</SimpleData>
+		<SimpleData name="KGISVillageID">15116</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">39</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Vijayanagar </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 39</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5400378966948,12.9676958598672</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">36</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0029</SimpleData>
+		<SimpleData name="DepartmentCode">164431791</SimpleData>
+		<SimpleData name="KGISVillageID">30092</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">40</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Upparpet </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 40</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5750017556543,12.9745057476114</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">37</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0030</SimpleData>
+		<SimpleData name="DepartmentCode">164431789</SimpleData>
+		<SimpleData name="KGISVillageID">15089</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">41</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, City Market </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 41</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5736625414289,12.9707580957203</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">38</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0031</SimpleData>
+		<SimpleData name="DepartmentCode">164431787</SimpleData>
+		<SimpleData name="KGISVillageID">15084</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">42</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Byatarayanapura </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 42</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5401472552789,12.9513584295704</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">39</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0032</SimpleData>
+		<SimpleData name="DepartmentCode">164431790</SimpleData>
+		<SimpleData name="KGISVillageID">15115</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">43</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Magadi Road </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 43</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5510560002498,12.9746540000128</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">40</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0033</SimpleData>
+		<SimpleData name="DepartmentCode">164431786</SimpleData>
+		<SimpleData name="KGISVillageID">15720</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">44</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Jayanagar </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 44</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5813900000882,12.9285800003268</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">41</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0034</SimpleData>
+		<SimpleData name="DepartmentCode">164431795</SimpleData>
+		<SimpleData name="KGISVillageID">15706</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">45</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Kumaraswamy Layout </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 45</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5442750003964,12.9011599998495</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">42</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0035</SimpleData>
+		<SimpleData name="DepartmentCode">164431784</SimpleData>
+		<SimpleData name="KGISVillageID">30092</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">46</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Basavanagudi </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 46</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5742712536436,12.9420741309031</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">74</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0037</SimpleData>
+		<SimpleData name="DepartmentCode">164432005</SimpleData>
+		<SimpleData name="KGISVillageID">15469</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">80</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Jalahalli</SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 80</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5494851412181,13.0486969233808</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">75</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0038</SimpleData>
+		<SimpleData name="DepartmentCode">164431780</SimpleData>
+		<SimpleData name="KGISVillageID">15112</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">82</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, R.T Nagar</SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 82</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5886465824464,13.0333565345041</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">76</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0039</SimpleData>
+		<SimpleData name="DepartmentCode">164431781</SimpleData>
+		<SimpleData name="KGISVillageID">15481</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">83</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Rajajinagar </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 83</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5542211644862,12.9945588996388</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">77</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0040</SimpleData>
+		<SimpleData name="DepartmentCode">164431793</SimpleData>
+		<SimpleData name="KGISVillageID">15494</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">84</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Kamakshipalya</SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 84</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5327008333068,12.9821666670146</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">78</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0041</SimpleData>
+		<SimpleData name="DepartmentCode">164432006</SimpleData>
+		<SimpleData name="KGISVillageID">15582</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">85</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Kengeri</SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 85</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.4815072286419,12.9105461664563</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">79</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0042</SimpleData>
+		<SimpleData name="DepartmentCode">164431783</SimpleData>
+		<SimpleData name="KGISVillageID">15721</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">86</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Banashankari </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 86</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5677911256067,12.9289878325586</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">93</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0044</SimpleData>
+		<SimpleData name="DepartmentCode">164431788</SimpleData>
+		<SimpleData name="KGISVillageID">15081</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">102</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, Chickpet </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 102</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5681528496062,12.9609817288076</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">100</SimpleData>
+		<SimpleData name="KGISCode">29572055428031620000HMPOLPUOFFTPS0045</SimpleData>
+		<SimpleData name="DepartmentCode">164432132</SimpleData>
+		<SimpleData name="KGISVillageID">15521</SimpleData>
+		<SimpleData name="KGISTRF_POL_STAID">109</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, HSR Layout </SimpleData>
+		<SimpleData name="KGISTPSCode">TPS - 109</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.6616669484753,12.9219612532365</coordinates></Point></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#blr_traffic_ps_locs">
+		<SimpleData name="OBJECTID">105</SimpleData>
+		<SimpleData name="DepartmentCode">164431785</SimpleData>
+		<SimpleData name="TRF_POL_STAName">Traffic Police Station, V V Puram</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Point><coordinates>77.5773168381596,12.9576561196626</coordinates></Point></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>

@@ -1,0 +1,574 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/ControllerComparison.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=083a4934"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=083a4934"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import { GitCompare, CheckCircle2, XCircle, Info, AlertCircle } from "/node_modules/.vite/deps/lucide-react.js?v=083a4934";
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from "/node_modules/.vite/deps/recharts.js?v=083a4934";
+const METRIC_DEFINITIONS = [
+  { key: "mean_travel_time_s", label: "Corridor Travel Time (s)" },
+  { key: "total_waiting_time_s", label: "Average Wait Time (s)" },
+  { key: "mean_queue", label: "Mean Corridor Queue (veh)" },
+  { key: "mean_speed_kmh", label: "Average Speed (km/h)" },
+  { key: "total_co2_kg", label: "Total CO₂ (kg)" },
+  { key: "total_fuel_liters", label: "Estimated Fuel Volume (L)" },
+  { key: "emergency_traversal_duration_s", label: "Ambulance Clearance (s)" }
+];
+const CONTROLLER_COLORS = [
+  "#64748b",
+  // Slate for baseline
+  "#0d9488",
+  // Teal for coordinated
+  "#059669",
+  // Emerald
+  "#d97706",
+  // Amber
+  "#7c3aed"
+  // Violet/Purple
+];
+export function ControllerComparison({ compareData, isLoading = false, error = null }) {
+  if (error) {
+    return /* @__PURE__ */ jsxDEV("div", { className: "bg-white border border-slate-200 rounded-xl p-5 shadow-sm", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2 border-b border-slate-200 pb-3 mb-4", children: [
+        /* @__PURE__ */ jsxDEV(GitCompare, { className: "h-5 w-5 text-purple-600" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 48,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-sm font-bold tracking-wide text-slate-900 uppercase", children: "Signal Controller Empirical Benchmark Comparison" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 49,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 47,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "py-12 flex flex-col items-center justify-center text-center", children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "p-3 bg-rose-50 border border-rose-200 rounded-full mb-3 text-rose-600", children: /* @__PURE__ */ jsxDEV(AlertCircle, { className: "h-6 w-6" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 55,
+          columnNumber: 13
+        }, this) }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 54,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("h3", { className: "text-sm font-semibold text-slate-900 mb-1", children: "Benchmark Data Unavailable" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 57,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-xs text-slate-500 max-w-md", children: typeof error === "string" ? error : "Unable to retrieve controller benchmark comparison from backend API." }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 58,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 53,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 46,
+      columnNumber: 7
+    }, this);
+  }
+  if (isLoading || !compareData && !error) {
+    return /* @__PURE__ */ jsxDEV("div", { className: "bg-white border border-slate-200 rounded-xl p-5 shadow-sm", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2 border-b border-slate-200 pb-3 mb-4", children: [
+        /* @__PURE__ */ jsxDEV(GitCompare, { className: "h-5 w-5 text-purple-600 animate-pulse" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 71,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-sm font-bold tracking-wide text-slate-900 uppercase", children: "Signal Controller Empirical Benchmark Comparison" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 72,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 70,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "py-12 flex flex-col items-center justify-center text-center", children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "animate-spin rounded-full h-8 w-8 border-2 border-teal-600 border-t-transparent mb-3" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 77,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-xs font-mono text-slate-500", children: "Loading empirical benchmark metrics..." }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 78,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 76,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 69,
+      columnNumber: 7
+    }, this);
+  }
+  const controllers = compareData?.controllers || [];
+  if (controllers.length === 0) {
+    return /* @__PURE__ */ jsxDEV("div", { className: "bg-white border border-slate-200 rounded-xl p-5 shadow-sm", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2 border-b border-slate-200 pb-3 mb-4", children: [
+        /* @__PURE__ */ jsxDEV(GitCompare, { className: "h-5 w-5 text-purple-600" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 91,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-sm font-bold tracking-wide text-slate-900 uppercase", children: "Signal Controller Empirical Benchmark Comparison" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 92,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 90,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "py-12 flex flex-col items-center justify-center text-center", children: [
+        /* @__PURE__ */ jsxDEV(Info, { className: "h-6 w-6 text-slate-400 mb-2" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 97,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("h3", { className: "text-sm font-semibold text-slate-900 mb-1", children: "No Benchmark Records Found" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 98,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-xs text-slate-500", children: "No controller benchmark records are currently registered for this corridor network." }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 99,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 96,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 89,
+      columnNumber: 7
+    }, this);
+  }
+  const activeControllers = controllers.filter(
+    (ctrl) => ctrl.status === "Implemented" || ctrl.mean_travel_time_s != null
+  );
+  const chartData = METRIC_DEFINITIONS.map(({ key, label }) => {
+    const row = { metric: label };
+    let hasValue = false;
+    activeControllers.forEach((ctrl) => {
+      const val = ctrl[key];
+      if (val !== null && val !== void 0 && !Number.isNaN(Number(val))) {
+        row[ctrl.controller_name] = Number(val);
+        hasValue = true;
+      } else {
+        row[ctrl.controller_name] = null;
+      }
+    });
+    return hasValue ? row : null;
+  }).filter(Boolean);
+  return /* @__PURE__ */ jsxDEV("div", { className: "bg-white border border-slate-200 rounded-xl p-5 shadow-sm", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3 mb-4", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxDEV(GitCompare, { className: "h-5 w-5 text-purple-600" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 132,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-sm font-bold tracking-wide text-slate-900 uppercase", children: "Signal Controller Empirical Benchmark Comparison" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 133,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 131,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("span", { className: "text-xs font-mono text-slate-500", children: [
+        compareData?.network || "Silk Board Corridor (J1 -> J2 -> J3)",
+        compareData?.benchmark_duration_s ? ` • ${compareData.benchmark_duration_s}s window` : ""
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 137,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 130,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "h-64 w-full mb-6", children: [
+      /* @__PURE__ */ jsxDEV("h3", { className: "text-xs font-bold text-slate-700 uppercase tracking-wider mb-1", children: "Performance Comparison (Lower is Better, except Speed)" }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 145,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "text-[10px] text-slate-500 mb-2", children: "Note: Fuel volumes are estimated gasoline equivalents (ρ = 0.75 kg/L)." }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 148,
+        columnNumber: 9
+      }, this),
+      chartData.length > 0 ? /* @__PURE__ */ jsxDEV(ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxDEV(BarChart, { data: chartData, margin: { top: 10, right: 10, left: 0, bottom: 25 }, children: [
+        /* @__PURE__ */ jsxDEV(CartesianGrid, { strokeDasharray: "3 3", stroke: "#e2e8f0" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 154,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV(XAxis, { dataKey: "metric", stroke: "#64748b", tick: { fontSize: 10, fill: "#64748b" }, angle: -15, textAnchor: "end" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 155,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV(YAxis, { stroke: "#64748b", tick: { fontSize: 10, fill: "#64748b" } }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 156,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV(
+          Tooltip,
+          {
+            contentStyle: {
+              backgroundColor: "#ffffff",
+              borderColor: "#e2e8f0",
+              color: "#0f172a",
+              borderRadius: "0.5rem",
+              fontSize: "11px",
+              boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)"
+            }
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+            lineNumber: 157,
+            columnNumber: 15
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(Legend, { wrapperStyle: { fontSize: "11px", paddingTop: "10px" } }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 167,
+          columnNumber: 15
+        }, this),
+        activeControllers.map(
+          (ctrl, idx) => /* @__PURE__ */ jsxDEV(
+            Bar,
+            {
+              dataKey: ctrl.controller_name,
+              fill: CONTROLLER_COLORS[idx % CONTROLLER_COLORS.length],
+              name: ctrl.controller_name,
+              radius: [4, 4, 0, 0]
+            },
+            ctrl.controller_name,
+            false,
+            {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+              lineNumber: 169,
+              columnNumber: 13
+            },
+            this
+          )
+        )
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 153,
+        columnNumber: 13
+      }, this) }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 152,
+        columnNumber: 9
+      }, this) : /* @__PURE__ */ jsxDEV("div", { className: "h-full flex flex-col items-center justify-center text-slate-400 text-xs font-mono border border-dashed border-slate-200 rounded-lg", children: [
+        /* @__PURE__ */ jsxDEV(Info, { className: "h-5 w-5 mb-2 text-slate-400" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 181,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("span", { children: "No numeric performance metrics available to chart for current controllers." }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 182,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 180,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 144,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxDEV("table", { className: "w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden", children: [
+      /* @__PURE__ */ jsxDEV("thead", { className: "bg-slate-100 text-slate-700 text-[11px] uppercase font-mono border-b border-slate-200", children: /* @__PURE__ */ jsxDEV("tr", { children: [
+        /* @__PURE__ */ jsxDEV("th", { className: "py-2.5 px-3", children: "Controller Architecture" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 192,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("th", { className: "py-2.5 px-3", children: "Status" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 193,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("th", { className: "py-2.5 px-3", children: "Travel Time" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 194,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("th", { className: "py-2.5 px-3", children: "Mean Speed" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 195,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("th", { className: "py-2.5 px-3", children: "Wait Time" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 196,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("th", { className: "py-2.5 px-3", children: "Corridor Queue" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 197,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("th", { className: "py-2.5 px-3", children: "CO₂ / Estimated Fuel Volume (L)" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 198,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("th", { className: "py-2.5 px-3", children: "Ambulance Traversal" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 199,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 191,
+        columnNumber: 13
+      }, this) }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 190,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV("tbody", { className: "divide-y divide-slate-100 font-mono", children: controllers.map((ctrl, i) => {
+        const isImplemented = ctrl.status === "Implemented";
+        return /* @__PURE__ */ jsxDEV(
+          "tr",
+          {
+            className: `hover:bg-slate-50 transition ${isImplemented ? "bg-white" : "bg-slate-50/50 opacity-75"}`,
+            children: [
+              /* @__PURE__ */ jsxDEV("td", { className: "py-3 px-3 font-semibold text-slate-900", children: [
+                /* @__PURE__ */ jsxDEV("div", { children: ctrl.controller_name }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                  lineNumber: 213,
+                  columnNumber: 21
+                }, this),
+                /* @__PURE__ */ jsxDEV("div", { className: "text-[10px] text-slate-500 font-sans mt-0.5 max-w-xs line-clamp-1", children: ctrl.description }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                  lineNumber: 214,
+                  columnNumber: 21
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 212,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { className: "py-3 px-3", children: isImplemented ? /* @__PURE__ */ jsxDEV("span", { className: "inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-300", children: [
+                /* @__PURE__ */ jsxDEV(CheckCircle2, { className: "h-3 w-3" }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                  lineNumber: 221,
+                  columnNumber: 25
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { children: "Implemented" }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                  lineNumber: 222,
+                  columnNumber: 25
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 220,
+                columnNumber: 21
+              }, this) : /* @__PURE__ */ jsxDEV("span", { className: "inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-300", children: [
+                /* @__PURE__ */ jsxDEV(XCircle, { className: "h-3 w-3" }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                  lineNumber: 226,
+                  columnNumber: 25
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { children: "Not implemented" }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                  lineNumber: 227,
+                  columnNumber: 25
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 225,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 218,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { className: "py-3 px-3 text-slate-700", children: ctrl.mean_travel_time_s != null ? `${ctrl.mean_travel_time_s}s` : "—" }, void 0, false, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 231,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { className: "py-3 px-3 text-teal-700 font-bold", children: ctrl.mean_speed_kmh != null ? `${ctrl.mean_speed_kmh} km/h` : "—" }, void 0, false, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 234,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { className: "py-3 px-3 text-slate-700", children: ctrl.total_waiting_time_s != null ? `${ctrl.total_waiting_time_s}s` : "—" }, void 0, false, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 237,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { className: "py-3 px-3 text-slate-700", children: ctrl.mean_queue != null ? `${ctrl.mean_queue} veh` : "—" }, void 0, false, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 240,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { className: "py-3 px-3 text-slate-700", children: ctrl.total_co2_kg != null ? /* @__PURE__ */ jsxDEV("div", { children: [
+                /* @__PURE__ */ jsxDEV("div", { children: [
+                  ctrl.total_co2_kg,
+                  " kg CO₂"
+                ] }, void 0, true, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                  lineNumber: 246,
+                  columnNumber: 25
+                }, this),
+                ctrl.total_fuel_liters != null && /* @__PURE__ */ jsxDEV("div", { className: "text-[10px] text-amber-700 font-semibold", title: "Gasoline equivalent (ρ = 0.75 kg/L)", children: [
+                  ctrl.total_fuel_liters,
+                  " L (est. gasoline-eq)"
+                ] }, void 0, true, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                  lineNumber: 248,
+                  columnNumber: 23
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 245,
+                columnNumber: 21
+              }, this) : "—" }, void 0, false, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 243,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { className: "py-3 px-3 text-emerald-700 font-bold", children: ctrl.emergency_traversal_duration_s != null ? `${ctrl.emergency_traversal_duration_s}s` : "—" }, void 0, false, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+                lineNumber: 257,
+                columnNumber: 19
+              }, this)
+            ]
+          },
+          i,
+          true,
+          {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+            lineNumber: 206,
+            columnNumber: 17
+          },
+          this
+        );
+      }) }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 202,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 189,
+      columnNumber: 9
+    }, this) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 188,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "mt-4 p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700", children: /* @__PURE__ */ jsxDEV("div", { className: "flex items-start gap-2", children: [
+      /* @__PURE__ */ jsxDEV(Info, { className: "h-4 w-4 text-teal-600 flex-shrink-0 mt-0.5" }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 270,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "space-y-1", children: [
+        /* @__PURE__ */ jsxDEV("p", { className: "font-semibold text-slate-900", children: "AI Policy Roadmap (PPO / DQN Status):" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 272,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-[11px] text-slate-600", children: [
+          "The simulation engine exposes clean, normalized observation hooks via ",
+          /* @__PURE__ */ jsxDEV("code", { className: "text-teal-800 bg-slate-100 px-1 py-0.5 rounded font-mono border border-slate-200", children: "sim.get_ai_observations()" }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+            lineNumber: 274,
+            columnNumber: 85
+          }, this),
+          " for J1, J2, and J3 (queues, elapsed green, inflow, speeds, emergency flags). However, neural network policy weights, Gym training environments, and reward convergence checkpoints are not yet trained. In accordance with task guidelines, no artificial results or manufactured training curves are reported."
+        ] }, void 0, true, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+          lineNumber: 273,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+        lineNumber: 271,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 269,
+      columnNumber: 9
+    }, this) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+      lineNumber: 268,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx",
+    lineNumber: 129,
+    columnNumber: 5
+  }, this);
+}
+_c = ControllerComparison;
+var _c;
+$RefreshReg$(_c, "ControllerComparison");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ControllerComparison.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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RUY7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQTZFQTtBQUFBLElBR0EsdUJBQUMsU0FBSSxXQUFVLGtGQUNiLGlDQUFDLFNBQUksV0FBVSwwQkFDYjtBQUFBLDZCQUFDLFFBQUssV0FBVSxnREFBaEI7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUE0RDtBQUFBLE1BQzVELHVCQUFDLFNBQUksV0FBVSxhQUNiO0FBQUEsK0JBQUMsT0FBRSxXQUFVLGdDQUErQixxREFBNUM7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQUFpRjtBQUFBLFFBQ2pGLHVCQUFDLE9BQUUsV0FBVSw4QkFBNEI7QUFBQTtBQUFBLFVBQytCLHVCQUFDLFVBQUssV0FBVSxvRkFBbUYseUNBQW5HO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQTRIO0FBQUEsVUFBTztBQUFBLGFBRDNNO0FBQUE7QUFBQTtBQUFBO0FBQUEsZUFFQTtBQUFBLFdBSkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUtBO0FBQUEsU0FQRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBUUEsS0FURjtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBVUE7QUFBQSxPQXJKRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBc0pBO0FBRUo7QUFBQ1MsS0EvT2UvQztBQUFvQixJQUFBK0M7QUFBQSxhQUFBQSxJQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJHaXRDb21wYXJlIiwiQ2hlY2tDaXJjbGUyIiwiWENpcmNsZSIsIkluZm8iLCJBbGVydENpcmNsZSIsIlJlc3BvbnNpdmVDb250YWluZXIiLCJCYXJDaGFydCIsIkJhciIsIlhBeGlzIiwiWUF4aXMiLCJUb29sdGlwIiwiTGVnZW5kIiwiQ2FydGVzaWFuR3JpZCIsIk1FVFJJQ19ERUZJTklUSU9OUyIsImtleSIsImxhYmVsIiwiQ09OVFJPTExFUl9DT0xPUlMiLCJDb250cm9sbGVyQ29tcGFyaXNvbiIsImNvbXBhcmVEYXRhIiwiaXNMb2FkaW5nIiwiZXJyb3IiLCJjb250cm9sbGVycyIsImxlbmd0aCIsImFjdGl2ZUNvbnRyb2xsZXJzIiwiZmlsdGVyIiwiY3RybCIsInN0YXR1cyIsIm1lYW5fdHJhdmVsX3RpbWVfcyIsImNoYXJ0RGF0YSIsIm1hcCIsInJvdyIsIm1ldHJpYyIsImhhc1ZhbHVlIiwiZm9yRWFjaCIsInZhbCIsInVuZGVmaW5lZCIsIk51bWJlciIsImlzTmFOIiwiY29udHJvbGxlcl9uYW1lIiwiQm9vbGVhbiIsIm5ldHdvcmsiLCJiZW5jaG1hcmtfZHVyYXRpb25fcyIsInRvcCIsInJpZ2h0IiwibGVmdCIsImJvdHRvbSIsImZvbnRTaXplIiwiZmlsbCIsImJhY2tncm91bmRDb2xvciIsImJvcmRlckNvbG9yIiwiY29sb3IiLCJib3JkZXJSYWRpdXMiLCJib3hTaGFkb3ciLCJwYWRkaW5nVG9wIiwiaWR4IiwiaSIsImlzSW1wbGVtZW50ZWQiLCJkZXNjcmlwdGlvbiIsIm1lYW5fc3BlZWRfa21oIiwidG90YWxfd2FpdGluZ190aW1lX3MiLCJtZWFuX3F1ZXVlIiwidG90YWxfY28yX2tnIiwidG90YWxfZnVlbF9saXRlcnMiLCJlbWVyZ2VuY3lfdHJhdmVyc2FsX2R1cmF0aW9uX3MiLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJDb250cm9sbGVyQ29tcGFyaXNvbi5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IEdpdENvbXBhcmUsIENoZWNrQ2lyY2xlMiwgWENpcmNsZSwgSW5mbywgQWxlcnRDaXJjbGUgfSBmcm9tICdsdWNpZGUtcmVhY3QnO1xuaW1wb3J0IHsgUmVzcG9uc2l2ZUNvbnRhaW5lciwgQmFyQ2hhcnQsIEJhciwgWEF4aXMsIFlBeGlzLCBUb29sdGlwLCBMZWdlbmQsIENhcnRlc2lhbkdyaWQgfSBmcm9tICdyZWNoYXJ0cyc7XG5cbmNvbnN0IE1FVFJJQ19ERUZJTklUSU9OUyA9IFtcbiAgeyBrZXk6ICdtZWFuX3RyYXZlbF90aW1lX3MnLCBsYWJlbDogJ0NvcnJpZG9yIFRyYXZlbCBUaW1lIChzKScgfSxcbiAgeyBrZXk6ICd0b3RhbF93YWl0aW5nX3RpbWVfcycsIGxhYmVsOiAnQXZlcmFnZSBXYWl0IFRpbWUgKHMpJyB9LFxuICB7IGtleTogJ21lYW5fcXVldWUnLCBsYWJlbDogJ01lYW4gQ29ycmlkb3IgUXVldWUgKHZlaCknIH0sXG4gIHsga2V5OiAnbWVhbl9zcGVlZF9rbWgnLCBsYWJlbDogJ0F2ZXJhZ2UgU3BlZWQgKGttL2gpJyB9LFxuICB7IGtleTogJ3RvdGFsX2NvMl9rZycsIGxhYmVsOiAnVG90YWwgQ0/igoIgKGtnKScgfSxcbiAgeyBrZXk6ICd0b3RhbF9mdWVsX2xpdGVycycsIGxhYmVsOiAnRXN0aW1hdGVkIEZ1ZWwgVm9sdW1lIChMKScgfSxcbiAgeyBrZXk6ICdlbWVyZ2VuY3lfdHJhdmVyc2FsX2R1cmF0aW9uX3MnLCBsYWJlbDogJ0FtYnVsYW5jZSBDbGVhcmFuY2UgKHMpJyB9LFxuXTtcblxuY29uc3QgQ09OVFJPTExFUl9DT0xPUlMgPSBbXG4gICcjNjQ3NDhiJywgLy8gU2xhdGUgZm9yIGJhc2VsaW5lXG4gICcjMGQ5NDg4JywgLy8gVGVhbCBmb3IgY29vcmRpbmF0ZWRcbiAgJyMwNTk2NjknLCAvLyBFbWVyYWxkXG4gICcjZDk3NzA2JywgLy8gQW1iZXJcbiAgJyM3YzNhZWQnLCAvLyBWaW9sZXQvUHVycGxlXG5dO1xuXG5leHBvcnQgZnVuY3Rpb24gQ29udHJvbGxlckNvbXBhcmlzb24oeyBjb21wYXJlRGF0YSwgaXNMb2FkaW5nID0gZmFsc2UsIGVycm9yID0gbnVsbCB9KSB7XG4gIC8vIDEuIEVycm9yIHN0YXRlOiBBUEkgdW5hdmFpbGFibGUgb3IgY2FsbCBmYWlsZWRcbiAgaWYgKGVycm9yKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctd2hpdGUgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgcm91bmRlZC14bCBwLTUgc2hhZG93LXNtXCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgYm9yZGVyLWIgYm9yZGVyLXNsYXRlLTIwMCBwYi0zIG1iLTRcIj5cbiAgICAgICAgICA8R2l0Q29tcGFyZSBjbGFzc05hbWU9XCJoLTUgdy01IHRleHQtcHVycGxlLTYwMFwiIC8+XG4gICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtc20gZm9udC1ib2xkIHRyYWNraW5nLXdpZGUgdGV4dC1zbGF0ZS05MDAgdXBwZXJjYXNlXCI+XG4gICAgICAgICAgICBTaWduYWwgQ29udHJvbGxlciBFbXBpcmljYWwgQmVuY2htYXJrIENvbXBhcmlzb25cbiAgICAgICAgICA8L2gyPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJweS0xMiBmbGV4IGZsZXgtY29sIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciB0ZXh0LWNlbnRlclwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicC0zIGJnLXJvc2UtNTAgYm9yZGVyIGJvcmRlci1yb3NlLTIwMCByb3VuZGVkLWZ1bGwgbWItMyB0ZXh0LXJvc2UtNjAwXCI+XG4gICAgICAgICAgICA8QWxlcnRDaXJjbGUgY2xhc3NOYW1lPVwiaC02IHctNlwiIC8+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGgzIGNsYXNzTmFtZT1cInRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTkwMCBtYi0xXCI+QmVuY2htYXJrIERhdGEgVW5hdmFpbGFibGU8L2gzPlxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQteHMgdGV4dC1zbGF0ZS01MDAgbWF4LXctbWRcIj5cbiAgICAgICAgICAgIHt0eXBlb2YgZXJyb3IgPT09ICdzdHJpbmcnID8gZXJyb3IgOiAnVW5hYmxlIHRvIHJldHJpZXZlIGNvbnRyb2xsZXIgYmVuY2htYXJrIGNvbXBhcmlzb24gZnJvbSBiYWNrZW5kIEFQSS4nfVxuICAgICAgICAgIDwvcD5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG5cbiAgLy8gMi4gTG9hZGluZyBzdGF0ZTogV2FpdGluZyBmb3IgQVBJIHJlc3BvbnNlXG4gIGlmIChpc0xvYWRpbmcgfHwgKCFjb21wYXJlRGF0YSAmJiAhZXJyb3IpKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctd2hpdGUgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgcm91bmRlZC14bCBwLTUgc2hhZG93LXNtXCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgYm9yZGVyLWIgYm9yZGVyLXNsYXRlLTIwMCBwYi0zIG1iLTRcIj5cbiAgICAgICAgICA8R2l0Q29tcGFyZSBjbGFzc05hbWU9XCJoLTUgdy01IHRleHQtcHVycGxlLTYwMCBhbmltYXRlLXB1bHNlXCIgLz5cbiAgICAgICAgICA8aDIgY2xhc3NOYW1lPVwidGV4dC1zbSBmb250LWJvbGQgdHJhY2tpbmctd2lkZSB0ZXh0LXNsYXRlLTkwMCB1cHBlcmNhc2VcIj5cbiAgICAgICAgICAgIFNpZ25hbCBDb250cm9sbGVyIEVtcGlyaWNhbCBCZW5jaG1hcmsgQ29tcGFyaXNvblxuICAgICAgICAgIDwvaDI+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInB5LTEyIGZsZXggZmxleC1jb2wgaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHRleHQtY2VudGVyXCI+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhbmltYXRlLXNwaW4gcm91bmRlZC1mdWxsIGgtOCB3LTggYm9yZGVyLTIgYm9yZGVyLXRlYWwtNjAwIGJvcmRlci10LXRyYW5zcGFyZW50IG1iLTNcIiAvPlxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQteHMgZm9udC1tb25vIHRleHQtc2xhdGUtNTAwXCI+TG9hZGluZyBlbXBpcmljYWwgYmVuY2htYXJrIG1ldHJpY3MuLi48L3A+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgKTtcbiAgfVxuXG4gIGNvbnN0IGNvbnRyb2xsZXJzID0gY29tcGFyZURhdGE/LmNvbnRyb2xsZXJzIHx8IFtdO1xuXG4gIC8vIDMuIEVtcHR5IHN0YXRlOiBBUEkgc3VjY2VlZGVkIGJ1dCBubyBjb250cm9sbGVycyByZXR1cm5lZFxuICBpZiAoY29udHJvbGxlcnMubGVuZ3RoID09PSAwKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctd2hpdGUgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgcm91bmRlZC14bCBwLTUgc2hhZG93LXNtXCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgYm9yZGVyLWIgYm9yZGVyLXNsYXRlLTIwMCBwYi0zIG1iLTRcIj5cbiAgICAgICAgICA8R2l0Q29tcGFyZSBjbGFzc05hbWU9XCJoLTUgdy01IHRleHQtcHVycGxlLTYwMFwiIC8+XG4gICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtc20gZm9udC1ib2xkIHRyYWNraW5nLXdpZGUgdGV4dC1zbGF0ZS05MDAgdXBwZXJjYXNlXCI+XG4gICAgICAgICAgICBTaWduYWwgQ29udHJvbGxlciBFbXBpcmljYWwgQmVuY2htYXJrIENvbXBhcmlzb25cbiAgICAgICAgICA8L2gyPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJweS0xMiBmbGV4IGZsZXgtY29sIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciB0ZXh0LWNlbnRlclwiPlxuICAgICAgICAgIDxJbmZvIGNsYXNzTmFtZT1cImgtNiB3LTYgdGV4dC1zbGF0ZS00MDAgbWItMlwiIC8+XG4gICAgICAgICAgPGgzIGNsYXNzTmFtZT1cInRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTkwMCBtYi0xXCI+Tm8gQmVuY2htYXJrIFJlY29yZHMgRm91bmQ8L2gzPlxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQteHMgdGV4dC1zbGF0ZS01MDBcIj5cbiAgICAgICAgICAgIE5vIGNvbnRyb2xsZXIgYmVuY2htYXJrIHJlY29yZHMgYXJlIGN1cnJlbnRseSByZWdpc3RlcmVkIGZvciB0aGlzIGNvcnJpZG9yIG5ldHdvcmsuXG4gICAgICAgICAgPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuICAgICk7XG4gIH1cblxuICAvLyBGaWx0ZXIgY29udHJvbGxlcnMgdGhhdCBoYXZlIGVtcGlyaWNhbCBkYXRhIG9yIGFyZSBpbXBsZW1lbnRlZFxuICBjb25zdCBhY3RpdmVDb250cm9sbGVycyA9IGNvbnRyb2xsZXJzLmZpbHRlcihcbiAgICAoY3RybCkgPT4gY3RybC5zdGF0dXMgPT09ICdJbXBsZW1lbnRlZCcgfHwgY3RybC5tZWFuX3RyYXZlbF90aW1lX3MgIT0gbnVsbFxuICApO1xuXG4gIC8vIERlcml2ZSBkeW5hbWljIGNoYXJ0IG1ldHJpY3MgZnJvbSB0aGUgYWN0aXZlIGNvbnRyb2xsZXJzXG4gIGNvbnN0IGNoYXJ0RGF0YSA9IE1FVFJJQ19ERUZJTklUSU9OUy5tYXAoKHsga2V5LCBsYWJlbCB9KSA9PiB7XG4gICAgY29uc3Qgcm93ID0geyBtZXRyaWM6IGxhYmVsIH07XG4gICAgbGV0IGhhc1ZhbHVlID0gZmFsc2U7XG4gICAgYWN0aXZlQ29udHJvbGxlcnMuZm9yRWFjaCgoY3RybCkgPT4ge1xuICAgICAgY29uc3QgdmFsID0gY3RybFtrZXldO1xuICAgICAgaWYgKHZhbCAhPT0gbnVsbCAmJiB2YWwgIT09IHVuZGVmaW5lZCAmJiAhTnVtYmVyLmlzTmFOKE51bWJlcih2YWwpKSkge1xuICAgICAgICByb3dbY3RybC5jb250cm9sbGVyX25hbWVdID0gTnVtYmVyKHZhbCk7XG4gICAgICAgIGhhc1ZhbHVlID0gdHJ1ZTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIHJvd1tjdHJsLmNvbnRyb2xsZXJfbmFtZV0gPSBudWxsO1xuICAgICAgfVxuICAgIH0pO1xuICAgIHJldHVybiBoYXNWYWx1ZSA/IHJvdyA6IG51bGw7XG4gIH0pLmZpbHRlcihCb29sZWFuKTtcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctd2hpdGUgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgcm91bmRlZC14bCBwLTUgc2hhZG93LXNtXCI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggZmxleC13cmFwIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gZ2FwLTIgYm9yZGVyLWIgYm9yZGVyLXNsYXRlLTIwMCBwYi0zIG1iLTRcIj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMlwiPlxuICAgICAgICAgIDxHaXRDb21wYXJlIGNsYXNzTmFtZT1cImgtNSB3LTUgdGV4dC1wdXJwbGUtNjAwXCIgLz5cbiAgICAgICAgICA8aDIgY2xhc3NOYW1lPVwidGV4dC1zbSBmb250LWJvbGQgdHJhY2tpbmctd2lkZSB0ZXh0LXNsYXRlLTkwMCB1cHBlcmNhc2VcIj5cbiAgICAgICAgICAgIFNpZ25hbCBDb250cm9sbGVyIEVtcGlyaWNhbCBCZW5jaG1hcmsgQ29tcGFyaXNvblxuICAgICAgICAgIDwvaDI+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXhzIGZvbnQtbW9ubyB0ZXh0LXNsYXRlLTUwMFwiPlxuICAgICAgICAgIHtjb21wYXJlRGF0YT8ubmV0d29yayB8fCAnU2lsayBCb2FyZCBDb3JyaWRvciAoSjEgLT4gSjIgLT4gSjMpJ31cbiAgICAgICAgICB7Y29tcGFyZURhdGE/LmJlbmNobWFya19kdXJhdGlvbl9zID8gYCDigKIgJHtjb21wYXJlRGF0YS5iZW5jaG1hcmtfZHVyYXRpb25fc31zIHdpbmRvd2AgOiAnJ31cbiAgICAgICAgPC9zcGFuPlxuICAgICAgPC9kaXY+XG5cbiAgICAgIHsvKiBDb21wYXJpc29uIENoYXJ0ICovfVxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJoLTY0IHctZnVsbCBtYi02XCI+XG4gICAgICAgIDxoMyBjbGFzc05hbWU9XCJ0ZXh0LXhzIGZvbnQtYm9sZCB0ZXh0LXNsYXRlLTcwMCB1cHBlcmNhc2UgdHJhY2tpbmctd2lkZXIgbWItMVwiPlxuICAgICAgICAgIFBlcmZvcm1hbmNlIENvbXBhcmlzb24gKExvd2VyIGlzIEJldHRlciwgZXhjZXB0IFNwZWVkKVxuICAgICAgICA8L2gzPlxuICAgICAgICA8cCBjbGFzc05hbWU9XCJ0ZXh0LVsxMHB4XSB0ZXh0LXNsYXRlLTUwMCBtYi0yXCI+XG4gICAgICAgICAgTm90ZTogRnVlbCB2b2x1bWVzIGFyZSBlc3RpbWF0ZWQgZ2Fzb2xpbmUgZXF1aXZhbGVudHMgKM+BID0gMC43NSBrZy9MKS5cbiAgICAgICAgPC9wPlxuICAgICAgICB7Y2hhcnREYXRhLmxlbmd0aCA+IDAgPyAoXG4gICAgICAgICAgPFJlc3BvbnNpdmVDb250YWluZXIgd2lkdGg9XCIxMDAlXCIgaGVpZ2h0PVwiMTAwJVwiPlxuICAgICAgICAgICAgPEJhckNoYXJ0IGRhdGE9e2NoYXJ0RGF0YX0gbWFyZ2luPXt7IHRvcDogMTAsIHJpZ2h0OiAxMCwgbGVmdDogMCwgYm90dG9tOiAyNSB9fT5cbiAgICAgICAgICAgICAgPENhcnRlc2lhbkdyaWQgc3Ryb2tlRGFzaGFycmF5PVwiMyAzXCIgc3Ryb2tlPVwiI2UyZThmMFwiIC8+XG4gICAgICAgICAgICAgIDxYQXhpcyBkYXRhS2V5PVwibWV0cmljXCIgc3Ryb2tlPVwiIzY0NzQ4YlwiIHRpY2s9e3sgZm9udFNpemU6IDEwLCBmaWxsOiAnIzY0NzQ4YicgfX0gYW5nbGU9ey0xNX0gdGV4dEFuY2hvcj1cImVuZFwiIC8+XG4gICAgICAgICAgICAgIDxZQXhpcyBzdHJva2U9XCIjNjQ3NDhiXCIgdGljaz17eyBmb250U2l6ZTogMTAsIGZpbGw6ICcjNjQ3NDhiJyB9fSAvPlxuICAgICAgICAgICAgICA8VG9vbHRpcFxuICAgICAgICAgICAgICAgIGNvbnRlbnRTdHlsZT17e1xuICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZENvbG9yOiAnI2ZmZmZmZicsXG4gICAgICAgICAgICAgICAgICBib3JkZXJDb2xvcjogJyNlMmU4ZjAnLFxuICAgICAgICAgICAgICAgICAgY29sb3I6ICcjMGYxNzJhJyxcbiAgICAgICAgICAgICAgICAgIGJvcmRlclJhZGl1czogJzAuNXJlbScsXG4gICAgICAgICAgICAgICAgICBmb250U2l6ZTogJzExcHgnLFxuICAgICAgICAgICAgICAgICAgYm94U2hhZG93OiAnMCA0cHggNnB4IC0xcHggcmdiKDAgMCAwIC8gMC4xKScsXG4gICAgICAgICAgICAgICAgfX1cbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgPExlZ2VuZCB3cmFwcGVyU3R5bGU9e3sgZm9udFNpemU6ICcxMXB4JywgcGFkZGluZ1RvcDogJzEwcHgnIH19IC8+XG4gICAgICAgICAgICAgIHthY3RpdmVDb250cm9sbGVycy5tYXAoKGN0cmwsIGlkeCkgPT4gKFxuICAgICAgICAgICAgICAgIDxCYXJcbiAgICAgICAgICAgICAgICAgIGtleT17Y3RybC5jb250cm9sbGVyX25hbWV9XG4gICAgICAgICAgICAgICAgICBkYXRhS2V5PXtjdHJsLmNvbnRyb2xsZXJfbmFtZX1cbiAgICAgICAgICAgICAgICAgIGZpbGw9e0NPTlRST0xMRVJfQ09MT1JTW2lkeCAlIENPTlRST0xMRVJfQ09MT1JTLmxlbmd0aF19XG4gICAgICAgICAgICAgICAgICBuYW1lPXtjdHJsLmNvbnRyb2xsZXJfbmFtZX1cbiAgICAgICAgICAgICAgICAgIHJhZGl1cz17WzQsIDQsIDAsIDBdfVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICkpfVxuICAgICAgICAgICAgPC9CYXJDaGFydD5cbiAgICAgICAgICA8L1Jlc3BvbnNpdmVDb250YWluZXI+XG4gICAgICAgICkgOiAoXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJoLWZ1bGwgZmxleCBmbGV4LWNvbCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgdGV4dC1zbGF0ZS00MDAgdGV4dC14cyBmb250LW1vbm8gYm9yZGVyIGJvcmRlci1kYXNoZWQgYm9yZGVyLXNsYXRlLTIwMCByb3VuZGVkLWxnXCI+XG4gICAgICAgICAgICA8SW5mbyBjbGFzc05hbWU9XCJoLTUgdy01IG1iLTIgdGV4dC1zbGF0ZS00MDBcIiAvPlxuICAgICAgICAgICAgPHNwYW4+Tm8gbnVtZXJpYyBwZXJmb3JtYW5jZSBtZXRyaWNzIGF2YWlsYWJsZSB0byBjaGFydCBmb3IgY3VycmVudCBjb250cm9sbGVycy48L3NwYW4+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICl9XG4gICAgICA8L2Rpdj5cblxuICAgICAgey8qIEJlbmNobWFya3MgVGFibGUgKi99XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cIm92ZXJmbG93LXgtYXV0b1wiPlxuICAgICAgICA8dGFibGUgY2xhc3NOYW1lPVwidy1mdWxsIHRleHQtbGVmdCB0ZXh0LXhzIGJvcmRlciBib3JkZXItc2xhdGUtMjAwIHJvdW5kZWQtbGcgb3ZlcmZsb3ctaGlkZGVuXCI+XG4gICAgICAgICAgPHRoZWFkIGNsYXNzTmFtZT1cImJnLXNsYXRlLTEwMCB0ZXh0LXNsYXRlLTcwMCB0ZXh0LVsxMXB4XSB1cHBlcmNhc2UgZm9udC1tb25vIGJvcmRlci1iIGJvcmRlci1zbGF0ZS0yMDBcIj5cbiAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB5LTIuNSBweC0zXCI+Q29udHJvbGxlciBBcmNoaXRlY3R1cmU8L3RoPlxuICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHktMi41IHB4LTNcIj5TdGF0dXM8L3RoPlxuICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHktMi41IHB4LTNcIj5UcmF2ZWwgVGltZTwvdGg+XG4gICAgICAgICAgICAgIDx0aCBjbGFzc05hbWU9XCJweS0yLjUgcHgtM1wiPk1lYW4gU3BlZWQ8L3RoPlxuICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHktMi41IHB4LTNcIj5XYWl0IFRpbWU8L3RoPlxuICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHktMi41IHB4LTNcIj5Db3JyaWRvciBRdWV1ZTwvdGg+XG4gICAgICAgICAgICAgIDx0aCBjbGFzc05hbWU9XCJweS0yLjUgcHgtM1wiPkNP4oKCIC8gRXN0aW1hdGVkIEZ1ZWwgVm9sdW1lIChMKTwvdGg+XG4gICAgICAgICAgICAgIDx0aCBjbGFzc05hbWU9XCJweS0yLjUgcHgtM1wiPkFtYnVsYW5jZSBUcmF2ZXJzYWw8L3RoPlxuICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICA8L3RoZWFkPlxuICAgICAgICAgIDx0Ym9keSBjbGFzc05hbWU9XCJkaXZpZGUteSBkaXZpZGUtc2xhdGUtMTAwIGZvbnQtbW9ub1wiPlxuICAgICAgICAgICAge2NvbnRyb2xsZXJzLm1hcCgoY3RybCwgaSkgPT4ge1xuICAgICAgICAgICAgICBjb25zdCBpc0ltcGxlbWVudGVkID0gY3RybC5zdGF0dXMgPT09ICdJbXBsZW1lbnRlZCc7XG4gICAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgICAgPHRyXG4gICAgICAgICAgICAgICAgICBrZXk9e2l9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bob3ZlcjpiZy1zbGF0ZS01MCB0cmFuc2l0aW9uICR7XG4gICAgICAgICAgICAgICAgICAgIGlzSW1wbGVtZW50ZWQgPyAnYmctd2hpdGUnIDogJ2JnLXNsYXRlLTUwLzUwIG9wYWNpdHktNzUnXG4gICAgICAgICAgICAgICAgICB9YH1cbiAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktMyBweC0zIGZvbnQtc2VtaWJvbGQgdGV4dC1zbGF0ZS05MDBcIj5cbiAgICAgICAgICAgICAgICAgICAgPGRpdj57Y3RybC5jb250cm9sbGVyX25hbWV9PC9kaXY+XG4gICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC1bMTBweF0gdGV4dC1zbGF0ZS01MDAgZm9udC1zYW5zIG10LTAuNSBtYXgtdy14cyBsaW5lLWNsYW1wLTFcIj5cbiAgICAgICAgICAgICAgICAgICAgICB7Y3RybC5kZXNjcmlwdGlvbn1cbiAgICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTMgcHgtM1wiPlxuICAgICAgICAgICAgICAgICAgICB7aXNJbXBsZW1lbnRlZCA/IChcbiAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTEgcHgtMiBweS0wLjUgcm91bmRlZCB0ZXh0LVsxMHB4XSBmb250LWJvbGQgYmctZW1lcmFsZC01MCB0ZXh0LWVtZXJhbGQtNzAwIGJvcmRlciBib3JkZXItZW1lcmFsZC0zMDBcIj5cbiAgICAgICAgICAgICAgICAgICAgICAgIDxDaGVja0NpcmNsZTIgY2xhc3NOYW1lPVwiaC0zIHctM1wiIC8+XG4gICAgICAgICAgICAgICAgICAgICAgICA8c3Bhbj5JbXBsZW1lbnRlZDwvc3Bhbj5cbiAgICAgICAgICAgICAgICAgICAgICA8L3NwYW4+XG4gICAgICAgICAgICAgICAgICAgICkgOiAoXG4gICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiaW5saW5lLWZsZXggaXRlbXMtY2VudGVyIGdhcC0xIHB4LTIgcHktMC41IHJvdW5kZWQgdGV4dC1bMTBweF0gZm9udC1ib2xkIGJnLXJvc2UtNTAgdGV4dC1yb3NlLTcwMCBib3JkZXIgYm9yZGVyLXJvc2UtMzAwXCI+XG4gICAgICAgICAgICAgICAgICAgICAgICA8WENpcmNsZSBjbGFzc05hbWU9XCJoLTMgdy0zXCIgLz5cbiAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuPk5vdCBpbXBsZW1lbnRlZDwvc3Bhbj5cbiAgICAgICAgICAgICAgICAgICAgICA8L3NwYW4+XG4gICAgICAgICAgICAgICAgICAgICl9XG4gICAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTMgcHgtMyB0ZXh0LXNsYXRlLTcwMFwiPlxuICAgICAgICAgICAgICAgICAgICB7Y3RybC5tZWFuX3RyYXZlbF90aW1lX3MgIT0gbnVsbCA/IGAke2N0cmwubWVhbl90cmF2ZWxfdGltZV9zfXNgIDogJ+KAlCd9XG4gICAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTMgcHgtMyB0ZXh0LXRlYWwtNzAwIGZvbnQtYm9sZFwiPlxuICAgICAgICAgICAgICAgICAgICB7Y3RybC5tZWFuX3NwZWVkX2ttaCAhPSBudWxsID8gYCR7Y3RybC5tZWFuX3NwZWVkX2ttaH0ga20vaGAgOiAn4oCUJ31cbiAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktMyBweC0zIHRleHQtc2xhdGUtNzAwXCI+XG4gICAgICAgICAgICAgICAgICAgIHtjdHJsLnRvdGFsX3dhaXRpbmdfdGltZV9zICE9IG51bGwgPyBgJHtjdHJsLnRvdGFsX3dhaXRpbmdfdGltZV9zfXNgIDogJ+KAlCd9XG4gICAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTMgcHgtMyB0ZXh0LXNsYXRlLTcwMFwiPlxuICAgICAgICAgICAgICAgICAgICB7Y3RybC5tZWFuX3F1ZXVlICE9IG51bGwgPyBgJHtjdHJsLm1lYW5fcXVldWV9IHZlaGAgOiAn4oCUJ31cbiAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktMyBweC0zIHRleHQtc2xhdGUtNzAwXCI+XG4gICAgICAgICAgICAgICAgICAgIHtjdHJsLnRvdGFsX2NvMl9rZyAhPSBudWxsID8gKFxuICAgICAgICAgICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgICAgICAgICA8ZGl2PntjdHJsLnRvdGFsX2NvMl9rZ30ga2cgQ0/igoI8L2Rpdj5cbiAgICAgICAgICAgICAgICAgICAgICAgIHtjdHJsLnRvdGFsX2Z1ZWxfbGl0ZXJzICE9IG51bGwgJiYgKFxuICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRleHQtWzEwcHhdIHRleHQtYW1iZXItNzAwIGZvbnQtc2VtaWJvbGRcIiB0aXRsZT1cIkdhc29saW5lIGVxdWl2YWxlbnQgKM+BID0gMC43NSBrZy9MKVwiPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIHtjdHJsLnRvdGFsX2Z1ZWxfbGl0ZXJzfSBMIChlc3QuIGdhc29saW5lLWVxKVxuICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgICAgICAgICAgICl9XG4gICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgICAgICkgOiAoXG4gICAgICAgICAgICAgICAgICAgICAgJ+KAlCdcbiAgICAgICAgICAgICAgICAgICAgKX1cbiAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktMyBweC0zIHRleHQtZW1lcmFsZC03MDAgZm9udC1ib2xkXCI+XG4gICAgICAgICAgICAgICAgICAgIHtjdHJsLmVtZXJnZW5jeV90cmF2ZXJzYWxfZHVyYXRpb25fcyAhPSBudWxsID8gYCR7Y3RybC5lbWVyZ2VuY3lfdHJhdmVyc2FsX2R1cmF0aW9uX3N9c2AgOiAn4oCUJ31cbiAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICAgICAgKTtcbiAgICAgICAgICAgIH0pfVxuICAgICAgICAgIDwvdGJvZHk+XG4gICAgICAgIDwvdGFibGU+XG4gICAgICA8L2Rpdj5cblxuICAgICAgey8qIEV4cGxhbmF0b3J5IG5vdGVzIG9uIFBQTyAmIERRTiAqL31cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwibXQtNCBwLTMgYmctc2xhdGUtNTAgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgcm91bmRlZC1sZyB0ZXh0LXhzIHRleHQtc2xhdGUtNzAwXCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1zdGFydCBnYXAtMlwiPlxuICAgICAgICAgIDxJbmZvIGNsYXNzTmFtZT1cImgtNCB3LTQgdGV4dC10ZWFsLTYwMCBmbGV4LXNocmluay0wIG10LTAuNVwiIC8+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzcGFjZS15LTFcIj5cbiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cImZvbnQtc2VtaWJvbGQgdGV4dC1zbGF0ZS05MDBcIj5BSSBQb2xpY3kgUm9hZG1hcCAoUFBPIC8gRFFOIFN0YXR1cyk6PC9wPlxuICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1bMTFweF0gdGV4dC1zbGF0ZS02MDBcIj5cbiAgICAgICAgICAgICAgVGhlIHNpbXVsYXRpb24gZW5naW5lIGV4cG9zZXMgY2xlYW4sIG5vcm1hbGl6ZWQgb2JzZXJ2YXRpb24gaG9va3MgdmlhIDxjb2RlIGNsYXNzTmFtZT1cInRleHQtdGVhbC04MDAgYmctc2xhdGUtMTAwIHB4LTEgcHktMC41IHJvdW5kZWQgZm9udC1tb25vIGJvcmRlciBib3JkZXItc2xhdGUtMjAwXCI+c2ltLmdldF9haV9vYnNlcnZhdGlvbnMoKTwvY29kZT4gZm9yIEoxLCBKMiwgYW5kIEozIChxdWV1ZXMsIGVsYXBzZWQgZ3JlZW4sIGluZmxvdywgc3BlZWRzLCBlbWVyZ2VuY3kgZmxhZ3MpLiBIb3dldmVyLCBuZXVyYWwgbmV0d29yayBwb2xpY3kgd2VpZ2h0cywgR3ltIHRyYWluaW5nIGVudmlyb25tZW50cywgYW5kIHJld2FyZCBjb252ZXJnZW5jZSBjaGVja3BvaW50cyBhcmUgbm90IHlldCB0cmFpbmVkLiBJbiBhY2NvcmRhbmNlIHdpdGggdGFzayBndWlkZWxpbmVzLCBubyBhcnRpZmljaWFsIHJlc3VsdHMgb3IgbWFudWZhY3R1cmVkIHRyYWluaW5nIGN1cnZlcyBhcmUgcmVwb3J0ZWQuXG4gICAgICAgICAgICA8L3A+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gICk7XG59XG4iXSwiZmlsZSI6IkM6L0RldmVsb3BlcnMvU25laGEvUHJvamVjdHMvaHlicmlkLXRyYWZmaWMtY29udHJvbC9mcm9udGVuZC9zcmMvY29tcG9uZW50cy9Db250cm9sbGVyQ29tcGFyaXNvbi5qc3gifQ==

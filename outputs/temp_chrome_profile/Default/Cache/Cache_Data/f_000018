@@ -1,0 +1,389 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/ThreeCorridor/CorridorScene.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=083a4934"; const Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"]; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$(), _s2 = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=083a4934"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useMemo = __vite__cjsImport3_react["useMemo"]; const useRef = __vite__cjsImport3_react["useRef"]; const useEffect = __vite__cjsImport3_react["useEffect"];
+import { useThree, useFrame } from "/node_modules/.vite/deps/@react-three_fiber.js?v=083a4934";
+import { OrbitControls, Html } from "/node_modules/.vite/deps/@react-three_drei.js?v=083a4934";
+import * as THREE from "/node_modules/.vite/deps/three.js?v=083a4934";
+import corridorData from "/src/data/corridorNetworkGeometry.json?import";
+import { buildCorridorSceneGeometries, ROAD_STYLE } from "/src/utils/roadGeometryBuilder.js";
+export const CAMERA_PRESETS = Object.freeze({
+  overview: {
+    position: [0, 360, 240],
+    target: [0, 0, 0],
+    label: "Corridor Overview",
+    desc: "Full J1–J2–J3 arterial spine view"
+  },
+  J1: {
+    position: [-79.8, 65, -55],
+    target: [-79.8, 0, -125.5],
+    label: "J1 Madiwala Checkpost",
+    desc: "Upstream feeder intersection (Ground / Underpass)"
+  },
+  J2: {
+    position: [1.13, 85, 95],
+    target: [1.13, 8, 16.12],
+    label: "J2 Central Silk Board",
+    desc: "Rotary hub & +8.0m elevated flyover deck"
+  },
+  J3: {
+    position: [79.63, 65, 205],
+    target: [79.63, 0, 132.3],
+    label: "J3 Rupena Agrahara",
+    desc: "Downstream exit signal (Ground)"
+  }
+});
+function CameraController({ activePreset, controlsRef }) {
+  _s();
+  const { camera } = useThree();
+  const targetPos = useRef(new THREE.Vector3(...CAMERA_PRESETS.overview.position));
+  const targetLook = useRef(new THREE.Vector3(...CAMERA_PRESETS.overview.target));
+  const isTransitioning = useRef(false);
+  useEffect(() => {
+    const preset = CAMERA_PRESETS[activePreset] || CAMERA_PRESETS.overview;
+    targetPos.current.set(...preset.position);
+    targetLook.current.set(...preset.target);
+    isTransitioning.current = true;
+  }, [activePreset]);
+  useFrame((_, delta) => {
+    if (!isTransitioning.current) return;
+    const lerpSpeed = Math.min(delta * 4, 0.2);
+    camera.position.lerp(targetPos.current, lerpSpeed);
+    if (controlsRef.current) {
+      controlsRef.current.target.lerp(targetLook.current, lerpSpeed);
+      controlsRef.current.update();
+    }
+    if (camera.position.distanceTo(targetPos.current) < 0.2 && (!controlsRef.current || controlsRef.current.target.distanceTo(targetLook.current) < 0.2)) {
+      camera.position.copy(targetPos.current);
+      if (controlsRef.current) {
+        controlsRef.current.target.copy(targetLook.current);
+      }
+      isTransitioning.current = false;
+    }
+  });
+  return null;
+}
+_s(CameraController, "mCEeuJys+Mi93WesYthCuBu3FSM=", false, function() {
+  return [useThree, useFrame];
+});
+_c = CameraController;
+function JunctionMarker({ code, name, elevation, position, onSelect }) {
+  return /* @__PURE__ */ jsxDEV(Html, { position, center: true, distanceFactor: 140, zIndexRange: [100, 0], children: /* @__PURE__ */ jsxDEV(
+    "button",
+    {
+      onClick: onSelect,
+      className: "group flex flex-col items-center cursor-pointer transition transform hover:scale-110 focus:outline-none",
+      children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/95 border border-teal-500 shadow-md backdrop-blur-sm text-teal-800 hover:border-teal-600", children: [
+          /* @__PURE__ */ jsxDEV("span", { className: "w-2 h-2 rounded-full bg-teal-500 animate-ping" }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+            lineNumber: 109,
+            columnNumber: 11
+          }, this),
+          /* @__PURE__ */ jsxDEV("span", { className: "font-bold text-xs tracking-wider", children: code }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+            lineNumber: 110,
+            columnNumber: 11
+          }, this),
+          /* @__PURE__ */ jsxDEV("span", { className: "text-[10px] text-slate-700 font-semibold whitespace-nowrap", children: name }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+            lineNumber: 111,
+            columnNumber: 11
+          }, this),
+          /* @__PURE__ */ jsxDEV("span", { className: "text-[9px] px-1 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200 font-mono font-medium", children: elevation }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+            lineNumber: 112,
+            columnNumber: 11
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+          lineNumber: 108,
+          columnNumber: 9
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "w-0.5 h-3 bg-teal-500 shadow-sm" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+          lineNumber: 116,
+          columnNumber: 9
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "w-1.5 h-1.5 rounded-full bg-teal-600" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+          lineNumber: 117,
+          columnNumber: 9
+        }, this)
+      ]
+    },
+    void 0,
+    true,
+    {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 104,
+      columnNumber: 7
+    },
+    this
+  ) }, void 0, false, {
+    fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+    lineNumber: 103,
+    columnNumber: 5
+  }, this);
+}
+_c2 = JunctionMarker;
+export function CorridorScene({
+  activePreset = "overview",
+  onSelectPreset,
+  layerVisibility = {
+    ground: true,
+    flyover: true,
+    underpass: true,
+    dividers: true,
+    pillars: true,
+    junctions: true,
+    markers: true
+  }
+}) {
+  _s2();
+  const controlsRef = useRef();
+  const geometries = useMemo(() => {
+    return buildCorridorSceneGeometries(corridorData);
+  }, []);
+  return /* @__PURE__ */ jsxDEV(Fragment, { children: [
+    /* @__PURE__ */ jsxDEV(
+      OrbitControls,
+      {
+        ref: controlsRef,
+        makeDefault: true,
+        enableDamping: true,
+        dampingFactor: 0.08,
+        minDistance: 10,
+        maxDistance: 1200,
+        maxPolarAngle: Math.PI / 2.05
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+        lineNumber: 149,
+        columnNumber: 7
+      },
+      this
+    ),
+    /* @__PURE__ */ jsxDEV(CameraController, { activePreset, controlsRef }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 160,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("ambientLight", { intensity: 0.75 }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 163,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(
+      "directionalLight",
+      {
+        position: [180, 280, 120],
+        intensity: 1.3,
+        castShadow: true,
+        "shadow-mapSize-width": 2048,
+        "shadow-mapSize-height": 2048,
+        "shadow-camera-near": 10,
+        "shadow-camera-far": 800,
+        "shadow-camera-left": -300,
+        "shadow-camera-right": 300,
+        "shadow-camera-top": 300,
+        "shadow-camera-bottom": -300
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+        lineNumber: 164,
+        columnNumber: 7
+      },
+      this
+    ),
+    /* @__PURE__ */ jsxDEV("directionalLight", { position: [-160, 90, -120], intensity: 0.4 }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 177,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("hemisphereLight", { args: ["#38bdf8", "#0f172a", 0.35] }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 178,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("mesh", { rotation: [-Math.PI / 2, 0, 0], position: [0, -0.1, 0], receiveShadow: true, children: [
+      /* @__PURE__ */ jsxDEV("planeGeometry", { args: [2500, 2500] }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+        lineNumber: 182,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("meshStandardMaterial", { color: ROAD_STYLE.GROUND_TERRAIN, roughness: 0.95, metalness: 0.05 }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+        lineNumber: 183,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 181,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("gridHelper", { args: [1600, 64, "#1e293b", "#0f172a"], position: [0, -0.08, 0] }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 187,
+      columnNumber: 7
+    }, this),
+    layerVisibility.ground && geometries.groundRoads.attributes?.position && /* @__PURE__ */ jsxDEV("mesh", { geometry: geometries.groundRoads, receiveShadow: true, children: /* @__PURE__ */ jsxDEV("meshStandardMaterial", { color: ROAD_STYLE.ASPHALT_GROUND, roughness: 0.85, metalness: 0.1 }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 192,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 191,
+      columnNumber: 7
+    }, this),
+    layerVisibility.flyover && geometries.flyoverRoads.attributes?.position && /* @__PURE__ */ jsxDEV("mesh", { geometry: geometries.flyoverRoads, castShadow: true, receiveShadow: true, children: /* @__PURE__ */ jsxDEV("meshStandardMaterial", { color: ROAD_STYLE.ASPHALT_FLYOVER, roughness: 0.75, metalness: 0.15 }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 198,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 197,
+      columnNumber: 7
+    }, this),
+    layerVisibility.underpass && geometries.underpassRoads.attributes?.position && /* @__PURE__ */ jsxDEV("mesh", { geometry: geometries.underpassRoads, receiveShadow: true, children: /* @__PURE__ */ jsxDEV("meshStandardMaterial", { color: "#1a1e24", roughness: 0.9 }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 204,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 203,
+      columnNumber: 7
+    }, this),
+    layerVisibility.junctions && geometries.junctions.attributes?.position && /* @__PURE__ */ jsxDEV("mesh", { geometry: geometries.junctions, receiveShadow: true, children: /* @__PURE__ */ jsxDEV("meshStandardMaterial", { color: ROAD_STYLE.ASPHALT_JUNCTION, roughness: 0.88 }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 210,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 209,
+      columnNumber: 7
+    }, this),
+    layerVisibility.dividers && geometries.laneDividers.attributes?.position && /* @__PURE__ */ jsxDEV("mesh", { geometry: geometries.laneDividers, children: /* @__PURE__ */ jsxDEV("meshBasicMaterial", { color: ROAD_STYLE.LANE_MARKING_WHITE }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 216,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 215,
+      columnNumber: 7
+    }, this),
+    layerVisibility.pillars && geometries.pillars.attributes?.position && /* @__PURE__ */ jsxDEV("mesh", { geometry: geometries.pillars, castShadow: true, receiveShadow: true, children: /* @__PURE__ */ jsxDEV("meshStandardMaterial", { color: ROAD_STYLE.PILLAR_CONCRETE, roughness: 0.65, metalness: 0.2 }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 222,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 221,
+      columnNumber: 7
+    }, this),
+    layerVisibility.markers && /* @__PURE__ */ jsxDEV(Fragment, { children: [
+      /* @__PURE__ */ jsxDEV(
+        JunctionMarker,
+        {
+          code: "J1",
+          name: "Madiwala Checkpost",
+          elevation: "0.0m / -4.5m",
+          position: [-79.8, 6, -125.5],
+          onSelect: () => onSelectPreset && onSelectPreset("J1")
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+          lineNumber: 229,
+          columnNumber: 11
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(
+        JunctionMarker,
+        {
+          code: "J2",
+          name: "Silk Board Rotary",
+          elevation: "+8.0m Flyover",
+          position: [1.13, 14, 16.12],
+          onSelect: () => onSelectPreset && onSelectPreset("J2")
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+          lineNumber: 236,
+          columnNumber: 11
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(
+        JunctionMarker,
+        {
+          code: "J3",
+          name: "Rupena Agrahara",
+          elevation: "0.0m Ground",
+          position: [79.63, 6, 132.3],
+          onSelect: () => onSelectPreset && onSelectPreset("J3")
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+          lineNumber: 243,
+          columnNumber: 11
+        },
+        this
+      )
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+      lineNumber: 228,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx",
+    lineNumber: 147,
+    columnNumber: 5
+  }, this);
+}
+_s2(CorridorScene, "ccJy1675ATY1WqcMXM4jEdXn2R4=");
+_c3 = CorridorScene;
+var _c, _c2, _c3;
+$RefreshReg$(_c, "CameraController");
+$RefreshReg$(_c2, "JunctionMarker");
+$RefreshReg$(_c3, "CorridorScene");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/ThreeCorridor/CorridorScene.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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LFVBQVUsQ0FBQyxPQUFPLEdBQUssTUFBTTtBQUFBLFVBQzdCLFVBQVUsTUFBTVIsa0JBQWtCQSxlQUFlLElBQUk7QUFBQTtBQUFBLFFBTHZEO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxNQUt5RDtBQUFBLE1BRXpEO0FBQUEsUUFBQztBQUFBO0FBQUEsVUFDQyxNQUFLO0FBQUEsVUFDTCxNQUFLO0FBQUEsVUFDTCxXQUFVO0FBQUEsVUFDVixVQUFVLENBQUMsTUFBTSxJQUFNLEtBQUs7QUFBQSxVQUM1QixVQUFVLE1BQU1BLGtCQUFrQkEsZUFBZSxJQUFJO0FBQUE7QUFBQSxRQUx2RDtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsTUFLeUQ7QUFBQSxNQUV6RDtBQUFBLFFBQUM7QUFBQTtBQUFBLFVBQ0MsTUFBSztBQUFBLFVBQ0wsTUFBSztBQUFBLFVBQ0wsV0FBVTtBQUFBLFVBQ1YsVUFBVSxDQUFDLE9BQU8sR0FBSyxLQUFLO0FBQUEsVUFDNUIsVUFBVSxNQUFNQSxrQkFBa0JBLGVBQWUsSUFBSTtBQUFBO0FBQUEsUUFMdkQ7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLE1BS3lEO0FBQUEsU0FwQjNEO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FzQkE7QUFBQSxPQXZHSjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBeUdBO0FBRUo7QUFBQ1MsSUFoSWVWLGVBQWE7QUFBQSxNQUFiQTtBQUFhLElBQUF3QixJQUFBekIsS0FBQTBCO0FBQUEsYUFBQUQsSUFBQTtBQUFBLGFBQUF6QixLQUFBO0FBQUEsYUFBQTBCLEtBQUEiLCJuYW1lcyI6WyJSZWFjdCIsInVzZU1lbW8iLCJ1c2VSZWYiLCJ1c2VFZmZlY3QiLCJ1c2VUaHJlZSIsInVzZUZyYW1lIiwiT3JiaXRDb250cm9scyIsIkh0bWwiLCJUSFJFRSIsImNvcnJpZG9yRGF0YSIsImJ1aWxkQ29ycmlkb3JTY2VuZUdlb21ldHJpZXMiLCJST0FEX1NUWUxFIiwiQ0FNRVJBX1BSRVNFVFMiLCJPYmplY3QiLCJmcmVlemUiLCJvdmVydmlldyIsInBvc2l0aW9uIiwidGFyZ2V0IiwibGFiZWwiLCJkZXNjIiwiSjEiLCJKMiIsIkozIiwiQ2FtZXJhQ29udHJvbGxlciIsImFjdGl2ZVByZXNldCIsImNvbnRyb2xzUmVmIiwiX3MiLCJjYW1lcmEiLCJ0YXJnZXRQb3MiLCJWZWN0b3IzIiwidGFyZ2V0TG9vayIsImlzVHJhbnNpdGlvbmluZyIsInByZXNldCIsImN1cnJlbnQiLCJzZXQiLCJfIiwiZGVsdGEiLCJsZXJwU3BlZWQiLCJNYXRoIiwibWluIiwibGVycCIsInVwZGF0ZSIsImRpc3RhbmNlVG8iLCJjb3B5IiwiSnVuY3Rpb25NYXJrZXIiLCJjb2RlIiwibmFtZSIsImVsZXZhdGlvbiIsIm9uU2VsZWN0IiwiX2MyIiwiQ29ycmlkb3JTY2VuZSIsIm9uU2VsZWN0UHJlc2V0IiwibGF5ZXJWaXNpYmlsaXR5IiwiZ3JvdW5kIiwiZmx5b3ZlciIsInVuZGVycGFzcyIsImRpdmlkZXJzIiwicGlsbGFycyIsImp1bmN0aW9ucyIsIm1hcmtlcnMiLCJfczIiLCJnZW9tZXRyaWVzIiwiUEkiLCJHUk9VTkRfVEVSUkFJTiIsImdyb3VuZFJvYWRzIiwiYXR0cmlidXRlcyIsIkFTUEhBTFRfR1JPVU5EIiwiZmx5b3ZlclJvYWRzIiwiQVNQSEFMVF9GTFlPVkVSIiwidW5kZXJwYXNzUm9hZHMiLCJBU1BIQUxUX0pVTkNUSU9OIiwibGFuZURpdmlkZXJzIiwiTEFORV9NQVJLSU5HX1dISVRFIiwiUElMTEFSX0NPTkNSRVRFIiwiX2MiLCJfYzMiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiQ29ycmlkb3JTY2VuZS5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZU1lbW8sIHVzZVJlZiwgdXNlRWZmZWN0IH0gZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgdXNlVGhyZWUsIHVzZUZyYW1lIH0gZnJvbSAnQHJlYWN0LXRocmVlL2ZpYmVyJztcbmltcG9ydCB7IE9yYml0Q29udHJvbHMsIEh0bWwgfSBmcm9tICdAcmVhY3QtdGhyZWUvZHJlaSc7XG5pbXBvcnQgKiBhcyBUSFJFRSBmcm9tICd0aHJlZSc7XG5cbmltcG9ydCBjb3JyaWRvckRhdGEgZnJvbSAnLi4vLi4vZGF0YS9jb3JyaWRvck5ldHdvcmtHZW9tZXRyeS5qc29uJztcbmltcG9ydCB7IGJ1aWxkQ29ycmlkb3JTY2VuZUdlb21ldHJpZXMsIFJPQURfU1RZTEUgfSBmcm9tICcuLi8uLi91dGlscy9yb2FkR2VvbWV0cnlCdWlsZGVyLmpzJztcblxuZXhwb3J0IGNvbnN0IENBTUVSQV9QUkVTRVRTID0gT2JqZWN0LmZyZWV6ZSh7XG4gIG92ZXJ2aWV3OiB7XG4gICAgcG9zaXRpb246IFswLCAzNjAsIDI0MF0sXG4gICAgdGFyZ2V0OiBbMCwgMCwgMF0sXG4gICAgbGFiZWw6ICdDb3JyaWRvciBPdmVydmlldycsXG4gICAgZGVzYzogJ0Z1bGwgSjHigJNKMuKAk0ozIGFydGVyaWFsIHNwaW5lIHZpZXcnLFxuICB9LFxuICBKMToge1xuICAgIHBvc2l0aW9uOiBbLTc5LjgsIDY1LCAtNTVdLFxuICAgIHRhcmdldDogWy03OS44LCAwLCAtMTI1LjVdLFxuICAgIGxhYmVsOiAnSjEgTWFkaXdhbGEgQ2hlY2twb3N0JyxcbiAgICBkZXNjOiAnVXBzdHJlYW0gZmVlZGVyIGludGVyc2VjdGlvbiAoR3JvdW5kIC8gVW5kZXJwYXNzKScsXG4gIH0sXG4gIEoyOiB7XG4gICAgcG9zaXRpb246IFsxLjEzLCA4NSwgOTVdLFxuICAgIHRhcmdldDogWzEuMTMsIDguMCwgMTYuMTJdLFxuICAgIGxhYmVsOiAnSjIgQ2VudHJhbCBTaWxrIEJvYXJkJyxcbiAgICBkZXNjOiAnUm90YXJ5IGh1YiAmICs4LjBtIGVsZXZhdGVkIGZseW92ZXIgZGVjaycsXG4gIH0sXG4gIEozOiB7XG4gICAgcG9zaXRpb246IFs3OS42MywgNjUsIDIwNV0sXG4gICAgdGFyZ2V0OiBbNzkuNjMsIDAsIDEzMi4zXSxcbiAgICBsYWJlbDogJ0ozIFJ1cGVuYSBBZ3JhaGFyYScsXG4gICAgZGVzYzogJ0Rvd25zdHJlYW0gZXhpdCBzaWduYWwgKEdyb3VuZCknLFxuICB9LFxufSk7XG5cbi8qKlxuICogU21vb3RoIENhbWVyYSBBbmltYXRpb24gQ29udHJvbGxlciB0aGF0IHJlc3BvbmRzIHRvIHByZXNldCBjaGFuZ2VzLlxuICovXG5mdW5jdGlvbiBDYW1lcmFDb250cm9sbGVyKHsgYWN0aXZlUHJlc2V0LCBjb250cm9sc1JlZiB9KSB7XG4gIGNvbnN0IHsgY2FtZXJhIH0gPSB1c2VUaHJlZSgpO1xuICBjb25zdCB0YXJnZXRQb3MgPSB1c2VSZWYobmV3IFRIUkVFLlZlY3RvcjMoLi4uQ0FNRVJBX1BSRVNFVFMub3ZlcnZpZXcucG9zaXRpb24pKTtcbiAgY29uc3QgdGFyZ2V0TG9vayA9IHVzZVJlZihuZXcgVEhSRUUuVmVjdG9yMyguLi5DQU1FUkFfUFJFU0VUUy5vdmVydmlldy50YXJnZXQpKTtcbiAgY29uc3QgaXNUcmFuc2l0aW9uaW5nID0gdXNlUmVmKGZhbHNlKTtcblxuICB1c2VFZmZlY3QoKCkgPT4ge1xuICAgIGNvbnN0IHByZXNldCA9IENBTUVSQV9QUkVTRVRTW2FjdGl2ZVByZXNldF0gfHwgQ0FNRVJBX1BSRVNFVFMub3ZlcnZpZXc7XG4gICAgdGFyZ2V0UG9zLmN1cnJlbnQuc2V0KC4uLnByZXNldC5wb3NpdGlvbik7XG4gICAgdGFyZ2V0TG9vay5jdXJyZW50LnNldCguLi5wcmVzZXQudGFyZ2V0KTtcbiAgICBpc1RyYW5zaXRpb25pbmcuY3VycmVudCA9IHRydWU7XG4gIH0sIFthY3RpdmVQcmVzZXRdKTtcblxuICB1c2VGcmFtZSgoXywgZGVsdGEpID0+IHtcbiAgICBpZiAoIWlzVHJhbnNpdGlvbmluZy5jdXJyZW50KSByZXR1cm47XG5cbiAgICAvLyBTbW9vdGggZXhwb25lbnRpYWwgbGVycFxuICAgIGNvbnN0IGxlcnBTcGVlZCA9IE1hdGgubWluKGRlbHRhICogNC4wLCAwLjIpO1xuICAgIGNhbWVyYS5wb3NpdGlvbi5sZXJwKHRhcmdldFBvcy5jdXJyZW50LCBsZXJwU3BlZWQpO1xuXG4gICAgaWYgKGNvbnRyb2xzUmVmLmN1cnJlbnQpIHtcbiAgICAgIGNvbnRyb2xzUmVmLmN1cnJlbnQudGFyZ2V0LmxlcnAodGFyZ2V0TG9vay5jdXJyZW50LCBsZXJwU3BlZWQpO1xuICAgICAgY29udHJvbHNSZWYuY3VycmVudC51cGRhdGUoKTtcbiAgICB9XG5cbiAgICBpZiAoXG4gICAgICBjYW1lcmEucG9zaXRpb24uZGlzdGFuY2VUbyh0YXJnZXRQb3MuY3VycmVudCkgPCAwLjIgJiZcbiAgICAgICghY29udHJvbHNSZWYuY3VycmVudCB8fCBjb250cm9sc1JlZi5jdXJyZW50LnRhcmdldC5kaXN0YW5jZVRvKHRhcmdldExvb2suY3VycmVudCkgPCAwLjIpXG4gICAgKSB7XG4gICAgICBjYW1lcmEucG9zaXRpb24uY29weSh0YXJnZXRQb3MuY3VycmVudCk7XG4gICAgICBpZiAoY29udHJvbHNSZWYuY3VycmVudCkge1xuICAgICAgICBjb250cm9sc1JlZi5jdXJyZW50LnRhcmdldC5jb3B5KHRhcmdldExvb2suY3VycmVudCk7XG4gICAgICB9XG4gICAgICBpc1RyYW5zaXRpb25pbmcuY3VycmVudCA9IGZhbHNlO1xuICAgIH1cbiAgfSk7XG5cbiAgcmV0dXJuIG51bGw7XG59XG5cbi8qKlxuICogM0QgSHRtbCBKdW5jdGlvbiBNYXJrZXIgYmFkZ2UuXG4gKi9cbmZ1bmN0aW9uIEp1bmN0aW9uTWFya2VyKHsgY29kZSwgbmFtZSwgZWxldmF0aW9uLCBwb3NpdGlvbiwgb25TZWxlY3QgfSkge1xuICByZXR1cm4gKFxuICAgIDxIdG1sIHBvc2l0aW9uPXtwb3NpdGlvbn0gY2VudGVyIGRpc3RhbmNlRmFjdG9yPXsxNDB9IHpJbmRleFJhbmdlPXtbMTAwLCAwXX0+XG4gICAgICA8YnV0dG9uXG4gICAgICAgIG9uQ2xpY2s9e29uU2VsZWN0fVxuICAgICAgICBjbGFzc05hbWU9XCJncm91cCBmbGV4IGZsZXgtY29sIGl0ZW1zLWNlbnRlciBjdXJzb3ItcG9pbnRlciB0cmFuc2l0aW9uIHRyYW5zZm9ybSBob3ZlcjpzY2FsZS0xMTAgZm9jdXM6b3V0bGluZS1ub25lXCJcbiAgICAgID5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMS41IHB4LTIuNSBweS0xIHJvdW5kZWQtbWQgYmctd2hpdGUvOTUgYm9yZGVyIGJvcmRlci10ZWFsLTUwMCBzaGFkb3ctbWQgYmFja2Ryb3AtYmx1ci1zbSB0ZXh0LXRlYWwtODAwIGhvdmVyOmJvcmRlci10ZWFsLTYwMFwiPlxuICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInctMiBoLTIgcm91bmRlZC1mdWxsIGJnLXRlYWwtNTAwIGFuaW1hdGUtcGluZ1wiIC8+XG4gICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiZm9udC1ib2xkIHRleHQteHMgdHJhY2tpbmctd2lkZXJcIj57Y29kZX08L3NwYW4+XG4gICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1bMTBweF0gdGV4dC1zbGF0ZS03MDAgZm9udC1zZW1pYm9sZCB3aGl0ZXNwYWNlLW5vd3JhcFwiPntuYW1lfTwvc3Bhbj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LVs5cHhdIHB4LTEgcHktMC41IHJvdW5kZWQgYmctdGVhbC01MCB0ZXh0LXRlYWwtODAwIGJvcmRlciBib3JkZXItdGVhbC0yMDAgZm9udC1tb25vIGZvbnQtbWVkaXVtXCI+XG4gICAgICAgICAgICB7ZWxldmF0aW9ufVxuICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidy0wLjUgaC0zIGJnLXRlYWwtNTAwIHNoYWRvdy1zbVwiIC8+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidy0xLjUgaC0xLjUgcm91bmRlZC1mdWxsIGJnLXRlYWwtNjAwXCIgLz5cbiAgICAgIDwvYnV0dG9uPlxuICAgIDwvSHRtbD5cbiAgKTtcbn1cblxuLyoqXG4gKiBSZWFjdCBUaHJlZSBGaWJlciBTY2VuZSBDb21wb25lbnQgZm9yIEJlbmdhbHVydSBTaWxrIEJvYXJkIENvcnJpZG9yLlxuICovXG5leHBvcnQgZnVuY3Rpb24gQ29ycmlkb3JTY2VuZSh7XG4gIGFjdGl2ZVByZXNldCA9ICdvdmVydmlldycsXG4gIG9uU2VsZWN0UHJlc2V0LFxuICBsYXllclZpc2liaWxpdHkgPSB7XG4gICAgZ3JvdW5kOiB0cnVlLFxuICAgIGZseW92ZXI6IHRydWUsXG4gICAgdW5kZXJwYXNzOiB0cnVlLFxuICAgIGRpdmlkZXJzOiB0cnVlLFxuICAgIHBpbGxhcnM6IHRydWUsXG4gICAganVuY3Rpb25zOiB0cnVlLFxuICAgIG1hcmtlcnM6IHRydWUsXG4gIH0sXG59KSB7XG4gIGNvbnN0IGNvbnRyb2xzUmVmID0gdXNlUmVmKCk7XG5cbiAgLy8gQnVpbGQgbWVyZ2VkIGNvcnJpZG9yIEJ1ZmZlckdlb21ldHJpZXMgb25jZVxuICBjb25zdCBnZW9tZXRyaWVzID0gdXNlTWVtbygoKSA9PiB7XG4gICAgcmV0dXJuIGJ1aWxkQ29ycmlkb3JTY2VuZUdlb21ldHJpZXMoY29ycmlkb3JEYXRhKTtcbiAgfSwgW10pO1xuXG4gIHJldHVybiAoXG4gICAgPD5cbiAgICAgIHsvKiBJbnRlcmFjdGl2ZSBPcmJpdENvbnRyb2xzICovfVxuICAgICAgPE9yYml0Q29udHJvbHNcbiAgICAgICAgcmVmPXtjb250cm9sc1JlZn1cbiAgICAgICAgbWFrZURlZmF1bHRcbiAgICAgICAgZW5hYmxlRGFtcGluZ1xuICAgICAgICBkYW1waW5nRmFjdG9yPXswLjA4fVxuICAgICAgICBtaW5EaXN0YW5jZT17MTB9XG4gICAgICAgIG1heERpc3RhbmNlPXsxMjAwfVxuICAgICAgICBtYXhQb2xhckFuZ2xlPXtNYXRoLlBJIC8gMi4wNX0gLy8gUHJldmVudCBjYW1lcmEgZnJvbSBnb2luZyBiZW5lYXRoIGdyb3VuZFxuICAgICAgLz5cblxuICAgICAgey8qIFNtb290aCBDYW1lcmEgUHJlc2V0IFRyYW5zaXRpb25zICovfVxuICAgICAgPENhbWVyYUNvbnRyb2xsZXIgYWN0aXZlUHJlc2V0PXthY3RpdmVQcmVzZXR9IGNvbnRyb2xzUmVmPXtjb250cm9sc1JlZn0gLz5cblxuICAgICAgey8qIExpZ2h0aW5nIFJpZyAqL31cbiAgICAgIDxhbWJpZW50TGlnaHQgaW50ZW5zaXR5PXswLjc1fSAvPlxuICAgICAgPGRpcmVjdGlvbmFsTGlnaHRcbiAgICAgICAgcG9zaXRpb249e1sxODAsIDI4MCwgMTIwXX1cbiAgICAgICAgaW50ZW5zaXR5PXsxLjN9XG4gICAgICAgIGNhc3RTaGFkb3dcbiAgICAgICAgc2hhZG93LW1hcFNpemUtd2lkdGg9ezIwNDh9XG4gICAgICAgIHNoYWRvdy1tYXBTaXplLWhlaWdodD17MjA0OH1cbiAgICAgICAgc2hhZG93LWNhbWVyYS1uZWFyPXsxMH1cbiAgICAgICAgc2hhZG93LWNhbWVyYS1mYXI9ezgwMH1cbiAgICAgICAgc2hhZG93LWNhbWVyYS1sZWZ0PXstMzAwfVxuICAgICAgICBzaGFkb3ctY2FtZXJhLXJpZ2h0PXszMDB9XG4gICAgICAgIHNoYWRvdy1jYW1lcmEtdG9wPXszMDB9XG4gICAgICAgIHNoYWRvdy1jYW1lcmEtYm90dG9tPXstMzAwfVxuICAgICAgLz5cbiAgICAgIDxkaXJlY3Rpb25hbExpZ2h0IHBvc2l0aW9uPXtbLTE2MCwgOTAsIC0xMjBdfSBpbnRlbnNpdHk9ezAuNH0gLz5cbiAgICAgIDxoZW1pc3BoZXJlTGlnaHQgYXJncz17WycjMzhiZGY4JywgJyMwZjE3MmEnLCAwLjM1XX0gLz5cblxuICAgICAgey8qIEdyb3VuZCBUZXJyYWluIFBsYW5lICovfVxuICAgICAgPG1lc2ggcm90YXRpb249e1stTWF0aC5QSSAvIDIsIDAsIDBdfSBwb3NpdGlvbj17WzAsIC0wLjEsIDBdfSByZWNlaXZlU2hhZG93PlxuICAgICAgICA8cGxhbmVHZW9tZXRyeSBhcmdzPXtbMjUwMCwgMjUwMF19IC8+XG4gICAgICAgIDxtZXNoU3RhbmRhcmRNYXRlcmlhbCBjb2xvcj17Uk9BRF9TVFlMRS5HUk9VTkRfVEVSUkFJTn0gcm91Z2huZXNzPXswLjk1fSBtZXRhbG5lc3M9ezAuMDV9IC8+XG4gICAgICA8L21lc2g+XG5cbiAgICAgIHsvKiBTdWJ0bGUgQ29vcmRpbmF0ZSBHcmlkIEd1aWRlICovfVxuICAgICAgPGdyaWRIZWxwZXIgYXJncz17WzE2MDAsIDY0LCAnIzFlMjkzYicsICcjMGYxNzJhJ119IHBvc2l0aW9uPXtbMCwgLTAuMDgsIDBdfSAvPlxuXG4gICAgICB7LyogU3RhdGljIEluZnJhc3RydWN0dXJlIFJvYWQgTWVzaGVzICovfVxuICAgICAge2xheWVyVmlzaWJpbGl0eS5ncm91bmQgJiYgZ2VvbWV0cmllcy5ncm91bmRSb2Fkcy5hdHRyaWJ1dGVzPy5wb3NpdGlvbiAmJiAoXG4gICAgICAgIDxtZXNoIGdlb21ldHJ5PXtnZW9tZXRyaWVzLmdyb3VuZFJvYWRzfSByZWNlaXZlU2hhZG93PlxuICAgICAgICAgIDxtZXNoU3RhbmRhcmRNYXRlcmlhbCBjb2xvcj17Uk9BRF9TVFlMRS5BU1BIQUxUX0dST1VORH0gcm91Z2huZXNzPXswLjg1fSBtZXRhbG5lc3M9ezAuMX0gLz5cbiAgICAgICAgPC9tZXNoPlxuICAgICAgKX1cblxuICAgICAge2xheWVyVmlzaWJpbGl0eS5mbHlvdmVyICYmIGdlb21ldHJpZXMuZmx5b3ZlclJvYWRzLmF0dHJpYnV0ZXM/LnBvc2l0aW9uICYmIChcbiAgICAgICAgPG1lc2ggZ2VvbWV0cnk9e2dlb21ldHJpZXMuZmx5b3ZlclJvYWRzfSBjYXN0U2hhZG93IHJlY2VpdmVTaGFkb3c+XG4gICAgICAgICAgPG1lc2hTdGFuZGFyZE1hdGVyaWFsIGNvbG9yPXtST0FEX1NUWUxFLkFTUEhBTFRfRkxZT1ZFUn0gcm91Z2huZXNzPXswLjc1fSBtZXRhbG5lc3M9ezAuMTV9IC8+XG4gICAgICAgIDwvbWVzaD5cbiAgICAgICl9XG5cbiAgICAgIHtsYXllclZpc2liaWxpdHkudW5kZXJwYXNzICYmIGdlb21ldHJpZXMudW5kZXJwYXNzUm9hZHMuYXR0cmlidXRlcz8ucG9zaXRpb24gJiYgKFxuICAgICAgICA8bWVzaCBnZW9tZXRyeT17Z2VvbWV0cmllcy51bmRlcnBhc3NSb2Fkc30gcmVjZWl2ZVNoYWRvdz5cbiAgICAgICAgICA8bWVzaFN0YW5kYXJkTWF0ZXJpYWwgY29sb3I9XCIjMWExZTI0XCIgcm91Z2huZXNzPXswLjl9IC8+XG4gICAgICAgIDwvbWVzaD5cbiAgICAgICl9XG5cbiAgICAgIHtsYXllclZpc2liaWxpdHkuanVuY3Rpb25zICYmIGdlb21ldHJpZXMuanVuY3Rpb25zLmF0dHJpYnV0ZXM/LnBvc2l0aW9uICYmIChcbiAgICAgICAgPG1lc2ggZ2VvbWV0cnk9e2dlb21ldHJpZXMuanVuY3Rpb25zfSByZWNlaXZlU2hhZG93PlxuICAgICAgICAgIDxtZXNoU3RhbmRhcmRNYXRlcmlhbCBjb2xvcj17Uk9BRF9TVFlMRS5BU1BIQUxUX0pVTkNUSU9OfSByb3VnaG5lc3M9ezAuODh9IC8+XG4gICAgICAgIDwvbWVzaD5cbiAgICAgICl9XG5cbiAgICAgIHtsYXllclZpc2liaWxpdHkuZGl2aWRlcnMgJiYgZ2VvbWV0cmllcy5sYW5lRGl2aWRlcnMuYXR0cmlidXRlcz8ucG9zaXRpb24gJiYgKFxuICAgICAgICA8bWVzaCBnZW9tZXRyeT17Z2VvbWV0cmllcy5sYW5lRGl2aWRlcnN9PlxuICAgICAgICAgIDxtZXNoQmFzaWNNYXRlcmlhbCBjb2xvcj17Uk9BRF9TVFlMRS5MQU5FX01BUktJTkdfV0hJVEV9IC8+XG4gICAgICAgIDwvbWVzaD5cbiAgICAgICl9XG5cbiAgICAgIHtsYXllclZpc2liaWxpdHkucGlsbGFycyAmJiBnZW9tZXRyaWVzLnBpbGxhcnMuYXR0cmlidXRlcz8ucG9zaXRpb24gJiYgKFxuICAgICAgICA8bWVzaCBnZW9tZXRyeT17Z2VvbWV0cmllcy5waWxsYXJzfSBjYXN0U2hhZG93IHJlY2VpdmVTaGFkb3c+XG4gICAgICAgICAgPG1lc2hTdGFuZGFyZE1hdGVyaWFsIGNvbG9yPXtST0FEX1NUWUxFLlBJTExBUl9DT05DUkVURX0gcm91Z2huZXNzPXswLjY1fSBtZXRhbG5lc3M9ezAuMn0gLz5cbiAgICAgICAgPC9tZXNoPlxuICAgICAgKX1cblxuICAgICAgey8qIDNEIEp1bmN0aW9uIE1hcmtlcnMgKi99XG4gICAgICB7bGF5ZXJWaXNpYmlsaXR5Lm1hcmtlcnMgJiYgKFxuICAgICAgICA8PlxuICAgICAgICAgIDxKdW5jdGlvbk1hcmtlclxuICAgICAgICAgICAgY29kZT1cIkoxXCJcbiAgICAgICAgICAgIG5hbWU9XCJNYWRpd2FsYSBDaGVja3Bvc3RcIlxuICAgICAgICAgICAgZWxldmF0aW9uPVwiMC4wbSAvIC00LjVtXCJcbiAgICAgICAgICAgIHBvc2l0aW9uPXtbLTc5LjgsIDYuMCwgLTEyNS41XX1cbiAgICAgICAgICAgIG9uU2VsZWN0PXsoKSA9PiBvblNlbGVjdFByZXNldCAmJiBvblNlbGVjdFByZXNldCgnSjEnKX1cbiAgICAgICAgICAvPlxuICAgICAgICAgIDxKdW5jdGlvbk1hcmtlclxuICAgICAgICAgICAgY29kZT1cIkoyXCJcbiAgICAgICAgICAgIG5hbWU9XCJTaWxrIEJvYXJkIFJvdGFyeVwiXG4gICAgICAgICAgICBlbGV2YXRpb249XCIrOC4wbSBGbHlvdmVyXCJcbiAgICAgICAgICAgIHBvc2l0aW9uPXtbMS4xMywgMTQuMCwgMTYuMTJdfVxuICAgICAgICAgICAgb25TZWxlY3Q9eygpID0+IG9uU2VsZWN0UHJlc2V0ICYmIG9uU2VsZWN0UHJlc2V0KCdKMicpfVxuICAgICAgICAgIC8+XG4gICAgICAgICAgPEp1bmN0aW9uTWFya2VyXG4gICAgICAgICAgICBjb2RlPVwiSjNcIlxuICAgICAgICAgICAgbmFtZT1cIlJ1cGVuYSBBZ3JhaGFyYVwiXG4gICAgICAgICAgICBlbGV2YXRpb249XCIwLjBtIEdyb3VuZFwiXG4gICAgICAgICAgICBwb3NpdGlvbj17Wzc5LjYzLCA2LjAsIDEzMi4zXX1cbiAgICAgICAgICAgIG9uU2VsZWN0PXsoKSA9PiBvblNlbGVjdFByZXNldCAmJiBvblNlbGVjdFByZXNldCgnSjMnKX1cbiAgICAgICAgICAvPlxuICAgICAgICA8Lz5cbiAgICAgICl9XG4gICAgPC8+XG4gICk7XG59XG4iXSwiZmlsZSI6IkM6L0RldmVsb3BlcnMvU25laGEvUHJvamVjdHMvaHlicmlkLXRyYWZmaWMtY29udHJvbC9mcm9udGVuZC9zcmMvY29tcG9uZW50cy9UaHJlZUNvcnJpZG9yL0NvcnJpZG9yU2NlbmUuanN4In0=

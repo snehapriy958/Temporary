@@ -1,0 +1,32 @@
+{
+  "confirmed": true,
+  "note": "Corridor verified along Hosur Road. J1 is upstream feeder signal, J2 is Silk Board Junction primary signal, J3 is downstream feeder signal.",
+  "search_target": {
+    "lat": 12.9172,
+    "lon": 77.6228
+  },
+  "J1": {
+    "junction_id": "1617743335",
+    "tls_id": "1617743335",
+    "entry_edge": "172853382#2",
+    "connecting_edge_to_J2": "172853382#3",
+    "road_name": "Hosur Road",
+    "lanes": 2,
+    "type": "traffic_light"
+  },
+  "J2": {
+    "junction_id": "cluster_10282769895_10775075568_11964440742_11964440743",
+    "tls_id": "GS_cluster_10282769895_10775075568_11964440742_11964440743",
+    "distance_from_target_m": 513.1,
+    "type": "traffic_light"
+  },
+  "J3": {
+    "junction_id": "6970466614",
+    "tls_id": "6970466614",
+    "connecting_edge_to_J2": "1148717038#0",
+    "exit_edge": "40696223#1",
+    "road_name": "Hosur Road",
+    "lanes": 2,
+    "type": "traffic_light"
+  }
+}

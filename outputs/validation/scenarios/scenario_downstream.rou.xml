@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <route id="corridor_j1_j2_j3" edges="172853382#2 172853382#3 1148717038#0 40696223#1" />
+    <route id="hosur_to_hosur" edges="172853382#3 1148717038#0" />
+    <route id="madiwala_to_hosur" edges="92196679#0 1148717038#0" />
+    <flow id="c_car_1" type="car" route="corridor_j1_j2_j3" begin="0" end="200" vehsPerHour="800" departLane="best" departSpeed="max" />
+    <flow id="c_mc_1" type="motorcycle" route="corridor_j1_j2_j3" begin="0" end="200" vehsPerHour="1200" departLane="best" departSpeed="max" />
+    <flow id="c_truck_1" type="heavy_vehicle" route="corridor_j1_j2_j3" begin="0" end="200" vehsPerHour="200" departLane="best" departSpeed="max" />
+    <flow id="c_bus_1" type="bmtc_bus" route="corridor_j1_j2_j3" begin="0" end="200" vehsPerHour="200" departLane="best" departSpeed="max" />
+</routes>

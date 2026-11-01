@@ -1,0 +1,642 @@
+{
+  "timestamp_utc": "2026-10-31T16:42:04Z",
+  "controller_comparison": {
+    "baseline": [
+      {
+        "seed": 1,
+        "travel_time_s": 102.16666666666667,
+        "waiting_time_s": 572.24,
+        "mean_queue": 17.476666666666667,
+        "max_queue": 49,
+        "speed_kmh": 29.602337978923448,
+        "throughput": 30,
+        "fuel_liters": 11.5871,
+        "co2_kg": 26.863627356329147,
+        "emergency_s": 0.0,
+        "j1_mean_queue": 2.2066666666666666,
+        "j2_mean_queue": 11.406666666666666,
+        "j3_mean_queue": 3.8633333333333333
+      },
+      {
+        "seed": 2,
+        "travel_time_s": 102.03333333333333,
+        "waiting_time_s": 563.48,
+        "mean_queue": 17.10333333333333,
+        "max_queue": 46,
+        "speed_kmh": 29.284288191176753,
+        "throughput": 30,
+        "fuel_liters": 11.4957,
+        "co2_kg": 26.65222821034868,
+        "emergency_s": 0.0,
+        "j1_mean_queue": 2.32,
+        "j2_mean_queue": 10.903333333333334,
+        "j3_mean_queue": 3.88
+      },
+      {
+        "seed": 42,
+        "travel_time_s": 102.3,
+        "waiting_time_s": 551.3033333333333,
+        "mean_queue": 16.786666666666665,
+        "max_queue": 45,
+        "speed_kmh": 29.37507904204323,
+        "throughput": 30,
+        "fuel_liters": 11.3538,
+        "co2_kg": 26.32223371820911,
+        "emergency_s": 0.0,
+        "j1_mean_queue": 2.32,
+        "j2_mean_queue": 10.59,
+        "j3_mean_queue": 3.8766666666666665
+      }
+    ],
+    "coordinated": [
+      {
+        "seed": 1,
+        "travel_time_s": 51.11904761904762,
+        "waiting_time_s": 164.38666666666666,
+        "mean_queue": 8.27,
+        "max_queue": 22,
+        "speed_kmh": 38.51097983027595,
+        "throughput": 42,
+        "fuel_liters": 9.2686,
+        "co2_kg": 21.493557152350732,
+        "emergency_s": 0.0,
+        "j1_mean_queue": 0.5366666666666666,
+        "j2_mean_queue": 6.8933333333333335,
+        "j3_mean_queue": 0.84
+      },
+      {
+        "seed": 2,
+        "travel_time_s": 45.0,
+        "waiting_time_s": 206.24333333333334,
+        "mean_queue": 8.586666666666666,
+        "max_queue": 23,
+        "speed_kmh": 39.405943404391856,
+        "throughput": 53,
+        "fuel_liters": 9.4538,
+        "co2_kg": 21.925110701031105,
+        "emergency_s": 0.0,
+        "j1_mean_queue": 0.5466666666666666,
+        "j2_mean_queue": 7.766666666666667,
+        "j3_mean_queue": 0.2733333333333333
+      },
+      {
+        "seed": 42,
+        "travel_time_s": 52.1219512195122,
+        "waiting_time_s": 168.73,
+        "mean_queue": 8.18,
+        "max_queue": 21,
+        "speed_kmh": 38.399724845409594,
+        "throughput": 41,
+        "fuel_liters": 9.2416,
+        "co2_kg": 21.431149350255204,
+        "emergency_s": 0.0,
+        "j1_mean_queue": 0.55,
+        "j2_mean_queue": 6.793333333333333,
+        "j3_mean_queue": 0.8366666666666667
+      }
+    ]
+  },
+  "emergency_validation": {
+    "amb_found": true,
+    "detection_log": [
+      {
+        "sim_time": 421.0,
+        "junction": "J1",
+        "veh_id": "ambulance_0",
+        "distance_m": 30.049999999999997,
+        "speed_mps": 16.67,
+        "eta_s": 1.8026394721055785,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 422.0,
+        "junction": "J1",
+        "veh_id": "ambulance_0",
+        "distance_m": 13.6795691944845,
+        "speed_mps": 16.3704308055155,
+        "eta_s": 0.8356267075070255,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 424.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 138.52308305690065,
+        "speed_mps": 16.565359546039254,
+        "eta_s": 8.362214093325928,
+        "current_phase": 3
+      },
+      {
+        "sim_time": 425.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 121.95643471906894,
+        "speed_mps": 16.566648337831722,
+        "eta_s": 7.361563560238573,
+        "current_phase": 3
+      },
+      {
+        "sim_time": 426.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 105.43941329541616,
+        "speed_mps": 16.51702142365277,
+        "eta_s": 6.383682056888562,
+        "current_phase": 3
+      },
+      {
+        "sim_time": 427.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 89.29057377132587,
+        "speed_mps": 16.14883952409029,
+        "eta_s": 5.529225405833355,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 428.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 72.80849125324748,
+        "speed_mps": 16.48208251807839,
+        "eta_s": 4.417432759081713,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 429.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 56.73674944194033,
+        "speed_mps": 16.07174181130715,
+        "eta_s": 3.5302178262983066,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 430.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 41.15678728907187,
+        "speed_mps": 15.579962152868458,
+        "eta_s": 2.641648733498009,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 431.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 30.329766784588543,
+        "speed_mps": 10.827020504483324,
+        "eta_s": 2.801303162955071,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 432.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 24.157904862578036,
+        "speed_mps": 6.1718619220105015,
+        "eta_s": 3.9142004743211314,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 433.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 21.285473025390957,
+        "speed_mps": 2.8724318371870727,
+        "eta_s": 7.4102621861465945,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 434.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 17.20930371107312,
+        "speed_mps": 4.0761693143178475,
+        "eta_s": 4.221930539201147,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 435.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 11.46464187733497,
+        "speed_mps": 5.744661833738156,
+        "eta_s": 1.9957035260115075,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 436.0,
+        "junction": "J2",
+        "veh_id": "ambulance_0",
+        "distance_m": 3.4751124352006,
+        "speed_mps": 7.989529442134378,
+        "eta_s": 0.434958336453947,
+        "current_phase": 0
+      },
+      {
+        "sim_time": 439.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 117.35593905424957,
+        "speed_mps": 12.554160164185939,
+        "eta_s": 9.347972108005951,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 440.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 104.97771300884406,
+        "speed_mps": 12.378226045405507,
+        "eta_s": 8.480836642000831,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 441.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 92.05775862577673,
+        "speed_mps": 12.919954383067351,
+        "eta_s": 7.125238673166361,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 442.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 78.95359388485956,
+        "speed_mps": 13.10416474091716,
+        "eta_s": 6.025076412411891,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 443.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 65.49385502305867,
+        "speed_mps": 13.459738861800892,
+        "eta_s": 4.865908298483563,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 444.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 52.238730572420366,
+        "speed_mps": 13.255124450638304,
+        "eta_s": 3.941021509602258,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 445.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 39.318811346727514,
+        "speed_mps": 12.919919225692846,
+        "eta_s": 3.0432706783907153,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 446.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 26.61580194692796,
+        "speed_mps": 12.70300939979956,
+        "eta_s": 2.0952359483688903,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 447.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 13.382360121074782,
+        "speed_mps": 13.233441825853173,
+        "eta_s": 1.0112531794208426,
+        "current_phase": 2
+      },
+      {
+        "sim_time": 448.0,
+        "junction": "J3",
+        "veh_id": "ambulance_0",
+        "distance_m": 0.4450189921835914,
+        "speed_mps": 12.937341128891186,
+        "eta_s": 0.03439802566462375,
+        "current_phase": 2
+      }
+    ],
+    "preemption_events": [
+      {
+        "sim_time": 421.0,
+        "junction": "J1",
+        "priority_phase": 2,
+        "current_phase": 2,
+        "active": false,
+        "released_at": 424.0
+      },
+      {
+        "sim_time": 427.0,
+        "junction": "J2",
+        "priority_phase": 0,
+        "current_phase": 0,
+        "active": false,
+        "released_at": 439.0
+      },
+      {
+        "sim_time": 439.0,
+        "junction": "J3",
+        "priority_phase": 2,
+        "current_phase": 2,
+        "active": false,
+        "released_at": 449.0
+      }
+    ],
+    "metrics": {
+      "completed": true,
+      "duration": 28.0,
+      "j1_arrival": 0.0,
+      "j1_clear": 424.0,
+      "j2_arrival": 0.0,
+      "j2_clear": 439.0,
+      "j3_arrival": 0.0,
+      "j3_clear": 449.0
+    }
+  },
+  "telemetry_3d_audit": {
+    "total_active_vehicles": 24,
+    "sample_vehicles": [
+      {
+        "veh_id": "corridor_cars_normal.0",
+        "vtype": "car",
+        "vclass": "passenger",
+        "pos_2d_xy": [
+          2185.27,
+          3542.35
+        ],
+        "pos_3d_xyz": [
+          2185.27,
+          3542.35,
+          0.0
+        ],
+        "wgs84_lon_lat": [
+          77.620266,
+          12.921283
+        ],
+        "heading_deg": 147.6,
+        "speed_mps": 2.46,
+        "speed_kmh": 8.8,
+        "road_id": "172853382#3",
+        "lane_id": "172853382#3_1",
+        "dimensions": {
+          "length": 4.5,
+          "width": 1.8,
+          "height": 1.5
+        },
+        "color_rgba": [
+          255,
+          255,
+          0,
+          255
+        ]
+      },
+      {
+        "veh_id": "corridor_cars_normal.1",
+        "vtype": "car",
+        "vclass": "passenger",
+        "pos_2d_xy": [
+          2164.82,
+          3569.0
+        ],
+        "pos_3d_xyz": [
+          2164.82,
+          3569.0,
+          0.0
+        ],
+        "wgs84_lon_lat": [
+          77.620081,
+          12.921526
+        ],
+        "heading_deg": 148.1,
+        "speed_mps": 14.72,
+        "speed_kmh": 53.0,
+        "road_id": "172853382#3",
+        "lane_id": "172853382#3_0",
+        "dimensions": {
+          "length": 4.5,
+          "width": 1.8,
+          "height": 1.5
+        },
+        "color_rgba": [
+          255,
+          255,
+          0,
+          255
+        ]
+      },
+      {
+        "veh_id": "corridor_cars_normal.2",
+        "vtype": "car",
+        "vclass": "passenger",
+        "pos_2d_xy": [
+          2151.94,
+          3589.68
+        ],
+        "pos_3d_xyz": [
+          2151.94,
+          3589.68,
+          0.0
+        ],
+        "wgs84_lon_lat": [
+          77.619964,
+          12.921714
+        ],
+        "heading_deg": 148.1,
+        "speed_mps": 15.56,
+        "speed_kmh": 56.0,
+        "road_id": "172853382#3",
+        "lane_id": "172853382#3_0",
+        "dimensions": {
+          "length": 4.5,
+          "width": 1.8,
+          "height": 1.5
+        },
+        "color_rgba": [
+          255,
+          255,
+          0,
+          255
+        ]
+      },
+      {
+        "veh_id": "corridor_motorcycles_normal.0",
+        "vtype": "motorcycle",
+        "vclass": "motorcycle",
+        "pos_2d_xy": [
+          2183.56,
+          3539.09
+        ],
+        "pos_3d_xyz": [
+          2183.56,
+          3539.09,
+          0.0
+        ],
+        "wgs84_lon_lat": [
+          77.62025,
+          12.921254
+        ],
+        "heading_deg": 147.4,
+        "speed_mps": 4.68,
+        "speed_kmh": 16.9,
+        "road_id": "172853382#3",
+        "lane_id": "172853382#3_0",
+        "dimensions": {
+          "length": 2.2,
+          "width": 0.9,
+          "height": 1.5
+        },
+        "color_rgba": [
+          255,
+          255,
+          0,
+          255
+        ]
+      },
+      {
+        "veh_id": "corridor_motorcycles_normal.1",
+        "vtype": "motorcycle",
+        "vclass": "motorcycle",
+        "pos_2d_xy": [
+          2176.68,
+          3549.93
+        ],
+        "pos_3d_xyz": [
+          2176.68,
+          3549.93,
+          0.0
+        ],
+        "wgs84_lon_lat": [
+          77.620188,
+          12.921353
+        ],
+        "heading_deg": 148.1,
+        "speed_mps": 9.8,
+        "speed_kmh": 35.3,
+        "road_id": "172853382#3",
+        "lane_id": "172853382#3_0",
+        "dimensions": {
+          "length": 2.2,
+          "width": 0.9,
+          "height": 1.5
+        },
+        "color_rgba": [
+          255,
+          255,
+          0,
+          255
+        ]
+      }
+    ],
+    "tls_states": {
+      "J1": {
+        "tls_id": "1617743335",
+        "current_phase": 2,
+        "state_str": "rrGGG",
+        "num_controlled_lanes": 5,
+        "sample_controlled_lanes": [
+          "-148697299_0",
+          "-148697299_0",
+          "172853382#2_0"
+        ],
+        "num_links": 5
+      },
+      "J2": {
+        "tls_id": "GS_cluster_10282769895_10775075568_11964440742_11964440743",
+        "current_phase": 2,
+        "state_str": "GgGGGrrrrrrrr",
+        "num_controlled_lanes": 13,
+        "sample_controlled_lanes": [
+          "92196679#0_0",
+          "92196679#0_1",
+          "92196679#0_1"
+        ],
+        "num_links": 13
+      },
+      "J3": {
+        "tls_id": "6970466614",
+        "current_phase": 2,
+        "state_str": "rrrGGGG",
+        "num_controlled_lanes": 7,
+        "sample_controlled_lanes": [
+          "-744783934_0",
+          "-744783934_0",
+          "-744783934_0"
+        ],
+        "num_links": 7
+      }
+    }
+  },
+  "junction_constraints": {
+    "transitions": {
+      "J1": 15,
+      "J2": 16,
+      "J3": 14
+    },
+    "min_green_violations": [
+      [
+        "J2",
+        2,
+        14.0,
+        80.0
+      ],
+      [
+        "J3",
+        0,
+        14.0,
+        105.0
+      ]
+    ],
+    "max_green_violations": [
+      [
+        "J3",
+        2,
+        61.0,
+        246.0
+      ]
+    ],
+    "unsafe_transitions": [],
+    "green_durations": {
+      "J1": {
+        "min": 15.0,
+        "max": 51.0,
+        "avg": 33.0
+      },
+      "J2": {
+        "min": 14.0,
+        "max": 60.0,
+        "avg": 31.75
+      },
+      "J3": {
+        "min": 14.0,
+        "max": 61.0,
+        "avg": 34.142857142857146
+      }
+    },
+    "yellow_durations": {
+      "J1": {
+        "min": 4.0,
+        "max": 5.0,
+        "avg": 4.571428571428571
+      },
+      "J2": {
+        "min": 5.0,
+        "max": 6.0,
+        "avg": 5.125
+      },
+      "J3": {
+        "min": 4.0,
+        "max": 5.0,
+        "avg": 4.428571428571429
+      }
+    }
+  }
+}

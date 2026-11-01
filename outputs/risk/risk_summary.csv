@@ -1,0 +1,7 @@
+zone_id,zone_name,risk_level,composite_risk_score,total_crashes,fatal_crashes,center_latitude,center_longitude,associated_junction,affected_edges,safety_advisory
+RZ_HS_01,Silk Board Zone HS_01 (J2 Focus),CRITICAL,165.6,34,8,12.9172,77.6228,J2,-1501709575,"Severe collision hazard at J2. Enforce mandatory all-red clearance transitions, strict maximum green limits, and prioritize uninterrupted emergency preemption."
+RZ_HS_03,Silk Board Zone HS_03 (J3 Focus),CRITICAL,111.6,22,6,12.9125,77.624,J3,-229976708#15,"Severe collision hazard at J3. Enforce mandatory all-red clearance transitions, strict maximum green limits, and prioritize uninterrupted emergency preemption."
+RZ_HS_02,Silk Board Zone HS_02 (J2 Focus),CRITICAL,86.4,18,4,12.921,77.6205,J2,-1474602160,"Severe collision hazard at J2. Enforce mandatory all-red clearance transitions, strict maximum green limits, and prioritize uninterrupted emergency preemption."
+RZ_HS_06,Silk Board Zone HS_06,CRITICAL,65.0,19,4,12.908,77.625,,-459396044#2,"Severe collision hazard at corridor node. Enforce mandatory all-red clearance transitions, strict maximum green limits, and prioritize uninterrupted emergency preemption."
+RZ_HS_04,Silk Board Zone HS_04,HIGH,53.3,16,3,12.9175,77.628,,-38098070#3,Elevated collision density near approach edge. Recommend dilemma-zone green extensions and pedestrian protection phases.
+RZ_HS_05,Silk Board Zone HS_05,HIGH,44.2,14,2,12.9168,77.618,,-1110221362,Elevated collision density near approach edge. Recommend dilemma-zone green extensions and pedestrian protection phases.

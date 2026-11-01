@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M1 SUMO configuration: OSM-derived SUMO simulation of Bengaluru Silk Board.
+  This is a simulation of an OSM-derived road network, not a live feed of
+  or control interface for physical Bengaluru traffic infrastructure.
+-->
+<configuration>
+    <input>
+        <net-file value="network/silk_board.net.xml"/>
+        <route-files value="demand/silk_board.rou.xml"/>
+        <additional-files value="demand/vehicle_types.add.xml"/>
+    </input>
+
+    <time>
+        <begin value="0"/>
+        <end value="600"/>
+        <step-length value="1"/>
+    </time>
+
+    <processing>
+        <ignore-route-errors value="false"/>
+        <time-to-teleport value="300"/>
+    </processing>
+
+    <report>
+        <verbose value="true"/>
+        <duration-log.statistics value="true"/>
+        <no-step-log value="true"/>
+    </report>
+</configuration>

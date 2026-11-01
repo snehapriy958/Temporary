@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "system": "Hybrid AI Traffic Control \u2014 Silk Board Corridor",
+    "risk_model": "Documented Blackspot Severity & Infrastructure Proximity Index (CRI)",
+    "note": "Corridor risk analysis uses documented georeferenced blackspots as weighted spatial observations rather than individual historical crash records.",
+    "thresholds": {
+      "CRITICAL": ">= 60.0",
+      "HIGH": "35.0 - 60.0",
+      "MEDIUM": "15.0 - 35.0",
+      "LOW": "< 15.0"
+    }
+  },
+  "risk_zones": [
+    {
+      "zone_id": "RZ_HS_01",
+      "zone_name": "Silk Board Zone HS_01 (J2 Focus)",
+      "risk_level": "CRITICAL",
+      "composite_risk_score": 165.6,
+      "total_crashes": 34,
+      "fatal_crashes": 8,
+      "center_latitude": 12.9172,
+      "center_longitude": 77.6228,
+      "center_x": 2464.99,
+      "center_y": 3093.17,
+      "associated_junction": "J2",
+      "affected_edges": [
+        "-1501709575"
+      ],
+      "safety_advisory": "Severe collision hazard at J2. Enforce mandatory all-red clearance transitions, strict maximum green limits, and prioritize uninterrupted emergency preemption."
+    },
+    {
+      "zone_id": "RZ_HS_03",
+      "zone_name": "Silk Board Zone HS_03 (J3 Focus)",
+      "risk_level": "CRITICAL",
+      "composite_risk_score": 111.6,
+      "total_crashes": 22,
+      "fatal_crashes": 6,
+      "center_latitude": 12.9125,
+      "center_longitude": 77.624,
+      "center_x": 2600.61,
+      "center_y": 2574.26,
+      "associated_junction": "J3",
+      "affected_edges": [
+        "-229976708#15"
+      ],
+      "safety_advisory": "Severe collision hazard at J3. Enforce mandatory all-red clearance transitions, strict maximum green limits, and prioritize uninterrupted emergency preemption."
+    },
+    {
+      "zone_id": "RZ_HS_02",
+      "zone_name": "Silk Board Zone HS_02 (J2 Focus)",
+      "risk_level": "CRITICAL",
+      "composite_risk_score": 86.4,
+      "total_crashes": 18,
+      "fatal_crashes": 4,
+      "center_latitude": 12.921,
+      "center_longitude": 77.6205,
+      "center_x": 2210.95,
+      "center_y": 3511.23,
+      "associated_junction": "J2",
+      "affected_edges": [
+        "-1474602160"
+      ],
+      "safety_advisory": "Severe collision hazard at J2. Enforce mandatory all-red clearance transitions, strict maximum green limits, and prioritize uninterrupted emergency preemption."
+    },
+    {
+      "zone_id": "RZ_HS_06",
+      "zone_name": "Silk Board Zone HS_06",
+      "risk_level": "CRITICAL",
+      "composite_risk_score": 65.0,
+      "total_crashes": 19,
+      "fatal_crashes": 4,
+      "center_latitude": 12.908,
+      "center_longitude": 77.625,
+      "center_x": 2714.3,
+      "center_y": 2077.26,
+      "associated_junction": null,
+      "affected_edges": [
+        "-459396044#2"
+      ],
+      "safety_advisory": "Severe collision hazard at corridor node. Enforce mandatory all-red clearance transitions, strict maximum green limits, and prioritize uninterrupted emergency preemption."
+    },
+    {
+      "zone_id": "RZ_HS_04",
+      "zone_name": "Silk Board Zone HS_04",
+      "risk_level": "HIGH",
+      "composite_risk_score": 53.3,
+      "total_crashes": 16,
+      "fatal_crashes": 3,
+      "center_latitude": 12.9175,
+      "center_longitude": 77.628,
+      "center_x": 3029.26,
+      "center_y": 3132.16,
+      "associated_junction": null,
+      "affected_edges": [
+        "-38098070#3"
+      ],
+      "safety_advisory": "Elevated collision density near approach edge. Recommend dilemma-zone green extensions and pedestrian protection phases."
+    },
+    {
+      "zone_id": "RZ_HS_05",
+      "zone_name": "Silk Board Zone HS_05",
+      "risk_level": "HIGH",
+      "composite_risk_score": 44.2,
+      "total_crashes": 14,
+      "fatal_crashes": 2,
+      "center_latitude": 12.9168,
+      "center_longitude": 77.618,
+      "center_x": 1944.25,
+      "center_y": 3043.56,
+      "associated_junction": null,
+      "affected_edges": [
+        "-1110221362"
+      ],
+      "safety_advisory": "Elevated collision density near approach edge. Recommend dilemma-zone green extensions and pedestrian protection phases."
+    }
+  ]
+}

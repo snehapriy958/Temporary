@@ -1,0 +1,9 @@
+spot_id,location_name,police_station,latitude,longitude,road_name,annual_crashes,fatal_crashes,primary_collision_type,documented_risk_category
+BSP_001,Central Silk Board Junction (J2),Madivala,12.9172,77.6228,Hosur Road / Outer Ring Road,34,8,SIDE_IMPACT,CRITICAL
+BSP_002,Madiwala Checkpost / Ayyappa Temple (J1 approach),Madivala,12.921,77.6205,Hosur Road,18,4,PEDESTRIAN,HIGH
+BSP_003,Rupena Agrahara / South Hosur Road (J3 approach),Madivala,12.9125,77.624,Hosur Road,22,6,REAR_END,HIGH
+BSP_004,Outer Ring Road HSR Junction,HSR Layout,12.9175,77.628,Outer Ring Road,16,3,REAR_END,MEDIUM
+BSP_005,BTM Layout Approach to Silk Board,Mico Layout,12.9168,77.618,Outer Ring Road,14,2,SIDE_IMPACT,MEDIUM
+BSP_006,St. Johns Hospital Junction,Adugodi,12.931,77.619,Hosur Road,20,5,PEDESTRIAN,HIGH
+BSP_007,Bommanahalli Junction South,Madivala,12.908,77.625,Hosur Road,19,4,REAR_END,HIGH
+BSP_008,Electronic City Toll Approach,Electronic City,12.845,77.662,Hosur Road Elevated,26,7,HEAD_ON,HIGH

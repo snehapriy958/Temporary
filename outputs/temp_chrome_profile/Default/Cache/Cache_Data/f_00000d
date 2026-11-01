@@ -1,0 +1,390 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/RiskHotspotsPanel.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=083a4934"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=083a4934"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import { AlertOctagon, Flame, Shield, MapPin, Info } from "/node_modules/.vite/deps/lucide-react.js?v=083a4934";
+export function RiskHotspotsPanel({ riskData }) {
+  const zones = riskData?.risk_zones || [];
+  const hotspots = riskData?.hotspots || [];
+  const getRiskBadge = (level) => {
+    switch (level?.toUpperCase()) {
+      case "CRITICAL":
+        return "bg-rose-50 text-rose-700 border-rose-300";
+      case "HIGH":
+        return "bg-amber-50 text-amber-800 border-amber-300";
+      case "MEDIUM":
+        return "bg-yellow-50 text-yellow-800 border-yellow-300";
+      default:
+        return "bg-emerald-50 text-emerald-700 border-emerald-300";
+    }
+  };
+  return /* @__PURE__ */ jsxDEV("div", { className: "bg-white border border-slate-200 rounded-xl p-5 shadow-sm", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3 mb-4", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxDEV(AlertOctagon, { className: "h-5 w-5 text-rose-600" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 44,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-sm font-bold tracking-wide text-slate-900 uppercase", children: "Accident Blackspots & MoRTH Risk Zones" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 45,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+        lineNumber: 43,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2 text-xs", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "text-rose-600 font-bold", children: [
+          riskData?.critical_zones || 0,
+          " Critical"
+        ] }, void 0, true, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 50,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("span", { className: "text-slate-300", children: "•" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 51,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("span", { className: "text-amber-700 font-bold", children: [
+          riskData?.high_zones || 0,
+          " High"
+        ] }, void 0, true, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 52,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("span", { className: "text-slate-300", children: "•" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 53,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("span", { className: "text-slate-600", children: [
+          riskData?.total_zones || 0,
+          " Zones"
+        ] }, void 0, true, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 54,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+        lineNumber: 49,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+      lineNumber: 42,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-700 mb-4 flex items-start gap-2", children: [
+      /* @__PURE__ */ jsxDEV(Info, { className: "h-4 w-4 text-teal-600 flex-shrink-0 mt-0.5" }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+        lineNumber: 60,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { children: [
+        /* @__PURE__ */ jsxDEV("p", { className: "font-semibold text-slate-900", children: "IRC / MoRTH Road Safety Audit Methodology" }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 62,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-[11px] text-slate-600 mt-0.5", children: [
+          "Risk scores represent Composite Risk Index (CRI = Fatal × 5.0 + Non-Fatal × 2.0 + corridor proximity weight) derived from Bengaluru Traffic Police records.",
+          /* @__PURE__ */ jsxDEV("span", { className: "text-teal-800 font-medium", children: " Note: Evaluated on historical spatial observations; no unverified predictive AI claims." }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+            lineNumber: 65,
+            columnNumber: 13
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 63,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+        lineNumber: 61,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+      lineNumber: 59,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-3 mb-5", children: zones.map(
+      (zone) => /* @__PURE__ */ jsxDEV(
+        "div",
+        {
+          className: "p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300 hover:shadow-sm transition",
+          children: [
+            /* @__PURE__ */ jsxDEV("div", { className: "flex items-start justify-between gap-2 mb-2", children: [
+              /* @__PURE__ */ jsxDEV("div", { children: [
+                /* @__PURE__ */ jsxDEV("h3", { className: "text-xs font-bold text-slate-900 uppercase", children: zone.zone_name }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                  lineNumber: 79,
+                  columnNumber: 17
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "text-[10px] text-slate-500 font-mono", children: [
+                  "ID: ",
+                  zone.zone_id
+                ] }, void 0, true, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                  lineNumber: 80,
+                  columnNumber: 17
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                lineNumber: 78,
+                columnNumber: 15
+              }, this),
+              /* @__PURE__ */ jsxDEV("span", { className: `px-2 py-0.5 text-[10px] font-bold rounded border ${getRiskBadge(zone.risk_level)}`, children: [
+                zone.risk_level,
+                " (CRI: ",
+                zone.composite_risk_score,
+                ")"
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                lineNumber: 82,
+                columnNumber: 15
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 77,
+              columnNumber: 13
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-3 gap-2 text-center text-xs bg-white p-2 rounded-lg border border-slate-200 mb-2 font-mono", children: [
+              /* @__PURE__ */ jsxDEV("div", { children: [
+                /* @__PURE__ */ jsxDEV("span", { className: "text-[10px] text-slate-500 block", children: "Total Crashes" }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                  lineNumber: 89,
+                  columnNumber: 17
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "text-slate-900 font-semibold", children: zone.total_crashes }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                  lineNumber: 90,
+                  columnNumber: 17
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                lineNumber: 88,
+                columnNumber: 15
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { children: [
+                /* @__PURE__ */ jsxDEV("span", { className: "text-[10px] text-rose-600 block", children: "Fatal Crashes" }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                  lineNumber: 93,
+                  columnNumber: 17
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "text-rose-600 font-bold", children: zone.fatal_crashes }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                  lineNumber: 94,
+                  columnNumber: 17
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                lineNumber: 92,
+                columnNumber: 15
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { children: [
+                /* @__PURE__ */ jsxDEV("span", { className: "text-[10px] text-slate-500 block", children: "Target TLS" }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                  lineNumber: 97,
+                  columnNumber: 17
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "text-teal-700 font-semibold", children: zone.associated_junction || "Corridor Link" }, void 0, false, {
+                  fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                  lineNumber: 98,
+                  columnNumber: 17
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+                lineNumber: 96,
+                columnNumber: 15
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 87,
+              columnNumber: 13
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "text-[11px] text-slate-600 italic border-l-2 border-slate-300 pl-2", children: [
+              "“",
+              zone.safety_advisory,
+              "”"
+            ] }, void 0, true, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 102,
+              columnNumber: 13
+            }, this)
+          ]
+        },
+        zone.zone_id,
+        true,
+        {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 73,
+          columnNumber: 9
+        },
+        this
+      )
+    ) }, void 0, false, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+      lineNumber: 71,
+      columnNumber: 7
+    }, this),
+    hotspots.length > 0 && /* @__PURE__ */ jsxDEV("div", { children: [
+      /* @__PURE__ */ jsxDEV("h3", { className: "text-xs font-bold text-slate-700 uppercase tracking-wider mb-2", children: [
+        "DBSCAN Spatial Hotspot Clusters (",
+        hotspots.length,
+        ")"
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+        lineNumber: 112,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "overflow-x-auto border border-slate-200 rounded-lg", children: /* @__PURE__ */ jsxDEV("table", { className: "w-full text-left text-xs font-mono", children: [
+        /* @__PURE__ */ jsxDEV("thead", { className: "bg-slate-100 text-slate-700 text-[10px] uppercase border-b border-slate-200", children: /* @__PURE__ */ jsxDEV("tr", { children: [
+          /* @__PURE__ */ jsxDEV("th", { className: "py-1.5 px-3", children: "Cluster ID" }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+            lineNumber: 119,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-1.5 px-3", children: "Relevance" }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+            lineNumber: 120,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-1.5 px-3", children: "Total Crashes" }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+            lineNumber: 121,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-1.5 px-3", children: "Fatal" }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+            lineNumber: 122,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-1.5 px-3", children: "Severity Score" }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+            lineNumber: 123,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-1.5 px-3", children: "Coordinates (Lat, Lon)" }, void 0, false, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+            lineNumber: 124,
+            columnNumber: 19
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 118,
+          columnNumber: 17
+        }, this) }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 117,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("tbody", { className: "divide-y divide-slate-100 text-[11px]", children: hotspots.map(
+          (hs) => /* @__PURE__ */ jsxDEV("tr", { className: "hover:bg-slate-50", children: [
+            /* @__PURE__ */ jsxDEV("td", { className: "py-2 px-3 font-semibold text-slate-900", children: hs.hotspot_id }, void 0, false, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 130,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-2 px-3", children: /* @__PURE__ */ jsxDEV("span", { className: `px-1.5 py-0.5 rounded text-[10px] font-bold ${hs.corridor_relevance === "CORRIDOR" ? "bg-teal-50 text-teal-800 border border-teal-200" : "text-slate-500"}`, children: hs.corridor_relevance }, void 0, false, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 132,
+              columnNumber: 23
+            }, this) }, void 0, false, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 131,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-2 px-3 text-slate-700", children: hs.total_crashes }, void 0, false, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 136,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-2 px-3 text-rose-600 font-bold", children: hs.fatal_crashes }, void 0, false, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 137,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-2 px-3 text-amber-700 font-bold", children: hs.severity_score }, void 0, false, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 138,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-2 px-3 text-slate-600", children: [
+              hs.center_latitude.toFixed(4),
+              ", ",
+              hs.center_longitude.toFixed(4)
+            ] }, void 0, true, {
+              fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+              lineNumber: 139,
+              columnNumber: 21
+            }, this)
+          ] }, hs.hotspot_id, true, {
+            fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+            lineNumber: 129,
+            columnNumber: 15
+          }, this)
+        ) }, void 0, false, {
+          fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+          lineNumber: 127,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+        lineNumber: 116,
+        columnNumber: 13
+      }, this) }, void 0, false, {
+        fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+        lineNumber: 115,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+      lineNumber: 111,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx",
+    lineNumber: 41,
+    columnNumber: 5
+  }, this);
+}
+_c = RiskHotspotsPanel;
+var _c;
+$RefreshReg$(_c, "RiskHotspotsPanel");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Developers/Sneha/Projects/hybrid-traffic-control/frontend/src/components/RiskHotspotsPanel.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6IkFBd0JVOzs7Ozs7Ozs7Ozs7Ozs7O0FBeEJWLE9BQU9BLFdBQVc7QUFDbEIsU0FBU0MsY0FBY0MsT0FBT0MsUUFBUUMsUUFBUUMsWUFBWTtBQUVuRCxnQkFBU0Msa0JBQWtCLEVBQUVDLFNBQVMsR0FBRztBQUM5QyxRQUFNQyxRQUFRRCxVQUFVRSxjQUFjO0FBQ3RDLFFBQU1DLFdBQVdILFVBQVVHLFlBQVk7QUFFdkMsUUFBTUMsZUFBZUEsQ0FBQ0MsVUFBVTtBQUM5QixZQUFRQSxPQUFPQyxZQUFZLEdBQUM7QUFBQSxNQUMxQixLQUFLO0FBQ0gsZUFBTztBQUFBLE1BQ1QsS0FBSztBQUNILGVBQU87QUFBQSxNQUNULEtBQUs7QUFDSCxlQUFPO0FBQUEsTUFDVDtBQUNFLGVBQU87QUFBQSxJQUNYO0FBQUEsRUFDRjtBQUVBLFNBQ0UsdUJBQUMsU0FBSSxXQUFVLDZEQUNiO0FBQUEsMkJBQUMsU0FBSSxXQUFVLHlGQUNiO0FBQUEsNkJBQUMsU0FBSSxXQUFVLDJCQUNiO0FBQUEsK0JBQUMsZ0JBQWEsV0FBVSwyQkFBeEI7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQUErQztBQUFBLFFBQy9DLHVCQUFDLFFBQUcsV0FBVSw0REFBMEQsc0RBQXhFO0FBQUE7QUFBQTtBQUFBO0FBQUEsZUFFQTtBQUFBLFdBSkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUtBO0FBQUEsTUFDQSx1QkFBQyxTQUFJLFdBQVUsbUNBQ2I7QUFBQSwrQkFBQyxVQUFLLFdBQVUsMkJBQTJCTjtBQUFBQSxvQkFBVU8sa0JBQWtCO0FBQUEsVUFBRTtBQUFBLGFBQXpFO0FBQUE7QUFBQTtBQUFBO0FBQUEsZUFBa0Y7QUFBQSxRQUNsRix1QkFBQyxVQUFLLFdBQVUsa0JBQWlCLGlCQUFqQztBQUFBO0FBQUE7QUFBQTtBQUFBLGVBQXVDO0FBQUEsUUFDdkMsdUJBQUMsVUFBSyxXQUFVLDRCQUE0QlA7QUFBQUEsb0JBQVVRLGNBQWM7QUFBQSxVQUFFO0FBQUEsYUFBdEU7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQUEyRTtBQUFBLFFBQzNFLHVCQUFDLFVBQUssV0FBVSxrQkFBaUIsaUJBQWpDO0FBQUE7QUFBQTtBQUFBO0FBQUEsZUFBdUM7QUFBQSxRQUN2Qyx1QkFBQyxVQUFLLFdBQVUsa0JBQWtCUjtBQUFBQSxvQkFBVVMsZUFBZTtBQUFBLFVBQUU7QUFBQSxhQUE3RDtBQUFBO0FBQUE7QUFBQTtBQUFBLGVBQW1FO0FBQUEsV0FMckU7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQU1BO0FBQUEsU0FiRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBY0E7QUFBQSxJQUdBLHVCQUFDLFNBQUksV0FBVSx5R0FDYjtBQUFBLDZCQUFDLFFBQUssV0FBVSxnREFBaEI7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUE0RDtBQUFBLE1BQzVELHVCQUFDLFNBQ0M7QUFBQSwrQkFBQyxPQUFFLFdBQVUsZ0NBQStCLHlEQUE1QztBQUFBO0FBQUE7QUFBQTtBQUFBLGVBQXFGO0FBQUEsUUFDckYsdUJBQUMsT0FBRSxXQUFVLHFDQUFtQztBQUFBO0FBQUEsVUFFOUMsdUJBQUMsVUFBSyxXQUFVLDZCQUE0Qix3R0FBNUM7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFBb0k7QUFBQSxhQUZ0STtBQUFBO0FBQUE7QUFBQTtBQUFBLGVBR0E7QUFBQSxXQUxGO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFNQTtBQUFBLFNBUkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQVNBO0FBQUEsSUFHQSx1QkFBQyxTQUFJLFdBQVUsOENBQ1pSLGdCQUFNUztBQUFBQSxNQUFJLENBQUNDLFNBQ1Y7QUFBQSxRQUFDO0FBQUE7QUFBQSxVQUVDLFdBQVU7QUFBQSxVQUVWO0FBQUEsbUNBQUMsU0FBSSxXQUFVLCtDQUNiO0FBQUEscUNBQUMsU0FDQztBQUFBLHVDQUFDLFFBQUcsV0FBVSw4Q0FBOENBLGVBQUtDLGFBQWpFO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQTJFO0FBQUEsZ0JBQzNFLHVCQUFDLFVBQUssV0FBVSx3Q0FBdUM7QUFBQTtBQUFBLGtCQUFLRCxLQUFLRTtBQUFBQSxxQkFBakU7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBeUU7QUFBQSxtQkFGM0U7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFHQTtBQUFBLGNBQ0EsdUJBQUMsVUFBSyxXQUFXLG9EQUFvRFQsYUFBYU8sS0FBS0csVUFBVSxDQUFDLElBQy9GSDtBQUFBQSxxQkFBS0c7QUFBQUEsZ0JBQVc7QUFBQSxnQkFBUUgsS0FBS0k7QUFBQUEsZ0JBQXFCO0FBQUEsbUJBRHJEO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBRUE7QUFBQSxpQkFQRjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQVFBO0FBQUEsWUFFQSx1QkFBQyxTQUFJLFdBQVUsNkdBQ2I7QUFBQSxxQ0FBQyxTQUNDO0FBQUEsdUNBQUMsVUFBSyxXQUFVLG9DQUFtQyw2QkFBbkQ7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBZ0U7QUFBQSxnQkFDaEUsdUJBQUMsVUFBSyxXQUFVLGdDQUFnQ0osZUFBS0ssaUJBQXJEO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQW1FO0FBQUEsbUJBRnJFO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBR0E7QUFBQSxjQUNBLHVCQUFDLFNBQ0M7QUFBQSx1Q0FBQyxVQUFLLFdBQVUsbUNBQWtDLDZCQUFsRDtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUErRDtBQUFBLGdCQUMvRCx1QkFBQyxVQUFLLFdBQVUsMkJBQTJCTCxlQUFLTSxpQkFBaEQ7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBOEQ7QUFBQSxtQkFGaEU7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFHQTtBQUFBLGNBQ0EsdUJBQUMsU0FDQztBQUFBLHVDQUFDLFVBQUssV0FBVSxvQ0FBbUMsMEJBQW5EO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQTZEO0FBQUEsZ0JBQzdELHVCQUFDLFVBQUssV0FBVSwrQkFBK0JOLGVBQUtPLHVCQUF1QixtQkFBM0U7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBMkY7QUFBQSxtQkFGN0Y7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFHQTtBQUFBLGlCQVpGO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBYUE7QUFBQSxZQUVBLHVCQUFDLE9BQUUsV0FBVSxzRUFBb0U7QUFBQTtBQUFBLGNBQ3ZFUCxLQUFLUTtBQUFBQSxjQUFnQjtBQUFBLGlCQUQvQjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQUVBO0FBQUE7QUFBQTtBQUFBLFFBOUJLUixLQUFLRTtBQUFBQSxRQURaO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsTUFnQ0E7QUFBQSxJQUNELEtBbkNIO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FvQ0E7QUFBQSxJQUdDVixTQUFTaUIsU0FBUyxLQUNqQix1QkFBQyxTQUNDO0FBQUEsNkJBQUMsUUFBRyxXQUFVLGtFQUFnRTtBQUFBO0FBQUEsUUFDMUNqQixTQUFTaUI7QUFBQUEsUUFBTztBQUFBLFdBRHBEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFFQTtBQUFBLE1BQ0EsdUJBQUMsU0FBSSxXQUFVLHNEQUNiLGlDQUFDLFdBQU0sV0FBVSxzQ0FDZjtBQUFBLCtCQUFDLFdBQU0sV0FBVSwrRUFDZixpQ0FBQyxRQUNDO0FBQUEsaUNBQUMsUUFBRyxXQUFVLGVBQWMsMEJBQTVCO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQXNDO0FBQUEsVUFDdEMsdUJBQUMsUUFBRyxXQUFVLGVBQWMseUJBQTVCO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQXFDO0FBQUEsVUFDckMsdUJBQUMsUUFBRyxXQUFVLGVBQWMsNkJBQTVCO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQXlDO0FBQUEsVUFDekMsdUJBQUMsUUFBRyxXQUFVLGVBQWMscUJBQTVCO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQWlDO0FBQUEsVUFDakMsdUJBQUMsUUFBRyxXQUFVLGVBQWMsOEJBQTVCO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQTBDO0FBQUEsVUFDMUMsdUJBQUMsUUFBRyxXQUFVLGVBQWMsc0NBQTVCO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQWtEO0FBQUEsYUFOcEQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQU9BLEtBUkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQVNBO0FBQUEsUUFDQSx1QkFBQyxXQUFNLFdBQVUseUNBQ2RqQixtQkFBU087QUFBQUEsVUFBSSxDQUFDVyxPQUNiLHVCQUFDLFFBQXVCLFdBQVUscUJBQ2hDO0FBQUEsbUNBQUMsUUFBRyxXQUFVLDBDQUEwQ0EsYUFBR0MsY0FBM0Q7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFBc0U7QUFBQSxZQUN0RSx1QkFBQyxRQUFHLFdBQVUsYUFDWixpQ0FBQyxVQUFLLFdBQVcsK0NBQStDRCxHQUFHRSx1QkFBdUIsYUFBYSxvREFBb0QsZ0JBQWdCLElBQ3hLRixhQUFHRSxzQkFETjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQUVBLEtBSEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFJQTtBQUFBLFlBQ0EsdUJBQUMsUUFBRyxXQUFVLDRCQUE0QkYsYUFBR0wsaUJBQTdDO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQTJEO0FBQUEsWUFDM0QsdUJBQUMsUUFBRyxXQUFVLHFDQUFxQ0ssYUFBR0osaUJBQXREO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQW9FO0FBQUEsWUFDcEUsdUJBQUMsUUFBRyxXQUFVLHNDQUFzQ0ksYUFBR0csa0JBQXZEO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQXNFO0FBQUEsWUFDdEUsdUJBQUMsUUFBRyxXQUFVLDRCQUNYSDtBQUFBQSxpQkFBR0ksZ0JBQWdCQyxRQUFRLENBQUM7QUFBQSxjQUFFO0FBQUEsY0FBR0wsR0FBR00saUJBQWlCRCxRQUFRLENBQUM7QUFBQSxpQkFEakU7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFFQTtBQUFBLGVBWk9MLEdBQUdDLFlBQVo7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFhQTtBQUFBLFFBQ0QsS0FoQkg7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQWlCQTtBQUFBLFdBNUJGO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUE2QkEsS0E5QkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQStCQTtBQUFBLFNBbkNGO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FvQ0E7QUFBQSxPQTFHSjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBNEdBO0FBRUo7QUFBQ00sS0FoSWU3QjtBQUFpQixJQUFBNkI7QUFBQSxhQUFBQSxJQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJBbGVydE9jdGFnb24iLCJGbGFtZSIsIlNoaWVsZCIsIk1hcFBpbiIsIkluZm8iLCJSaXNrSG90c3BvdHNQYW5lbCIsInJpc2tEYXRhIiwiem9uZXMiLCJyaXNrX3pvbmVzIiwiaG90c3BvdHMiLCJnZXRSaXNrQmFkZ2UiLCJsZXZlbCIsInRvVXBwZXJDYXNlIiwiY3JpdGljYWxfem9uZXMiLCJoaWdoX3pvbmVzIiwidG90YWxfem9uZXMiLCJtYXAiLCJ6b25lIiwiem9uZV9uYW1lIiwiem9uZV9pZCIsInJpc2tfbGV2ZWwiLCJjb21wb3NpdGVfcmlza19zY29yZSIsInRvdGFsX2NyYXNoZXMiLCJmYXRhbF9jcmFzaGVzIiwiYXNzb2NpYXRlZF9qdW5jdGlvbiIsInNhZmV0eV9hZHZpc29yeSIsImxlbmd0aCIsImhzIiwiaG90c3BvdF9pZCIsImNvcnJpZG9yX3JlbGV2YW5jZSIsInNldmVyaXR5X3Njb3JlIiwiY2VudGVyX2xhdGl0dWRlIiwidG9GaXhlZCIsImNlbnRlcl9sb25naXR1ZGUiLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJSaXNrSG90c3BvdHNQYW5lbC5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IEFsZXJ0T2N0YWdvbiwgRmxhbWUsIFNoaWVsZCwgTWFwUGluLCBJbmZvIH0gZnJvbSAnbHVjaWRlLXJlYWN0JztcblxuZXhwb3J0IGZ1bmN0aW9uIFJpc2tIb3RzcG90c1BhbmVsKHsgcmlza0RhdGEgfSkge1xuICBjb25zdCB6b25lcyA9IHJpc2tEYXRhPy5yaXNrX3pvbmVzIHx8IFtdO1xuICBjb25zdCBob3RzcG90cyA9IHJpc2tEYXRhPy5ob3RzcG90cyB8fCBbXTtcblxuICBjb25zdCBnZXRSaXNrQmFkZ2UgPSAobGV2ZWwpID0+IHtcbiAgICBzd2l0Y2ggKGxldmVsPy50b1VwcGVyQ2FzZSgpKSB7XG4gICAgICBjYXNlICdDUklUSUNBTCc6XG4gICAgICAgIHJldHVybiAnYmctcm9zZS01MCB0ZXh0LXJvc2UtNzAwIGJvcmRlci1yb3NlLTMwMCc7XG4gICAgICBjYXNlICdISUdIJzpcbiAgICAgICAgcmV0dXJuICdiZy1hbWJlci01MCB0ZXh0LWFtYmVyLTgwMCBib3JkZXItYW1iZXItMzAwJztcbiAgICAgIGNhc2UgJ01FRElVTSc6XG4gICAgICAgIHJldHVybiAnYmcteWVsbG93LTUwIHRleHQteWVsbG93LTgwMCBib3JkZXIteWVsbG93LTMwMCc7XG4gICAgICBkZWZhdWx0OlxuICAgICAgICByZXR1cm4gJ2JnLWVtZXJhbGQtNTAgdGV4dC1lbWVyYWxkLTcwMCBib3JkZXItZW1lcmFsZC0zMDAnO1xuICAgIH1cbiAgfTtcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwiYmctd2hpdGUgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgcm91bmRlZC14bCBwLTUgc2hhZG93LXNtXCI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggZmxleC13cmFwIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gZ2FwLTIgYm9yZGVyLWIgYm9yZGVyLXNsYXRlLTIwMCBwYi0zIG1iLTRcIj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMlwiPlxuICAgICAgICAgIDxBbGVydE9jdGFnb24gY2xhc3NOYW1lPVwiaC01IHctNSB0ZXh0LXJvc2UtNjAwXCIgLz5cbiAgICAgICAgICA8aDIgY2xhc3NOYW1lPVwidGV4dC1zbSBmb250LWJvbGQgdHJhY2tpbmctd2lkZSB0ZXh0LXNsYXRlLTkwMCB1cHBlcmNhc2VcIj5cbiAgICAgICAgICAgIEFjY2lkZW50IEJsYWNrc3BvdHMgJiBNb1JUSCBSaXNrIFpvbmVzXG4gICAgICAgICAgPC9oMj5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgdGV4dC14c1wiPlxuICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtcm9zZS02MDAgZm9udC1ib2xkXCI+e3Jpc2tEYXRhPy5jcml0aWNhbF96b25lcyB8fCAwfSBDcml0aWNhbDwvc3Bhbj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXNsYXRlLTMwMFwiPiZidWxsOzwvc3Bhbj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LWFtYmVyLTcwMCBmb250LWJvbGRcIj57cmlza0RhdGE/LmhpZ2hfem9uZXMgfHwgMH0gSGlnaDwvc3Bhbj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXNsYXRlLTMwMFwiPiZidWxsOzwvc3Bhbj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXNsYXRlLTYwMFwiPntyaXNrRGF0YT8udG90YWxfem9uZXMgfHwgMH0gWm9uZXM8L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG5cbiAgICAgIHsvKiBNZXRob2RvbG9neSBOb3RpY2UgKi99XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImJnLXNsYXRlLTUwIGJvcmRlciBib3JkZXItc2xhdGUtMjAwIHJvdW5kZWQtbGcgcC0zIHRleHQteHMgdGV4dC1zbGF0ZS03MDAgbWItNCBmbGV4IGl0ZW1zLXN0YXJ0IGdhcC0yXCI+XG4gICAgICAgIDxJbmZvIGNsYXNzTmFtZT1cImgtNCB3LTQgdGV4dC10ZWFsLTYwMCBmbGV4LXNocmluay0wIG10LTAuNVwiIC8+XG4gICAgICAgIDxkaXY+XG4gICAgICAgICAgPHAgY2xhc3NOYW1lPVwiZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTkwMFwiPklSQyAvIE1vUlRIIFJvYWQgU2FmZXR5IEF1ZGl0IE1ldGhvZG9sb2d5PC9wPlxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQtWzExcHhdIHRleHQtc2xhdGUtNjAwIG10LTAuNVwiPlxuICAgICAgICAgICAgUmlzayBzY29yZXMgcmVwcmVzZW50IENvbXBvc2l0ZSBSaXNrIEluZGV4IChDUkkgPSBGYXRhbCAmdGltZXM7IDUuMCArIE5vbi1GYXRhbCAmdGltZXM7IDIuMCArIGNvcnJpZG9yIHByb3hpbWl0eSB3ZWlnaHQpIGRlcml2ZWQgZnJvbSBCZW5nYWx1cnUgVHJhZmZpYyBQb2xpY2UgcmVjb3Jkcy5cbiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtdGVhbC04MDAgZm9udC1tZWRpdW1cIj4gTm90ZTogRXZhbHVhdGVkIG9uIGhpc3RvcmljYWwgc3BhdGlhbCBvYnNlcnZhdGlvbnM7IG5vIHVudmVyaWZpZWQgcHJlZGljdGl2ZSBBSSBjbGFpbXMuPC9zcGFuPlxuICAgICAgICAgIDwvcD5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cblxuICAgICAgey8qIFJpc2sgWm9uZXMgR3JpZCAqL31cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ3JpZCBncmlkLWNvbHMtMSBtZDpncmlkLWNvbHMtMiBnYXAtMyBtYi01XCI+XG4gICAgICAgIHt6b25lcy5tYXAoKHpvbmUpID0+IChcbiAgICAgICAgICA8ZGl2XG4gICAgICAgICAgICBrZXk9e3pvbmUuem9uZV9pZH1cbiAgICAgICAgICAgIGNsYXNzTmFtZT1cInAtMy41IHJvdW5kZWQteGwgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgYmctc2xhdGUtNTAgaG92ZXI6Ymctd2hpdGUgaG92ZXI6Ym9yZGVyLXNsYXRlLTMwMCBob3ZlcjpzaGFkb3ctc20gdHJhbnNpdGlvblwiXG4gICAgICAgICAgPlxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLXN0YXJ0IGp1c3RpZnktYmV0d2VlbiBnYXAtMiBtYi0yXCI+XG4gICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT1cInRleHQteHMgZm9udC1ib2xkIHRleHQtc2xhdGUtOTAwIHVwcGVyY2FzZVwiPnt6b25lLnpvbmVfbmFtZX08L2gzPlxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtWzEwcHhdIHRleHQtc2xhdGUtNTAwIGZvbnQtbW9ub1wiPklEOiB7em9uZS56b25lX2lkfTwvc3Bhbj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT17YHB4LTIgcHktMC41IHRleHQtWzEwcHhdIGZvbnQtYm9sZCByb3VuZGVkIGJvcmRlciAke2dldFJpc2tCYWRnZSh6b25lLnJpc2tfbGV2ZWwpfWB9PlxuICAgICAgICAgICAgICAgIHt6b25lLnJpc2tfbGV2ZWx9IChDUkk6IHt6b25lLmNvbXBvc2l0ZV9yaXNrX3Njb3JlfSlcbiAgICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ3JpZCBncmlkLWNvbHMtMyBnYXAtMiB0ZXh0LWNlbnRlciB0ZXh0LXhzIGJnLXdoaXRlIHAtMiByb3VuZGVkLWxnIGJvcmRlciBib3JkZXItc2xhdGUtMjAwIG1iLTIgZm9udC1tb25vXCI+XG4gICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1bMTBweF0gdGV4dC1zbGF0ZS01MDAgYmxvY2tcIj5Ub3RhbCBDcmFzaGVzPC9zcGFuPlxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtc2xhdGUtOTAwIGZvbnQtc2VtaWJvbGRcIj57em9uZS50b3RhbF9jcmFzaGVzfTwvc3Bhbj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1bMTBweF0gdGV4dC1yb3NlLTYwMCBibG9ja1wiPkZhdGFsIENyYXNoZXM8L3NwYW4+XG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1yb3NlLTYwMCBmb250LWJvbGRcIj57em9uZS5mYXRhbF9jcmFzaGVzfTwvc3Bhbj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1bMTBweF0gdGV4dC1zbGF0ZS01MDAgYmxvY2tcIj5UYXJnZXQgVExTPC9zcGFuPlxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtdGVhbC03MDAgZm9udC1zZW1pYm9sZFwiPnt6b25lLmFzc29jaWF0ZWRfanVuY3Rpb24gfHwgJ0NvcnJpZG9yIExpbmsnfTwvc3Bhbj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1bMTFweF0gdGV4dC1zbGF0ZS02MDAgaXRhbGljIGJvcmRlci1sLTIgYm9yZGVyLXNsYXRlLTMwMCBwbC0yXCI+XG4gICAgICAgICAgICAgICZsZHF1bzt7em9uZS5zYWZldHlfYWR2aXNvcnl9JnJkcXVvO1xuICAgICAgICAgICAgPC9wPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICApKX1cbiAgICAgIDwvZGl2PlxuXG4gICAgICB7LyogU3BhdGlhbCBIb3RzcG90cyBUYWJsZSAqL31cbiAgICAgIHtob3RzcG90cy5sZW5ndGggPiAwICYmIChcbiAgICAgICAgPGRpdj5cbiAgICAgICAgICA8aDMgY2xhc3NOYW1lPVwidGV4dC14cyBmb250LWJvbGQgdGV4dC1zbGF0ZS03MDAgdXBwZXJjYXNlIHRyYWNraW5nLXdpZGVyIG1iLTJcIj5cbiAgICAgICAgICAgIERCU0NBTiBTcGF0aWFsIEhvdHNwb3QgQ2x1c3RlcnMgKHtob3RzcG90cy5sZW5ndGh9KVxuICAgICAgICAgIDwvaDM+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJvdmVyZmxvdy14LWF1dG8gYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgcm91bmRlZC1sZ1wiPlxuICAgICAgICAgICAgPHRhYmxlIGNsYXNzTmFtZT1cInctZnVsbCB0ZXh0LWxlZnQgdGV4dC14cyBmb250LW1vbm9cIj5cbiAgICAgICAgICAgICAgPHRoZWFkIGNsYXNzTmFtZT1cImJnLXNsYXRlLTEwMCB0ZXh0LXNsYXRlLTcwMCB0ZXh0LVsxMHB4XSB1cHBlcmNhc2UgYm9yZGVyLWIgYm9yZGVyLXNsYXRlLTIwMFwiPlxuICAgICAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgICAgIDx0aCBjbGFzc05hbWU9XCJweS0xLjUgcHgtM1wiPkNsdXN0ZXIgSUQ8L3RoPlxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB5LTEuNSBweC0zXCI+UmVsZXZhbmNlPC90aD5cbiAgICAgICAgICAgICAgICAgIDx0aCBjbGFzc05hbWU9XCJweS0xLjUgcHgtM1wiPlRvdGFsIENyYXNoZXM8L3RoPlxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB5LTEuNSBweC0zXCI+RmF0YWw8L3RoPlxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB5LTEuNSBweC0zXCI+U2V2ZXJpdHkgU2NvcmU8L3RoPlxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB5LTEuNSBweC0zXCI+Q29vcmRpbmF0ZXMgKExhdCwgTG9uKTwvdGg+XG4gICAgICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICAgICAgPC90aGVhZD5cbiAgICAgICAgICAgICAgPHRib2R5IGNsYXNzTmFtZT1cImRpdmlkZS15IGRpdmlkZS1zbGF0ZS0xMDAgdGV4dC1bMTFweF1cIj5cbiAgICAgICAgICAgICAgICB7aG90c3BvdHMubWFwKChocykgPT4gKFxuICAgICAgICAgICAgICAgICAgPHRyIGtleT17aHMuaG90c3BvdF9pZH0gY2xhc3NOYW1lPVwiaG92ZXI6Ymctc2xhdGUtNTBcIj5cbiAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTIgcHgtMyBmb250LXNlbWlib2xkIHRleHQtc2xhdGUtOTAwXCI+e2hzLmhvdHNwb3RfaWR9PC90ZD5cbiAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTIgcHgtM1wiPlxuICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT17YHB4LTEuNSBweS0wLjUgcm91bmRlZCB0ZXh0LVsxMHB4XSBmb250LWJvbGQgJHtocy5jb3JyaWRvcl9yZWxldmFuY2UgPT09ICdDT1JSSURPUicgPyAnYmctdGVhbC01MCB0ZXh0LXRlYWwtODAwIGJvcmRlciBib3JkZXItdGVhbC0yMDAnIDogJ3RleHQtc2xhdGUtNTAwJ31gfT5cbiAgICAgICAgICAgICAgICAgICAgICAgIHtocy5jb3JyaWRvcl9yZWxldmFuY2V9XG4gICAgICAgICAgICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktMiBweC0zIHRleHQtc2xhdGUtNzAwXCI+e2hzLnRvdGFsX2NyYXNoZXN9PC90ZD5cbiAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTIgcHgtMyB0ZXh0LXJvc2UtNjAwIGZvbnQtYm9sZFwiPntocy5mYXRhbF9jcmFzaGVzfTwvdGQ+XG4gICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9XCJweS0yIHB4LTMgdGV4dC1hbWJlci03MDAgZm9udC1ib2xkXCI+e2hzLnNldmVyaXR5X3Njb3JlfTwvdGQ+XG4gICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9XCJweS0yIHB4LTMgdGV4dC1zbGF0ZS02MDBcIj5cbiAgICAgICAgICAgICAgICAgICAgICB7aHMuY2VudGVyX2xhdGl0dWRlLnRvRml4ZWQoNCl9LCB7aHMuY2VudGVyX2xvbmdpdHVkZS50b0ZpeGVkKDQpfVxuICAgICAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICAgICAgICApKX1cbiAgICAgICAgICAgICAgPC90Ym9keT5cbiAgICAgICAgICAgIDwvdGFibGU+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgKX1cbiAgICA8L2Rpdj5cbiAgKTtcbn1cbiJdLCJmaWxlIjoiQzovRGV2ZWxvcGVycy9TbmVoYS9Qcm9qZWN0cy9oeWJyaWQtdHJhZmZpYy1jb250cm9sL2Zyb250ZW5kL3NyYy9jb21wb25lbnRzL1Jpc2tIb3RzcG90c1BhbmVsLmpzeCJ9

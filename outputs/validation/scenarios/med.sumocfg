@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <input>
+        <net-file value="C:/Developers/Sneha/Projects/hybrid-traffic-control/sumo/silk_board/network/silk_board.net.xml"/>
+        <route-files value="C:/Developers/Sneha/Projects/hybrid-traffic-control/outputs/validation/scenarios/scenario_med.rou.xml"/>
+        <additional-files value="C:/Developers/Sneha/Projects/hybrid-traffic-control/sumo/silk_board/demand/vehicle_types.add.xml"/>
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="200"/>
+        <step-length value="1"/>
+    </time>
+    <processing>
+        <ignore-route-errors value="false"/>
+        <time-to-teleport value="300"/>
+    </processing>
+    <report>
+        <verbose value="false"/>
+        <no-step-log value="true"/>
+    </report>
+</configuration>
