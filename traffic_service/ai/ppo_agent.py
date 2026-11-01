@@ -2,8 +2,13 @@
 traffic_service/ai/ppo_agent.py
 
 Proximal Policy Optimization (PPO) agent for adaptive traffic signal control.
-Implements clipped surrogate policy objective, Generalized Advantage Estimation (GAE),
-action masking for phase constraints, and entropy regularization.
+Implements:
+- Clipped surrogate policy objective
+- Generalized Advantage Estimation (GAE-Lambda)
+- Single-sample consistent action and log-probability selection
+- Full autograd backpropagation across actor, critic, and shared trunk parameters
+- Minibatch optimization across multiple update epochs
+- Numerical safeguards against NaN and gradient explosion
 """
 
 from __future__ import annotations
@@ -11,6 +16,9 @@ from __future__ import annotations
 import math
 from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
 from .env import ACTION_KEEP, ACTION_SWITCH, ACTION_EXTEND, ACTION_NAMES
 from .models import ActorCriticNetwork
@@ -57,7 +65,7 @@ class PPOTrajectoryBuffer:
 
 class PPOAgent:
     """
-    Coordinated PPO Agent managing signal decisions with continuous GAE advantage updates.
+    Coordinated PPO Agent managing signal decisions with autograd-enabled Actor-Critic optimization.
     """
 
     def __init__(
@@ -82,10 +90,15 @@ class PPOAgent:
         self.clip_ratio = clip_ratio
         self.entropy_coef = entropy_coef
         self.value_loss_coef = value_loss_coef
+        self.seed = seed
 
         self.rng = np.random.RandomState(seed)
+        torch.manual_seed(seed)
+
         self.ac_network = ActorCriticNetwork(in_features=in_features, num_actions=num_actions, seed=seed)
+        self.optimizer = torch.optim.Adam(self.ac_network.parameters(), lr=self.lr, eps=1e-5)
         self.buffer = PPOTrajectoryBuffer()
+        self.step_counter = 0
 
     def select_action(
         self,
@@ -95,42 +108,55 @@ class PPOAgent:
     ) -> Tuple[int, Dict[str, Any]]:
         """
         Samples an action from the policy distribution with safety masking.
-        Returns (action, debug_info).
+        CRITICAL: The exact action executed is the exact action whose log_prob is returned.
+        No second sampling occurs.
         """
-        probs, value = self.ac_network.forward(observation)
+        obs_t = torch.from_numpy(np.array(observation, dtype=np.float32)).unsqueeze(0)
 
-        # Action masking: if min_green not elapsed, cannot switch
-        masked_probs = probs.copy()
+        with torch.no_grad():
+            logits, val_t = self.ac_network.forward_logits_value(obs_t)
+            logits = logits[0]
+            value = float(val_t[0].item())
+
+        # Masking: if min_green not elapsed, cannot switch
+        masked_logits = logits.clone()
         if not can_switch:
-            masked_probs[ACTION_SWITCH] = 0.0
-            sum_p = np.sum(masked_probs)
-            if sum_p > 1e-6:
-                masked_probs /= sum_p
-            else:
-                masked_probs = np.array([0.5, 0.0, 0.5], dtype=np.float32)
+            masked_logits[ACTION_SWITCH] = -1e9
+
+        dist = torch.distributions.Categorical(logits=masked_logits)
+        probs = F.softmax(masked_logits, dim=-1).cpu().numpy()
 
         if eval_mode:
-            action = int(np.argmax(masked_probs))
-            reason = f"PPO greedy policy (p={masked_probs[action]:.2f}, action: {ACTION_NAMES.get(action)})"
+            # Deterministic greedy choice in evaluation
+            action = int(torch.argmax(masked_logits).item())
+            reason = f"PPO greedy policy (p={probs[action]:.2f}, action: {ACTION_NAMES.get(action)})"
         else:
-            action = int(self.rng.choice(self.num_actions, p=masked_probs))
-            reason = f"PPO stochastic sample (p={masked_probs[action]:.2f}, action: {ACTION_NAMES.get(action)})"
+            # Stochastic sample in training
+            action_tensor = dist.sample()
+            action = int(action_tensor.item())
+            reason = f"PPO stochastic sample (p={probs[action]:.2f}, action: {ACTION_NAMES.get(action)})"
 
-        # Log prob of selected action (with numerical safeguard)
-        p_act = max(1e-8, float(masked_probs[action]))
-        log_prob = math.log(p_act)
+        # Exact log probability of the sampled action under the masked categorical distribution
+        log_prob = float(dist.log_prob(torch.tensor(action)).item())
 
         info = {
             "agent_id": self.agent_id,
             "action": action,
             "action_name": ACTION_NAMES.get(action, "UNKNOWN"),
             "probabilities": probs.tolist(),
-            "masked_probs": masked_probs.tolist(),
-            "value": float(value),
+            "masked_probs": probs.tolist(),
+            "value": value,
             "log_prob": log_prob,
             "reason": reason,
         }
         return action, info
+
+    def get_value(self, observation: np.ndarray) -> float:
+        """Returns scalar state value estimate for bootstrapping."""
+        obs_t = torch.from_numpy(np.array(observation, dtype=np.float32)).unsqueeze(0)
+        with torch.no_grad():
+            _, val_t = self.ac_network.forward_logits_value(obs_t)
+            return float(val_t[0].item())
 
     def store_transition(
         self,
@@ -160,23 +186,31 @@ class PPOAgent:
         for t in reversed(range(n_steps)):
             next_val = last_value if t == n_steps - 1 else values[t + 1]
             non_terminal = 1.0 - float(dones[t])
-            delta = rewards[t] + self.gamma * next_val * non_terminal - values[t]
-            advantages[t] = last_gae = delta + self.gamma * self.gae_lambda * non_terminal * last_gae
+            delta = rewards[t] + (self.gamma * next_val * non_terminal) - values[t]
+            advantages[t] = last_gae = delta + (self.gamma * self.gae_lambda * non_terminal * last_gae)
 
         returns = advantages + values
-        # Normalize advantages
+        # Normalize advantages for training stability
         adv_std = np.std(advantages)
         if adv_std > 1e-6:
             advantages = (advantages - np.mean(advantages)) / adv_std
+        else:
+            advantages = advantages - np.mean(advantages)
 
         return advantages, returns
 
-    def train_step(self, last_value: float = 0.0, epochs: int = 4) -> Dict[str, float]:
+    def train_step(
+        self,
+        last_value: float = 0.0,
+        epochs: int = 4,
+        minibatch_size: int = 32,
+    ) -> Dict[str, float]:
         """
-        Performs clipped PPO policy and value updates across recorded trajectories.
+        Performs clipped PPO policy and value updates across recorded trajectories using autograd.
+        Propagates gradients through ALL trainable parameters of actor, critic, and shared trunk.
         """
         if len(self.buffer) < 4:
-            return {"loss": 0.0, "policy_loss": 0.0, "value_loss": 0.0}
+            return {"loss": 0.0, "policy_loss": 0.0, "value_loss": 0.0, "entropy": 0.0}
 
         states = np.array(self.buffer.states, dtype=np.float32)
         actions = np.array(self.buffer.actions, dtype=np.int64)
@@ -185,59 +219,91 @@ class PPOAgent:
         values = np.array(self.buffer.values, dtype=np.float32)
         dones = np.array(self.buffer.dones, dtype=np.bool_)
 
-        advantages, returns = self.compute_gae(last_value, dones, rewards, values)
+        advantages_np, returns_np = self.compute_gae(last_value, dones, rewards, values)
 
-        total_loss = 0.0
-        policy_loss = 0.0
-        value_loss = 0.0
+        # Convert to PyTorch tensors
+        states_t = torch.from_numpy(states).float()
+        actions_t = torch.from_numpy(actions).long()
+        old_log_probs_t = torch.from_numpy(old_log_probs).float()
+        advantages_t = torch.from_numpy(advantages_np).float()
+        returns_t = torch.from_numpy(returns_np).float()
+
+        n_samples = len(self.buffer)
+        mb_size = min(minibatch_size, n_samples)
+
+        epoch_total_losses = []
+        epoch_policy_losses = []
+        epoch_value_losses = []
+        epoch_entropies = []
+
+        self.ac_network.train()
 
         for _ in range(epochs):
-            probs, curr_values = self.ac_network.forward(states)
+            indices = np.random.permutation(n_samples)
+            for start_idx in range(0, n_samples, mb_size):
+                mb_indices = indices[start_idx : start_idx + mb_size]
 
-            # Compute new log probs and entropy
-            p_actions = np.array([probs[i, actions[i]] for i in range(len(actions))])
-            new_log_probs = np.log(np.maximum(1e-8, p_actions))
-            entropy = -np.mean(np.sum(probs * np.log(np.maximum(1e-8, probs)), axis=1))
+                mb_states = states_t[mb_indices]
+                mb_actions = actions_t[mb_indices]
+                mb_old_log_probs = old_log_probs_t[mb_indices]
+                mb_advantages = advantages_t[mb_indices]
+                mb_returns = returns_t[mb_indices]
 
-            # Importance sampling ratio r(theta)
-            ratios = np.exp(new_log_probs - old_log_probs)
+                # Forward pass through Actor-Critic network
+                logits, curr_values = self.ac_network.forward_logits_value(mb_states)
+                dist = torch.distributions.Categorical(logits=logits)
+                new_log_probs = dist.log_prob(mb_actions)
+                entropy = dist.entropy().mean()
 
-            # Clipped surrogate objective
-            surr1 = ratios * advantages
-            surr2 = np.clip(ratios, 1.0 - self.clip_ratio, 1.0 + self.clip_ratio) * advantages
-            p_loss = -np.mean(np.minimum(surr1, surr2))
+                # Importance sampling probability ratio: r(theta) = exp(new_log_prob - old_log_prob)
+                ratios = torch.exp(new_log_probs - mb_old_log_probs)
 
-            # Value loss (MSE)
-            v_loss = np.mean(np.square(returns - curr_values))
+                # Clipped surrogate loss
+                surr1 = ratios * mb_advantages
+                surr2 = torch.clamp(ratios, 1.0 - self.clip_ratio, 1.0 + self.clip_ratio) * mb_advantages
+                policy_loss = -torch.min(surr1, surr2).mean()
 
-            step_loss = p_loss + (self.value_loss_coef * v_loss) - (self.entropy_coef * entropy)
+                # Value function loss (MSE)
+                value_loss = F.mse_loss(curr_values, mb_returns)
 
-            # Apply gradient adjustment to actor output weights
-            weights = self.ac_network.get_weights()
-            grad_p = -self.lr * np.mean(ratios * advantages)
-            weights["actor_out_b"] += grad_p
-            self.ac_network.set_weights(weights)
+                # Total multi-objective loss
+                total_loss = policy_loss + (self.value_loss_coef * value_loss) - (self.entropy_coef * entropy)
 
-            total_loss += float(step_loss)
-            policy_loss += float(p_loss)
-            value_loss += float(v_loss)
+                # Backpropagation through ALL trainable parameters
+                self.optimizer.zero_grad()
+                total_loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.ac_network.parameters(), max_norm=0.5)
+                self.optimizer.step()
 
+                epoch_total_losses.append(float(total_loss.item()))
+                epoch_policy_losses.append(float(policy_loss.item()))
+                epoch_value_losses.append(float(value_loss.item()))
+                epoch_entropies.append(float(entropy.item()))
+
+        self.step_counter += 1
         self.buffer.clear()
+
         return {
-            "loss": total_loss / epochs,
-            "policy_loss": policy_loss / epochs,
-            "value_loss": value_loss / epochs,
+            "loss": float(np.mean(epoch_total_losses)) if epoch_total_losses else 0.0,
+            "policy_loss": float(np.mean(epoch_policy_losses)) if epoch_policy_losses else 0.0,
+            "value_loss": float(np.mean(epoch_value_losses)) if epoch_value_losses else 0.0,
+            "entropy": float(np.mean(epoch_entropies)) if epoch_entropies else 0.0,
         }
 
     def get_state_dict(self) -> Dict[str, Any]:
+        """Exports state dict with weights and metadata."""
         raw_w = self.ac_network.get_weights()
         serializable_w = {k: v.tolist() if hasattr(v, "tolist") else v for k, v in raw_w.items()}
         return {
             "agent_id": self.agent_id,
+            "algorithm_version": "2.0-autograd",
+            "step_counter": int(self.step_counter),
             "weights": serializable_w,
         }
 
     def load_state_dict(self, state_dict: Dict[str, Any]) -> None:
+        """Loads state dict with full backward compatibility."""
+        self.step_counter = int(state_dict.get("step_counter", 0))
         if "weights" in state_dict:
             raw_w = state_dict["weights"]
             converted_w = {

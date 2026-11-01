@@ -226,6 +226,18 @@ class SumoManager:
                 traci.close()
             except Exception:
                 pass
+
+        if self._process is not None:
+            try:
+                if self._process.poll() is None:
+                    self._process.terminate()
+                    try:
+                        self._process.wait(timeout=2.0)
+                    except Exception:
+                        self._process.kill()
+            except Exception:
+                pass
+
         self._is_running = False
         self._process = None
         self._pid = None

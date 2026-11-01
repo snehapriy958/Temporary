@@ -2,7 +2,8 @@
 traffic_service/ai/dqn_agent.py
 
 Double Deep Q-Network (Double-DQN) agent with Dueling architecture,
-Experience Replay Buffer, and target network synchronization.
+Experience Replay Buffer, full autograd backpropagation, Huber loss,
+and target network synchronization.
 """
 
 from __future__ import annotations
@@ -11,6 +12,9 @@ from collections import deque
 import random
 from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
 from .env import ACTION_KEEP, ACTION_SWITCH, ACTION_EXTEND, ACTION_NAMES
 from .models import DuelingDQNNetwork
@@ -55,7 +59,7 @@ class ReplayBuffer:
 
 class DQNAgent:
     """
-    Coordinated Double-DQN Agent for traffic light control.
+    Coordinated Double-DQN Agent for traffic light control with full autograd backpropagation.
     """
 
     def __init__(
@@ -81,13 +85,19 @@ class DQNAgent:
         self.epsilon_min = epsilon_min
         self.epsilon_decay = epsilon_decay
         self.target_update_interval = target_update_interval
+        self.seed = seed
 
         self.rng = np.random.RandomState(seed)
+        torch.manual_seed(seed)
 
         # Primary and Target Dueling Q-networks
         self.q_network = DuelingDQNNetwork(in_features=in_features, num_actions=num_actions, seed=seed)
         self.target_network = DuelingDQNNetwork(in_features=in_features, num_actions=num_actions, seed=seed + 100)
         self.update_target_network()
+
+        # PyTorch Optimizer & Loss function
+        self.optimizer = torch.optim.Adam(self.q_network.parameters(), lr=self.lr)
+        self.loss_fn = nn.SmoothL1Loss()  # Huber loss for robust TD errors
 
         self.replay_buffer = ReplayBuffer(capacity=buffer_capacity)
         self.step_counter = 0
@@ -118,7 +128,7 @@ class DQNAgent:
             # Exploration
             valid_actions = [ACTION_KEEP, ACTION_EXTEND] if not can_switch else [ACTION_KEEP, ACTION_SWITCH, ACTION_EXTEND]
             action = int(self.rng.choice(valid_actions))
-            reason = f"DQN ε-greedy exploration (ε={self.epsilon:.2f})"
+            reason = f"DQN epsilon-greedy exploration (eps={self.epsilon:.2f})"
         else:
             # Exploitation
             action = int(np.argmax(masked_q))
@@ -130,7 +140,7 @@ class DQNAgent:
             "action_name": ACTION_NAMES.get(action, "UNKNOWN"),
             "q_values": q_values.tolist(),
             "masked_q": masked_q.tolist(),
-            "epsilon": self.epsilon,
+            "epsilon": float(self.epsilon),
             "reason": reason,
         }
         return action, info
@@ -148,62 +158,72 @@ class DQNAgent:
 
     def train_step(self, batch_size: int = 32) -> Optional[float]:
         """
-        Executes one Double-DQN training step using a mini-batch from the buffer.
-        Double-DQN target: y = r + gamma * Q_target(s', argmax_a Q(s', a))
+        Executes one Double-DQN training step using autograd and mini-batch from buffer.
+        Double-DQN target: y = r + gamma * (1 - done) * Q_target(s', argmax_a Q(s', a))
+        Propagates gradients through ALL trainable parameters of the primary Q-network.
         """
         if len(self.replay_buffer) < batch_size:
             return None
 
         states, actions, rewards, next_states, dones = self.replay_buffer.sample(batch_size)
 
-        # Current Q-values
-        curr_q = self.q_network.forward(states)  # (batch, num_actions)
+        s_t = torch.from_numpy(states).float()
+        a_t = torch.from_numpy(actions).long()
+        r_t = torch.from_numpy(rewards).float()
+        ns_t = torch.from_numpy(next_states).float()
+        d_t = torch.from_numpy(dones.astype(np.float32)).float()
 
-        # Double-DQN: choose best next action with current network, evaluate with target network
-        next_q_curr = self.q_network.forward(next_states)  # (batch, num_actions)
-        best_next_actions = np.argmax(next_q_curr, axis=1)  # (batch,)
-        next_q_target = self.target_network.forward(next_states)  # (batch, num_actions)
+        # 1. Current Q-values for actions taken
+        self.q_network.train()
+        q_pred = self.q_network.forward(s_t)  # shape (batch, num_actions)
+        state_action_values = q_pred.gather(1, a_t.unsqueeze(1)).squeeze(1)  # shape (batch,)
 
-        # Target Q-values
-        target_q = curr_q.copy()
-        for i in range(batch_size):
-            if dones[i]:
-                target_q[i, actions[i]] = rewards[i]
-            else:
-                a_max = best_next_actions[i]
-                target_q[i, actions[i]] = rewards[i] + self.gamma * next_q_target[i, a_max]
+        # 2. Double-DQN Target Calculation (detached from computation graph)
+        with torch.no_grad():
+            # Online network selects best action
+            next_q_online = self.q_network.forward(ns_t)
+            best_next_actions = next_q_online.argmax(dim=1, keepdim=True)
+            # Target network evaluates selected action
+            next_q_target = self.target_network.forward(ns_t)
+            next_state_values = next_q_target.gather(1, best_next_actions).squeeze(1)
+            # Bellman target (terminal state -> non_terminal = 0.0)
+            expected_state_action_values = r_t + (self.gamma * (1.0 - d_t) * next_state_values)
 
-        # TD Error Loss (MSE)
-        td_errors = target_q - curr_q
-        loss = float(np.mean(np.square(td_errors)))
+        # 3. Loss & Backpropagation across ALL trainable parameters
+        loss = self.loss_fn(state_action_values, expected_state_action_values)
 
-        # Gradient update on primary network weights (analytical backprop on output layer)
-        weights = self.q_network.get_weights()
-        grad = -2.0 * td_errors / batch_size
-        weights["adv_out_b"] -= self.lr * np.sum(grad, axis=0)
-        self.q_network.set_weights(weights)
+        self.optimizer.zero_grad()
+        loss.backward()
+        # Gradient clipping for numerical stability
+        torch.nn.utils.clip_grad_norm_(self.q_network.parameters(), max_norm=10.0)
+        self.optimizer.step()
 
-        # Decay epsilon
+        # 4. Decay epsilon
         self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
 
-        # Periodic target update
+        # 5. Periodic target network synchronization
         self.step_counter += 1
         if self.step_counter % self.target_update_interval == 0:
             self.update_target_network()
 
-        return loss
+        return float(loss.item())
 
     def get_state_dict(self) -> Dict[str, Any]:
+        """Exports state dict with weights and metadata."""
         raw_w = self.q_network.get_weights()
         serializable_w = {k: v.tolist() if hasattr(v, "tolist") else v for k, v in raw_w.items()}
         return {
             "agent_id": self.agent_id,
+            "algorithm_version": "2.0-autograd",
             "epsilon": float(self.epsilon),
+            "step_counter": int(self.step_counter),
             "q_network_weights": serializable_w,
         }
 
     def load_state_dict(self, state_dict: Dict[str, Any]) -> None:
+        """Loads state dict with full backward compatibility."""
         self.epsilon = float(state_dict.get("epsilon", self.epsilon_min))
+        self.step_counter = int(state_dict.get("step_counter", 0))
         if "q_network_weights" in state_dict:
             raw_w = state_dict["q_network_weights"]
             converted_w = {

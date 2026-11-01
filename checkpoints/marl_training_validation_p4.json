@@ -1,0 +1,253 @@
+{
+  "timestamp": "2026-11-01T10:31:48Z",
+  "total_duration_s": 25.28612232208252,
+  "dqn_training": {
+    "algorithm": "dqn",
+    "checkpoint": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\marl_dqn_corridor_v2.json",
+    "episodes": [
+      {
+        "episode": 1,
+        "seed": 52,
+        "duration_s": 60.0,
+        "mean_reward": -2.364948890917712,
+        "rewards_by_junction": {
+          "J1": -3.885084628997224,
+          "J2": -4.580956902162662,
+          "J3": 1.3711948584067501
+        },
+        "mean_td_loss": 0.0,
+        "mean_max_grad_norm": 0.0,
+        "epsilon": 0.8,
+        "completed_trips": 0,
+        "average_queue": 4.533333333333333,
+        "cumulative_delay_veh_s": 272.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.8903,
+        "total_co2_kg": 2.06682894196093
+      },
+      {
+        "episode": 2,
+        "seed": 62,
+        "duration_s": 60.0,
+        "mean_reward": -2.0682012099870914,
+        "rewards_by_junction": {
+          "J1": -3.906465918193568,
+          "J2": -4.06652944447348,
+          "J3": 1.7683917327057737
+        },
+        "mean_td_loss": 0.1190250962972641,
+        "mean_max_grad_norm": 0.5119784250855446,
+        "epsilon": 0.5041995277796872,
+        "completed_trips": 0,
+        "average_queue": 4.533333333333333,
+        "cumulative_delay_veh_s": 272.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.8867,
+        "total_co2_kg": 2.058617313257958
+      },
+      {
+        "episode": 3,
+        "seed": 72,
+        "duration_s": 60.0,
+        "mean_reward": -2.110098930062266,
+        "rewards_by_junction": {
+          "J1": -3.984840115525477,
+          "J2": -3.909890726192021,
+          "J3": 1.5644340515306996
+        },
+        "mean_td_loss": 0.07846664764090544,
+        "mean_max_grad_norm": 0.7193487156182528,
+        "epsilon": 0.27244930103049186,
+        "completed_trips": 0,
+        "average_queue": 4.533333333333333,
+        "cumulative_delay_veh_s": 272.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.9035,
+        "total_co2_kg": 2.0976947269232635
+      },
+      {
+        "episode": 4,
+        "seed": 82,
+        "duration_s": 60.0,
+        "mean_reward": -2.3262909044702123,
+        "rewards_by_junction": {
+          "J1": -3.962819339463243,
+          "J2": -4.644101322281167,
+          "J3": 1.6280479483337742
+        },
+        "mean_td_loss": 0.04505064397946828,
+        "mean_max_grad_norm": 0.4550676133690609,
+        "epsilon": 0.14722072818846063,
+        "completed_trips": 0,
+        "average_queue": 4.516666666666667,
+        "cumulative_delay_veh_s": 271.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.917,
+        "total_co2_kg": 2.1290919575992167
+      },
+      {
+        "episode": 5,
+        "seed": 92,
+        "duration_s": 60.0,
+        "mean_reward": -2.005574442105631,
+        "rewards_by_junction": {
+          "J1": -0.859889374327446,
+          "J2": -6.164798423901407,
+          "J3": 1.0079644719119598
+        },
+        "mean_td_loss": 0.029130450773259833,
+        "mean_max_grad_norm": 0.3061783044702477,
+        "epsilon": 0.07955220558967377,
+        "completed_trips": 0,
+        "average_queue": 2.1166666666666667,
+        "cumulative_delay_veh_s": 127.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.9677,
+        "total_co2_kg": 2.246396174554757
+      }
+    ]
+  },
+  "ppo_training": {
+    "algorithm": "ppo",
+    "checkpoint": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\marl_ppo_corridor_v2.json",
+    "episodes": [
+      {
+        "episode": 1,
+        "seed": 53,
+        "duration_s": 60.0,
+        "mean_reward": -2.54203166768642,
+        "rewards_by_junction": {
+          "J1": -3.876212064328537,
+          "J2": -5.151312026206111,
+          "J3": 1.4014290874753874
+        },
+        "mean_policy_loss": 0.02481728591707603,
+        "mean_value_loss": 5.5790328942239285,
+        "mean_entropy": 0.9711185942093531,
+        "mean_max_grad_norm": 0.2844517230987549,
+        "completed_trips": 0,
+        "average_queue": 4.516666666666667,
+        "cumulative_delay_veh_s": 271.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.916,
+        "total_co2_kg": 2.1269568359772673
+      },
+      {
+        "episode": 2,
+        "seed": 63,
+        "duration_s": 60.0,
+        "mean_reward": -2.8693700993937603,
+        "rewards_by_junction": {
+          "J1": -3.9743260576534416,
+          "J2": -6.013752803522014,
+          "J3": 1.3799685629941754
+        },
+        "mean_policy_loss": 0.020871685119345784,
+        "mean_value_loss": 5.69511375700434,
+        "mean_entropy": 0.9824446986118952,
+        "mean_max_grad_norm": 0.27451614538828534,
+        "completed_trips": 0,
+        "average_queue": 4.533333333333333,
+        "cumulative_delay_veh_s": 272.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.9084,
+        "total_co2_kg": 2.1092603194434156
+      },
+      {
+        "episode": 3,
+        "seed": 73,
+        "duration_s": 60.0,
+        "mean_reward": -2.15686594924605,
+        "rewards_by_junction": {
+          "J1": -3.9984867106882414,
+          "J2": -3.821820774743653,
+          "J3": 1.349709637693745
+        },
+        "mean_policy_loss": 0.02027788304258138,
+        "mean_value_loss": 3.5350874128441014,
+        "mean_entropy": 0.9843065539995829,
+        "mean_max_grad_norm": 0.2709584633509318,
+        "completed_trips": 0,
+        "average_queue": 4.583333333333333,
+        "cumulative_delay_veh_s": 275.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.9157,
+        "total_co2_kg": 2.126211924534192
+      },
+      {
+        "episode": 4,
+        "seed": 83,
+        "duration_s": 60.0,
+        "mean_reward": -2.243697716465051,
+        "rewards_by_junction": {
+          "J1": -3.7412079824455375,
+          "J2": -4.7627865540256265,
+          "J3": 1.772901387076012
+        },
+        "mean_policy_loss": 0.015961617619420092,
+        "mean_value_loss": 3.733858495950699,
+        "mean_entropy": 0.9867721498012543,
+        "mean_max_grad_norm": 0.2812567551930745,
+        "completed_trips": 0,
+        "average_queue": 4.533333333333333,
+        "cumulative_delay_veh_s": 272.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.9145,
+        "total_co2_kg": 2.1233854973570243
+      },
+      {
+        "episode": 5,
+        "seed": 93,
+        "duration_s": 60.0,
+        "mean_reward": -2.519360073820057,
+        "rewards_by_junction": {
+          "J1": -4.004060651944435,
+          "J2": -5.153277716698801,
+          "J3": 1.5992581471830656
+        },
+        "mean_policy_loss": 0.016557071125134826,
+        "mean_value_loss": 3.9580243776241937,
+        "mean_entropy": 0.9801913152138392,
+        "mean_max_grad_norm": 0.2740170458952586,
+        "completed_trips": 0,
+        "average_queue": 4.566666666666666,
+        "cumulative_delay_veh_s": 274.0,
+        "average_travel_time_s": 0.0,
+        "total_fuel_liters": 0.9066,
+        "total_co2_kg": 2.1050273947555884
+      }
+    ]
+  },
+  "checkpoint_validation": {
+    "dqn": {
+      "checkpoint": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\marl_dqn_corridor_v2.json",
+      "version": "2.0-autograd",
+      "saved_at": "2026-11-01T10:31:36.844516+00:00",
+      "junctions_verified": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "decisions": {
+        "J1": "EXTEND",
+        "J2": "EXTEND",
+        "J3": "KEEP"
+      }
+    },
+    "ppo": {
+      "checkpoint": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\marl_ppo_corridor_v2.json",
+      "version": "2.0-autograd",
+      "saved_at": "2026-11-01T10:31:48.164603+00:00",
+      "junctions_verified": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "decisions": {
+        "J1": "EXTEND",
+        "J2": "EXTEND",
+        "J3": "SWITCH"
+      }
+    }
+  }
+}

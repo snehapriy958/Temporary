@@ -367,7 +367,7 @@ class SimulationService:
                 action="INITIALIZE",
                 reason="System ready for simulation initialization.",
                 is_override=False,
-                timestamp=datetime.utcnow().isoformat(),
+                timestamp=datetime.now(timezone.utc).isoformat(),
             )
         )
 
@@ -455,7 +455,7 @@ class SimulationService:
                     seed=self._seed,
                     duration_requested=self._duration,
                     duration_simulated=0.0,
-                    started_at=datetime.utcnow(),
+                    started_at=datetime.now(timezone.utc),
                 )
                 db.add(run_rec)
                 db.commit()
@@ -690,7 +690,7 @@ class SimulationService:
             target_uuid = self._current_run_uuid
 
         logger.info(
-            f"Shutdown requested for session {target_uuid} (PID: {target_pid}) at {datetime.utcnow().isoformat()}"
+            f"Shutdown requested for session {target_uuid} (PID: {target_pid}) at {datetime.now(timezone.utc).isoformat()}"
         )
 
         # Tier 1: Wait for worker thread to finish its execution and finally cleanup outside lock
@@ -990,7 +990,7 @@ class SimulationService:
                 run_rec = db.query(SimulationRun).filter(SimulationRun.id == self._current_run_id).first()
                 if run_rec:
                     run_rec.status = final_status
-                    run_rec.completed_at = datetime.utcnow()
+                    run_rec.completed_at = datetime.now(timezone.utc)
                     run_rec.duration_simulated = self._current_sim_time
                     if self._error_message:
                         run_rec.error_message = self._error_message
@@ -1223,7 +1223,7 @@ class SimulationService:
             action=action,
             reason=reason,
             is_override=is_override,
-            timestamp=datetime.utcnow().isoformat(),
+            timestamp=datetime.now(timezone.utc).isoformat(),
         )
         self._decisions_log.append(item)
         if len(self._decisions_log) > 200:

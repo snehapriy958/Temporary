@@ -205,6 +205,8 @@ class MARLCorridorController:
                 "reason": f"MARL [{self.algorithm.upper()}] Agent {j_id}: {info.get('reason')}",
                 "q_values" if self.algorithm == "dqn" else "probabilities": info.get("q_values") or info.get("probabilities"),
                 "confidence": float(info.get("confidence", 1.0)),
+                "value": float(info.get("value", 0.0)),
+                "log_prob": float(info.get("log_prob", 0.0)),
                 "is_fallback": False,
                 "is_emergency": False,
             }
@@ -329,12 +331,15 @@ class MARLCorridorController:
             "is_emergency": False,
         }
 
-    def save_checkpoint(self, filepath: Path | str) -> None:
+    def save_checkpoint(self, filepath: Path | str, version: str = "2.0-autograd") -> None:
         """Saves current agent weights and hyperparameters to a JSON checkpoint file."""
+        from datetime import datetime, timezone
         path = Path(filepath)
         path.parent.mkdir(parents=True, exist_ok=True)
         checkpoint_data = {
             "algorithm": self.algorithm,
+            "algorithm_version": version,
+            "saved_at": datetime.now(timezone.utc).isoformat(),
             "seed": self.seed,
             "junctions": self.junctions,
             "agents": {
@@ -343,7 +348,7 @@ class MARLCorridorController:
         }
         with open(path, "w", encoding="utf-8") as f:
             json.dump(checkpoint_data, f, indent=2)
-        logger.info(f"Saved MARL checkpoint to: {path}")
+        logger.info(f"Saved MARL checkpoint (version: {version}) to: {path}")
 
     def load_checkpoint(self, filepath: Path | str) -> bool:
         """Loads agent weights from a checkpoint file. Returns True if successfully loaded."""
@@ -365,7 +370,8 @@ class MARLCorridorController:
             for j_id, agent_state in agents_dict.items():
                 if j_id in self.agents:
                     self.agents[j_id].load_state_dict(agent_state)
-            logger.info(f"Loaded MARL checkpoint from: {path}")
+            version = checkpoint_data.get("algorithm_version", "1.0-historical")
+            logger.info(f"Loaded MARL checkpoint (version: {version}) from: {path}")
             return True
         except Exception as exc:
             logger.error(f"Failed to load MARL checkpoint: {exc}")
