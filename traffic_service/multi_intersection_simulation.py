@@ -370,11 +370,15 @@ class MultiIntersectionSimulation:
         try:
             while self.sumo_manager.get_time() < duration_seconds:
                 self.step()
+            emergency_completed = self.emergency_coordinator.metrics.completed
             emergency_dur = (
                 self.emergency_coordinator.metrics.total_traversal_duration
-                if self.emergency_coordinator.metrics.completed
-                else 0.0
+                if emergency_completed
+                else None
             )
-            return self.metrics_collector.compute_summary(emergency_duration=emergency_dur)
+            return self.metrics_collector.compute_summary(
+                emergency_duration=emergency_dur,
+                emergency_cleared=emergency_completed,
+            )
         finally:
             self.close()

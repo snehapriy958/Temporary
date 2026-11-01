@@ -1035,7 +1035,7 @@ class SimulationService:
             "total_co2_kg": round(summary.total_co2_kg, 4),
             "total_nox_g": round(summary.total_nox_g, 4),
             "total_fuel_liters": round(summary.total_fuel_liters, 4),
-            "emergency_traversal_duration_s": round(summary.emergency_traversal_duration_s, 2),
+            "emergency_traversal_duration_s": round(summary.emergency_traversal_duration_s, 2) if summary.emergency_traversal_duration_s is not None else 0.0,
             "junction_queues": {j: st.total_queue for j, st in states.items()},
         }
 

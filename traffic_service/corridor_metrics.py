@@ -27,7 +27,7 @@ class CorridorMetricsSummary:
     simulation_duration: float = 0.0
     total_vehicles_inserted: int = 0
     total_corridor_trips_completed: int = 0
-    mean_corridor_travel_time_s: float = 0.0
+    mean_corridor_travel_time_s: Optional[float] = None  # None if total_corridor_trips_completed == 0
     mean_corridor_speed_kmh: float = 0.0
     # Waiting time & Delay metrics:
     # 1. Snapshot approach accumulated wait (sum of accumulated wait times of queued approach vehicles per step)
@@ -42,7 +42,8 @@ class CorridorMetricsSummary:
     total_co2_kg: float = 0.0
     total_nox_g: float = 0.0
     total_fuel_liters: float = 0.0
-    emergency_traversal_duration_s: float = 0.0
+    emergency_traversal_duration_s: Optional[float] = None  # None if emergency vehicle did not complete corridor
+    emergency_cleared: bool = False
     # Per-junction breakdowns
     j1_mean_queue: float = 0.0
     j2_mean_queue: float = 0.0
@@ -158,7 +159,11 @@ class CorridorMetricsCollector:
         }
         self.step_records.append(record)
 
-    def compute_summary(self, emergency_duration: float = 0.0) -> CorridorMetricsSummary:
+    def compute_summary(
+        self,
+        emergency_duration: Optional[float] = None,
+        emergency_cleared: bool = False,
+    ) -> CorridorMetricsSummary:
         """Calculates final aggregate metrics for the run."""
         if not self.step_records:
             return CorridorMetricsSummary()
@@ -167,7 +172,7 @@ class CorridorMetricsCollector:
         mean_travel_time = (
             sum(self._completed_travel_times) / len(self._completed_travel_times)
             if self._completed_travel_times
-            else 0.0
+            else None
         )
 
         queues = [r["total_corridor_queue"] for r in self.step_records]
@@ -182,6 +187,9 @@ class CorridorMetricsCollector:
         # True cumulative delay: integral of queued vehicles across time (sum(Q * step_length))
         # Eliminates repeated-accumulation overcounting of getAccumulatedWaitingTime
         true_cumulative_delay = sum(queues) * self.step_length if queues else 0.0
+
+        # Valid emergency clearance duration (None if not completed)
+        amb_duration = emergency_duration if (emergency_cleared or (emergency_duration is not None and emergency_duration > 0.0)) else None
 
         return CorridorMetricsSummary(
             simulation_duration=sim_dur,
@@ -199,7 +207,8 @@ class CorridorMetricsCollector:
             total_co2_kg=self.cumulative_co2_mg / 1_000_000.0,
             total_nox_g=self.cumulative_nox_mg / 1_000.0,
             total_fuel_liters=round(self.cumulative_fuel_mg / FUEL_DENSITY_MG_PER_LITER, 4),
-            emergency_traversal_duration_s=emergency_duration,
+            emergency_traversal_duration_s=amb_duration,
+            emergency_cleared=emergency_cleared or (amb_duration is not None),
             j1_mean_queue=sum(j1_queues) / len(j1_queues) if j1_queues else 0.0,
             j2_mean_queue=sum(j2_queues) / len(j2_queues) if j2_queues else 0.0,
             j3_mean_queue=sum(j3_queues) / len(j3_queues) if j3_queues else 0.0,

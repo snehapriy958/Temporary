@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-11-01T16:34:16Z",
-  "total_evaluation_wall_time_s": 438.33726596832275,
+  "timestamp": "2026-11-01T17:18:35Z",
+  "total_evaluation_wall_time_s": 0.009320497512817383,
   "evaluation_seeds": [
     1,
     2,
@@ -9,7 +9,16 @@
     5
   ],
   "duration_seconds": 600,
-  "fuel_density_assumption": "0.750 kg/L (petrol reference density)",
+  "fuel_density_assumption": "0.750 kg/L (petrol reference density: DIN EN 228 / HBEFA 4.2)",
+  "statistical_limitations": {
+    "evaluation_seeds_count": 5,
+    "degrees_of_freedom": 4,
+    "sample_size_note": "N=5 evaluation seeds provide pilot statistical power. Paired t-tests assume normality of pairwise differences. Non-parametric Wilcoxon signed-rank tests and Cohen's d_z effect sizes are provided alongside standard t-tests.",
+    "missing_data_semantics": {
+      "travel_time": "Reported as null (JSON) / 'N/A' (CSV) when total_corridor_trips_completed == 0.",
+      "emergency_traversal": "Reported as null (JSON) / 'TIMEOUT' (CSV) when the emergency vehicle did not clear the corridor within the 600s horizon."
+    }
+  },
   "controllers": [
     "baseline",
     "coordinated",
@@ -22,18 +31,19 @@
       "display_name": "Fixed-Time Baseline",
       "seed": 1,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 17.423876762390137,
-      "mean_corridor_travel_time_s": 89.90196078431373,
+      "wall_time_s": 17.42,
+      "mean_corridor_travel_time_s": 89.9,
       "cumulative_delay_veh_s": 11913.0,
       "mean_corridor_queue": 19.855,
       "total_corridor_trips_completed": 102,
-      "mean_corridor_speed_kmh": 28.2344249565232,
+      "mean_corridor_speed_kmh": 28.23,
       "total_fuel_liters": 23.1109,
-      "total_co2_kg": 53.53748210464318,
+      "total_co2_kg": 53.5375,
       "emergency_traversal_duration_s": 34.0,
-      "j1_mean_queue": 2.4283333333333332,
+      "emergency_clearance_status": "CLEARED",
+      "j1_mean_queue": 2.43,
       "j2_mean_queue": 14.08,
-      "j3_mean_queue": 3.3466666666666667,
+      "j3_mean_queue": 3.35,
       "status": "COMPLETED"
     },
     {
@@ -41,18 +51,19 @@
       "display_name": "Fixed-Time Baseline",
       "seed": 2,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 22.190914154052734,
-      "mean_corridor_travel_time_s": 92.01960784313725,
+      "wall_time_s": 22.19,
+      "mean_corridor_travel_time_s": 92.02,
       "cumulative_delay_veh_s": 12015.0,
       "mean_corridor_queue": 20.025,
       "total_corridor_trips_completed": 102,
-      "mean_corridor_speed_kmh": 27.70271543681464,
+      "mean_corridor_speed_kmh": 27.7,
       "total_fuel_liters": 23.2107,
-      "total_co2_kg": 53.76876628278664,
+      "total_co2_kg": 53.7688,
       "emergency_traversal_duration_s": 45.0,
-      "j1_mean_queue": 2.5216666666666665,
-      "j2_mean_queue": 14.095,
-      "j3_mean_queue": 3.408333333333333,
+      "emergency_clearance_status": "CLEARED",
+      "j1_mean_queue": 2.52,
+      "j2_mean_queue": 14.1,
+      "j3_mean_queue": 3.41,
       "status": "COMPLETED"
     },
     {
@@ -60,18 +71,19 @@
       "display_name": "Fixed-Time Baseline",
       "seed": 3,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 24.243194103240967,
-      "mean_corridor_travel_time_s": 92.2156862745098,
+      "wall_time_s": 24.24,
+      "mean_corridor_travel_time_s": 92.22,
       "cumulative_delay_veh_s": 12203.0,
-      "mean_corridor_queue": 20.338333333333335,
+      "mean_corridor_queue": 20.338,
       "total_corridor_trips_completed": 102,
-      "mean_corridor_speed_kmh": 27.470859614640716,
+      "mean_corridor_speed_kmh": 27.47,
       "total_fuel_liters": 23.2715,
-      "total_co2_kg": 53.90872029014998,
+      "total_co2_kg": 53.9087,
       "emergency_traversal_duration_s": 46.0,
-      "j1_mean_queue": 2.5633333333333335,
-      "j2_mean_queue": 14.346666666666666,
-      "j3_mean_queue": 3.4283333333333332,
+      "emergency_clearance_status": "CLEARED",
+      "j1_mean_queue": 2.56,
+      "j2_mean_queue": 14.35,
+      "j3_mean_queue": 3.43,
       "status": "COMPLETED"
     },
     {
@@ -79,17 +91,18 @@
       "display_name": "Fixed-Time Baseline",
       "seed": 4,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 23.937195301055908,
-      "mean_corridor_travel_time_s": 89.56862745098039,
+      "wall_time_s": 23.94,
+      "mean_corridor_travel_time_s": 89.57,
       "cumulative_delay_veh_s": 11736.0,
       "mean_corridor_queue": 19.56,
       "total_corridor_trips_completed": 102,
-      "mean_corridor_speed_kmh": 28.21472951411087,
+      "mean_corridor_speed_kmh": 28.21,
       "total_fuel_liters": 23.0656,
-      "total_co2_kg": 53.43408960536155,
+      "total_co2_kg": 53.4341,
       "emergency_traversal_duration_s": 35.0,
-      "j1_mean_queue": 2.4366666666666665,
-      "j2_mean_queue": 13.693333333333333,
+      "emergency_clearance_status": "CLEARED",
+      "j1_mean_queue": 2.44,
+      "j2_mean_queue": 13.69,
       "j3_mean_queue": 3.43,
       "status": "COMPLETED"
     },
@@ -98,18 +111,19 @@
       "display_name": "Fixed-Time Baseline",
       "seed": 5,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 24.379626274108887,
-      "mean_corridor_travel_time_s": 91.51960784313725,
+      "wall_time_s": 24.38,
+      "mean_corridor_travel_time_s": 91.52,
       "cumulative_delay_veh_s": 12150.0,
       "mean_corridor_queue": 20.25,
       "total_corridor_trips_completed": 102,
-      "mean_corridor_speed_kmh": 27.645338268959573,
+      "mean_corridor_speed_kmh": 27.65,
       "total_fuel_liters": 23.2857,
-      "total_co2_kg": 53.942457784490955,
+      "total_co2_kg": 53.9425,
       "emergency_traversal_duration_s": 45.0,
-      "j1_mean_queue": 2.453333333333333,
-      "j2_mean_queue": 14.273333333333333,
-      "j3_mean_queue": 3.5233333333333334,
+      "emergency_clearance_status": "CLEARED",
+      "j1_mean_queue": 2.45,
+      "j2_mean_queue": 14.27,
+      "j3_mean_queue": 3.52,
       "status": "COMPLETED"
     },
     {
@@ -117,18 +131,19 @@
       "display_name": "Coordinated Adaptive",
       "seed": 1,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 16.256574392318726,
-      "mean_corridor_travel_time_s": 57.881188118811885,
+      "wall_time_s": 16.26,
+      "mean_corridor_travel_time_s": 57.88,
       "cumulative_delay_veh_s": 6760.0,
-      "mean_corridor_queue": 11.266666666666667,
+      "mean_corridor_queue": 11.267,
       "total_corridor_trips_completed": 101,
-      "mean_corridor_speed_kmh": 36.36684009425023,
+      "mean_corridor_speed_kmh": 36.37,
       "total_fuel_liters": 18.6287,
-      "total_co2_kg": 43.15645899620472,
+      "total_co2_kg": 43.1565,
       "emergency_traversal_duration_s": 27.0,
+      "emergency_clearance_status": "CLEARED",
       "j1_mean_queue": 0.59,
-      "j2_mean_queue": 9.975,
-      "j3_mean_queue": 0.7016666666666667,
+      "j2_mean_queue": 9.97,
+      "j3_mean_queue": 0.7,
       "status": "COMPLETED"
     },
     {
@@ -136,18 +151,19 @@
       "display_name": "Coordinated Adaptive",
       "seed": 2,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 14.879802942276001,
-      "mean_corridor_travel_time_s": 53.198019801980195,
+      "wall_time_s": 14.88,
+      "mean_corridor_travel_time_s": 53.2,
       "cumulative_delay_veh_s": 6856.0,
-      "mean_corridor_queue": 11.426666666666666,
+      "mean_corridor_queue": 11.427,
       "total_corridor_trips_completed": 101,
-      "mean_corridor_speed_kmh": 36.67693327154372,
+      "mean_corridor_speed_kmh": 36.68,
       "total_fuel_liters": 18.5949,
-      "total_co2_kg": 43.08164825468098,
+      "total_co2_kg": 43.0816,
       "emergency_traversal_duration_s": 35.0,
-      "j1_mean_queue": 0.5933333333333334,
-      "j2_mean_queue": 10.285,
-      "j3_mean_queue": 0.5483333333333333,
+      "emergency_clearance_status": "CLEARED",
+      "j1_mean_queue": 0.59,
+      "j2_mean_queue": 10.29,
+      "j3_mean_queue": 0.55,
       "status": "COMPLETED"
     },
     {
@@ -155,18 +171,19 @@
       "display_name": "Coordinated Adaptive",
       "seed": 3,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 14.69284462928772,
-      "mean_corridor_travel_time_s": 56.445544554455445,
+      "wall_time_s": 14.69,
+      "mean_corridor_travel_time_s": 56.45,
       "cumulative_delay_veh_s": 5775.0,
       "mean_corridor_queue": 9.625,
       "total_corridor_trips_completed": 101,
-      "mean_corridor_speed_kmh": 36.685304055840355,
+      "mean_corridor_speed_kmh": 36.69,
       "total_fuel_liters": 18.1216,
-      "total_co2_kg": 41.985734707517565,
+      "total_co2_kg": 41.9857,
       "emergency_traversal_duration_s": 41.0,
-      "j1_mean_queue": 0.5916666666666667,
-      "j2_mean_queue": 8.125,
-      "j3_mean_queue": 0.9083333333333333,
+      "emergency_clearance_status": "CLEARED",
+      "j1_mean_queue": 0.59,
+      "j2_mean_queue": 8.12,
+      "j3_mean_queue": 0.91,
       "status": "COMPLETED"
     },
     {
@@ -174,18 +191,19 @@
       "display_name": "Coordinated Adaptive",
       "seed": 4,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 15.205360651016235,
-      "mean_corridor_travel_time_s": 63.71287128712871,
+      "wall_time_s": 15.21,
+      "mean_corridor_travel_time_s": 63.71,
       "cumulative_delay_veh_s": 6646.0,
-      "mean_corridor_queue": 11.076666666666666,
+      "mean_corridor_queue": 11.077,
       "total_corridor_trips_completed": 101,
-      "mean_corridor_speed_kmh": 35.46266417654863,
+      "mean_corridor_speed_kmh": 35.46,
       "total_fuel_liters": 18.731,
-      "total_co2_kg": 43.39582849133283,
+      "total_co2_kg": 43.3958,
       "emergency_traversal_duration_s": 36.0,
+      "emergency_clearance_status": "CLEARED",
       "j1_mean_queue": 0.59,
-      "j2_mean_queue": 9.058333333333334,
-      "j3_mean_queue": 1.4283333333333332,
+      "j2_mean_queue": 9.06,
+      "j3_mean_queue": 1.43,
       "status": "COMPLETED"
     },
     {
@@ -193,18 +211,19 @@
       "display_name": "Coordinated Adaptive",
       "seed": 5,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 14.555110931396484,
-      "mean_corridor_travel_time_s": 56.26732673267327,
+      "wall_time_s": 14.56,
+      "mean_corridor_travel_time_s": 56.27,
       "cumulative_delay_veh_s": 5972.0,
-      "mean_corridor_queue": 9.953333333333333,
+      "mean_corridor_queue": 9.953,
       "total_corridor_trips_completed": 101,
-      "mean_corridor_speed_kmh": 36.81509496976348,
+      "mean_corridor_speed_kmh": 36.82,
       "total_fuel_liters": 18.0087,
-      "total_co2_kg": 41.72185245750158,
+      "total_co2_kg": 41.7219,
       "emergency_traversal_duration_s": 29.0,
-      "j1_mean_queue": 0.5933333333333334,
-      "j2_mean_queue": 8.591666666666667,
-      "j3_mean_queue": 0.7683333333333333,
+      "emergency_clearance_status": "CLEARED",
+      "j1_mean_queue": 0.59,
+      "j2_mean_queue": 8.59,
+      "j3_mean_queue": 0.77,
       "status": "COMPLETED"
     },
     {
@@ -212,18 +231,19 @@
       "display_name": "Trained MARL PPO (P5)",
       "seed": 1,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 18.971889972686768,
-      "mean_corridor_travel_time_s": 0.0,
+      "wall_time_s": 18.97,
+      "mean_corridor_travel_time_s": null,
       "cumulative_delay_veh_s": 20164.0,
-      "mean_corridor_queue": 33.60666666666667,
+      "mean_corridor_queue": 33.607,
       "total_corridor_trips_completed": 0,
-      "mean_corridor_speed_kmh": 22.1239314084066,
+      "mean_corridor_speed_kmh": 22.12,
       "total_fuel_liters": 22.5434,
-      "total_co2_kg": 52.19124069790213,
-      "emergency_traversal_duration_s": 0.0,
+      "total_co2_kg": 52.1912,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
       "j1_mean_queue": 14.49,
       "j2_mean_queue": 5.03,
-      "j3_mean_queue": 14.086666666666666,
+      "j3_mean_queue": 14.09,
       "status": "COMPLETED"
     },
     {
@@ -231,18 +251,19 @@
       "display_name": "Trained MARL PPO (P5)",
       "seed": 2,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 18.611593008041382,
-      "mean_corridor_travel_time_s": 0.0,
+      "wall_time_s": 18.61,
+      "mean_corridor_travel_time_s": null,
       "cumulative_delay_veh_s": 20142.0,
       "mean_corridor_queue": 33.57,
       "total_corridor_trips_completed": 0,
-      "mean_corridor_speed_kmh": 21.775822892740248,
+      "mean_corridor_speed_kmh": 21.78,
       "total_fuel_liters": 22.4564,
-      "total_co2_kg": 51.988907716740975,
-      "emergency_traversal_duration_s": 0.0,
-      "j1_mean_queue": 14.498333333333333,
-      "j2_mean_queue": 4.963333333333333,
-      "j3_mean_queue": 14.108333333333333,
+      "total_co2_kg": 51.9889,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
+      "j1_mean_queue": 14.5,
+      "j2_mean_queue": 4.96,
+      "j3_mean_queue": 14.11,
       "status": "COMPLETED"
     },
     {
@@ -250,18 +271,19 @@
       "display_name": "Trained MARL PPO (P5)",
       "seed": 3,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 18.604657411575317,
-      "mean_corridor_travel_time_s": 0.0,
+      "wall_time_s": 18.6,
+      "mean_corridor_travel_time_s": null,
       "cumulative_delay_veh_s": 20131.0,
-      "mean_corridor_queue": 33.55166666666667,
+      "mean_corridor_queue": 33.552,
       "total_corridor_trips_completed": 0,
-      "mean_corridor_speed_kmh": 21.867439215674924,
+      "mean_corridor_speed_kmh": 21.87,
       "total_fuel_liters": 22.5255,
-      "total_co2_kg": 52.150741667581364,
-      "emergency_traversal_duration_s": 0.0,
-      "j1_mean_queue": 14.486666666666666,
-      "j2_mean_queue": 5.066666666666666,
-      "j3_mean_queue": 13.998333333333333,
+      "total_co2_kg": 52.1507,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
+      "j1_mean_queue": 14.49,
+      "j2_mean_queue": 5.07,
+      "j3_mean_queue": 14.0,
       "status": "COMPLETED"
     },
     {
@@ -269,18 +291,19 @@
       "display_name": "Trained MARL PPO (P5)",
       "seed": 4,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 18.576447010040283,
-      "mean_corridor_travel_time_s": 0.0,
+      "wall_time_s": 18.58,
+      "mean_corridor_travel_time_s": null,
       "cumulative_delay_veh_s": 20346.0,
       "mean_corridor_queue": 33.91,
       "total_corridor_trips_completed": 0,
-      "mean_corridor_speed_kmh": 21.77066654864472,
+      "mean_corridor_speed_kmh": 21.77,
       "total_fuel_liters": 22.6143,
-      "total_co2_kg": 52.35436102615176,
-      "emergency_traversal_duration_s": 0.0,
-      "j1_mean_queue": 14.475,
-      "j2_mean_queue": 5.121666666666667,
-      "j3_mean_queue": 14.313333333333333,
+      "total_co2_kg": 52.3544,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
+      "j1_mean_queue": 14.47,
+      "j2_mean_queue": 5.12,
+      "j3_mean_queue": 14.31,
       "status": "COMPLETED"
     },
     {
@@ -288,18 +311,19 @@
       "display_name": "Trained MARL PPO (P5)",
       "seed": 5,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 18.62754797935486,
-      "mean_corridor_travel_time_s": 0.0,
+      "wall_time_s": 18.63,
+      "mean_corridor_travel_time_s": null,
       "cumulative_delay_veh_s": 20089.0,
-      "mean_corridor_queue": 33.48166666666667,
+      "mean_corridor_queue": 33.482,
       "total_corridor_trips_completed": 0,
-      "mean_corridor_speed_kmh": 21.943999340251985,
+      "mean_corridor_speed_kmh": 21.94,
       "total_fuel_liters": 22.5492,
-      "total_co2_kg": 52.20466226021142,
-      "emergency_traversal_duration_s": 0.0,
-      "j1_mean_queue": 14.486666666666666,
-      "j2_mean_queue": 4.921666666666667,
-      "j3_mean_queue": 14.073333333333334,
+      "total_co2_kg": 52.2047,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
+      "j1_mean_queue": 14.49,
+      "j2_mean_queue": 4.92,
+      "j3_mean_queue": 14.07,
       "status": "COMPLETED"
     },
     {
@@ -307,18 +331,19 @@
       "display_name": "Trained MARL DQN (P5)",
       "seed": 1,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 29.23478603363037,
-      "mean_corridor_travel_time_s": 234.33333333333334,
+      "wall_time_s": 29.23,
+      "mean_corridor_travel_time_s": 234.33,
       "cumulative_delay_veh_s": 60365.0,
-      "mean_corridor_queue": 100.60833333333333,
+      "mean_corridor_queue": 100.608,
       "total_corridor_trips_completed": 18,
-      "mean_corridor_speed_kmh": 16.57531533265221,
+      "mean_corridor_speed_kmh": 16.58,
       "total_fuel_liters": 49.0594,
-      "total_co2_kg": 113.6123603401511,
-      "emergency_traversal_duration_s": 0.0,
+      "total_co2_kg": 113.6124,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
       "j1_mean_queue": 5.49,
       "j2_mean_queue": 55.45,
-      "j3_mean_queue": 39.66833333333334,
+      "j3_mean_queue": 39.67,
       "status": "COMPLETED"
     },
     {
@@ -326,17 +351,18 @@
       "display_name": "Trained MARL DQN (P5)",
       "seed": 2,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 29.40160083770752,
-      "mean_corridor_travel_time_s": 239.7058823529412,
+      "wall_time_s": 29.4,
+      "mean_corridor_travel_time_s": 239.71,
       "cumulative_delay_veh_s": 59759.0,
-      "mean_corridor_queue": 99.59833333333333,
+      "mean_corridor_queue": 99.598,
       "total_corridor_trips_completed": 17,
-      "mean_corridor_speed_kmh": 17.324244723279353,
+      "mean_corridor_speed_kmh": 17.32,
       "total_fuel_liters": 48.7631,
-      "total_co2_kg": 112.91237497336478,
-      "emergency_traversal_duration_s": 0.0,
-      "j1_mean_queue": 3.1666666666666665,
-      "j2_mean_queue": 56.45166666666667,
+      "total_co2_kg": 112.9124,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
+      "j1_mean_queue": 3.17,
+      "j2_mean_queue": 56.45,
       "j3_mean_queue": 39.98,
       "status": "COMPLETED"
     },
@@ -345,18 +371,19 @@
       "display_name": "Trained MARL DQN (P5)",
       "seed": 3,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 29.41749405860901,
-      "mean_corridor_travel_time_s": 229.55555555555554,
+      "wall_time_s": 29.42,
+      "mean_corridor_travel_time_s": 229.56,
       "cumulative_delay_veh_s": 59862.0,
       "mean_corridor_queue": 99.77,
       "total_corridor_trips_completed": 18,
-      "mean_corridor_speed_kmh": 16.570160311818135,
+      "mean_corridor_speed_kmh": 16.57,
       "total_fuel_liters": 48.6888,
-      "total_co2_kg": 112.74344309021761,
-      "emergency_traversal_duration_s": 0.0,
+      "total_co2_kg": 112.7434,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
       "j1_mean_queue": 4.89,
-      "j2_mean_queue": 52.123333333333335,
-      "j3_mean_queue": 42.75666666666667,
+      "j2_mean_queue": 52.12,
+      "j3_mean_queue": 42.76,
       "status": "COMPLETED"
     },
     {
@@ -364,18 +391,19 @@
       "display_name": "Trained MARL DQN (P5)",
       "seed": 4,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 29.00516390800476,
-      "mean_corridor_travel_time_s": 226.27272727272728,
+      "wall_time_s": 29.01,
+      "mean_corridor_travel_time_s": 226.27,
       "cumulative_delay_veh_s": 50412.0,
       "mean_corridor_queue": 84.02,
       "total_corridor_trips_completed": 33,
-      "mean_corridor_speed_kmh": 18.93802637874761,
+      "mean_corridor_speed_kmh": 18.94,
       "total_fuel_liters": 44.9954,
-      "total_co2_kg": 104.19407720864498,
-      "emergency_traversal_duration_s": 0.0,
-      "j1_mean_queue": 0.9916666666666667,
-      "j2_mean_queue": 48.43333333333333,
-      "j3_mean_queue": 34.595,
+      "total_co2_kg": 104.1941,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
+      "j1_mean_queue": 0.99,
+      "j2_mean_queue": 48.43,
+      "j3_mean_queue": 34.59,
       "status": "COMPLETED"
     },
     {
@@ -383,18 +411,19 @@
       "display_name": "Trained MARL DQN (P5)",
       "seed": 5,
       "duration_simulated_s": 600.0,
-      "wall_time_s": 30.25621223449707,
-      "mean_corridor_travel_time_s": 240.35294117647058,
+      "wall_time_s": 30.26,
+      "mean_corridor_travel_time_s": 240.35,
       "cumulative_delay_veh_s": 59628.0,
       "mean_corridor_queue": 99.38,
       "total_corridor_trips_completed": 17,
-      "mean_corridor_speed_kmh": 16.927111653221736,
+      "mean_corridor_speed_kmh": 16.93,
       "total_fuel_liters": 48.7029,
-      "total_co2_kg": 112.77377866977419,
-      "emergency_traversal_duration_s": 0.0,
-      "j1_mean_queue": 3.255,
-      "j2_mean_queue": 56.31333333333333,
-      "j3_mean_queue": 39.81166666666667,
+      "total_co2_kg": 112.7738,
+      "emergency_traversal_duration_s": null,
+      "emergency_clearance_status": "TIMEOUT (>600s)",
+      "j1_mean_queue": 3.25,
+      "j2_mean_queue": 56.31,
+      "j3_mean_queue": 39.81,
       "status": "COMPLETED"
     }
   ],
@@ -405,17 +434,18 @@
       "total_runs": 5,
       "metrics": {
         "mean_corridor_travel_time_s": {
-          "mean": 91.04509803921567,
-          "std": 1.2279896080621575,
-          "ci95": 1.5247504864991346,
-          "min": 89.56862745098039,
-          "max": 92.2156862745098,
+          "mean": 91.04599999999999,
+          "std": 1.2291785875128147,
+          "ci95": 1.52622679947762,
+          "min": 89.57,
+          "max": 92.22,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 89.90196078431373,
-            "2": 92.01960784313725,
-            "3": 92.2156862745098,
-            "4": 89.56862745098039,
-            "5": 91.51960784313725
+            "1": 89.9,
+            "2": 92.02,
+            "3": 92.22,
+            "4": 89.57,
+            "5": 91.52
           }
         },
         "cumulative_delay_veh_s": {
@@ -424,6 +454,7 @@
           "ci95": 233.23890622524175,
           "min": 11736.0,
           "max": 12203.0,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 11913.0,
             "2": 12015.0,
@@ -433,15 +464,16 @@
           }
         },
         "mean_corridor_queue": {
-          "mean": 20.005666666666666,
-          "std": 0.3130730301738281,
-          "ci95": 0.3887315103754038,
+          "mean": 20.005599999999998,
+          "std": 0.31298450440876524,
+          "ci95": 0.3886215911200118,
           "min": 19.56,
-          "max": 20.338333333333335,
+          "max": 20.338,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 19.855,
             "2": 20.025,
-            "3": 20.338333333333335,
+            "3": 20.338,
             "4": 19.56,
             "5": 20.25
           }
@@ -452,26 +484,28 @@
           "ci95": 0.0,
           "min": 102.0,
           "max": 102.0,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 102.0,
-            "2": 102.0,
-            "3": 102.0,
-            "4": 102.0,
-            "5": 102.0
+            "1": 102,
+            "2": 102,
+            "3": 102,
+            "4": 102,
+            "5": 102
           }
         },
         "mean_corridor_speed_kmh": {
-          "mean": 27.853613558209798,
-          "std": 0.3493105620942096,
-          "ci95": 0.4337263491447013,
-          "min": 27.470859614640716,
-          "max": 28.2344249565232,
+          "mean": 27.852000000000004,
+          "std": 0.3467275587547097,
+          "ci95": 0.4305191268908042,
+          "min": 27.47,
+          "max": 28.23,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 28.2344249565232,
-            "2": 27.70271543681464,
-            "3": 27.470859614640716,
-            "4": 28.21472951411087,
-            "5": 27.645338268959573
+            "1": 28.23,
+            "2": 27.7,
+            "3": 27.47,
+            "4": 28.21,
+            "5": 27.65
           }
         },
         "total_fuel_liters": {
@@ -480,6 +514,7 @@
           "ci95": 0.12095096105769214,
           "min": 23.0656,
           "max": 23.2857,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 23.1109,
             "2": 23.2107,
@@ -489,17 +524,18 @@
           }
         },
         "total_co2_kg": {
-          "mean": 53.71830321348646,
-          "std": 0.22501339104438745,
-          "ci95": 0.2793910267735617,
-          "min": 53.43408960536155,
-          "max": 53.942457784490955,
+          "mean": 53.718320000000006,
+          "std": 0.2250146261912774,
+          "ci95": 0.2793925604109874,
+          "min": 53.4341,
+          "max": 53.9425,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 53.53748210464318,
-            "2": 53.76876628278664,
-            "3": 53.90872029014998,
-            "4": 53.43408960536155,
-            "5": 53.942457784490955
+            "1": 53.5375,
+            "2": 53.7688,
+            "3": 53.9087,
+            "4": 53.4341,
+            "5": 53.9425
           }
         },
         "emergency_traversal_duration_s": {
@@ -508,6 +544,7 @@
           "ci95": 7.398067091981215,
           "min": 34.0,
           "max": 46.0,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 34.0,
             "2": 45.0,
@@ -524,17 +561,18 @@
       "total_runs": 5,
       "metrics": {
         "mean_corridor_travel_time_s": {
-          "mean": 57.50099009900989,
-          "std": 3.869220283391944,
-          "ci95": 4.804271527007551,
-          "min": 53.198019801980195,
-          "max": 63.71287128712871,
+          "mean": 57.50200000000001,
+          "std": 3.8669716833718857,
+          "ci95": 4.801479521316285,
+          "min": 53.2,
+          "max": 63.71,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 57.881188118811885,
-            "2": 53.198019801980195,
-            "3": 56.445544554455445,
-            "4": 63.71287128712871,
-            "5": 56.26732673267327
+            "1": 57.88,
+            "2": 53.2,
+            "3": 56.45,
+            "4": 63.71,
+            "5": 56.27
           }
         },
         "cumulative_delay_veh_s": {
@@ -543,6 +581,7 @@
           "ci95": 612.0297751039545,
           "min": 5775.0,
           "max": 6856.0,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 6760.0,
             "2": 6856.0,
@@ -552,17 +591,18 @@
           }
         },
         "mean_corridor_queue": {
-          "mean": 10.669666666666668,
-          "std": 0.8215182421725168,
-          "ci95": 1.0200496251732571,
+          "mean": 10.6698,
+          "std": 0.8217695540721862,
+          "ci95": 1.020361670111397,
           "min": 9.625,
-          "max": 11.426666666666666,
+          "max": 11.427,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 11.266666666666667,
-            "2": 11.426666666666666,
+            "1": 11.267,
+            "2": 11.427,
             "3": 9.625,
-            "4": 11.076666666666666,
-            "5": 9.953333333333333
+            "4": 11.077,
+            "5": 9.953
           }
         },
         "total_corridor_trips_completed": {
@@ -571,26 +611,28 @@
           "ci95": 0.0,
           "min": 101.0,
           "max": 101.0,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 101.0,
-            "2": 101.0,
-            "3": 101.0,
-            "4": 101.0,
-            "5": 101.0
+            "1": 101,
+            "2": 101,
+            "3": 101,
+            "4": 101,
+            "5": 101
           }
         },
         "mean_corridor_speed_kmh": {
-          "mean": 36.40136731358929,
-          "std": 0.5500188525478339,
-          "ci95": 0.6829386075419913,
-          "min": 35.46266417654863,
-          "max": 36.81509496976348,
+          "mean": 36.403999999999996,
+          "std": 0.5530189870158161,
+          "ci95": 0.686663766500655,
+          "min": 35.46,
+          "max": 36.82,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 36.36684009425023,
-            "2": 36.67693327154372,
-            "3": 36.685304055840355,
-            "4": 35.46266417654863,
-            "5": 36.81509496976348
+            "1": 36.37,
+            "2": 36.68,
+            "3": 36.69,
+            "4": 35.46,
+            "5": 36.82
           }
         },
         "total_fuel_liters": {
@@ -599,6 +641,7 @@
           "ci95": 0.40664796782925366,
           "min": 18.0087,
           "max": 18.731,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 18.6287,
             "2": 18.5949,
@@ -608,17 +651,18 @@
           }
         },
         "total_co2_kg": {
-          "mean": 42.668304581447536,
-          "std": 0.7583060101341685,
-          "ci95": 0.9415612724051375,
-          "min": 41.72185245750158,
-          "max": 43.39582849133283,
+          "mean": 42.6683,
+          "std": 0.7582921765388336,
+          "ci95": 0.9415440957278446,
+          "min": 41.7219,
+          "max": 43.3958,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 43.15645899620472,
-            "2": 43.08164825468098,
-            "3": 41.985734707517565,
-            "4": 43.39582849133283,
-            "5": 41.72185245750158
+            "1": 43.1565,
+            "2": 43.0816,
+            "3": 41.9857,
+            "4": 43.3958,
+            "5": 41.7219
           }
         },
         "emergency_traversal_duration_s": {
@@ -627,6 +671,7 @@
           "ci95": 7.00192813481005,
           "min": 27.0,
           "max": 41.0,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 27.0,
             "2": 35.0,
@@ -643,17 +688,18 @@
       "total_runs": 5,
       "metrics": {
         "mean_corridor_travel_time_s": {
-          "mean": 0.0,
-          "std": 0.0,
-          "ci95": 0.0,
-          "min": 0.0,
-          "max": 0.0,
+          "mean": null,
+          "std": null,
+          "ci95": null,
+          "min": null,
+          "max": null,
+          "n_valid": 0,
           "values_by_seed": {
-            "1": 0.0,
-            "2": 0.0,
-            "3": 0.0,
-            "4": 0.0,
-            "5": 0.0
+            "1": null,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null
           }
         },
         "cumulative_delay_veh_s": {
@@ -662,6 +708,7 @@
           "ci95": 123.82633904608106,
           "min": 20089.0,
           "max": 20346.0,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 20164.0,
             "2": 20142.0,
@@ -671,17 +718,18 @@
           }
         },
         "mean_corridor_queue": {
-          "mean": 33.624,
-          "std": 0.16621020827052874,
-          "ci95": 0.20637723174346545,
-          "min": 33.48166666666667,
+          "mean": 33.624199999999995,
+          "std": 0.16609394931784713,
+          "ci95": 0.2062328771874518,
+          "min": 33.482,
           "max": 33.91,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 33.60666666666667,
+            "1": 33.607,
             "2": 33.57,
-            "3": 33.55166666666667,
+            "3": 33.552,
             "4": 33.91,
-            "5": 33.48166666666667
+            "5": 33.482
           }
         },
         "total_corridor_trips_completed": {
@@ -690,26 +738,28 @@
           "ci95": 0.0,
           "min": 0.0,
           "max": 0.0,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 0.0,
-            "2": 0.0,
-            "3": 0.0,
-            "4": 0.0,
-            "5": 0.0
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0
           }
         },
         "mean_corridor_speed_kmh": {
-          "mean": 21.8963718811437,
-          "std": 0.14596463755318415,
-          "ci95": 0.18123903546065026,
-          "min": 21.77066654864472,
-          "max": 22.1239314084066,
+          "mean": 21.896,
+          "std": 0.14328293687665705,
+          "ci95": 0.17790926427664788,
+          "min": 21.77,
+          "max": 22.12,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 22.1239314084066,
-            "2": 21.775822892740248,
-            "3": 21.867439215674924,
-            "4": 21.77066654864472,
-            "5": 21.943999340251985
+            "1": 22.12,
+            "2": 21.78,
+            "3": 21.87,
+            "4": 21.77,
+            "5": 21.94
           }
         },
         "total_fuel_liters": {
@@ -718,6 +768,7 @@
           "ci95": 0.07021390886118989,
           "min": 22.4564,
           "max": 22.6143,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 22.5434,
             "2": 22.4564,
@@ -727,31 +778,33 @@
           }
         },
         "total_co2_kg": {
-          "mean": 52.17798267371753,
-          "std": 0.13085135700401962,
-          "ci95": 0.16247341910799942,
-          "min": 51.988907716740975,
-          "max": 52.35436102615176,
+          "mean": 52.177980000000005,
+          "std": 0.13087034423428326,
+          "ci95": 0.1624969948682434,
+          "min": 51.9889,
+          "max": 52.3544,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 52.19124069790213,
-            "2": 51.988907716740975,
-            "3": 52.150741667581364,
-            "4": 52.35436102615176,
-            "5": 52.20466226021142
+            "1": 52.1912,
+            "2": 51.9889,
+            "3": 52.1507,
+            "4": 52.3544,
+            "5": 52.2047
           }
         },
         "emergency_traversal_duration_s": {
-          "mean": 0.0,
-          "std": 0.0,
-          "ci95": 0.0,
-          "min": 0.0,
-          "max": 0.0,
+          "mean": null,
+          "std": null,
+          "ci95": null,
+          "min": null,
+          "max": null,
+          "n_valid": 0,
           "values_by_seed": {
-            "1": 0.0,
-            "2": 0.0,
-            "3": 0.0,
-            "4": 0.0,
-            "5": 0.0
+            "1": null,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null
           }
         }
       }
@@ -762,17 +815,18 @@
       "total_runs": 5,
       "metrics": {
         "mean_corridor_travel_time_s": {
-          "mean": 234.04408793820556,
-          "std": 6.174183703501663,
-          "ci95": 7.666261622934414,
-          "min": 226.27272727272728,
-          "max": 240.35294117647058,
+          "mean": 234.044,
+          "std": 6.174389038601306,
+          "ci95": 7.666516580135207,
+          "min": 226.27,
+          "max": 240.35,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 234.33333333333334,
-            "2": 239.7058823529412,
-            "3": 229.55555555555554,
-            "4": 226.27272727272728,
-            "5": 240.35294117647058
+            "1": 234.33,
+            "2": 239.71,
+            "3": 229.56,
+            "4": 226.27,
+            "5": 240.35
           }
         },
         "cumulative_delay_veh_s": {
@@ -781,6 +835,7 @@
           "ci95": 5281.902877923535,
           "min": 50412.0,
           "max": 60365.0,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 60365.0,
             "2": 59759.0,
@@ -790,14 +845,15 @@
           }
         },
         "mean_corridor_queue": {
-          "mean": 96.67533333333333,
-          "std": 7.089817757413328,
-          "ci95": 8.803171463205894,
+          "mean": 96.67519999999999,
+          "std": 7.089737174254066,
+          "ci95": 8.803071405998177,
           "min": 84.02,
-          "max": 100.60833333333333,
+          "max": 100.608,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 100.60833333333333,
-            "2": 99.59833333333333,
+            "1": 100.608,
+            "2": 99.598,
             "3": 99.77,
             "4": 84.02,
             "5": 99.38
@@ -809,26 +865,28 @@
           "ci95": 8.629341463763502,
           "min": 17.0,
           "max": 33.0,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 18.0,
-            "2": 17.0,
-            "3": 18.0,
-            "4": 33.0,
-            "5": 17.0
+            "1": 18,
+            "2": 17,
+            "3": 18,
+            "4": 33,
+            "5": 17
           }
         },
         "mean_corridor_speed_kmh": {
-          "mean": 17.26697167994381,
-          "std": 0.9842691998570109,
-          "ci95": 1.2221316300032783,
-          "min": 16.570160311818135,
-          "max": 18.93802637874761,
+          "mean": 17.268,
+          "std": 0.9840071137954246,
+          "ci95": 1.2218062071761755,
+          "min": 16.57,
+          "max": 18.94,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 16.57531533265221,
-            "2": 17.324244723279353,
-            "3": 16.570160311818135,
-            "4": 18.93802637874761,
-            "5": 16.927111653221736
+            "1": 16.58,
+            "2": 17.32,
+            "3": 16.57,
+            "4": 18.94,
+            "5": 16.93
           }
         },
         "total_fuel_liters": {
@@ -837,6 +895,7 @@
           "ci95": 2.1228459019337156,
           "min": 44.9954,
           "max": 49.0594,
+          "n_valid": 5,
           "values_by_seed": {
             "1": 49.0594,
             "2": 48.7631,
@@ -846,31 +905,33 @@
           }
         },
         "total_co2_kg": {
-          "mean": 111.24720685643054,
-          "std": 3.958614595293221,
-          "ci95": 4.915269225739565,
-          "min": 104.19407720864498,
-          "max": 113.6123603401511,
+          "mean": 111.24722,
+          "std": 3.9586109839184713,
+          "ci95": 4.915264741625555,
+          "min": 104.1941,
+          "max": 113.6124,
+          "n_valid": 5,
           "values_by_seed": {
-            "1": 113.6123603401511,
-            "2": 112.91237497336478,
-            "3": 112.74344309021761,
-            "4": 104.19407720864498,
-            "5": 112.77377866977419
+            "1": 113.6124,
+            "2": 112.9124,
+            "3": 112.7434,
+            "4": 104.1941,
+            "5": 112.7738
           }
         },
         "emergency_traversal_duration_s": {
-          "mean": 0.0,
-          "std": 0.0,
-          "ci95": 0.0,
-          "min": 0.0,
-          "max": 0.0,
+          "mean": null,
+          "std": null,
+          "ci95": null,
+          "min": null,
+          "max": null,
+          "n_valid": 0,
           "values_by_seed": {
-            "1": 0.0,
-            "2": 0.0,
-            "3": 0.0,
-            "4": 0.0,
-            "5": 0.0
+            "1": null,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null
           }
         }
       }
@@ -881,86 +942,198 @@
       "display_name": "Coordinated Adaptive",
       "vs_baseline": {
         "mean_corridor_travel_time_s": {
-          "rel_improvement_pct": 36.84339812095913,
-          "p_value": 0.00010868501889245874,
-          "is_significant_p05": true
+          "rel_improvement_pct": 36.842914570656575,
+          "mean_difference": -33.544,
+          "ci95_difference": 6.116632705229036,
+          "t_statistic": -15.226200279957398,
+          "p_value_paired_t": 0.00010849224660627983,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 6.809363773002215,
+          "status": "VALID"
         },
         "cumulative_delay_veh_s": {
           "rel_improvement_pct": 46.66677774630521,
-          "p_value": 4.194624643260967e-05,
-          "is_significant_p05": true
+          "mean_difference": -5601.6,
+          "ci95_difference": 803.2628528566311,
+          "t_statistic": -19.361700651246046,
+          "p_value_paired_t": 4.194624643260967e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 8.658815763237621,
+          "status": "VALID"
         },
         "mean_corridor_queue": {
-          "rel_improvement_pct": 46.66677774630521,
-          "p_value": 4.194624643260982e-05,
-          "is_significant_p05": true
+          "rel_improvement_pct": 46.66593353860918,
+          "mean_difference": -9.3358,
+          "ci95_difference": 1.338955843900682,
+          "t_statistic": -19.358619129361124,
+          "p_value_paired_t": 4.197272572198592e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 8.657437664755854,
+          "status": "VALID"
         },
         "total_corridor_trips_completed": {
           "rel_improvement_pct": -0.9803921568627451,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": -1.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "mean_corridor_speed_kmh": {
-          "rel_improvement_pct": 30.68813221493144,
-          "p_value": 2.2927963321560297e-05,
-          "is_significant_p05": true
+          "rel_improvement_pct": 30.705155823639206,
+          "mean_difference": 8.552,
+          "ci95_difference": 1.0529061783335387,
+          "t_statistic": 22.551067728780975,
+          "p_value_paired_t": 2.289870536619038e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 10.08514408135121,
+          "status": "VALID"
         },
         "total_fuel_liters": {
           "rel_improvement_pct": 20.57839792176249,
-          "p_value": 1.3932719179193501e-05,
-          "is_significant_p05": true
+          "mean_difference": -4.7719,
+          "ci95_difference": 0.5185098020370064,
+          "t_statistic": -25.551915017698725,
+          "p_value_paired_t": 1.3932719179193501e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 11.427163786974416,
+          "status": "VALID"
         },
         "total_co2_kg": {
-          "rel_improvement_pct": 20.570267434033028,
-          "p_value": 1.3895239666000379e-05,
-          "is_significant_p05": true
+          "rel_improvement_pct": 20.5703007837922,
+          "mean_difference": -11.05002,
+          "ci95_difference": 1.1998540252993684,
+          "t_statistic": -25.569588711996076,
+          "p_value_paired_t": 1.3894432843251722e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 11.435067703346903,
+          "status": "VALID"
         },
         "emergency_traversal_duration_s": {
           "rel_improvement_pct": 18.048780487804876,
-          "p_value": 0.0576109396791678,
-          "is_significant_p05": false
+          "mean_difference": -7.4,
+          "ci95_difference": 7.783955854082792,
+          "t_statistic": -2.6394925875237605,
+          "p_value_paired_t": 0.0576109396791678,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 1.0,
+          "wilcoxon_p_value": 0.125,
+          "cohens_d_z": 1.1804169703619884,
+          "status": "VALID"
         }
       },
       "vs_coordinated": {
         "mean_corridor_travel_time_s": {
           "rel_improvement_pct": 0.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": 0.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 1.0,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "cumulative_delay_veh_s": {
           "rel_improvement_pct": 0.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": 0.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 1.0,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "mean_corridor_queue": {
           "rel_improvement_pct": 0.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": 0.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 1.0,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "total_corridor_trips_completed": {
           "rel_improvement_pct": 0.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": 0.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 1.0,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "mean_corridor_speed_kmh": {
           "rel_improvement_pct": 0.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": 0.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 1.0,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "total_fuel_liters": {
           "rel_improvement_pct": 0.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": 0.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 1.0,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "total_co2_kg": {
           "rel_improvement_pct": 0.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": 0.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 1.0,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "emergency_traversal_duration_s": {
           "rel_improvement_pct": 0.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": 0.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 1.0,
+          "cohens_d_z": null,
+          "status": "VALID"
         }
       }
     },
@@ -968,86 +1141,198 @@
       "display_name": "Trained MARL PPO (P5)",
       "vs_baseline": {
         "mean_corridor_travel_time_s": {
-          "rel_improvement_pct": 100.0,
-          "p_value": 7.94069293564097e-09,
-          "is_significant_p05": true
+          "rel_improvement_pct": null,
+          "mean_difference": null,
+          "ci95_difference": null,
+          "p_value_paired_t": null,
+          "t_statistic": null,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": null,
+          "wilcoxon_p_value": null,
+          "cohens_d_z": null,
+          "status": "UNDEFINED: Missing valid completed measurements (zero trips or timeout)"
         },
         "cumulative_delay_veh_s": {
           "rel_improvement_pct": -68.07237949247715,
-          "p_value": 3.3111257888602144e-07,
-          "is_significant_p05": true
+          "mean_difference": 8171.0,
+          "ci95_difference": 347.8487951139092,
+          "t_statistic": 65.21894936316274,
+          "p_value_paired_t": 3.3111257888602144e-07,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 29.166800839429698,
+          "status": "VALID"
         },
         "mean_corridor_queue": {
-          "rel_improvement_pct": -68.07237949247714,
-          "p_value": 3.311125788860167e-07,
-          "is_significant_p05": true
+          "rel_improvement_pct": -68.07393929699683,
+          "mean_difference": 13.618599999999997,
+          "ci95_difference": 0.5795124030153777,
+          "t_statistic": 65.24674038537083,
+          "p_value_paired_t": 3.3054924723243084e-07,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 29.179229362393997,
+          "status": "VALID"
         },
         "total_corridor_trips_completed": {
           "rel_improvement_pct": -100.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": -102.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "mean_corridor_speed_kmh": {
-          "rel_improvement_pct": -21.387679787458715,
-          "p_value": 2.4237903442241936e-06,
-          "is_significant_p05": true
+          "rel_improvement_pct": -21.384460720953623,
+          "mean_difference": -5.955999999999999,
+          "ci95_difference": 0.4148533022015386,
+          "t_statistic": -39.861095377094365,
+          "p_value_paired_t": 2.3666516339234564e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 17.826423784157125,
+          "status": "VALID"
         },
         "total_fuel_liters": {
           "rel_improvement_pct": 2.8078975784945297,
-          "p_value": 0.00042997077734544344,
-          "is_significant_p05": true
+          "mean_difference": -0.6511200000000003,
+          "ci95_difference": 0.16872291285348281,
+          "t_statistic": -10.71460245868482,
+          "p_value_paired_t": 0.00042997077734544344,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 4.791715889901128,
+          "status": "VALID"
         },
         "total_co2_kg": {
-          "rel_improvement_pct": 2.867403561961757,
-          "p_value": 0.00039087004939887944,
-          "is_significant_p05": true
+          "rel_improvement_pct": 2.867438892355532,
+          "mean_difference": -1.5403400000000005,
+          "ci95_difference": 0.3894928235300848,
+          "t_statistic": -10.980098207149748,
+          "p_value_paired_t": 0.0003909175399145847,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 4.910449198162082,
+          "status": "VALID"
         },
         "emergency_traversal_duration_s": {
-          "rel_improvement_pct": 100.0,
-          "p_value": 0.00010408823432947164,
-          "is_significant_p05": true
+          "rel_improvement_pct": null,
+          "mean_difference": null,
+          "ci95_difference": null,
+          "p_value_paired_t": null,
+          "t_statistic": null,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": null,
+          "wilcoxon_p_value": null,
+          "cohens_d_z": null,
+          "status": "UNDEFINED: Missing valid completed measurements (zero trips or timeout)"
         }
       },
       "vs_coordinated": {
         "mean_corridor_travel_time_s": {
-          "rel_improvement_pct": 100.0,
-          "p_value": 4.8908730986330806e-06,
-          "is_significant_p05": true
+          "rel_improvement_pct": null,
+          "mean_difference": null,
+          "ci95_difference": null,
+          "p_value_paired_t": null,
+          "t_statistic": null,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": null,
+          "wilcoxon_p_value": null,
+          "cohens_d_z": null,
+          "status": "UNDEFINED: Missing valid completed measurements (zero trips or timeout)"
         },
         "cumulative_delay_veh_s": {
           "rel_improvement_pct": -215.13636789652915,
-          "p_value": 2.915538576806388e-07,
-          "is_significant_p05": true
+          "mean_difference": 13772.6,
+          "ci95_difference": 567.9453108505732,
+          "t_statistic": 67.32843308201532,
+          "p_value_paired_t": 2.915538576806388e-07,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 30.110190637986385,
+          "status": "VALID"
         },
         "mean_corridor_queue": {
-          "rel_improvement_pct": -215.1363678965291,
-          "p_value": 2.9155385768063984e-07,
-          "is_significant_p05": true
+          "rel_improvement_pct": -215.13430429811234,
+          "mean_difference": 22.9544,
+          "ci95_difference": 0.9469898704323587,
+          "t_statistic": 67.29916920194191,
+          "p_value_paired_t": 2.920609238470731e-07,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 30.097103432960473,
+          "status": "VALID"
         },
         "total_corridor_trips_completed": {
           "rel_improvement_pct": -100.0,
-          "p_value": 1.0,
-          "is_significant_p05": false
+          "mean_difference": -101.0,
+          "ci95_difference": 0.0,
+          "t_statistic": 0.0,
+          "p_value_paired_t": 1.0,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": null,
+          "status": "VALID"
         },
         "mean_corridor_speed_kmh": {
-          "rel_improvement_pct": -39.84739174077841,
-          "p_value": 4.231623425505802e-07,
-          "is_significant_p05": true
+          "rel_improvement_pct": -39.85276343258982,
+          "mean_difference": -14.508,
+          "ci95_difference": 0.6585151874384774,
+          "t_statistic": -61.16892420187793,
+          "p_value_paired_t": 4.2781348707853606e-07,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 27.355574525186224,
+          "status": "VALID"
         },
         "total_fuel_liters": {
           "rel_improvement_pct": -22.374895341147113,
-          "p_value": 9.205700163664588e-06,
-          "is_significant_p05": true
+          "mean_difference": 4.120779999999999,
+          "ci95_difference": 0.40349955878213173,
+          "t_statistic": 28.35472607486685,
+          "p_value_paired_t": 9.205700163664588e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 12.680618997357614,
+          "status": "VALID"
         },
         "total_co2_kg": {
-          "rel_improvement_pct": -22.28745244404406,
-          "p_value": 9.361281579626478e-06,
-          "is_significant_p05": true
+          "rel_improvement_pct": -22.287459308198365,
+          "mean_difference": 9.50968,
+          "ci95_difference": 0.9350817469978832,
+          "t_statistic": 28.236145741017406,
+          "p_value_paired_t": 9.360667620300814e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 12.627588259901222,
+          "status": "VALID"
         },
         "emergency_traversal_duration_s": {
-          "rel_improvement_pct": 100.0,
-          "p_value": 0.00018347262353230455,
-          "is_significant_p05": true
+          "rel_improvement_pct": null,
+          "mean_difference": null,
+          "ci95_difference": null,
+          "p_value_paired_t": null,
+          "t_statistic": null,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": null,
+          "wilcoxon_p_value": null,
+          "cohens_d_z": null,
+          "status": "UNDEFINED: Missing valid completed measurements (zero trips or timeout)"
         }
       }
     },
@@ -1055,86 +1340,198 @@
       "display_name": "Trained MARL DQN (P5)",
       "vs_baseline": {
         "mean_corridor_travel_time_s": {
-          "rel_improvement_pct": -157.06390896234328,
-          "p_value": 6.022960885237602e-07,
-          "is_significant_p05": true
+          "rel_improvement_pct": -157.06126573380493,
+          "mean_difference": 142.998,
+          "ci95_difference": 7.071913625092263,
+          "t_statistic": 56.14125372577568,
+          "p_value_paired_t": 6.027049742685213e-07,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 25.107131934579552,
+          "status": "VALID"
         },
         "cumulative_delay_veh_s": {
           "rel_improvement_pct": -383.2397487378576,
-          "p_value": 1.5159271485267406e-05,
-          "is_significant_p05": true
+          "mean_difference": 46001.8,
+          "ci95_difference": 5105.623799563106,
+          "t_statistic": 25.015840855963056,
+          "p_value_paired_t": 1.5159271485267406e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 11.187424133649985,
+          "status": "VALID"
         },
         "mean_corridor_queue": {
-          "rel_improvement_pct": -383.23974873785755,
-          "p_value": 1.5159271485267406e-05,
-          "is_significant_p05": true
+          "rel_improvement_pct": -383.2406926060703,
+          "mean_difference": 76.6696,
+          "ci95_difference": 8.509309210534392,
+          "t_statistic": 25.01600663117809,
+          "p_value_paired_t": 1.5158871788775216e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 11.187498270579944,
+          "status": "VALID"
         },
         "total_corridor_trips_completed": {
           "rel_improvement_pct": -79.80392156862746,
-          "p_value": 1.2629861129515064e-05,
-          "is_significant_p05": true
+          "mean_difference": -81.4,
+          "ci95_difference": 8.629341463763502,
+          "t_statistic": -26.190020699972926,
+          "p_value_paired_t": 1.2629861129515064e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 11.712533323453219,
+          "status": "VALID"
         },
         "mean_corridor_speed_kmh": {
-          "rel_improvement_pct": -38.008145177075576,
-          "p_value": 1.0832499594480947e-05,
-          "is_significant_p05": true
+          "rel_improvement_pct": -38.00086169754417,
+          "mean_difference": -10.584,
+          "ci95_difference": 1.0794124435415495,
+          "t_statistic": -27.22397279115891,
+          "p_value_paired_t": 1.0825520564852516e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 12.174930755727203,
+          "status": "VALID"
         },
         "total_fuel_liters": {
           "rel_improvement_pct": -107.17654323969073,
-          "p_value": 4.619334026348477e-06,
-          "is_significant_p05": true
+          "mean_difference": 24.85304,
+          "ci95_difference": 2.0469702804149863,
+          "t_statistic": 33.70986961437269,
+          "p_value_paired_t": 4.619334026348477e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 15.075511994078392,
+          "status": "VALID"
         },
         "total_co2_kg": {
-          "rel_improvement_pct": -107.09367236398661,
-          "p_value": 4.6288266875228705e-06,
-          "is_significant_p05": true
+          "rel_improvement_pct": -107.09363211656655,
+          "mean_difference": 57.5289,
+          "ci95_difference": 4.740683011287168,
+          "t_statistic": 33.69257814372314,
+          "p_value_paired_t": 4.628796351953275e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 15.067779013317724,
+          "status": "VALID"
         },
         "emergency_traversal_duration_s": {
-          "rel_improvement_pct": 100.0,
-          "p_value": 0.00010408823432947164,
-          "is_significant_p05": true
+          "rel_improvement_pct": null,
+          "mean_difference": null,
+          "ci95_difference": null,
+          "p_value_paired_t": null,
+          "t_statistic": null,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": null,
+          "wilcoxon_p_value": null,
+          "cohens_d_z": null,
+          "status": "UNDEFINED: Missing valid completed measurements (zero trips or timeout)"
         }
       },
       "vs_coordinated": {
         "mean_corridor_travel_time_s": {
-          "rel_improvement_pct": -307.0261877842614,
-          "p_value": 2.0325351767522793e-06,
-          "is_significant_p05": true
+          "rel_improvement_pct": -307.01888629960695,
+          "mean_difference": 176.542,
+          "ci95_difference": 11.83602618895215,
+          "t_statistic": 41.412477797603096,
+          "p_value_paired_t": 2.0320764553038407e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 18.520223094428264,
+          "status": "VALID"
         },
         "cumulative_delay_veh_s": {
           "rel_improvement_pct": -806.0764160079976,
-          "p_value": 1.2583405765863055e-05,
-          "is_significant_p05": true
+          "mean_difference": 51603.4,
+          "ci95_difference": 5465.495383843365,
+          "t_statistic": 26.21427652561899,
+          "p_value_paired_t": 1.2583405765863055e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 11.723380858452215,
+          "status": "VALID"
         },
         "mean_corridor_queue": {
-          "rel_improvement_pct": -806.0764160079975,
-          "p_value": 1.2583405765863055e-05,
-          "is_significant_p05": true
+          "rel_improvement_pct": -806.0638437458996,
+          "mean_difference": 86.00539999999998,
+          "ci95_difference": 9.109236270376599,
+          "t_statistic": 26.213972803310167,
+          "p_value_paired_t": 1.2583986141944289e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 11.723245029706451,
+          "status": "VALID"
         },
         "total_corridor_trips_completed": {
           "rel_improvement_pct": -79.60396039603961,
-          "p_value": 1.3266823147987983e-05,
-          "is_significant_p05": true
+          "mean_difference": -80.4,
+          "ci95_difference": 8.629341463763502,
+          "t_statistic": -25.868275973929034,
+          "p_value_paired_t": 1.3266823147987983e-05,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 11.56864470768598,
+          "status": "VALID"
         },
         "mean_corridor_speed_kmh": {
-          "rel_improvement_pct": -52.56504644126997,
-          "p_value": 8.635683060791447e-06,
-          "is_significant_p05": true
+          "rel_improvement_pct": -52.56565212613998,
+          "mean_difference": -19.136,
+          "ci95_difference": 1.8477570714697977,
+          "t_statistic": -28.753808795223712,
+          "p_value_paired_t": 8.70714812590689e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 12.859094215630309,
+          "status": "VALID"
         },
         "total_fuel_liters": {
           "rel_improvement_pct": -160.85666596803597,
-          "p_value": 3.943529606143634e-06,
-          "is_significant_p05": true
+          "mean_difference": 29.62494,
+          "ci95_difference": 2.345133241628093,
+          "t_statistic": 35.07349526872749,
+          "p_value_paired_t": 3.943529606143634e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 15.685343925878385,
+          "status": "VALID"
         },
         "total_co2_kg": {
-          "rel_improvement_pct": -160.7256321705399,
-          "p_value": 3.946463694034976e-06,
-          "is_significant_p05": true
+          "rel_improvement_pct": -160.72569096964256,
+          "mean_difference": 68.57892,
+          "ci95_difference": 5.429743475348813,
+          "t_statistic": 35.06714591917615,
+          "p_value_paired_t": 3.946378763843926e-06,
+          "is_significant_p05": true,
+          "wilcoxon_statistic": 0.0,
+          "wilcoxon_p_value": 0.0625,
+          "cohens_d_z": 15.68250441043644,
+          "status": "VALID"
         },
         "emergency_traversal_duration_s": {
-          "rel_improvement_pct": 100.0,
-          "p_value": 0.00018347262353230455,
-          "is_significant_p05": true
+          "rel_improvement_pct": null,
+          "mean_difference": null,
+          "ci95_difference": null,
+          "p_value_paired_t": null,
+          "t_statistic": null,
+          "is_significant_p05": false,
+          "wilcoxon_statistic": null,
+          "wilcoxon_p_value": null,
+          "cohens_d_z": null,
+          "status": "UNDEFINED: Missing valid completed measurements (zero trips or timeout)"
         }
       }
     }

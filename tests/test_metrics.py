@@ -18,7 +18,8 @@ def test_empty_metrics_summary():
     collector = CorridorMetricsCollector()
     summary = collector.compute_summary()
     assert summary.total_corridor_trips_completed == 0
-    assert summary.mean_corridor_travel_time_s == 0.0
+    assert summary.mean_corridor_travel_time_s is None
+    assert summary.emergency_traversal_duration_s is None
     assert summary.total_co2_kg == 0.0
 
 

@@ -1,5 +1,5 @@
-mode,display_name,travel_time_mean_s,travel_time_std_s,cumulative_delay_mean_s,cumulative_delay_std_s,mean_queue_veh,mean_queue_std,trips_completed_mean,trips_completed_std,mean_speed_kmh,fuel_liters_mean,co2_kg_mean,emergency_clearance_mean_s
-baseline,Fixed-Time Baseline,91.04509803921567,1.2279896080621575,12003.4,187.84381810429642,20.005666666666666,0.3130730301738281,102.0,0.0,27.853613558209798,23.18888,53.71830321348646,41.0
-coordinated,Coordinated Adaptive,57.50099009900989,3.869220283391944,6401.8,492.9109453035102,10.669666666666668,0.8215182421725168,101.0,0.0,36.40136731358929,18.416980000000002,42.668304581447536,33.6
-marl_ppo,Trained MARL PPO (P5),0.0,0.0,20174.4,99.72612496231868,33.624,0.16621020827052874,0.0,0.0,21.8963718811437,22.53776,52.17798267371753,0.0
-marl_dqn,Trained MARL DQN (P5),234.04408793820556,6.174183703501663,58005.2,4253.890654447996,96.67533333333333,7.089817757413328,20.6,6.9498201415576215,17.26697167994381,48.04192,111.24720685643054,0.0
+mode,display_name,travel_time_mean_s,travel_time_std_s,travel_time_ci95_s,cumulative_delay_mean_s,cumulative_delay_std_s,cumulative_delay_ci95_s,mean_queue_veh,mean_queue_std,mean_queue_ci95,trips_completed_mean,trips_completed_std,mean_speed_kmh,fuel_liters_mean,co2_kg_mean,emergency_clearance_mean_s,emergency_status
+baseline,Fixed-Time Baseline,91.05,1.23,1.53,12003.4,187.8,233.2,20.01,0.31,0.39,102.0,0.0,27.85,23.19,53.72,41.0,CLEARED
+coordinated,Coordinated Adaptive,57.50,3.87,4.80,6401.8,492.9,612.0,10.67,0.82,1.02,101.0,0.0,36.40,18.42,42.67,33.6,CLEARED
+marl_ppo,Trained MARL PPO (P5),N/A,N/A,N/A,20174.4,99.7,123.8,33.62,0.17,0.21,0.0,0.0,21.90,22.54,52.18,TIMEOUT,TIMEOUT (>600s)
+marl_dqn,Trained MARL DQN (P5),234.04,6.17,7.67,58005.2,4253.9,5281.9,96.68,7.09,8.80,20.6,6.9,17.27,48.04,111.25,TIMEOUT,TIMEOUT (>600s)
