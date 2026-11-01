@@ -1,0 +1,10 @@
+metric,label,baseline_mean,baseline_std,coordinated_mean,coordinated_std,dqn_mean,dqn_std,ppo_mean,ppo_std,coord_vs_base_pct,dqn_vs_base_pct,ppo_vs_base_pct
+mean_corridor_travel_time_s,Corridor Travel Time (s),90.99,1.3,57.19,3.89,,0.0,65.15,3.79,37.1,,28.4
+mean_corridor_speed_kmh,Average Speed (km/h),27.84,0.33,36.52,0.6,20.23,0.12,25.56,0.92,31.2,-27.3,-8.2
+total_corridor_waiting_time_s,Total Waiting Time (s),778.29,17.86,298.0,37.5,5401.97,120.09,1568.53,20.32,61.7,-594.1,-101.5
+mean_corridor_queue,Mean Corridor Queue (veh),20.0,0.32,10.65,0.81,63.35,1.03,29.5,0.38,46.8,-216.8,-47.5
+max_corridor_queue,Max Corridor Queue (veh),58,1.0,31.8,4.15,90,1.87,59,5.05,45.2,-55.2,-1.7
+total_corridor_trips_completed,Completed Corridor Trips,102,0.0,101,0.0,0,0.0,102.2,0.45,-1.0,-100.0,0.2
+total_co2_kg,Total CO2 Emissions (kg),53.7,0.25,42.61,0.72,79.07,0.78,61.5,0.85,20.7,-47.2,-14.5
+total_fuel_liters,Total Fuel Consumed (L),17384.33,81.7,13795.08,234.26,25610.57,251.97,19912.14,275.22,20.6,-47.3,-14.5
+emergency_traversal_duration_s,Ambulance Traversal Duration (s),41.0,5.96,33.6,5.64,,0.0,41.0,7.0,18.0,,0.0

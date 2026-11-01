@@ -108,6 +108,8 @@ class TrafficMetricsResponse(BaseModel):
     throughput_vehicles: int
     mean_speed_kmh: float
     total_corridor_waiting_time_s: float
+    mean_instantaneous_waiting_time_s: Optional[float] = None
+    cumulative_waiting_time_s: Optional[float] = None
     mean_corridor_queue: float
     max_corridor_queue: int
     total_co2_kg: float
@@ -242,15 +244,20 @@ class DecisionsResponse(BaseModel):
 
 class ControllerMetricComparison(BaseModel):
     controller_name: str
-    status: str  # "Implemented", "Not implemented"
+    status: str  # "Implemented", "Not implemented", "Historical Artifact", etc.
     description: str
     mean_travel_time_s: Optional[float] = None
     mean_speed_kmh: Optional[float] = None
     total_waiting_time_s: Optional[float] = None
+    mean_instantaneous_waiting_time_s: Optional[float] = None
+    cumulative_waiting_time_s: Optional[float] = None
     mean_queue: Optional[float] = None
+    completed_trips: Optional[float] = None
     total_co2_kg: Optional[float] = None
     total_fuel_liters: Optional[float] = None
+    fuel_density_applied: Optional[str] = None
     emergency_traversal_duration_s: Optional[float] = None
+    data_provenance: Optional[str] = None
     notes: Optional[str] = None
 
 
@@ -258,6 +265,59 @@ class ExperimentCompareResponse(BaseModel):
     network: str = "Silk Board Corridor (J1 -> J2 -> J3)"
     benchmark_duration_s: int = 600
     controllers: List[ControllerMetricComparison]
+
+
+class MARLSummaryRow(BaseModel):
+    metric: str
+    label: str
+    baseline: Optional[float] = None
+    coordinated: Optional[float] = None
+    marl_dqn: Optional[float] = None
+    marl_ppo: Optional[float] = None
+    coord_vs_base_pct: Optional[Any] = None
+    dqn_vs_base_pct: Optional[Any] = None
+    ppo_vs_base_pct: Optional[Any] = None
+    status_marl: str
+
+
+class MARLSummaryResponse(BaseModel):
+    title: str = "Multi-Controller Benchmark Evaluation Summary"
+    provenance: str = "Historical 5-Seed Benchmark with Unit and Semantics Correction"
+    fuel_density_model: str = "0.75 kg/L (750,000 mg/L) standard petrol density"
+    waiting_time_semantics: str = "Separated mean instantaneous wait (s/step) from cumulative delay (veh*s)"
+    summary: List[MARLSummaryRow]
+
+
+class MARLDetailedSeedRun(BaseModel):
+    seed: int
+    mode: str
+    mean_corridor_travel_time_s: Optional[float] = None
+    mean_corridor_speed_kmh: float
+    total_corridor_waiting_time_s: float
+    mean_instantaneous_waiting_time_s: float
+    cumulative_waiting_time_s: float
+    mean_corridor_queue: float
+    max_corridor_queue: int
+    total_corridor_trips_completed: int
+    total_co2_kg: float
+    total_fuel_liters: float
+    raw_fuel_grams: Optional[float] = None
+    emergency_traversal_duration_s: Optional[float] = None
+    j1_mean_queue: float
+    j2_mean_queue: float
+    j3_mean_queue: float
+
+
+class MARLDetailedResponse(BaseModel):
+    evaluation_timestamp: str
+    audit_correction_timestamp: str
+    provenance_metadata: Dict[str, str]
+    fuel_density_model: Dict[str, Any]
+    seeds: List[int]
+    duration_s: int
+    summary: List[Dict[str, Any]]
+    full_stats: List[Dict[str, Any]]
+    runs: Dict[str, List[MARLDetailedSeedRun]]
 
 
 class ExperimentHistoryItem(BaseModel):

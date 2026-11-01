@@ -1,0 +1,146 @@
+{
+  "algorithm": "ppo",
+  "base_seed": 42,
+  "num_episodes": 8,
+  "episode_duration_s": 300,
+  "total_training_wall_clock_s": 50.15,
+  "checkpoint_file": "D:\\Major Project\\smart-traffic-coordination\\checkpoints\\marl_ppo_corridor.json",
+  "episodes": [
+    {
+      "episode": 1,
+      "seed": 61,
+      "total_reward": -246.75,
+      "rewards_per_junction": {
+        "J1": -4.68,
+        "J2": -203.9,
+        "J3": -38.17
+      },
+      "mean_loss": 526.2966,
+      "mean_travel_time_s": 69.42,
+      "mean_speed_kmh": 29.49,
+      "total_waiting_time_s": 1459.92,
+      "mean_queue": 26.93,
+      "completed_trips": 50,
+      "decisions_count": 61
+    },
+    {
+      "episode": 2,
+      "seed": 80,
+      "total_reward": -206.89,
+      "rewards_per_junction": {
+        "J1": -11.59,
+        "J2": -184.49,
+        "J3": -10.82
+      },
+      "mean_loss": 419.9228,
+      "mean_travel_time_s": 44.75,
+      "mean_speed_kmh": 32.66,
+      "total_waiting_time_s": 1229.88,
+      "mean_queue": 22.47,
+      "completed_trips": 40,
+      "decisions_count": 61
+    },
+    {
+      "episode": 3,
+      "seed": 99,
+      "total_reward": -283.4,
+      "rewards_per_junction": {
+        "J1": -72.91,
+        "J2": -209.53,
+        "J3": -0.96
+      },
+      "mean_loss": 609.4162,
+      "mean_travel_time_s": 83.56,
+      "mean_speed_kmh": 26.69,
+      "total_waiting_time_s": 1806.84,
+      "mean_queue": 28.51,
+      "completed_trips": 43,
+      "decisions_count": 61
+    },
+    {
+      "episode": 4,
+      "seed": 118,
+      "total_reward": -204.52,
+      "rewards_per_junction": {
+        "J1": -50.72,
+        "J2": -149.4,
+        "J3": -4.4
+      },
+      "mean_loss": 315.0867,
+      "mean_travel_time_s": 69.1,
+      "mean_speed_kmh": 31.69,
+      "total_waiting_time_s": 1199.04,
+      "mean_queue": 20.94,
+      "completed_trips": 51,
+      "decisions_count": 61
+    },
+    {
+      "episode": 5,
+      "seed": 137,
+      "total_reward": -297.29,
+      "rewards_per_junction": {
+        "J1": -91.57,
+        "J2": -206.26,
+        "J3": 0.54
+      },
+      "mean_loss": 635.3948,
+      "mean_travel_time_s": 104.28,
+      "mean_speed_kmh": 27.41,
+      "total_waiting_time_s": 1965.29,
+      "mean_queue": 29.74,
+      "completed_trips": 39,
+      "decisions_count": 61
+    },
+    {
+      "episode": 6,
+      "seed": 156,
+      "total_reward": -236.42,
+      "rewards_per_junction": {
+        "J1": -19.21,
+        "J2": -214.25,
+        "J3": -2.95
+      },
+      "mean_loss": 585.1076,
+      "mean_travel_time_s": 108.41,
+      "mean_speed_kmh": 29.58,
+      "total_waiting_time_s": 1405.03,
+      "mean_queue": 27.05,
+      "completed_trips": 22,
+      "decisions_count": 61
+    },
+    {
+      "episode": 7,
+      "seed": 175,
+      "total_reward": -230.48,
+      "rewards_per_junction": {
+        "J1": -20.27,
+        "J2": -161.25,
+        "J3": -48.96
+      },
+      "mean_loss": 318.048,
+      "mean_travel_time_s": 139.76,
+      "mean_speed_kmh": 29.1,
+      "total_waiting_time_s": 1327.87,
+      "mean_queue": 25.9,
+      "completed_trips": 21,
+      "decisions_count": 61
+    },
+    {
+      "episode": 8,
+      "seed": 194,
+      "total_reward": -366.17,
+      "rewards_per_junction": {
+        "J1": -33.68,
+        "J2": -208.98,
+        "J3": -123.51
+      },
+      "mean_loss": 789.95,
+      "mean_travel_time_s": 191.68,
+      "mean_speed_kmh": 24.69,
+      "total_waiting_time_s": 2418.74,
+      "mean_queue": 39.76,
+      "completed_trips": 28,
+      "decisions_count": 61
+    }
+  ]
+}

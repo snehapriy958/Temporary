@@ -1,0 +1,10 @@
+metric,label,baseline,coordinated,marl_dqn,marl_ppo,coord_vs_base_pct,dqn_vs_base_pct,ppo_vs_base_pct,status_marl
+mean_corridor_travel_time_s,Corridor Travel Time (s),90.99,57.19,,65.15,37.1,,28.4,Trained & Evaluated (SUMO 1.28.0)
+mean_corridor_speed_kmh,Average Speed (km/h),27.84,36.52,20.23,25.56,31.2,-27.3,-8.2,Trained & Evaluated (SUMO 1.28.0)
+total_corridor_waiting_time_s,Total Waiting Time (s),778.29,298.0,5401.97,1568.53,61.7,-594.1,-101.5,Trained & Evaluated (SUMO 1.28.0)
+mean_corridor_queue,Mean Corridor Queue (veh),20.0,10.65,63.35,29.5,46.8,-216.8,-47.5,Trained & Evaluated (SUMO 1.28.0)
+max_corridor_queue,Max Corridor Queue (veh),58,31.8,90,59,45.2,-55.2,-1.7,Trained & Evaluated (SUMO 1.28.0)
+total_corridor_trips_completed,Completed Corridor Trips,102,101,0,102.2,-1.0,-100.0,0.2,Trained & Evaluated (SUMO 1.28.0)
+total_co2_kg,Total CO2 Emissions (kg),53.7,42.61,79.07,61.5,20.7,-47.2,-14.5,Trained & Evaluated (SUMO 1.28.0)
+total_fuel_liters,Total Fuel Consumed (L),17384.33,13795.08,25610.57,19912.14,20.6,-47.3,-14.5,Trained & Evaluated (SUMO 1.28.0)
+emergency_traversal_duration_s,Ambulance Traversal Duration (s),41.0,33.6,,41.0,18.0,,0.0,Trained & Evaluated (SUMO 1.28.0)
