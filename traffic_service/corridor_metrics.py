@@ -29,9 +29,14 @@ class CorridorMetricsSummary:
     total_corridor_trips_completed: int = 0
     mean_corridor_travel_time_s: float = 0.0
     mean_corridor_speed_kmh: float = 0.0
-    total_corridor_waiting_time_s: float = 0.0  # Mean instantaneous waiting time (s/step), retained for backward-compatibility
-    mean_instantaneous_waiting_time_s: float = 0.0  # Mean instantaneous waiting time across steps (s/step)
-    cumulative_waiting_time_s: float = 0.0  # Cumulative vehicle delay in vehicle-seconds (veh*s)
+    # Waiting time & Delay metrics:
+    # 1. Snapshot approach accumulated wait (sum of accumulated wait times of queued approach vehicles per step)
+    total_corridor_waiting_time_s: float = 0.0  # Retained for backward-compatibility (s/step)
+    mean_instantaneous_accumulated_wait_s: float = 0.0  # Mean instantaneous sum of accumulated wait times (s/step)
+    mean_instantaneous_waiting_time_s: float = 0.0  # Alias for backward-compatibility
+    # 2. Mathematically valid cumulative vehicle delay: integral of queued vehicles over time sum(Q * dt)
+    cumulative_delay_veh_s: float = 0.0  # True cumulative vehicle delay in vehicle-seconds (veh*s)
+    cumulative_waiting_time_s: float = 0.0  # True cumulative delay (veh*s), resolving repeated-accumulation overcounting
     mean_corridor_queue: float = 0.0
     max_corridor_queue: int = 0
     total_co2_kg: float = 0.0
@@ -174,7 +179,9 @@ class CorridorMetricsCollector:
         j3_queues = [r["j3_queue"] for r in self.step_records]
 
         mean_inst_wait = sum(waits) / len(waits) if waits else 0.0
-        cumulative_wait = sum(waits) * self.step_length if waits else 0.0
+        # True cumulative delay: integral of queued vehicles across time (sum(Q * step_length))
+        # Eliminates repeated-accumulation overcounting of getAccumulatedWaitingTime
+        true_cumulative_delay = sum(queues) * self.step_length if queues else 0.0
 
         return CorridorMetricsSummary(
             simulation_duration=sim_dur,
@@ -183,8 +190,10 @@ class CorridorMetricsCollector:
             mean_corridor_travel_time_s=mean_travel_time,
             mean_corridor_speed_kmh=sum(speeds) / len(speeds) if speeds else 0.0,
             total_corridor_waiting_time_s=mean_inst_wait,
+            mean_instantaneous_accumulated_wait_s=mean_inst_wait,
             mean_instantaneous_waiting_time_s=mean_inst_wait,
-            cumulative_waiting_time_s=cumulative_wait,
+            cumulative_delay_veh_s=true_cumulative_delay,
+            cumulative_waiting_time_s=true_cumulative_delay,
             mean_corridor_queue=sum(queues) / len(queues) if queues else 0.0,
             max_corridor_queue=max(queues) if queues else 0,
             total_co2_kg=self.cumulative_co2_mg / 1_000_000.0,

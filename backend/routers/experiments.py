@@ -3,7 +3,7 @@ backend/routers/experiments.py
 
 Controller performance comparison benchmarks and historical experiment runs from database.
 Provides:
-- GET /api/experiments/compare: 4-controller verified empirical benchmark (Baseline, Coordinated, DQN, PPO).
+- GET /api/experiments/compare: 4-controller empirical benchmark (Baseline, Coordinated, DQN, PPO).
 - GET /api/experiments/marl-summary: 4-controller summary table with corrected metrics.
 - GET /api/experiments/marl-detailed: Per-seed granular metrics across 5 seeds with provenance metadata.
 - GET /api/experiments/history: Past simulation runs stored in SQLite database.
@@ -38,6 +38,9 @@ DETAILED_JSON = BASE_DIR / "outputs" / "corridor" / "marl_multi_seed_detailed.js
 DQN_CKPT = BASE_DIR / "checkpoints" / "marl_dqn_corridor.json"
 PPO_CKPT = BASE_DIR / "checkpoints" / "marl_ppo_corridor.json"
 
+FUEL_MODEL_INFO = "SUMO default HBEFA4 (PC_petrol_Euro-4, MC_4S_preEuro, UBus_Std_Euro-VI, RT_Euro-VI, LCV_diesel_Euro-6ab)"
+FUEL_DENSITY_NOTE = "Estimated volume under 0.750 kg/L gasoline reference density assumption (DIN EN 228 / HBEFA 4.2)"
+
 
 @router.get("/compare", response_model=ExperimentCompareResponse)
 def get_controller_comparison() -> ExperimentCompareResponse:
@@ -48,8 +51,8 @@ def get_controller_comparison() -> ExperimentCompareResponse:
     3. MARL Double-DQN (Non-converged research artifact; 0 completed trips)
     4. MARL PPO (Actor-Critic policy checkpoint; -28.4% travel time vs baseline)
 
-    All fuel metrics are physically corrected to volumetric Litres using standard petrol density (0.75 kg/L).
-    Waiting times are explicitly separated into mean instantaneous wait (s/step) and cumulative delay (veh*s).
+    All fuel metrics are estimated volumetric Litres under the explicit 0.750 kg/L petrol reference assumption.
+    Waiting times are explicitly separated into mean snapshot accumulated wait (s/step) and true cumulative delay (veh*s).
     """
     metrics: Dict[str, Dict[str, Optional[float]]] = {}
 
@@ -80,7 +83,7 @@ def get_controller_comparison() -> ExperimentCompareResponse:
     b_tt = mval("mean_corridor_travel_time_s", "baseline", 90.99)
     b_spd = mval("mean_corridor_speed_kmh", "baseline", 27.84)
     b_wait = mval("total_corridor_waiting_time_s", "baseline", 778.29)
-    b_cum_wait = mval("cumulative_waiting_time_s", "baseline", 466972.8)
+    b_cum_delay = mval("cumulative_delay_veh_s", "baseline", 12001.2)
     b_q = mval("mean_corridor_queue", "baseline", 20.00)
     b_trips = mval("total_corridor_trips_completed", "baseline", 102.0)
     b_co2 = mval("total_co2_kg", "baseline", 53.70)
@@ -91,7 +94,7 @@ def get_controller_comparison() -> ExperimentCompareResponse:
     c_tt = mval("mean_corridor_travel_time_s", "coordinated", 57.19)
     c_spd = mval("mean_corridor_speed_kmh", "coordinated", 36.52)
     c_wait = mval("total_corridor_waiting_time_s", "coordinated", 298.00)
-    c_cum_wait = mval("cumulative_waiting_time_s", "coordinated", 178802.4)
+    c_cum_delay = mval("cumulative_delay_veh_s", "coordinated", 6388.8)
     c_q = mval("mean_corridor_queue", "coordinated", 10.65)
     c_trips = mval("total_corridor_trips_completed", "coordinated", 101.0)
     c_co2 = mval("total_co2_kg", "coordinated", 42.61)
@@ -102,7 +105,7 @@ def get_controller_comparison() -> ExperimentCompareResponse:
     dqn_tt = mval("mean_corridor_travel_time_s", "dqn", None)
     dqn_spd = mval("mean_corridor_speed_kmh", "dqn", 20.23)
     dqn_wait = mval("total_corridor_waiting_time_s", "dqn", 5401.97)
-    dqn_cum_wait = mval("cumulative_waiting_time_s", "dqn", 3241182.0)
+    dqn_cum_delay = mval("cumulative_delay_veh_s", "dqn", 38008.8)
     dqn_q = mval("mean_corridor_queue", "dqn", 63.35)
     dqn_trips = mval("total_corridor_trips_completed", "dqn", 0.0)
     dqn_co2 = mval("total_co2_kg", "dqn", 79.07)
@@ -113,7 +116,7 @@ def get_controller_comparison() -> ExperimentCompareResponse:
     ppo_tt = mval("mean_corridor_travel_time_s", "ppo", 65.15)
     ppo_spd = mval("mean_corridor_speed_kmh", "ppo", 25.56)
     ppo_wait = mval("total_corridor_waiting_time_s", "ppo", 1568.53)
-    ppo_cum_wait = mval("cumulative_waiting_time_s", "ppo", 941118.0)
+    ppo_cum_delay = mval("cumulative_delay_veh_s", "ppo", 17701.2)
     ppo_q = mval("mean_corridor_queue", "ppo", 29.50)
     ppo_trips = mval("total_corridor_trips_completed", "ppo", 102.2)
     ppo_co2 = mval("total_co2_kg", "ppo", 61.50)
@@ -123,39 +126,45 @@ def get_controller_comparison() -> ExperimentCompareResponse:
     controllers_list: List[ControllerMetricComparison] = [
         ControllerMetricComparison(
             controller_name="Fixed-Time Baseline",
-            status="Implemented (Verified Reproducible)",
+            status="Implemented (Seed 1 Reproduced; Seeds 2-5 Historical)",
             description="Uncoordinated static time allocations across J1, J2, and J3 (5-seed empirical SUMO benchmark).",
             mean_travel_time_s=b_tt,
             mean_speed_kmh=b_spd,
             total_waiting_time_s=b_wait,
             mean_instantaneous_waiting_time_s=b_wait,
-            cumulative_waiting_time_s=b_cum_wait,
+            mean_instantaneous_accumulated_wait_s=b_wait,
+            cumulative_delay_veh_s=b_cum_delay,
+            cumulative_waiting_time_s=b_cum_delay,
             mean_queue=b_q,
             completed_trips=b_trips,
             total_co2_kg=b_co2,
             total_fuel_liters=b_fuel,
-            fuel_density_applied="0.75 kg/L (750,000 mg/L) petrol reference",
+            fuel_model=FUEL_MODEL_INFO,
+            fuel_density_applied=FUEL_DENSITY_NOTE,
             emergency_traversal_duration_s=b_amb,
-            data_provenance="Reproduced on SUMO 1.26.0 (Seed 1 verified within 0.3% TT, exact queue and trips) / Historical 5-seed mean",
+            data_provenance="Seed 1 independently reproduced on SUMO 1.26.0 (Seed 1 travel time within 0.3%, exact queue/trips); Seeds 2-5 restored historical (SUMO 1.28.0)",
             notes="Standard SUMO signal timing plan with static phase durations and no inter-intersection communication.",
         ),
         ControllerMetricComparison(
             controller_name="Coordinated Adaptive Controller",
-            status="Implemented (Verified Reproducible)",
+            status="Implemented (Seed 1 Reproduced; Seeds 2-5 Historical)",
             description="Movement-aware queue pressure, upstream J1->J2 inflow anticipation, and emergency green wave.",
             mean_travel_time_s=c_tt,
             mean_speed_kmh=c_spd,
             total_waiting_time_s=c_wait,
             mean_instantaneous_waiting_time_s=c_wait,
-            cumulative_waiting_time_s=c_cum_wait,
+            mean_instantaneous_accumulated_wait_s=c_wait,
+            cumulative_delay_veh_s=c_cum_delay,
+            cumulative_waiting_time_s=c_cum_delay,
             mean_queue=c_q,
             completed_trips=c_trips,
             total_co2_kg=c_co2,
             total_fuel_liters=c_fuel,
-            fuel_density_applied="0.75 kg/L (750,000 mg/L) petrol reference",
+            fuel_model=FUEL_MODEL_INFO,
+            fuel_density_applied=FUEL_DENSITY_NOTE,
             emergency_traversal_duration_s=c_amb,
-            data_provenance="Reproduced on SUMO 1.26.0 (Seed 1 verified within 2.7% TT, exact trips) / Historical 5-seed mean",
-            notes="Achieves fastest corridor travel time (57.19s, 37.1% reduction vs baseline), lowest queue (10.65 veh, 46.8% reduction), lowest fuel (18.39 L, 20.7% reduction), and fastest emergency clearance (33.6s, 18.0% faster). Best overall performer.",
+            data_provenance="Seed 1 independently reproduced on SUMO 1.26.0 (Seed 1 travel time within 2.7%, exact trips); Seeds 2-5 restored historical (SUMO 1.28.0)",
+            notes="Achieves fastest corridor travel time (57.19s, 37.1% reduction vs baseline), lowest queue (10.65 veh, 46.8% reduction), lowest delay (6,388.8 veh*s, 46.8% reduction), lowest fuel (18.39 L, 20.7% reduction), and fastest emergency clearance (33.6s, 18.0% faster). Best overall performer.",
         ),
         ControllerMetricComparison(
             controller_name="DQN (Deep Q-Network)",
@@ -165,14 +174,17 @@ def get_controller_comparison() -> ExperimentCompareResponse:
             mean_speed_kmh=dqn_spd,
             total_waiting_time_s=dqn_wait,
             mean_instantaneous_waiting_time_s=dqn_wait,
-            cumulative_waiting_time_s=dqn_cum_wait,
+            mean_instantaneous_accumulated_wait_s=dqn_wait,
+            cumulative_delay_veh_s=dqn_cum_delay,
+            cumulative_waiting_time_s=dqn_cum_delay,
             mean_queue=dqn_q,
             completed_trips=dqn_trips,
             total_co2_kg=dqn_co2,
             total_fuel_liters=dqn_fuel,
-            fuel_density_applied="0.75 kg/L (750,000 mg/L) petrol reference",
+            fuel_model=FUEL_MODEL_INFO,
+            fuel_density_applied=FUEL_DENSITY_NOTE,
             emergency_traversal_duration_s=dqn_amb,
-            data_provenance="Historical 5-seed evaluation from checkpoints/marl_dqn_corridor.json with volumetric fuel conversion",
+            data_provenance="Historical 5-seed evaluation from checkpoints/marl_dqn_corridor.json (SUMO 1.28.0) with volumetric fuel conversion; not rerun",
             notes="DQN failed to learn arterial coordination within its 8-episode training budget, resulting in side-street starvation, 0 completed corridor trips, and severe corridor gridlock. Documented as a non-converged research artifact, not an operational traffic controller.",
         ),
         ControllerMetricComparison(
@@ -183,15 +195,18 @@ def get_controller_comparison() -> ExperimentCompareResponse:
             mean_speed_kmh=ppo_spd,
             total_waiting_time_s=ppo_wait,
             mean_instantaneous_waiting_time_s=ppo_wait,
-            cumulative_waiting_time_s=ppo_cum_wait,
+            mean_instantaneous_accumulated_wait_s=ppo_wait,
+            cumulative_delay_veh_s=ppo_cum_delay,
+            cumulative_waiting_time_s=ppo_cum_delay,
             mean_queue=ppo_q,
             completed_trips=ppo_trips,
             total_co2_kg=ppo_co2,
             total_fuel_liters=ppo_fuel,
-            fuel_density_applied="0.75 kg/L (750,000 mg/L) petrol reference",
+            fuel_model=FUEL_MODEL_INFO,
+            fuel_density_applied=FUEL_DENSITY_NOTE,
             emergency_traversal_duration_s=ppo_amb,
-            data_provenance="Historical 5-seed evaluation from checkpoints/marl_ppo_corridor.json with volumetric fuel conversion",
-            notes="Trained checkpoint loaded and evaluated across 5 seeds. Achieves 28.4% faster corridor travel time than baseline, but has 2.8x higher queue length than Coordinated Adaptive and 14.5% higher fuel consumption. Not superior to Coordinated Adaptive.",
+            data_provenance="Historical 5-seed evaluation from checkpoints/marl_ppo_corridor.json (SUMO 1.28.0) with volumetric fuel conversion; not rerun",
+            notes="Trained checkpoint loaded and evaluated across 5 seeds. Achieves 28.4% faster corridor travel time than baseline, but has 2.8x higher queue length than Coordinated Adaptive, 2.8x higher cumulative delay, and 44% higher fuel consumption. Not superior to Coordinated Adaptive.",
         ),
     ]
 
@@ -206,7 +221,7 @@ def get_controller_comparison() -> ExperimentCompareResponse:
 def get_marl_summary() -> MARLSummaryResponse:
     """
     Returns the corrected 4-controller summary benchmark metrics.
-    Converts historical fuel to actual Litres and disambiguates waiting time semantics.
+    Converts historical fuel to estimated Litres (rho=0.750) and disambiguates waiting time semantics.
     """
     if not SUMMARY_CSV.is_file():
         raise HTTPException(status_code=404, detail="MARL multi-controller summary CSV not found")

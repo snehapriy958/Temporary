@@ -250,11 +250,14 @@ class ControllerMetricComparison(BaseModel):
     mean_speed_kmh: Optional[float] = None
     total_waiting_time_s: Optional[float] = None
     mean_instantaneous_waiting_time_s: Optional[float] = None
+    mean_instantaneous_accumulated_wait_s: Optional[float] = None
+    cumulative_delay_veh_s: Optional[float] = None
     cumulative_waiting_time_s: Optional[float] = None
     mean_queue: Optional[float] = None
     completed_trips: Optional[float] = None
     total_co2_kg: Optional[float] = None
     total_fuel_liters: Optional[float] = None
+    fuel_model: Optional[str] = None
     fuel_density_applied: Optional[str] = None
     emergency_traversal_duration_s: Optional[float] = None
     data_provenance: Optional[str] = None
@@ -282,9 +285,9 @@ class MARLSummaryRow(BaseModel):
 
 class MARLSummaryResponse(BaseModel):
     title: str = "Multi-Controller Benchmark Evaluation Summary"
-    provenance: str = "Historical 5-Seed Benchmark with Unit and Semantics Correction"
-    fuel_density_model: str = "0.75 kg/L (750,000 mg/L) standard petrol density"
-    waiting_time_semantics: str = "Separated mean instantaneous wait (s/step) from cumulative delay (veh*s)"
+    provenance: str = "Seed 1 Reproduced (SUMO 1.26.0); Seeds 2-5 Restored Historical (SUMO 1.28.0)"
+    fuel_density_model: str = "Estimated fuel volume under explicit petrol reference density assumption: 0.750 kg/L (DIN EN 228 / HBEFA 4.2)"
+    waiting_time_semantics: str = "Snapshot accumulated wait (s/step) vs True cumulative delay: integral of queued vehicles sum(Q*dt) in veh*s"
     summary: List[MARLSummaryRow]
 
 
@@ -294,7 +297,9 @@ class MARLDetailedSeedRun(BaseModel):
     mean_corridor_travel_time_s: Optional[float] = None
     mean_corridor_speed_kmh: float
     total_corridor_waiting_time_s: float
+    mean_instantaneous_accumulated_wait_s: Optional[float] = None
     mean_instantaneous_waiting_time_s: float
+    cumulative_delay_veh_s: Optional[float] = None
     cumulative_waiting_time_s: float
     mean_corridor_queue: float
     max_corridor_queue: int

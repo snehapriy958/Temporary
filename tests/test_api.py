@@ -156,18 +156,20 @@ def test_experiments_compare():
 
     # 1. Baseline verification
     base = ctrl_map["Fixed-Time Baseline"]
-    assert "Verified Reproducible" in base["status"]
+    assert "Reproduced" in base["status"]
     assert pytest.approx(base["total_fuel_liters"], 0.1) == 23.18
     assert base["total_fuel_liters"] < 50.0  # Must NOT be 17,384 L
     assert base["mean_instantaneous_waiting_time_s"] is not None
     assert base["cumulative_waiting_time_s"] is not None
+    assert base["cumulative_delay_veh_s"] is not None
 
     # 2. Coordinated Adaptive verification
     coord = ctrl_map["Coordinated Adaptive Controller"]
-    assert "Verified Reproducible" in coord["status"]
+    assert "Reproduced" in coord["status"]
     assert pytest.approx(coord["total_fuel_liters"], 0.1) == 18.39
     assert coord["mean_travel_time_s"] < base["mean_travel_time_s"]
     assert coord["mean_queue"] < base["mean_queue"]
+    assert coord["cumulative_delay_veh_s"] < base["cumulative_delay_veh_s"]
 
     # 3. DQN verification (Gridlock artifact, 0 trips)
     dqn = ctrl_map["DQN (Deep Q-Network)"]
@@ -192,7 +194,7 @@ def test_experiments_marl_summary():
     data = response.json()
     assert "summary" in data
     assert "fuel_density_model" in data
-    assert "0.75 kg/L" in data["fuel_density_model"]
+    assert "0.750 kg/L" in data["fuel_density_model"]
 
     metrics = {r["metric"]: r for r in data["summary"]}
     assert "total_fuel_liters" in metrics
