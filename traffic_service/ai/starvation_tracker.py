@@ -79,6 +79,7 @@ class StarvationTracker:
 
         # Audit log of starvation interventions
         self.events: List[StarvationEvent] = []
+        self._last_update_time: Optional[float] = None
 
     def reset(self) -> None:
         """Resets all red timers, queue caches, and events."""
@@ -87,6 +88,7 @@ class StarvationTracker:
                 self.red_elapsed[j_id][app] = 0.0
                 self.current_queues[j_id][app] = 0
         self.events.clear()
+        self._last_update_time = None
 
     def update(
         self,
@@ -98,7 +100,13 @@ class StarvationTracker:
         """
         Updates red duration timers across all monitored approaches.
         Called at every simulation step (typically 1.0s).
+        Guards against double-accumulation if invoked multiple times at the same sim_time.
         """
+        is_duplicate_step = (
+            self._last_update_time is not None
+            and np.isclose(sim_time, self._last_update_time, atol=1e-3)
+        )
+
         for j_id, apps in self.approach_green_phases.items():
             raw_curr_p = current_phases.get(j_id, 0)
             try:
@@ -119,8 +127,12 @@ class StarvationTracker:
                     # Approach is currently receiving green: reset red duration
                     self.red_elapsed[j_id][app] = 0.0
                 else:
-                    # Approach is facing red: accumulate red time
-                    self.red_elapsed[j_id][app] += step_length
+                    # Approach is facing red: accumulate red time unless duplicate call in same second
+                    if not is_duplicate_step:
+                        self.red_elapsed[j_id][app] += step_length
+
+        if not is_duplicate_step:
+            self._last_update_time = sim_time
 
     def get_starved_approaches(self, j_id: str) -> List[Dict[str, Any]]:
         """

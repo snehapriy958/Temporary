@@ -129,7 +129,12 @@ class MAPPOAgent:
         self.owns_critic = (shared_critic is None)
         if shared_critic is not None:
             self.critic = shared_critic
-            self.critic_optimizer = shared_critic_optimizer
+            if shared_critic_optimizer is not None:
+                self.critic_optimizer = shared_critic_optimizer
+            elif TORCH_AVAILABLE and hasattr(shared_critic, "parameters"):
+                self.critic_optimizer = torch.optim.Adam(self.critic.parameters(), lr=self.critic_lr, eps=1e-5)
+            else:
+                self.critic_optimizer = None
         else:
             self.critic = MAPPOCentralizedCriticNetwork(in_features=corridor_features, seed=seed + 100)
             self.critic_optimizer = (
@@ -389,3 +394,92 @@ class MAPPOAgent:
                 for k, v in raw_cw.items()
             }
             self.critic.set_weights(converted_cw)
+
+
+def train_mappo_corridor(
+    agents: Dict[str, MAPPOAgent],
+    shared_critic: MAPPOCentralizedCriticNetwork,
+    shared_critic_optimizer: Optional[Any] = None,
+    last_corridor_value: float = 0.0,
+    epochs: int = 4,
+    minibatch_size: int = 32,
+) -> Dict[str, Any]:
+    """
+    Coordinated CTDE training for all corridor MAPPO agents:
+    1. Updates each decentralized actor network on its own local trajectory buffer and advantages
+       without triggering redundant or conflicting updates on the shared critic.
+    2. Updates the shared centralized critic ONCE per batch using the mean corridor returns.
+    """
+    if not TORCH_AVAILABLE:
+        return {"policy_results": {}, "mean_policy_loss": 0.0, "critic_loss": 0.0, "mean_loss": 0.0}
+
+    # Verify buffers
+    for j_id, agent in agents.items():
+        if len(agent.buffer) < 4:
+            return {"policy_results": {}, "mean_policy_loss": 0.0, "critic_loss": 0.0, "mean_loss": 0.0}
+
+    # Step 1: Collect returns and update each decentralized actor independently (update_critic=False)
+    policy_results = {}
+    computed_returns = []
+    corridor_states_ref = None
+
+    for j_id, agent in agents.items():
+        dones = np.array(agent.buffer.dones, dtype=np.bool_)
+        rewards = np.array(agent.buffer.rewards, dtype=np.float32)
+        values = np.array(agent.buffer.values, dtype=np.float32)
+        adv_np, ret_np = agent.compute_gae(last_corridor_value, dones, rewards, values)
+        computed_returns.append(ret_np)
+
+        if corridor_states_ref is None:
+            corridor_states_ref = np.array(agent.buffer.corridor_states, dtype=np.float32)
+
+        # Train actor only
+        res = agent.train_step(
+            last_corridor_value=last_corridor_value,
+            epochs=epochs,
+            minibatch_size=minibatch_size,
+            update_critic=False,
+        )
+        policy_results[j_id] = res
+
+    # Step 2: Update shared centralized critic ONCE using mean corridor returns
+    critic_losses = []
+    opt = shared_critic_optimizer or (
+        next(iter(agents.values())).critic_optimizer if agents else None
+    )
+
+    if opt is not None and corridor_states_ref is not None and computed_returns:
+        mean_returns_np = np.mean(computed_returns, axis=0).astype(np.float32)
+        c_states_t = torch.from_numpy(corridor_states_ref).float()
+        returns_t = torch.from_numpy(mean_returns_np).float()
+
+        n_samples = len(corridor_states_ref)
+        mb_size = min(minibatch_size, n_samples)
+
+        shared_critic.train()
+        for _ in range(epochs):
+            indices = np.random.permutation(n_samples)
+            for start_idx in range(0, n_samples, mb_size):
+                mb_idx = indices[start_idx : start_idx + mb_size]
+                mb_c_states = c_states_t[mb_idx]
+                mb_returns = returns_t[mb_idx]
+
+                curr_vals = shared_critic.forward(mb_c_states)
+                critic_loss = F.mse_loss(curr_vals, mb_returns)
+
+                opt.zero_grad()
+                critic_loss.backward()
+                torch.nn.utils.clip_grad_norm_(shared_critic.parameters(), max_norm=0.5)
+                opt.step()
+
+                critic_losses.append(float(critic_loss.item()))
+
+    mean_crit_loss = float(np.mean(critic_losses)) if critic_losses else 0.0
+    mean_pol_loss = float(np.mean([r.get("policy_loss", 0.0) for r in policy_results.values()])) if policy_results else 0.0
+
+    return {
+        "policy_results": policy_results,
+        "mean_policy_loss": mean_pol_loss,
+        "critic_loss": mean_crit_loss,
+        "mean_loss": mean_pol_loss + 0.5 * mean_crit_loss,
+    }

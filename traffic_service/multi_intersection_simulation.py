@@ -262,6 +262,40 @@ class MultiIntersectionSimulation:
         j2_corridor_q = states["J2"].approach_queues.get("corridor_hosur", 0)
         self.hub.publish_upstream_inflow("J2", outflow_rate_veh_s=j2_corridor_q * 0.1, timestamp=sim_time)
 
+        # 2b. Anti-starvation monitoring and safety preemption (every simulation second)
+        if self.mode in ("marl_dqn", "marl_ppo") and self.marl_controller is not None:
+            curr_phases = {j: ctrl.get_phase() for j, ctrl in self.controllers.items()}
+            app_queues = {j: state.approach_queues for j, state in states.items()}
+            self.marl_controller.starvation_tracker.update(
+                current_phases=curr_phases,
+                approach_queues=app_queues,
+                step_length=self.step_length,
+                sim_time=sim_time,
+            )
+            for j_id in self.marl_controller.junctions:
+                ctrl = self.controllers.get(j_id)
+                if not ctrl or ctrl.emergency_locked:
+                    continue
+                starved = self.marl_controller.starvation_tracker.get_starved_approaches(j_id)
+                if starved and ctrl.can_switch(sim_time):
+                    target_p = starved[0]["target_green_phase"]
+                    curr_p = ctrl.get_phase()
+                    if curr_p != target_p:
+                        # Register event and execute preemption switch immediately
+                        self.marl_controller.starvation_tracker.get_action_mask(
+                            j_id=j_id,
+                            current_phase=curr_p,
+                            can_switch=True,
+                            emergency_locked=False,
+                            sim_time=sim_time,
+                        )
+                        ctrl.request_switch(target_green_phase=target_p, sim_time=sim_time)
+                        logger.warning(
+                            f"[ANTI-STARVATION PREEMPTION] SimTime={sim_time:.1f}s | Junction={j_id} | "
+                            f"StarvedApproach={starved[0]['approach']} (red={starved[0]['red_duration_s']:.1f}s) | "
+                            f"Switched {curr_p} -> {target_p}"
+                        )
+
         # 3. Decision Control (every decision_interval seconds)
         if sim_time >= self._next_decision_time:
             self._next_decision_time += self.decision_interval

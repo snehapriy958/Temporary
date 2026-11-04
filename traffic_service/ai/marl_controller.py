@@ -32,7 +32,7 @@ from .env import (
 from .dqn_agent import DQNAgent
 from .ppo_agent import PPOAgent
 from .mappo_agent import MAPPOAgent
-from .models import MAPPOCentralizedCriticNetwork
+from .models import MAPPOCentralizedCriticNetwork, TORCH_AVAILABLE
 from .starvation_tracker import StarvationTracker
 from traffic_service.communication import CorridorCommunicationHub
 from traffic_service.signal_controller import SignalController
@@ -74,10 +74,16 @@ class MARLCorridorController:
 
         # Initialize shared centralized critic for MAPPO
         self.shared_critic = None
+        self.shared_critic_optimizer = None
         if self.algorithm == "mappo":
             self.shared_critic = MAPPOCentralizedCriticNetwork(
                 in_features=CORRIDOR_OBSERVATION_DIM, seed=seed + 100
             )
+            if TORCH_AVAILABLE:
+                import torch
+                self.shared_critic_optimizer = torch.optim.Adam(
+                    self.shared_critic.parameters(), lr=0.001, eps=1e-5
+                )
 
         # Initialize agents per junction
         self.agents: Dict[str, DQNAgent | PPOAgent | MAPPOAgent] = {}
@@ -90,6 +96,7 @@ class MARLCorridorController:
                     corridor_features=CORRIDOR_OBSERVATION_DIM,
                     num_actions=3,
                     shared_critic=self.shared_critic,
+                    shared_critic_optimizer=self.shared_critic_optimizer,
                     seed=agent_seed,
                 )
             elif self.algorithm == "ppo":
