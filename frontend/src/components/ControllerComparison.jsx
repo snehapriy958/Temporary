@@ -250,9 +250,9 @@ export function ControllerComparison({ compareData, isLoading = false, error = n
         <div className="flex items-start gap-2">
           <Info className="h-4 w-4 text-teal-600 flex-shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <p className="font-semibold text-slate-900">AI Policy Roadmap (PPO / DQN Status):</p>
+            <p className="font-semibold text-slate-900">PPO / Double-DQN Checkpoint Status:</p>
             <p className="text-[11px] text-slate-600">
-              The simulation engine exposes clean, normalized observation hooks via <code className="text-teal-800 bg-slate-100 px-1 py-0.5 rounded font-mono border border-slate-200">sim.get_ai_observations()</code> for J1, J2, and J3 (queues, elapsed green, inflow, speeds, emergency flags). However, neural network policy weights, Gym training environments, and reward convergence checkpoints are not yet trained. In accordance with task guidelines, no artificial results or manufactured training curves are reported.
+              P6 Stage A PPO and Double-DQN checkpoints are available for live inference in the simulation controls. This comparison shows archived benchmark results, not measurements from the current run; short smoke runs do not establish convergence or controller superiority.
             </p>
           </div>
         </div>

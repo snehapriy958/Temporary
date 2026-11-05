@@ -71,6 +71,12 @@ class StarvationTracker:
             for j_id, apps in self.approach_green_phases.items()
         }
 
+        # Elapsed queued red time: junction_id -> {approach: seconds} while queue >= min_queue_to_starve
+        self.queued_red_elapsed: Dict[str, Dict[str, float]] = {
+            j_id: {app: 0.0 for app in apps}
+            for j_id, apps in self.approach_green_phases.items()
+        }
+
         # Current approach queues cache: junction_id -> {approach: count}
         self.current_queues: Dict[str, Dict[str, int]] = {
             j_id: {app: 0 for app in apps}
@@ -86,6 +92,7 @@ class StarvationTracker:
         for j_id in self.red_elapsed:
             for app in self.red_elapsed[j_id]:
                 self.red_elapsed[j_id][app] = 0.0
+                self.queued_red_elapsed[j_id][app] = 0.0
                 self.current_queues[j_id][app] = 0
         self.events.clear()
         self._last_update_time = None
@@ -126,10 +133,15 @@ class StarvationTracker:
                 if curr_p == green_p:
                     # Approach is currently receiving green: reset red duration
                     self.red_elapsed[j_id][app] = 0.0
+                    self.queued_red_elapsed[j_id][app] = 0.0
                 else:
                     # Approach is facing red: accumulate red time unless duplicate call in same second
                     if not is_duplicate_step:
                         self.red_elapsed[j_id][app] += step_length
+                        if q >= self.min_queue_to_starve:
+                            self.queued_red_elapsed[j_id][app] += step_length
+                        else:
+                            self.queued_red_elapsed[j_id][app] = 0.0
 
         if not is_duplicate_step:
             self._last_update_time = sim_time

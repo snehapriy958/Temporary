@@ -29,11 +29,17 @@ export function WhatIfScenario({ onRunScenario }) {
 
   const handleLaunch = () => {
     if (onRunScenario) {
+      const checkpointPath = scenarioMode === 'marl_ppo'
+        ? 'checkpoints/p6/ppo_stage_a_best.json'
+        : scenarioMode === 'marl_dqn'
+          ? 'checkpoints/p6/dqn_stage_a_best.json'
+          : undefined;
       onRunScenario({
         mode: scenarioMode,
         duration: Number(scenarioDuration),
         seed: Number(scenarioSeed),
         enable_emergency: scenarioEmergency,
+        checkpoint_path: checkpointPath,
       });
     }
   };

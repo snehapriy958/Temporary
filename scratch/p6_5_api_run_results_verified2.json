@@ -1,0 +1,205 @@
+{
+  "database_url": "sqlite:///./demo_audit_disposable.db",
+  "duration_s": 90,
+  "seed": 99,
+  "emergency_enabled": false,
+  "runs": [
+    {
+      "mode": "marl_ppo",
+      "requested_checkpoint": "checkpoints/p6/ppo_stage_a_best.json",
+      "checkpoint_version": "6.2-ppo-stage_a-best",
+      "loaded_j1_weights_exact_match": true,
+      "agents": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "start_response": {
+        "success": true,
+        "message": "Simulation started in marl_ppo mode (UUID: run_0c5a0fcfc2ab, PID: 8704)",
+        "simulation_time": 0.0
+      },
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 90.0,
+        "duration": 90,
+        "mode": "marl_ppo",
+        "seed": 99,
+        "controller": "MARL Proximal Policy Optimization (PPO Corridor)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_0c5a0fcfc2ab",
+        "sequence_number": 92
+      },
+      "decision_interval_count": 19,
+      "sample_decisions": [
+        {
+          "time": 1.0,
+          "actions": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "KEEP_PHASE_0",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_OK"
+          }
+        },
+        {
+          "time": 5.0,
+          "actions": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "KEEP_PHASE_0",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_OK"
+          }
+        },
+        {
+          "time": 10.0,
+          "actions": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "KEEP_PHASE_0",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_REJECTED"
+          }
+        }
+      ],
+      "phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2
+        ],
+        "J3": [
+          0,
+          1,
+          2
+        ]
+      },
+      "sumo_running_after_completion": false,
+      "result": "PASSED"
+    },
+    {
+      "mode": "marl_dqn",
+      "requested_checkpoint": "checkpoints/p6/dqn_stage_a_best.json",
+      "checkpoint_version": "6.2-dqn-stage_a-best",
+      "loaded_j1_weights_exact_match": true,
+      "agents": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "start_response": {
+        "success": true,
+        "message": "Simulation started in marl_dqn mode (UUID: run_ed0fc3e340f1, PID: 5416)",
+        "simulation_time": 0.0
+      },
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 90.0,
+        "duration": 90,
+        "mode": "marl_dqn",
+        "seed": 99,
+        "controller": "MARL Deep Q-Network (Double-DQN Corridor)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_ed0fc3e340f1",
+        "sequence_number": 92
+      },
+      "decision_interval_count": 19,
+      "sample_decisions": [
+        {
+          "time": 1.0,
+          "actions": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "EXTEND_GREEN_OK",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_OK"
+          }
+        },
+        {
+          "time": 5.0,
+          "actions": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "EXTEND_GREEN_OK",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_OK"
+          }
+        },
+        {
+          "time": 10.0,
+          "actions": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "EXTEND_GREEN_REJECTED",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_REJECTED"
+          }
+        }
+      ],
+      "phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "sumo_running_after_completion": false,
+      "result": "PASSED"
+    }
+  ],
+  "overall": "PASSED"
+}

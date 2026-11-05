@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\Developers\Sneha\Projects\hybrid-traffic-control\scratch\p6_7_live_http_rehearsal.py", line 185, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 196, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 119, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Developers\Sneha\Projects\hybrid-traffic-control\scratch\p6_7_live_http_rehearsal.py", line 168, in main
+    await run_one(client, "marl_ppo", 90, 99, False, "checkpoints/p6/ppo_stage_a_best.json"),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Developers\Sneha\Projects\hybrid-traffic-control\scratch\p6_7_live_http_rehearsal.py", line 57, in run_one
+    raise AssertionError(f"{mode} start failed: {started.status_code} {started.text}")
+AssertionError: marl_ppo start failed: 500 {"detail":"Simulation startup failed: No module named 'torch'"}

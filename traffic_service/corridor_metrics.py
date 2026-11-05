@@ -27,6 +27,7 @@ class CorridorMetricsSummary:
     simulation_duration: float = 0.0
     total_vehicles_inserted: int = 0
     total_corridor_trips_completed: int = 0
+    current_active_vehicles: Optional[int] = None
     mean_corridor_travel_time_s: Optional[float] = None  # None if total_corridor_trips_completed == 0
     mean_corridor_speed_kmh: float = 0.0
     # Waiting time & Delay metrics:
@@ -94,9 +95,14 @@ class CorridorMetricsCollector:
         try:
             entry_vehs = traci.edge.getLastStepVehicleIDs(self.entry_edge)
             exit_vehs = traci.edge.getLastStepVehicleIDs(self.exit_edge)
+        except traci.TraCIException:
+            entry_vehs, exit_vehs = [], []
+        try:
+            # TraCI's network-wide count includes all vehicles currently loaded
+            # into the running network, independent of junction approach zones.
             active_count = traci.vehicle.getIDCount()
         except traci.TraCIException:
-            entry_vehs, exit_vehs, active_count = [], [], 0
+            active_count = None
 
         for veh_id in entry_vehs:
             if veh_id not in self._trip_entry_times:
@@ -195,6 +201,7 @@ class CorridorMetricsCollector:
             simulation_duration=sim_dur,
             total_vehicles_inserted=len(self._trip_entry_times) + len(self._completed_travel_times),
             total_corridor_trips_completed=len(self._completed_travel_times),
+            current_active_vehicles=self.step_records[-1].get("active_vehicles"),
             mean_corridor_travel_time_s=mean_travel_time,
             mean_corridor_speed_kmh=sum(speeds) / len(speeds) if speeds else 0.0,
             total_corridor_waiting_time_s=mean_inst_wait,

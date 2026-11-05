@@ -1,0 +1,43 @@
+{
+  "stage_id": "stage_a",
+  "is_pilot": false,
+  "algorithms": {
+    "mappo": {
+      "record_count": 15,
+      "mean_reward": -3.1028013387880358,
+      "mean_trips": 96.6,
+      "mean_queue": 3.0898888888888885,
+      "mean_delay_s": 3707.866666666667,
+      "max_red_seen": 65.0,
+      "starvation_events_total": 40
+    },
+    "ppo": {
+      "record_count": 15,
+      "mean_reward": -6.088344048840211,
+      "mean_trips": 94.66666666666667,
+      "mean_queue": 3.7552777777777777,
+      "mean_delay_s": 4506.333333333333,
+      "max_red_seen": 66.0,
+      "starvation_events_total": 89
+    },
+    "dqn": {
+      "record_count": 15,
+      "mean_reward": 0.29729829871007696,
+      "mean_trips": 97.13333333333334,
+      "mean_queue": 2.4511666666666665,
+      "mean_delay_s": 2941.4,
+      "max_red_seen": 66.0,
+      "starvation_events_total": 30
+    },
+    "coordinated": {
+      "record_count": 5,
+      "mean_reward": 2.282456212179113,
+      "mean_trips": 96.6,
+      "mean_queue": 2.2255,
+      "mean_delay_s": 2670.6,
+      "max_red_seen": 0.0,
+      "starvation_events_total": 0
+    }
+  },
+  "timestamp": "2026-11-04 22:27:00"
+}

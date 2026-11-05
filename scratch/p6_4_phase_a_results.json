@@ -1,0 +1,43 @@
+{
+  "SimulationStartRequest_block": "class SimulationStartRequest(BaseModel):\n    mode: str = Field(\"coordinated\", description=\"Simulation mode: 'baseline', 'coordinated', 'marl_ppo', or 'marl_dqn'\")\n    duration: int = Field(600, ge=10, le=7200, description=\"Simulation duration in seconds\")\n    seed: int = Field(42, description=\"Random seed for traffic generation\")\n    step_length: float = Field(1.0, gt=0.0, le=5.0, description=\"SUMO simulation step length in seconds\")\n    decision_interval: float = Field(5.0, gt=0.0, le=60.0, description=\"Adaptive controller decision interval\")\n    enable_emergency: bool = Field(True, descripti",
+  "checkpoint_path_in_schema": false,
+  "start_simulation_signature": "def start_simulation(\n        self,\n        mode: str = \"coordinated\",\n        duration: int = 600,\n        seed: int = 42,\n        step_length: float = 1.0,\n        decision_interval: float = 5.0,\n        enable_emergency: bool = True,\n        gui: bool = False,\n        startup_timeout_s: float = 10.0,\n    ) -> StartupResult:",
+  "checkpoint_path_in_start_simulation": false,
+  "worker_construction_snippet": "sim = MultiIntersectionSimulation(\n                sumocfg_path=config_path,\n                mode=self._mode,\n                gui=self._gui,\n                step_length=self._step_length,\n                decision_interval=self._decision_interval,\n                enable_emergency=self._enable_emergency,\n                on_process_spawned=self._on_process_spawned,\n            )",
+  "checkpoint_path_passed_in_worker": false,
+  "MultiIntersectionSimulation_init_signature": "def __init__(\n        self,\n        sumocfg_path: Path | str,\n        mode: str = \"coordinated\",  # 'baseline', 'coordinated', 'marl_ppo', or 'marl_dqn'\n        gui: bool = False,\n        step_length: float = 1.0,\n        decision_interval: float = 5.0,\n        enable_emergency: bool = True,\n        label: str = \"default\",\n        on_process_spawned: Optional[Callable[[subprocess.Popen, Optional[int]], None]] = None,\n        checkpoint_path: Optional[Path | str] = None,\n    ) -> None:",
+  "checkpoint_path_in_MIS": true,
+  "MIS_default_checkpoint_resolution": "NOT_FOUND",
+  "checkpoint_files": {
+    "p6_ppo_stage_a_best": {
+      "exists": true,
+      "bytes": 993625
+    },
+    "p6_dqn_stage_a_best": {
+      "exists": true,
+      "bytes": 993529
+    },
+    "hist_ppo_corridor": {
+      "exists": true,
+      "bytes": 982905
+    },
+    "hist_dqn_corridor": {
+      "exists": true,
+      "bytes": 982917
+    }
+  },
+  "_run_marl_with_logging_body": "def _run_marl_with_logging(\n        self,\n        sim: MultiIntersectionSimulation,\n        states: Dict[str, IntersectionState],\n        sim_time: float,\n    ) -> None:\n        \"\"\"Executes MARL policy decisions while capturing rationales.\"\"\"\n        if not sim.marl_controller:\n            return\n\n        ai_obs = sim.get_ai_observations(states)\n        decisions = sim.marl_controller.decide(ai_obs, sim_time, eval_mode=True)\n        executed_ops = sim.marl_controller.apply_decisions(decisions, sim_time)\n\n        for j_id, dec in decisions.items():\n            op_str = executed_ops.get(j_id, \"NONE\")\n            logger.info(\n                f\"[MARL RUNTIME] SimTime={sim_time:.1f}s | Mode={sim.mode} | Junction={j_id} | \"\n                f\"Agent={sim.marl_controller.algorithm.upper()} | \"\n    ",
+  "chain_calls_get_ai_observations": true,
+  "chain_calls_decide_eval_mode_true": true,
+  "chain_calls_apply_decisions": true,
+  "router_valid_modes": "valid_modes = {\"baseline\", \"coordinated\", \"marl_ppo\", \"marl_dqn\"}",
+  "router_checkpoint_param_in_start": false,
+  "SUMMARY": {
+    "checkpoint_gap_confirmed": true,
+    "MIS_accepts_checkpoint_path": true,
+    "API_no_checkpoint_param": true,
+    "service_no_checkpoint_param": true,
+    "worker_no_checkpoint_passthrough": true,
+    "marl_dispatch_chain_complete": true
+  }
+}

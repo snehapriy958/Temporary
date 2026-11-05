@@ -1,0 +1,36 @@
+{
+  "start_status": 200,
+  "stop_status": 200,
+  "stop_response": {
+    "success": true,
+    "message": "Simulation stopped successfully and resources released.",
+    "simulation_time": 1.0
+  },
+  "final_status": {
+    "running": false,
+    "paused": false,
+    "simulation_time": 1.0,
+    "duration": 120,
+    "mode": "baseline",
+    "seed": 99,
+    "controller": "Fixed-Time Baseline",
+    "junctions": [
+      "J1",
+      "J2",
+      "J3"
+    ],
+    "error": null,
+    "status": "STOPPED",
+    "pid": null,
+    "run_uuid": "run_05eb11979de5",
+    "sequence_number": 3
+  },
+  "worker_stopped": true,
+  "backend_simulation_cleared": true,
+  "backend_pid_cleared": true,
+  "sumo_pid": 8572,
+  "sumo_terminate_called_by_manager": true,
+  "sumo_return_code": 1,
+  "sumo_process_reaped": true,
+  "overall": "PASSED"
+}

@@ -123,6 +123,8 @@ class EmergencyWaveCoordinator:
         # Stage 1: Approaching / Traversing J1
         if current_edge == self.j1_approach_edge:
             self.current_stage = "APPROACHING_J1"
+            if self.metrics.j1_arrival_time == 0.0:
+                self.metrics.j1_arrival_time = sim_time
             self.controllers["J1"].lock_emergency_priority(
                 corridor_green_phase=self.corridor_phases["J1"],
                 sim_time=sim_time,
@@ -139,6 +141,8 @@ class EmergencyWaveCoordinator:
             if self.metrics.j1_clearance_time == 0.0:
                 self.metrics.j1_clearance_time = sim_time
                 self.controllers["J1"].release_emergency_priority()
+            if self.metrics.j2_arrival_time == 0.0:
+                self.metrics.j2_arrival_time = sim_time
 
             self.current_stage = "J1_TO_J2"
             # Ensure J2 has priority green locked
@@ -159,6 +163,8 @@ class EmergencyWaveCoordinator:
             if self.metrics.j2_clearance_time == 0.0:
                 self.metrics.j2_clearance_time = sim_time
                 self.controllers["J2"].release_emergency_priority()
+            if self.metrics.j3_arrival_time == 0.0:
+                self.metrics.j3_arrival_time = sim_time
 
             self.current_stage = "J2_TO_J3"
             # Ensure J3 has priority green locked

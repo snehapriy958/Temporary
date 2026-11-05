@@ -55,8 +55,11 @@ def test_simulation_lifecycle_and_state_extraction():
             assert "emergency_approaching" in obs
 
     finally:
+        process = sim.process
         sim.close()
         assert not sim.sumo_manager.is_running
+        assert process is not None
+        assert process.poll() == 0
 
 
 def test_coordinated_mode_stepping():

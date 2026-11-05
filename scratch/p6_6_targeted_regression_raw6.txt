@@ -1,0 +1,267 @@
+.EE....................................................                  [100%]
+=================================== ERRORS ====================================
+_______ ERROR at setup of test_missing_checkpoint_raises_file_not_found _______
+
+cls = <class '_pytest.runner.CallInfo'>
+func = <function call_and_report.<locals>.<lambda> at 0x000001F364761260>
+when = 'setup'
+reraise = (<class '_pytest.outcomes.Exit'>, <class 'KeyboardInterrupt'>)
+
+    @classmethod
+    def from_call(
+        cls,
+        func: Callable[[], TResult],
+        when: Literal["collect", "setup", "call", "teardown"],
+        reraise: type[BaseException] | tuple[type[BaseException], ...] | None = None,
+    ) -> CallInfo[TResult]:
+        """Call func, wrapping the result in a CallInfo.
+    
+        :param func:
+            The function to call. Called without arguments.
+        :type func: Callable[[], _pytest.runner.TResult]
+        :param when:
+            The phase in which the function is called.
+        :param reraise:
+            Exception or exceptions that shall propagate if raised by the
+            function, instead of being wrapped in the CallInfo.
+        """
+        excinfo = None
+        instant = timing.Instant()
+        try:
+>           result: TResult | None = func()
+                                     ^^^^^^
+
+.venv-demo\Lib\site-packages\_pytest\runner.py:361: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv-demo\Lib\site-packages\_pytest\runner.py:250: in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+.venv-demo\Lib\site-packages\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\logging.py:871: in pytest_runtest_setup
+    yield
+.venv-demo\Lib\site-packages\_pytest\capture.py:901: in pytest_runtest_setup
+    return (yield)
+            ^^^^^
+.venv-demo\Lib\site-packages\_pytest\runner.py:170: in pytest_runtest_setup
+    item.session._setupstate.setup(item)
+.venv-demo\Lib\site-packages\_pytest\runner.py:536: in setup
+    col.setup()
+.venv-demo\Lib\site-packages\_pytest\python.py:1801: in setup
+    self._request._fillfixtures()
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:877: in _fillfixtures
+    item.funcargs[argname] = self.getfixturevalue(argname)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:701: in getfixturevalue
+    fixturedef = self._get_active_fixturedef(argname)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:797: in _get_active_fixturedef
+    fixturedef.execute(request=subrequest)
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:1301: in execute
+    result: FixtureValue = ihook.pytest_fixture_setup(
+.venv-demo\Lib\site-packages\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+.venv-demo\Lib\site-packages\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\pluggy\_execution.py:64: in run_old_style_hookwrapper
+    return result.get_result()
+           ^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\pluggy\_execution.py:49: in run_old_style_hookwrapper
+    res = yield
+          ^^^^^
+.venv-demo\Lib\site-packages\_pytest\setuponly.py:36: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:1407: in pytest_fixture_setup
+    result = call_fixture_func(fixturefunc, request, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:1067: in call_fixture_func
+    fixture_result = next(generator)
+                     ^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:338: in tmp_path
+    path = _mk_tmp(request, tmp_path_factory)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:325: in _mk_tmp
+    return factory.mktemp(name, numbered=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:138: in mktemp
+    basename = self._ensure_relative_to_basetemp(basename)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:118: in _ensure_relative_to_basetemp
+    if (self.getbasetemp() / basename).resolve().parent != self.getbasetemp():
+        ^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:253: in getbasetemp
+    basetemp = make_numbered_dir_with_cleanup(
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:464: in make_numbered_dir_with_cleanup
+    raise e
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:445: in make_numbered_dir_with_cleanup
+    p = make_numbered_dir(root, prefix, mode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:272: in make_numbered_dir
+    max_existing = max(map(parse_num, find_suffixes(root, prefix)), default=-1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:231: in extract_suffixes
+    for entry in iter:
+                 ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/Sneha Singh/AppData/Local/Temp/pytest-of-Sneha Singh')
+prefix = 'pytest-'
+
+    def find_prefixed(root: Path, prefix: str) -> Iterator[os.DirEntry[str]]:
+        """Find all elements in root that begin with the prefix, case-insensitive."""
+        l_prefix = prefix.lower()
+>       for x in os.scandir(root):
+                 ^^^^^^^^^^^^^^^^
+E       PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Sneha Singh\\AppData\\Local\\Temp\\pytest-of-Sneha Singh'
+
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:219: PermissionError
+______ ERROR at setup of test_corrupted_checkpoint_raises_runtime_error _______
+
+cls = <class '_pytest.runner.CallInfo'>
+func = <function call_and_report.<locals>.<lambda> at 0x000001F3139BF6A0>
+when = 'setup'
+reraise = (<class '_pytest.outcomes.Exit'>, <class 'KeyboardInterrupt'>)
+
+    @classmethod
+    def from_call(
+        cls,
+        func: Callable[[], TResult],
+        when: Literal["collect", "setup", "call", "teardown"],
+        reraise: type[BaseException] | tuple[type[BaseException], ...] | None = None,
+    ) -> CallInfo[TResult]:
+        """Call func, wrapping the result in a CallInfo.
+    
+        :param func:
+            The function to call. Called without arguments.
+        :type func: Callable[[], _pytest.runner.TResult]
+        :param when:
+            The phase in which the function is called.
+        :param reraise:
+            Exception or exceptions that shall propagate if raised by the
+            function, instead of being wrapped in the CallInfo.
+        """
+        excinfo = None
+        instant = timing.Instant()
+        try:
+>           result: TResult | None = func()
+                                     ^^^^^^
+
+.venv-demo\Lib\site-packages\_pytest\runner.py:361: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv-demo\Lib\site-packages\_pytest\runner.py:250: in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+.venv-demo\Lib\site-packages\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\logging.py:871: in pytest_runtest_setup
+    yield
+.venv-demo\Lib\site-packages\_pytest\capture.py:901: in pytest_runtest_setup
+    return (yield)
+            ^^^^^
+.venv-demo\Lib\site-packages\_pytest\runner.py:170: in pytest_runtest_setup
+    item.session._setupstate.setup(item)
+.venv-demo\Lib\site-packages\_pytest\runner.py:536: in setup
+    col.setup()
+.venv-demo\Lib\site-packages\_pytest\python.py:1801: in setup
+    self._request._fillfixtures()
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:877: in _fillfixtures
+    item.funcargs[argname] = self.getfixturevalue(argname)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:701: in getfixturevalue
+    fixturedef = self._get_active_fixturedef(argname)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:797: in _get_active_fixturedef
+    fixturedef.execute(request=subrequest)
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:1301: in execute
+    result: FixtureValue = ihook.pytest_fixture_setup(
+.venv-demo\Lib\site-packages\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+.venv-demo\Lib\site-packages\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\pluggy\_execution.py:64: in run_old_style_hookwrapper
+    return result.get_result()
+           ^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\pluggy\_execution.py:49: in run_old_style_hookwrapper
+    res = yield
+          ^^^^^
+.venv-demo\Lib\site-packages\_pytest\setuponly.py:36: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:1407: in pytest_fixture_setup
+    result = call_fixture_func(fixturefunc, request, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\fixtures.py:1067: in call_fixture_func
+    fixture_result = next(generator)
+                     ^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:338: in tmp_path
+    path = _mk_tmp(request, tmp_path_factory)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:325: in _mk_tmp
+    return factory.mktemp(name, numbered=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:138: in mktemp
+    basename = self._ensure_relative_to_basetemp(basename)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:118: in _ensure_relative_to_basetemp
+    if (self.getbasetemp() / basename).resolve().parent != self.getbasetemp():
+        ^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\tmpdir.py:253: in getbasetemp
+    basetemp = make_numbered_dir_with_cleanup(
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:464: in make_numbered_dir_with_cleanup
+    raise e
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:445: in make_numbered_dir_with_cleanup
+    p = make_numbered_dir(root, prefix, mode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:272: in make_numbered_dir
+    max_existing = max(map(parse_num, find_suffixes(root, prefix)), default=-1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:231: in extract_suffixes
+    for entry in iter:
+                 ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/Sneha Singh/AppData/Local/Temp/pytest-of-Sneha Singh')
+prefix = 'pytest-'
+
+    def find_prefixed(root: Path, prefix: str) -> Iterator[os.DirEntry[str]]:
+        """Find all elements in root that begin with the prefix, case-insensitive."""
+        l_prefix = prefix.lower()
+>       for x in os.scandir(root):
+                 ^^^^^^^^^^^^^^^^
+E       PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Sneha Singh\\AppData\\Local\\Temp\\pytest-of-Sneha Singh'
+
+.venv-demo\Lib\site-packages\_pytest\pathlib.py:219: PermissionError
+============================== warnings summary ===============================
+.venv-demo\Lib\site-packages\fastapi\testclient.py:1
+  C:\Developers\Sneha\Projects\hybrid-traffic-control\.venv-demo\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/test_simulation_service.py::test_simulation_service_real_run_lifecycle
+tests/test_simulation_service.py::test_simulation_service_real_run_lifecycle
+tests/test_simulation_service.py::test_simulation_service_real_run_lifecycle
+tests/test_simulation_service.py::test_simulation_service_real_run_lifecycle
+  C:\Developers\Sneha\Projects\hybrid-traffic-control\.venv-demo\Lib\site-packages\sqlalchemy\sql\schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+
+.venv-demo\Lib\site-packages\_pytest\cacheprovider.py:487
+  C:\Developers\Sneha\Projects\hybrid-traffic-control\.venv-demo\Lib\site-packages\_pytest\cacheprovider.py:487: PytestCacheWarning: could not create cache path C:\Developers\Sneha\Projects\hybrid-traffic-control\.pytest_cache\v\cache\nodeids: [WinError 5] Access is denied: 'C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(str(n) for n in self.cached_nodeids))
+
+.venv-demo\Lib\site-packages\_pytest\cacheprovider.py:439
+  C:\Developers\Sneha\Projects\hybrid-traffic-control\.venv-demo\Lib\site-packages\_pytest\cacheprovider.py:439: PytestCacheWarning: could not create cache path C:\Developers\Sneha\Projects\hybrid-traffic-control\.pytest_cache\v\cache\lastfailed: [WinError 5] Access is denied: 'C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/lastfailed", current_lastfailed)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+ERROR tests/test_marl_runtime_dispatch.py::test_missing_checkpoint_raises_file_not_found
+ERROR tests/test_marl_runtime_dispatch.py::test_corrupted_checkpoint_raises_runtime_error
+53 passed, 7 warnings, 2 errors in 16.22s

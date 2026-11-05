@@ -7,7 +7,7 @@ Pydantic request and response models for REST API and WebSocket payloads.
 from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 # ----------------------------------------------------
@@ -31,6 +31,24 @@ class SimulationStartRequest(BaseModel):
     enable_emergency: bool = Field(True, description="Enable emergency vehicle green wave preemption")
     gui: bool = Field(False, description="Launch with sumo-gui (headless if False)")
     startup_timeout_s: float = Field(10.0, ge=1.0, le=60.0, description="Timeout waiting for SUMO/TraCI startup and readiness acknowledgement")
+    checkpoint_path: Optional[str] = Field(
+        None,
+        description="Approved P6 Stage A PPO/DQN checkpoint path relative to the project root.",
+    )
+
+    @field_validator("checkpoint_path")
+    @classmethod
+    def validate_checkpoint_path(cls, value: Optional[str]) -> Optional[str]:
+        if value is None:
+            return None
+        normalized = value.replace("\\", "/")
+        allowed = {
+            "checkpoints/p6/ppo_stage_a_best.json",
+            "checkpoints/p6/dqn_stage_a_best.json",
+        }
+        if normalized not in allowed:
+            raise ValueError("checkpoint_path must identify an approved P6 Stage A PPO or DQN checkpoint")
+        return normalized
 
 
 class SimulationStatusResponse(BaseModel):
@@ -104,18 +122,20 @@ class TrafficLiveResponse(BaseModel):
 
 class TrafficMetricsResponse(BaseModel):
     simulation_time: float
-    total_vehicles: int
-    throughput_vehicles: int
-    mean_speed_kmh: float
-    total_corridor_waiting_time_s: float
+    total_vehicles: Optional[int] = None
+    throughput_vehicles: Optional[int] = None
+    mean_corridor_travel_time_s: Optional[float] = None
+    mean_speed_kmh: Optional[float] = None
+    total_corridor_waiting_time_s: Optional[float] = None
     mean_instantaneous_waiting_time_s: Optional[float] = None
+    cumulative_delay_veh_s: Optional[float] = None
     cumulative_waiting_time_s: Optional[float] = None
     mean_corridor_queue: float
     max_corridor_queue: int
-    total_co2_kg: float
-    total_nox_g: float
-    total_fuel_liters: float
-    emergency_traversal_duration_s: float
+    total_co2_kg: Optional[float] = None
+    total_nox_g: Optional[float] = None
+    total_fuel_liters: Optional[float] = None
+    emergency_traversal_duration_s: Optional[float] = None
     junction_queues: Dict[str, float] = Field(default_factory=dict)
 
 

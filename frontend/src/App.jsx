@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Suspense } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import { Header } from './components/Header';
 import { OverviewKPIs } from './components/OverviewKPIs';
 import { SimulationControls } from './components/SimulationControls';
@@ -12,6 +12,7 @@ import { WhatIfScenario } from './components/WhatIfScenario';
 import { api } from './services/api';
 import { trafficWS } from './services/websocket';
 import { snapshotRecoveryManager } from './services/snapshotRecovery';
+import { appendEmissionHistory } from './utils/emissionHistory';
 import { AlertTriangle, X, CheckCircle, ShieldAlert, RefreshCw, Box } from 'lucide-react';
 
 // Lazy-load 3D Corridor chunk on demand
@@ -33,6 +34,8 @@ export default function App() {
 
   // Telemetry state
   const [metrics, setMetrics] = useState(null);
+  const [emissionHistory, setEmissionHistory] = useState([]);
+  const metricSessionUuid = useRef(null);
   const [junctions, setJunctions] = useState({});
   const [signals, setSignals] = useState({});
   const [emergencies, setEmergencies] = useState(null);
@@ -68,8 +71,14 @@ export default function App() {
       ]);
 
       if (h.status === 'fulfilled') setHealth(h.value);
-      if (s.status === 'fulfilled') setSimStatus(s.value);
-      if (m.status === 'fulfilled') setMetrics(m.value);
+      if (s.status === 'fulfilled') {
+        setSimStatus(s.value);
+        metricSessionUuid.current = s.value.run_uuid ?? null;
+      }
+      if (m.status === 'fulfilled') {
+        setMetrics(m.value);
+        setEmissionHistory(appendEmissionHistory([], m.value, true));
+      }
       if (j.status === 'fulfilled' && j.value?.junctions) setJunctions(j.value.junctions);
       if (sig.status === 'fulfilled' && sig.value?.signals) setSignals(sig.value.signals);
       if (em.status === 'fulfilled') setEmergencies(em.value);
@@ -91,12 +100,20 @@ export default function App() {
   const refreshStatus = useCallback(async () => {
     try {
       const s = await api.getSimulationStatus();
+      const nextSession = s.run_uuid ?? null;
+      const sessionChanged = nextSession && nextSession !== metricSessionUuid.current;
+      if (sessionChanged) {
+        metricSessionUuid.current = nextSession;
+        setEmissionHistory([]);
+      }
       setSimStatus(s);
     } catch (_) {}
   }, []);
 
   // Set up WebSocket, SnapshotRecoveryManager, and lifecycle listeners
   useEffect(() => {
+    loadInitialData();
+
     // 1. Initialize SnapshotRecoveryManager
     snapshotRecoveryManager.init();
 
@@ -114,6 +131,13 @@ export default function App() {
     const unsubTelemetry = snapshotRecoveryManager.onTelemetry((data) => {
       if (!data) return;
 
+      const incomingSession = data.simStatus?.run_uuid ?? data.session_uuid ?? null;
+      const sessionChanged = Boolean(incomingSession && incomingSession !== metricSessionUuid.current);
+      if (sessionChanged) {
+        metricSessionUuid.current = incomingSession;
+        refreshStatus();
+      }
+
       if (data.simStatus) {
         setSimStatus(data.simStatus);
       } else if (data.status) {
@@ -130,7 +154,12 @@ export default function App() {
 
       if (data.junctions) setJunctions(data.junctions);
       if (data.signals) setSignals(data.signals);
-      if (data.metrics) setMetrics(data.metrics);
+      if (data.metrics) {
+        setMetrics(data.metrics);
+        setEmissionHistory((prev) => appendEmissionHistory(prev, data.metrics, sessionChanged));
+      } else if (sessionChanged) {
+        setEmissionHistory([]);
+      }
       if (data.emergencies) setEmergencies(data.emergencies);
       if (data.risks) setRiskData(data.risks);
       if (data.health) setHealth(data.health);
@@ -150,7 +179,7 @@ export default function App() {
       snapshotRecoveryManager.destroy();
       trafficWS.disconnect();
     };
-  }, []);
+  }, [loadInitialData, refreshStatus]);
 
   // Handle Manual Override submission
   const handleApplyOverride = async (e) => {
@@ -326,7 +355,7 @@ export default function App() {
               isLoading={compareLoading}
               error={compareError}
             />
-            <EmissionAnalytics metrics={metrics} />
+            <EmissionAnalytics metrics={metrics} history={emissionHistory} />
           </div>
         )}
 

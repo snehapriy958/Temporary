@@ -75,10 +75,12 @@ class CurriculumDemandGenerator:
         stage_id: str,
         output_filepath: Optional[Path | str] = None,
         seed: int = 42,
+        include_vtypes: bool = True,
     ) -> Path:
         """
         Generates a valid SUMO route XML file for the specified curriculum stage.
         Ensures strictly chronological flow definitions as required by SUMO.
+        If include_vtypes is False, uses types declared in vehicle_types.add.xml (bmtc_bus).
         """
         stage_key = stage_id.lower()
         if stage_key not in CURRICULUM_STAGES:
@@ -96,31 +98,33 @@ class CurriculumDemandGenerator:
             },
         )
 
-        # Vehicle Types
-        vtypes = [
-            ("motorcycle", "motorcycle", "0.9", "12.0", "4.0", "2.2", "45", "1.0", "0.5"),
-            ("car", "passenger", "2.0", "15.0", "2.6", "4.5", "50", "2.5", "0.5"),
-            ("bus", "bus", "2.5", "12.0", "1.5", "12.0", "40", "3.0", "0.5"),
-            ("ambulance", "emergency", "1.0", "22.0", "5.0", "6.5", "70", "2.5", "0.1"),
-        ]
-        for tid, vclass, mingap, maxspeed, accel, length, shape, tau, jm in vtypes:
-            ET.SubElement(
-                root,
-                "vType",
-                {
-                    "id": tid,
-                    "vClass": vclass,
-                    "minGap": mingap,
-                    "maxSpeed": maxspeed,
-                    "accel": accel,
-                    "decel": "4.5",
-                    "emergencyDecel": "7.0",
-                    "length": length,
-                    "guiShape": shape,
-                    "tau": tau,
-                    "jmDriveAfterYellowTime": jm,
-                },
-            )
+        # Vehicle Types (optional when using existing vehicle_types.add.xml)
+        bus_type_id = "bus" if include_vtypes else "bmtc_bus"
+        if include_vtypes:
+            vtypes = [
+                ("motorcycle", "motorcycle", "0.9", "12.0", "4.0", "2.2", "motorcycle", "1.0", "0.5"),
+                ("car", "passenger", "2.0", "15.0", "2.6", "4.5", "passenger", "2.5", "0.5"),
+                ("bus", "bus", "2.5", "12.0", "1.5", "12.0", "bus", "3.0", "0.5"),
+                ("ambulance", "emergency", "1.0", "22.0", "5.0", "6.5", "emergency", "2.5", "0.1"),
+            ]
+            for tid, vclass, mingap, maxspeed, accel, length, shape, tau, jm in vtypes:
+                ET.SubElement(
+                    root,
+                    "vType",
+                    {
+                        "id": tid,
+                        "vClass": vclass,
+                        "minGap": mingap,
+                        "maxSpeed": maxspeed,
+                        "accel": accel,
+                        "decel": "4.5",
+                        "emergencyDecel": "7.0",
+                        "length": length,
+                        "guiShape": shape,
+                        "tau": tau,
+                        "jmDriveAfterYellowTime": jm,
+                    },
+                )
 
         # Corridor Routes
         routes = [
@@ -143,7 +147,7 @@ class CurriculumDemandGenerator:
         dur = cfg.duration_s
         self._add_flow(root, f"{cfg.stage_id}_art_mc", "motorcycle", "corridor_full", 0, dur, art_mc)
         self._add_flow(root, f"{cfg.stage_id}_art_car", "car", "corridor_full", 0, dur, art_car)
-        self._add_flow(root, f"{cfg.stage_id}_art_bus", "bus", "corridor_full", 0, dur, art_bus)
+        self._add_flow(root, f"{cfg.stage_id}_art_bus", bus_type_id, "corridor_full", 0, dur, art_bus)
         self._add_flow(root, f"{cfg.stage_id}_cross_mc", "motorcycle", "madiwala_cross", 0, dur, cross_mc)
         self._add_flow(root, f"{cfg.stage_id}_cross_car", "car", "madiwala_cross", 0, dur, cross_car)
 

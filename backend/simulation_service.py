@@ -53,6 +53,43 @@ from traffic_service.state_extractor import IntersectionState
 logger = logging.getLogger("simulation_service")
 
 
+APPROVED_MARL_CHECKPOINTS = {
+    "marl_ppo": ("checkpoints/p6/ppo_stage_a_best.json", "ppo"),
+    "marl_dqn": ("checkpoints/p6/dqn_stage_a_best.json", "dqn"),
+}
+
+
+def resolve_checkpoint_path(mode: str, checkpoint_path: Optional[str]) -> Optional[Path]:
+    """Validate an explicit checkpoint against the small API allowlist."""
+    if checkpoint_path is None:
+        return None
+    mode_key = mode.lower()
+    approved = APPROVED_MARL_CHECKPOINTS.get(mode_key)
+    if approved is None:
+        raise ValueError("checkpoint_path is supported only for marl_ppo and marl_dqn modes")
+    allowed_relative_path, expected_algorithm = approved
+    if checkpoint_path.replace("\\", "/") != allowed_relative_path:
+        raise ValueError(f"checkpoint_path is not approved for {mode_key}")
+
+    project_root = BASE_DIR.resolve()
+    approved_directory = (project_root / "checkpoints" / "p6").resolve()
+    resolved = (project_root / allowed_relative_path).resolve()
+    if not approved_directory.is_relative_to(project_root) or not resolved.is_relative_to(approved_directory):
+        raise ValueError("checkpoint_path resolves outside the approved checkpoint directory")
+    if not resolved.is_file():
+        raise ValueError(f"Approved checkpoint does not exist: {allowed_relative_path}")
+    try:
+        with resolved.open("r", encoding="utf-8") as checkpoint_file:
+            checkpoint_data = json.load(checkpoint_file)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"Approved checkpoint is unreadable or invalid JSON: {allowed_relative_path}") from exc
+    if not isinstance(checkpoint_data, dict) or checkpoint_data.get("algorithm") != expected_algorithm:
+        raise ValueError(
+            f"Checkpoint algorithm must be '{expected_algorithm}' for mode '{mode_key}'"
+        )
+    return resolved
+
+
 class StartupStatus(str, Enum):
     REQUESTED = "REQUESTED"
     STARTING = "STARTING"
@@ -389,6 +426,7 @@ class SimulationService:
         enable_emergency: bool = True,
         gui: bool = False,
         startup_timeout_s: float = 10.0,
+        checkpoint_path: Optional[str] = None,
     ) -> StartupResult:
         """
         Starts a new simulation run in the background thread with synchronous
@@ -396,6 +434,7 @@ class SimulationService:
         or startup_timeout_s expires.
         """
         start_request_time = time.time()
+        resolved_checkpoint_path = resolve_checkpoint_path(mode, checkpoint_path)
         with self._lock:
             # Check if active simulation exists, previous worker is still terminating, or startup in progress
             if (
@@ -475,6 +514,7 @@ class SimulationService:
             # Spawn Worker Thread
             self._thread = threading.Thread(
                 target=self._run_simulation_worker,
+                args=(resolved_checkpoint_path,) if resolved_checkpoint_path is not None else (),
                 daemon=True,
                 name="SumoSimulationWorker",
             )
@@ -758,7 +798,7 @@ class SimulationService:
     # Worker Thread
     # ------------------------------------------------------------------
 
-    def _run_simulation_worker(self) -> None:
+    def _run_simulation_worker(self, checkpoint_path: Optional[Path] = None) -> None:
         """Internal background worker running the SUMO simulation loop."""
         start_worker_time = time.time()
         session_uuid = self._current_run_uuid
@@ -799,6 +839,7 @@ class SimulationService:
                 decision_interval=self._decision_interval,
                 enable_emergency=self._enable_emergency,
                 on_process_spawned=self._on_process_spawned,
+                checkpoint_path=checkpoint_path,
             )
             with self._lock:
                 # Cancel if shutdown or session replaced before connection
@@ -1017,9 +1058,26 @@ class SimulationService:
         sim_time: float,
     ) -> Dict[str, Any]:
         """Calculates consolidated corridor metrics from states and collector."""
-        summary = sim.metrics_collector.compute_summary()
-        total_veh = sum(st.vehicle_count for st in states.values())
-        mean_speed = sum(st.average_speed_kmh for st in states.values()) / max(1, len(states))
+        emergency_metrics = sim.emergency_coordinator.metrics
+        emergency_duration = (
+            emergency_metrics.total_traversal_duration
+            if emergency_metrics.completed
+            else None
+        )
+        summary = sim.metrics_collector.compute_summary(
+            emergency_duration=emergency_duration,
+            emergency_cleared=emergency_metrics.completed,
+        )
+        # SUMO's network-wide count is sampled once per step by the collector.
+        # Junction approach vehicle counts can overlap and omit vehicles outside
+        # those approach lanes, so they are not an active-network denominator.
+        total_veh = summary.current_active_vehicles
+        speed_vehicle_count = sum(st.vehicle_count for st in states.values())
+        mean_speed = (
+            sum(st.average_speed_kmh * st.vehicle_count for st in states.values()) / speed_vehicle_count
+            if speed_vehicle_count > 0
+            else None
+        )
         mean_q = sum(st.total_queue for st in states.values()) / max(1, len(states))
         max_q = max((st.total_queue for st in states.values()), default=0)
         total_wait = sum(st.total_waiting_time for st in states.values())
@@ -1028,14 +1086,22 @@ class SimulationService:
             "simulation_time": sim_time,
             "total_vehicles": total_veh,
             "throughput_vehicles": summary.total_corridor_trips_completed,
-            "mean_speed_kmh": round(mean_speed, 2),
+            "mean_corridor_travel_time_s": summary.mean_corridor_travel_time_s,
+            "mean_speed_kmh": round(mean_speed, 2) if mean_speed is not None else None,
             "total_corridor_waiting_time_s": round(total_wait, 2),
+            "mean_instantaneous_waiting_time_s": summary.mean_instantaneous_waiting_time_s,
+            "cumulative_delay_veh_s": summary.cumulative_delay_veh_s,
+            "cumulative_waiting_time_s": summary.cumulative_delay_veh_s,
             "mean_corridor_queue": round(mean_q, 2),
             "max_corridor_queue": max_q,
             "total_co2_kg": round(summary.total_co2_kg, 4),
             "total_nox_g": round(summary.total_nox_g, 4),
             "total_fuel_liters": round(summary.total_fuel_liters, 4),
-            "emergency_traversal_duration_s": round(summary.emergency_traversal_duration_s, 2) if summary.emergency_traversal_duration_s is not None else 0.0,
+            "emergency_traversal_duration_s": (
+                round(summary.emergency_traversal_duration_s, 2)
+                if summary.emergency_traversal_duration_s is not None
+                else None
+            ),
             "junction_queues": {j: st.total_queue for j, st in states.items()},
         }
 
@@ -1099,6 +1165,8 @@ class SimulationService:
         if metrics.completed and self._emergency_events:
             self._emergency_events[-1].completed = True
             self._emergency_events[-1].preemption_active = False
+            self._emergency_events[-1].arrival_time = metrics.j1_arrival_time
+            self._emergency_events[-1].clearance_time = metrics.j3_clearance_time
             self._emergency_events[-1].traversal_duration = metrics.total_traversal_duration
 
     def _run_marl_with_logging(
@@ -1810,16 +1878,19 @@ class SimulationService:
                 return self._cached_metrics
             return {
                 "simulation_time": self._current_sim_time,
-                "total_vehicles": 0,
-                "throughput_vehicles": 0,
-                "mean_speed_kmh": 0.0,
-                "total_corridor_waiting_time_s": 0.0,
+                "total_vehicles": None,
+                "throughput_vehicles": None,
+                "mean_speed_kmh": None,
+                "total_corridor_waiting_time_s": None,
+                "mean_instantaneous_waiting_time_s": None,
+                "cumulative_delay_veh_s": None,
+                "cumulative_waiting_time_s": None,
                 "mean_corridor_queue": 0.0,
                 "max_corridor_queue": 0,
-                "total_co2_kg": 0.0,
-                "total_nox_g": 0.0,
-                "total_fuel_liters": 0.0,
-                "emergency_traversal_duration_s": 0.0,
+                "total_co2_kg": None,
+                "total_nox_g": None,
+                "total_fuel_liters": None,
+                "emergency_traversal_duration_s": None,
                 "junction_queues": {"J1": 0, "J2": 0, "J3": 0},
             }
 

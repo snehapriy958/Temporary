@@ -1,0 +1,3517 @@
+{
+  "database_url": "sqlite:///./demo_audit_disposable.db",
+  "runs_in_required_order": [
+    "baseline",
+    "coordinated",
+    "marl_ppo",
+    "marl_dqn",
+    "coordinated_emergency"
+  ],
+  "unique_run_ids": true,
+  "all_runs_passed": true,
+  "runs": [
+    {
+      "run_id": "run_fb614964df16",
+      "mode": "baseline",
+      "checkpoint_path": null,
+      "request": {
+        "mode": "baseline",
+        "duration": 120,
+        "seed": 99,
+        "step_length": 1.0,
+        "decision_interval": 5.0,
+        "enable_emergency": false,
+        "gui": false,
+        "startup_timeout_s": 20.0
+      },
+      "start_http_status": 200,
+      "start_wall_time_epoch": 1793886906.75885,
+      "finish_wall_time_epoch": 1793886913.2776453,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 120.0,
+        "duration": 120,
+        "mode": "baseline",
+        "seed": 99,
+        "controller": "Fixed-Time Baseline",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_fb614964df16",
+        "sequence_number": 122
+      },
+      "metrics": {
+        "simulation_time": 120.0,
+        "total_vehicles": 40,
+        "throughput_vehicles": 0,
+        "mean_corridor_travel_time_s": null,
+        "mean_speed_kmh": 16.66,
+        "total_corridor_waiting_time_s": 728.0,
+        "mean_instantaneous_waiting_time_s": 260.73333333333335,
+        "cumulative_delay_veh_s": 986.0,
+        "cumulative_waiting_time_s": 986.0,
+        "mean_corridor_queue": 9.0,
+        "max_corridor_queue": 17,
+        "total_co2_kg": 5.9143,
+        "total_nox_g": 4.3877,
+        "total_fuel_liters": 2.5504,
+        "emergency_traversal_duration_s": null,
+        "junction_queues": {
+          "J1": 4.0,
+          "J2": 6.0,
+          "J3": 17.0
+        }
+      },
+      "live_status": "STOPPED",
+      "junction_phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "junction_traffic_samples": {
+        "J1": {
+          "vehicle_count_max": 7,
+          "positive_speed_samples": 88
+        },
+        "J2": {
+          "vehicle_count_max": 33,
+          "positive_speed_samples": 120
+        },
+        "J3": {
+          "vehicle_count_max": 19,
+          "positive_speed_samples": 81
+        }
+      },
+      "positive_vehicle_motion_observed": true,
+      "marl_action_dispatch_count": 0,
+      "marl_dispatch_included_all_junctions": null,
+      "checkpoint_weights_exact_match": null,
+      "sumo_pid": 29900,
+      "sumo_return_code": 1,
+      "sumo_process_reaped": true,
+      "backend_simulation_cleared": true,
+      "backend_pid_cleared": true,
+      "worker_stopped": true,
+      "sumo_manager_not_running": true,
+      "result": "PASSED"
+    },
+    {
+      "run_id": "run_efe5e152f772",
+      "mode": "coordinated",
+      "checkpoint_path": null,
+      "request": {
+        "mode": "coordinated",
+        "duration": 120,
+        "seed": 99,
+        "step_length": 1.0,
+        "decision_interval": 5.0,
+        "enable_emergency": false,
+        "gui": false,
+        "startup_timeout_s": 20.0
+      },
+      "start_http_status": 200,
+      "start_wall_time_epoch": 1793886913.2776735,
+      "finish_wall_time_epoch": 1793886919.7005672,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 120.0,
+        "duration": 120,
+        "mode": "coordinated",
+        "seed": 99,
+        "controller": "Coordinated Adaptive (Inflow-Aware + Green Wave)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_efe5e152f772",
+        "sequence_number": 122
+      },
+      "metrics": {
+        "simulation_time": 120.0,
+        "total_vehicles": 25,
+        "throughput_vehicles": 11,
+        "mean_corridor_travel_time_s": 53.45454545454545,
+        "mean_speed_kmh": 43.19,
+        "total_corridor_waiting_time_s": 66.0,
+        "mean_instantaneous_waiting_time_s": 66.56666666666666,
+        "cumulative_delay_veh_s": 485.0,
+        "cumulative_waiting_time_s": 485.0,
+        "mean_corridor_queue": 1.0,
+        "max_corridor_queue": 3,
+        "total_co2_kg": 5.4427,
+        "total_nox_g": 4.4701,
+        "total_fuel_liters": 2.3463,
+        "emergency_traversal_duration_s": null,
+        "junction_queues": {
+          "J1": 0.0,
+          "J2": 3.0,
+          "J3": 0.0
+        }
+      },
+      "live_status": "STOPPED",
+      "junction_phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "junction_traffic_samples": {
+        "J1": {
+          "vehicle_count_max": 4,
+          "positive_speed_samples": 71
+        },
+        "J2": {
+          "vehicle_count_max": 23,
+          "positive_speed_samples": 120
+        },
+        "J3": {
+          "vehicle_count_max": 11,
+          "positive_speed_samples": 89
+        }
+      },
+      "positive_vehicle_motion_observed": true,
+      "marl_action_dispatch_count": 0,
+      "marl_dispatch_included_all_junctions": null,
+      "checkpoint_weights_exact_match": null,
+      "sumo_pid": 29796,
+      "sumo_return_code": 1,
+      "sumo_process_reaped": true,
+      "backend_simulation_cleared": true,
+      "backend_pid_cleared": true,
+      "worker_stopped": true,
+      "sumo_manager_not_running": true,
+      "result": "PASSED"
+    },
+    {
+      "run_id": "run_1a35f7bc4f26",
+      "mode": "marl_ppo",
+      "checkpoint_path": "checkpoints/p6/ppo_stage_a_best.json",
+      "request": {
+        "mode": "marl_ppo",
+        "duration": 90,
+        "seed": 99,
+        "step_length": 1.0,
+        "decision_interval": 5.0,
+        "enable_emergency": false,
+        "gui": false,
+        "startup_timeout_s": 20.0,
+        "checkpoint_path": "checkpoints/p6/ppo_stage_a_best.json"
+      },
+      "start_http_status": 200,
+      "start_wall_time_epoch": 1793886919.7006035,
+      "finish_wall_time_epoch": 1793886929.3678207,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 90.0,
+        "duration": 90,
+        "mode": "marl_ppo",
+        "seed": 99,
+        "controller": "MARL Proximal Policy Optimization (PPO Corridor)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_1a35f7bc4f26",
+        "sequence_number": 92
+      },
+      "metrics": {
+        "simulation_time": 90.0,
+        "total_vehicles": 25,
+        "throughput_vehicles": 4,
+        "mean_corridor_travel_time_s": 63.0,
+        "mean_speed_kmh": 25.96,
+        "total_corridor_waiting_time_s": 230.0,
+        "mean_instantaneous_waiting_time_s": 94.03333333333333,
+        "cumulative_delay_veh_s": 392.0,
+        "cumulative_waiting_time_s": 392.0,
+        "mean_corridor_queue": 4.33,
+        "max_corridor_queue": 13,
+        "total_co2_kg": 3.457,
+        "total_nox_g": 2.7803,
+        "total_fuel_liters": 1.4904,
+        "emergency_traversal_duration_s": null,
+        "junction_queues": {
+          "J1": 0.0,
+          "J2": 13.0,
+          "J3": 0.0
+        }
+      },
+      "live_status": "STOPPED",
+      "junction_phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2
+        ],
+        "J3": [
+          0,
+          1,
+          2
+        ]
+      },
+      "junction_traffic_samples": {
+        "J1": {
+          "vehicle_count_max": 7,
+          "positive_speed_samples": 64
+        },
+        "J2": {
+          "vehicle_count_max": 25,
+          "positive_speed_samples": 90
+        },
+        "J3": {
+          "vehicle_count_max": 5,
+          "positive_speed_samples": 72
+        }
+      },
+      "positive_vehicle_motion_observed": true,
+      "marl_action_dispatch_count": 19,
+      "marl_dispatch_included_all_junctions": true,
+      "checkpoint_weights_exact_match": true,
+      "sumo_pid": 29864,
+      "sumo_return_code": 1,
+      "sumo_process_reaped": true,
+      "backend_simulation_cleared": true,
+      "backend_pid_cleared": true,
+      "worker_stopped": true,
+      "sumo_manager_not_running": true,
+      "result": "PASSED"
+    },
+    {
+      "run_id": "run_0d9af81f54b7",
+      "mode": "marl_dqn",
+      "checkpoint_path": "checkpoints/p6/dqn_stage_a_best.json",
+      "request": {
+        "mode": "marl_dqn",
+        "duration": 90,
+        "seed": 99,
+        "step_length": 1.0,
+        "decision_interval": 5.0,
+        "enable_emergency": false,
+        "gui": false,
+        "startup_timeout_s": 20.0,
+        "checkpoint_path": "checkpoints/p6/dqn_stage_a_best.json"
+      },
+      "start_http_status": 200,
+      "start_wall_time_epoch": 1793886929.3829002,
+      "finish_wall_time_epoch": 1793886935.1042073,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 90.0,
+        "duration": 90,
+        "mode": "marl_dqn",
+        "seed": 99,
+        "controller": "MARL Deep Q-Network (Double-DQN Corridor)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_0d9af81f54b7",
+        "sequence_number": 92
+      },
+      "metrics": {
+        "simulation_time": 90.0,
+        "total_vehicles": 17,
+        "throughput_vehicles": 9,
+        "mean_corridor_travel_time_s": 48.888888888888886,
+        "mean_speed_kmh": 38.47,
+        "total_corridor_waiting_time_s": 35.0,
+        "mean_instantaneous_waiting_time_s": 59.71111111111111,
+        "cumulative_delay_veh_s": 299.0,
+        "cumulative_waiting_time_s": 299.0,
+        "mean_corridor_queue": 1.67,
+        "max_corridor_queue": 4,
+        "total_co2_kg": 3.5639,
+        "total_nox_g": 2.9548,
+        "total_fuel_liters": 1.5367,
+        "emergency_traversal_duration_s": null,
+        "junction_queues": {
+          "J1": 1.0,
+          "J2": 4.0,
+          "J3": 0.0
+        }
+      },
+      "live_status": "STOPPED",
+      "junction_phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "junction_traffic_samples": {
+        "J1": {
+          "vehicle_count_max": 4,
+          "positive_speed_samples": 61
+        },
+        "J2": {
+          "vehicle_count_max": 25,
+          "positive_speed_samples": 90
+        },
+        "J3": {
+          "vehicle_count_max": 12,
+          "positive_speed_samples": 49
+        }
+      },
+      "positive_vehicle_motion_observed": true,
+      "marl_action_dispatch_count": 19,
+      "marl_dispatch_included_all_junctions": true,
+      "checkpoint_weights_exact_match": true,
+      "sumo_pid": 25496,
+      "sumo_return_code": 1,
+      "sumo_process_reaped": true,
+      "backend_simulation_cleared": true,
+      "backend_pid_cleared": true,
+      "worker_stopped": true,
+      "sumo_manager_not_running": true,
+      "result": "PASSED"
+    },
+    {
+      "run_id": "run_1af685465fd3",
+      "mode": "coordinated",
+      "checkpoint_path": null,
+      "request": {
+        "mode": "coordinated",
+        "duration": 500,
+        "seed": 42,
+        "step_length": 1.0,
+        "decision_interval": 5.0,
+        "enable_emergency": true,
+        "gui": false,
+        "startup_timeout_s": 20.0
+      },
+      "start_http_status": 200,
+      "start_wall_time_epoch": 1793886935.1175997,
+      "finish_wall_time_epoch": 1793886962.187294,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 500.0,
+        "duration": 500,
+        "mode": "coordinated",
+        "seed": 42,
+        "controller": "Coordinated Adaptive (Inflow-Aware + Green Wave)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_1af685465fd3",
+        "sequence_number": 502
+      },
+      "metrics": {
+        "simulation_time": 500.0,
+        "total_vehicles": 37,
+        "throughput_vehicles": 92,
+        "mean_corridor_travel_time_s": 54.76086956521739,
+        "mean_speed_kmh": 25.85,
+        "total_corridor_waiting_time_s": 780.0,
+        "mean_instantaneous_waiting_time_s": 296.308,
+        "cumulative_delay_veh_s": 5977.0,
+        "cumulative_waiting_time_s": 5977.0,
+        "mean_corridor_queue": 3.33,
+        "max_corridor_queue": 10,
+        "total_co2_kg": 38.9631,
+        "total_nox_g": 31.8026,
+        "total_fuel_liters": 16.8141,
+        "emergency_traversal_duration_s": 37.0,
+        "junction_queues": {
+          "J1": 0.0,
+          "J2": 10.0,
+          "J3": 0.0
+        }
+      },
+      "live_status": "STOPPED",
+      "junction_phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "junction_traffic_samples": {
+        "J1": {
+          "vehicle_count_max": 6,
+          "positive_speed_samples": 323
+        },
+        "J2": {
+          "vehicle_count_max": 57,
+          "positive_speed_samples": 500
+        },
+        "J3": {
+          "vehicle_count_max": 10,
+          "positive_speed_samples": 472
+        }
+      },
+      "positive_vehicle_motion_observed": true,
+      "marl_action_dispatch_count": 0,
+      "marl_dispatch_included_all_junctions": null,
+      "checkpoint_weights_exact_match": null,
+      "sumo_pid": 26080,
+      "sumo_return_code": 1,
+      "sumo_process_reaped": true,
+      "backend_simulation_cleared": true,
+      "backend_pid_cleared": true,
+      "worker_stopped": true,
+      "sumo_manager_not_running": true,
+      "emergency_observations": [
+        {
+          "simulation_time_s": 421.0,
+          "stage": "APPROACHING_J1",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#2",
+            "speed_mps": 16.67
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": true,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 422.0,
+          "stage": "APPROACHING_J1",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#2",
+            "speed_mps": 16.234929151069373
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 3,
+              "ryg_state": "yyyyGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 423.0,
+          "stage": "APPROACHING_J1",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": ":1617743335_2",
+            "speed_mps": 16.48681290618144
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 3,
+              "ryg_state": "yyyyGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 3,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 424.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 16.565359546039254
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 3,
+              "ryg_state": "yyyyGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 3,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 425.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 16.139149798853325
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 3,
+              "ryg_state": "yyyyGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 3,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 426.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 16.469657238041982
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 3,
+              "ryg_state": "yyyyGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 3,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 427.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 16.111607653768736
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 428.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 16.584994114683944
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 429.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 15.320215652026523
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 430.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 10.72794286161166
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 431.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 5.727942861611661
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 432.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 0.9139701697142015
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 433.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 0.13073616653391715
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 434.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 0.013694405449430222
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 435.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 0.0009913128817754233
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 436.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 0.0003425202326678412
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 437.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 0.17371375347276555
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 438.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 0.27678562375717763
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 439.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 1.0305098149235254
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 440.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 2.41293117067738
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 441.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 3.806650043930266
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 442.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 6.0120801206466075
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 443.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 7.961011982396932
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 444.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "172853382#3",
+            "speed_mps": 9.698421692797895
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 445.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": ":cluster_10282769895_10775075568_11964440742_11964440743_9",
+            "speed_mps": 11.023462875637668
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 446.0,
+          "stage": "J1_TO_J2",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": ":cluster_10282769895_10775075568_11964440742_11964440743_9",
+            "speed_mps": 12.870129482359067
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 447.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 12.995006586073385
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 448.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 13.201478143060731
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 449.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 13.046279282770394
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 450.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 12.860064958159862
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 451.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 12.649221900470144
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 452.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 13.22226059292185
+          },
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 453.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 12.491454565549278
+          },
+          "signals": {
+            "J1": {
+              "phase": 3,
+              "ryg_state": "rryyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 3,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 454.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 12.940659731598753
+          },
+          "signals": {
+            "J1": {
+              "phase": 3,
+              "ryg_state": "rryyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 3,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 455.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 13.598533186323925
+          },
+          "signals": {
+            "J1": {
+              "phase": 3,
+              "ryg_state": "rryyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 3,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 456.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "1148717038#0",
+            "speed_mps": 12.655317748423212
+          },
+          "signals": {
+            "J1": {
+              "phase": 3,
+              "ryg_state": "rryyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 3,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 457.0,
+          "stage": "J2_TO_J3",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": ":6970466614_3",
+            "speed_mps": 12.373722532086257
+          },
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": true,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": false,
+          "traversal_duration_s": 0.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 458.0,
+          "stage": "CLEARED",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "40696223#1",
+            "speed_mps": 13.039433330376001
+          },
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 459.0,
+          "stage": "CLEARED",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "40696223#1",
+            "speed_mps": 12.640190006653532
+          },
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 460.0,
+          "stage": "CLEARED",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "40696223#1",
+            "speed_mps": 12.697527526197968
+          },
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 461.0,
+          "stage": "CLEARED",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "40696223#1",
+            "speed_mps": 13.398161012089066
+          },
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 462.0,
+          "stage": "CLEARED",
+          "vehicle": {
+            "id": "ambulance_0",
+            "edge": "40696223#1",
+            "speed_mps": 12.592823907466288
+          },
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 463.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 464.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 465.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 0,
+              "ryg_state": "rrrrGGGGgGgGg",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 0,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 466.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 1,
+              "ryg_state": "rrrrGyyyyyyyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 1,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 467.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 1,
+              "ryg_state": "rrrrGyyyyyyyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 1,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 468.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 1,
+              "ryg_state": "rrrrGyyyyyyyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 1,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 469.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 1,
+              "ryg_state": "rrrrGyyyyyyyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 1,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 470.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 471.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 472.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 473.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 474.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 475.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 0,
+              "ryg_state": "GGrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 476.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 1,
+              "ryg_state": "yyrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 1,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 477.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 1,
+              "ryg_state": "yyrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 1,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 478.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 1,
+              "ryg_state": "yyrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 1,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 479.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 1,
+              "ryg_state": "yyrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 1,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 480.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 481.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 482.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 483.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 484.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 485.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 486.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 2,
+              "ryg_state": "rrrGGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          }
+        },
+        {
+          "simulation_time_s": 487.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 3,
+              "ryg_state": "rrryyyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 3
+          }
+        },
+        {
+          "simulation_time_s": 488.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 3,
+              "ryg_state": "rrryyyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 3
+          }
+        },
+        {
+          "simulation_time_s": 489.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 3,
+              "ryg_state": "rrryyyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 3
+          }
+        },
+        {
+          "simulation_time_s": 490.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 3,
+              "ryg_state": "rrryyyy",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 3
+          }
+        },
+        {
+          "simulation_time_s": 491.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 492.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 493.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 494.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 495.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 496.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 497.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 498.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 499.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        },
+        {
+          "simulation_time_s": 500.0,
+          "stage": "CLEARED",
+          "vehicle": null,
+          "signals": {
+            "J1": {
+              "phase": 2,
+              "ryg_state": "rrGGG",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J2": {
+              "phase": 2,
+              "ryg_state": "GgGGGrrrrrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            },
+            "J3": {
+              "phase": 0,
+              "ryg_state": "GGGrrrr",
+              "emergency_locked": false,
+              "conflicting_approach_green_lanes": []
+            }
+          },
+          "completed": true,
+          "traversal_duration_s": 37.0,
+          "detected_this_step": false,
+          "phase_before_update": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 0
+          }
+        }
+      ],
+      "route_edges_seen": [
+        "172853382#2",
+        "172853382#3",
+        "1148717038#0",
+        "40696223#1"
+      ],
+      "priority_green_events": {
+        "J1": {
+          "simulation_time_s": 421.0,
+          "phase": 2,
+          "ryg_state": "rrGGG",
+          "vehicle_edge": "172853382#2",
+          "phase_before_update": 2,
+          "conflicting_approach_green_lanes": [],
+          "yellow_seen_before_priority": false
+        },
+        "J2": {
+          "simulation_time_s": 427.0,
+          "phase": 0,
+          "ryg_state": "rrrrGGGGgGgGg",
+          "vehicle_edge": "172853382#3",
+          "phase_before_update": 0,
+          "conflicting_approach_green_lanes": [],
+          "yellow_seen_before_priority": true
+        },
+        "J3": {
+          "simulation_time_s": 447.0,
+          "phase": 2,
+          "ryg_state": "rrrGGGG",
+          "vehicle_edge": "1148717038#0",
+          "phase_before_update": 2,
+          "conflicting_approach_green_lanes": [],
+          "yellow_seen_before_priority": false
+        }
+      },
+      "normal_control_after_release": [
+        {
+          "simulation_time_s": 460.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 47
+        },
+        {
+          "simulation_time_s": 465.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 48
+        },
+        {
+          "simulation_time_s": 470.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 48
+        },
+        {
+          "simulation_time_s": 475.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 49
+        },
+        {
+          "simulation_time_s": 480.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 49
+        },
+        {
+          "simulation_time_s": 485.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 49
+        },
+        {
+          "simulation_time_s": 490.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 49
+        },
+        {
+          "simulation_time_s": 495.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 49
+        },
+        {
+          "simulation_time_s": 500.0,
+          "locks": {
+            "J1": false,
+            "J2": false,
+            "J3": false
+          },
+          "decision_log_count": 50
+        }
+      ],
+      "emergency_api": {
+        "active_emergency": false,
+        "emergency_locked_junctions": [],
+        "total_completed_events": 1,
+        "active_vehicle_id": null,
+        "events": [
+          {
+            "id": null,
+            "simulation_time": 421.0,
+            "vehicle_id": "ambulance_0",
+            "affected_corridor": "Hosur Road (J1 -> J2 -> J3)",
+            "preemption_active": false,
+            "arrival_time": 421.0,
+            "clearance_time": 458.0,
+            "traversal_duration": 37.0,
+            "completed": true
+          }
+        ]
+      },
+      "ambulance_route_complete": true,
+      "priority_green_at_all_junctions": true,
+      "no_conflicting_green": true,
+      "yellow_clearance_observed_at_j2": true,
+      "normal_control_resumed": true,
+      "result": "PASSED"
+    }
+  ],
+  "sumo_shutdown_source_finding": {
+    "traci_close_wait_false": true,
+    "manager_terminates_process_if_still_running": true,
+    "source_file": "traffic_service/sumo_manager.py",
+    "process_return_codes": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "processes_reaped": true,
+    "backend_reported_errors": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "overall": "PASSED"
+}

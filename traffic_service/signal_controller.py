@@ -38,6 +38,8 @@ class SignalController:
 
         self.emergency_locked: bool = False
         self.emergency_priority_phase: Optional[int] = None
+        self._last_phase: Optional[int] = None
+        self._phase_start_time: float = 0.0
 
     def get_phase(self) -> int:
         """Returns the current active phase."""
@@ -57,14 +59,13 @@ class SignalController:
         return p in self.yellow_transitions.values()
 
     def get_green_elapsed(self, sim_time: float) -> float:
-        """Calculates elapsed seconds in current phase."""
-        try:
-            next_switch = traci.trafficlight.getNextSwitch(self.tls_id)
-            phase_duration = traci.trafficlight.getPhaseDuration(self.tls_id)
-            remaining = max(0.0, next_switch - sim_time)
-            return max(0.0, phase_duration - remaining)
-        except traci.TraCIException:
+        """Calculates elapsed seconds in current phase using monotonic start time tracking."""
+        curr_phase = self.get_phase()
+        if self._last_phase is None or curr_phase != self._last_phase:
+            self._last_phase = curr_phase
+            self._phase_start_time = sim_time
             return 0.0
+        return max(0.0, sim_time - self._phase_start_time)
 
     def can_switch(self, sim_time: float) -> bool:
         """Returns True if the current phase is green and has met min_green."""
@@ -95,6 +96,8 @@ class SignalController:
             if yellow_phase is not None:
                 traci.trafficlight.setPhase(self.tls_id, yellow_phase)
                 traci.trafficlight.setPhaseDuration(self.tls_id, self.yellow_duration)
+                self._last_phase = yellow_phase
+                self._phase_start_time = sim_time
                 return True
 
         # If already in yellow, let SUMO complete the natural yellow transition

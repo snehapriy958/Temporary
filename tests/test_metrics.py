@@ -5,6 +5,8 @@ Unit tests for corridor metrics aggregation, trip traversal times, and emission 
 """
 
 import pytest
+import traci
+from backend.schemas import TrafficMetricsResponse
 from traffic_service.corridor_metrics import (
     CorridorMetricsCollector,
     CorridorMetricsSummary,
@@ -103,6 +105,75 @@ def test_metrics_accumulation():
     assert summary.j3_mean_queue == 4.0
     assert pytest.approx(summary.total_co2_kg, 0.0001) == 0.0052
     assert pytest.approx(summary.total_fuel_liters, 0.0001) == 0.0042
+
+
+def test_network_active_count_and_completed_trip_are_sampled_once(monkeypatch):
+    """Network count is current, and a vehicle on the exit edge counts once."""
+    edge_vehicles = {"172853382#2": ["veh-1"], "40696223#1": []}
+    active_counts = iter([7, 6, 5])
+
+    monkeypatch.setattr(
+        traci.edge,
+        "getLastStepVehicleIDs",
+        lambda edge_id: edge_vehicles.get(edge_id, []),
+    )
+    monkeypatch.setattr(traci.vehicle, "getIDCount", lambda: next(active_counts))
+    monkeypatch.setattr(
+        traci.edge,
+        "getCO2Emission",
+        lambda edge_id: 1000.0 if edge_id == "172853382#2" else 0.0,
+    )
+    monkeypatch.setattr(
+        traci.edge,
+        "getNOxEmission",
+        lambda edge_id: 0.0,
+    )
+    monkeypatch.setattr(
+        traci.edge,
+        "getFuelConsumption",
+        lambda edge_id: 750.0 if edge_id == "172853382#2" else 0.0,
+    )
+
+    collector = CorridorMetricsCollector(step_length=0.5)
+    collector.record_step(0.5, {})
+    edge_vehicles.update({"172853382#2": [], "40696223#1": ["veh-1"]})
+    collector.record_step(1.0, {})
+    collector.record_step(1.5, {})
+
+    summary = collector.compute_summary()
+    assert collector.step_records[-1]["active_vehicles"] == 5
+    assert summary.current_active_vehicles == 5
+    assert summary.total_corridor_trips_completed == 1
+    assert summary.total_co2_kg == pytest.approx(0.0015)
+    assert summary.total_fuel_liters == pytest.approx(0.0015)
+    assert CorridorMetricsCollector().compute_summary().current_active_vehicles is None
+
+
+def test_unavailable_dashboard_metrics_serialize_as_null():
+    response = TrafficMetricsResponse(
+        simulation_time=0.0,
+        total_vehicles=None,
+        throughput_vehicles=None,
+        mean_speed_kmh=None,
+        mean_instantaneous_waiting_time_s=None,
+        cumulative_delay_veh_s=None,
+        total_co2_kg=None,
+        total_fuel_liters=None,
+        mean_corridor_queue=0.0,
+        max_corridor_queue=0,
+    )
+
+    payload = response.model_dump()
+    for key in (
+        "total_vehicles",
+        "throughput_vehicles",
+        "mean_speed_kmh",
+        "mean_instantaneous_waiting_time_s",
+        "cumulative_delay_veh_s",
+        "total_co2_kg",
+        "total_fuel_liters",
+    ):
+        assert payload[key] is None
 
 
 def test_fuel_consumption_unit_conversion():

@@ -1,0 +1,88 @@
+INFO:     127.0.0.1:51624 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62285 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60173 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60174 - "GET /api/traffic/live HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60175 - "GET /api/signals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63870 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63159 - "GET /api/emergencies HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63160 - "GET /api/risks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63161 - "GET /api/experiments/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63162 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64854 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49874 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49875 - "GET /api/traffic/live HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49876 - "GET /api/signals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60807 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62800 - "GET /api/emergencies HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62802 - "GET /api/experiments/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62801 - "GET /api/risks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62803 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65515 - "GET /api/simulation/status HTTP/1.1" 200 OK
+***Starting server on port 53402 ***
+Loading net-file from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\network/silk_board.net.xml' ... done (442ms).
+Loading additional-files from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/vehicle_types.add.xml' ... done (13ms).
+Loading route-files incrementally from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/silk_board.rou.xml'
+Loading done.
+Simulation version 1.26.0 started with time: 0.00.
+INFO:     127.0.0.1:53401 - "POST /api/simulation/start HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61870 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64326 - "POST /api/simulation/pause HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58837 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52981 - "GET /api/experiments/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52982 - "GET /api/experiments/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50349 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50350 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50352 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55198 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55197 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59212 - "GET /api/traffic/live HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63581 - "GET /api/signals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63583 - "GET /api/signals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63582 - "GET /api/traffic/live HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59691 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55275 - "GET /api/emergencies HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55276 - "GET /api/risks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55277 - "GET /api/experiments/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57837 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63803 - "GET /api/emergencies HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57922 - "GET /api/risks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57923 - "GET /api/experiments/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55278 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53666 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57924 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53667 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51614 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51616 - "GET /api/signals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51615 - "GET /api/traffic/live HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51617 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56541 - "GET /api/emergencies HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56542 - "GET /api/risks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56543 - "GET /api/experiments/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56544 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64509 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62220 - "POST /api/simulation/resume HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61939 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61943 - "GET /api/simulation/status HTTP/1.1" 200 OK
+Simulation ended at time: 600.00.
+Reason: TraCI requested termination.
+Performance:
+ Duration: 551.43s
+ TraCI-Duration: 550.92s
+ Real time factor: 1.08808
+ UPS: 46.675178
+Vehicles:
+ Inserted: 378
+ Running: 28
+ Waiting: 0
+Statistics (avg of 350):
+ RouteLength: 614.31
+ Speed: 9.18
+ Duration: 70.08
+ WaitingTime: 15.98
+ TimeLoss: 31.10
+ DepartDelay: 0.31
+INFO:     127.0.0.1:61944 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63689 - "GET /api/simulation/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63690 - "GET /api/traffic/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63219 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51357 - "GET /api/health HTTP/1.1" 200 OK

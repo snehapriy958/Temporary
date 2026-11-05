@@ -125,7 +125,10 @@ def test_action_routing_keep_switch_extend(monkeypatch):
     assert "KEEP_PHASE_0" in ops_keep["J1"]
 
     # 2. ACTION_SWITCH (1)
-    ctrl._green_start_time = 0.0
+    # Seed the phase timer used by the current SignalController implementation.
+    # The old _green_start_time field is no longer read by get_green_elapsed().
+    ctrl._last_phase = 0
+    ctrl._phase_start_time = 0.0
     decisions_switch = {"J1": {"action": ACTION_SWITCH, "action_name": "SWITCH", "target_phase": 2, "current_phase": 0}}
     ops_switch = marl.apply_decisions(decisions_switch, sim_time=25.0)
     assert "REQUEST_SWITCH_TARGET_2_OK" in ops_switch["J1"]

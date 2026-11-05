@@ -27,6 +27,7 @@ htmlcov/
 # Environments
 .env
 .venv
+.venv-demo/
 venv/
 ENV/
 env.bak/
@@ -59,3 +60,5 @@ sumo_run_*.xml
 *~
 .DS_Store
 Thumbs.db
+
+.venv-marl-audit/

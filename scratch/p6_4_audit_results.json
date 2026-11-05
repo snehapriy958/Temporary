@@ -1,0 +1,1144 @@
+{
+  "metadata": {
+    "task": "P6.4",
+    "timestamp": "2026-11-05T18:06:57",
+    "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+    "root": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control",
+    "sumocfg": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\sumo\\silk_board\\silk_board.sumocfg"
+  },
+  "phase_b_checkpoint_loading": {
+    "ppo_p6_stage_a_best": {
+      "file": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\ppo_stage_a_best.json",
+      "bytes": 993625,
+      "exists": true,
+      "PASSED": false,
+      "error": "SignalController.__init__() got an unexpected keyword argument 'junction_id'",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\scratch\\p6_4_application_audit.py\", line 82, in run_phase_b\n    j: SignalController(junction_id=j, tls_id=j, num_phases=4)\n       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: SignalController.__init__() got an unexpected keyword argument 'junction_id'\n"
+    },
+    "dqn_p6_stage_a_best": {
+      "file": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\dqn_stage_a_best.json",
+      "bytes": 993529,
+      "exists": true,
+      "PASSED": false,
+      "error": "SignalController.__init__() got an unexpected keyword argument 'junction_id'",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\scratch\\p6_4_application_audit.py\", line 82, in run_phase_b\n    j: SignalController(junction_id=j, tls_id=j, num_phases=4)\n       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: SignalController.__init__() got an unexpected keyword argument 'junction_id'\n"
+    },
+    "ppo_historical_root": {
+      "file": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\marl_ppo_corridor.json",
+      "bytes": 982905,
+      "exists": true,
+      "PASSED": false,
+      "error": "SignalController.__init__() got an unexpected keyword argument 'junction_id'",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\scratch\\p6_4_application_audit.py\", line 82, in run_phase_b\n    j: SignalController(junction_id=j, tls_id=j, num_phases=4)\n       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: SignalController.__init__() got an unexpected keyword argument 'junction_id'\n"
+    },
+    "dqn_historical_root": {
+      "file": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\marl_dqn_corridor.json",
+      "bytes": 982917,
+      "exists": true,
+      "PASSED": false,
+      "error": "SignalController.__init__() got an unexpected keyword argument 'junction_id'",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\scratch\\p6_4_application_audit.py\", line 82, in run_phase_b\n    j: SignalController(junction_id=j, tls_id=j, num_phases=4)\n       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: SignalController.__init__() got an unexpected keyword argument 'junction_id'\n"
+    }
+  },
+  "phase_c_ppo_application": {
+    "algo": "ppo",
+    "checkpoint": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\ppo_stage_a_best.json",
+    "duration_requested": 90,
+    "controller_instantiated": true,
+    "marl_controller_present": true,
+    "marl_algorithm": "ppo",
+    "marl_agents": [
+      "J1",
+      "J2",
+      "J3"
+    ],
+    "all_agents_j1_j2_j3": true,
+    "sumo_started": true,
+    "sim_time_end": 90.0,
+    "steps_executed": 90,
+    "decision_intervals": 18,
+    "all_decisions_logged": [
+      {
+        "sim_time": 1.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      },
+      {
+        "sim_time": 6.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      },
+      {
+        "sim_time": 11.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 16.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 21.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 26.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 31.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 36.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "KEEP_PHASE_0"
+        }
+      },
+      {
+        "sim_time": 41.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 1,
+            "action_name": "SWITCH",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "REQUEST_SWITCH_TARGET_2_OK"
+        }
+      },
+      {
+        "sim_time": 46.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      },
+      {
+        "sim_time": 51.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      },
+      {
+        "sim_time": 56.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 61.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 66.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 1,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 71.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 76.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 81.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 86.0,
+        "decisions": {
+          "J1": {
+            "action": 0,
+            "action_name": "KEEP",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "KEEP_PHASE_2",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      }
+    ],
+    "op_summary": {
+      "KEEP_PHASE_0": 10,
+      "EXTEND_GREEN_OK": 10,
+      "EXTEND_GREEN_REJECTED": 24,
+      "REQUEST_SWITCH_TARGET_2_OK": 1,
+      "KEEP_PHASE_2": 9
+    },
+    "switch_occurred": false,
+    "extend_occurred": false,
+    "keep_occurred": false,
+    "all_junctions_active_per_interval": true,
+    "action_values_seen": [
+      0,
+      1,
+      2
+    ],
+    "actions_in_valid_range": true,
+    "sumo_stopped_cleanly": true,
+    "PASSED": true
+  },
+  "phase_d_dqn_application": {
+    "algo": "dqn",
+    "checkpoint": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\dqn_stage_a_best.json",
+    "duration_requested": 90,
+    "controller_instantiated": true,
+    "marl_controller_present": true,
+    "marl_algorithm": "dqn",
+    "marl_agents": [
+      "J1",
+      "J2",
+      "J3"
+    ],
+    "all_agents_j1_j2_j3": true,
+    "sumo_started": true,
+    "sim_time_end": 90.0,
+    "steps_executed": 90,
+    "decision_intervals": 18,
+    "all_decisions_logged": [
+      {
+        "sim_time": 1.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_OK",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      },
+      {
+        "sim_time": 6.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_OK",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      },
+      {
+        "sim_time": 11.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 16.0,
+        "decisions": {
+          "J1": {
+            "action": 1,
+            "action_name": "SWITCH",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "REQUEST_SWITCH_TARGET_2_OK",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 21.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_OK",
+          "J2": "EXTEND_GREEN_REJECTED",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 26.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 1,
+            "action_name": "SWITCH",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_OK",
+          "J2": "REQUEST_SWITCH_TARGET_2_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 31.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 1,
+            "action_name": "SWITCH",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "REQUEST_SWITCH_TARGET_2_OK"
+        }
+      },
+      {
+        "sim_time": 36.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      },
+      {
+        "sim_time": 41.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      },
+      {
+        "sim_time": 46.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 1,
+            "action_name": "SWITCH",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "REQUEST_SWITCH_TARGET_0_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 51.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 56.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 61.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 66.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 1,
+            "action_name": "SWITCH",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "REQUEST_SWITCH_TARGET_2_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 71.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 76.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 81.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_REJECTED",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      },
+      {
+        "sim_time": 86.0,
+        "decisions": {
+          "J1": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J2": {
+            "action": 1,
+            "action_name": "SWITCH",
+            "target_phase": 0,
+            "is_fallback": false
+          },
+          "J3": {
+            "action": 2,
+            "action_name": "EXTEND",
+            "target_phase": 2,
+            "is_fallback": false
+          }
+        },
+        "executed_ops": {
+          "J1": "EXTEND_GREEN_OK",
+          "J2": "REQUEST_SWITCH_TARGET_0_OK",
+          "J3": "EXTEND_GREEN_REJECTED"
+        }
+      }
+    ],
+    "op_summary": {
+      "EXTEND_GREEN_OK": 21,
+      "EXTEND_GREEN_REJECTED": 27,
+      "REQUEST_SWITCH_TARGET_2_OK": 4,
+      "REQUEST_SWITCH_TARGET_0_OK": 2
+    },
+    "switch_occurred": false,
+    "extend_occurred": false,
+    "keep_occurred": false,
+    "all_junctions_active_per_interval": true,
+    "action_values_seen": [
+      1,
+      2
+    ],
+    "actions_in_valid_range": true,
+    "sumo_stopped_cleanly": true,
+    "PASSED": true
+  },
+  "phase_e_safety": {
+    "signal_controller_min_green_enforced": true,
+    "signal_controller_max_green_enforced": true,
+    "signal_controller_yellow_clearance": true,
+    "signal_controller_request_switch_exists": true,
+    "signal_controller_extend_green_exists": true,
+    "marl_apply_decisions_uses_signal_controller": true,
+    "marl_uses_action_mask": true,
+    "marl_uses_starvation_tracker": true,
+    "marl_eval_mode_enforced": true,
+    "starvation_max_red_threshold_s": true,
+    "starvation_emergency_lock_checked": true,
+    "min_green_default_value": "NOT_FOUND",
+    "max_green_default_value": "NOT_FOUND",
+    "yellow_phase_in_signal_controller": true,
+    "PASSED": true
+  }
+}

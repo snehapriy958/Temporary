@@ -1,0 +1,26 @@
+INFO:     Started server process [7744]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57806 - "WebSocket /ws/traffic" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57810 - "WebSocket /ws/traffic" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63407 - "WebSocket /ws/traffic" [accepted]
+INFO:     connection open
+Simulation worker exception (Session: run_f057c364851b): No module named 'torch'
+Traceback (most recent call last):
+  File "C:\Developers\Sneha\Projects\hybrid-traffic-control\backend\simulation_service.py", line 834, in _run_simulation_worker
+    sim = MultiIntersectionSimulation(
+        sumocfg_path=config_path,
+    ...<6 lines>...
+        checkpoint_path=checkpoint_path,
+    )
+  File "C:\Developers\Sneha\Projects\hybrid-traffic-control\traffic_service\multi_intersection_simulation.py", line 151, in __init__
+    from .ai.marl_controller import MARLCorridorController
+  File "C:\Developers\Sneha\Projects\hybrid-traffic-control\traffic_service\ai\__init__.py", line 24, in <module>
+    from .dqn_agent import DQNAgent, ReplayBuffer
+  File "C:\Developers\Sneha\Projects\hybrid-traffic-control\traffic_service\ai\dqn_agent.py", line 15, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Simulation startup FAILED (UUID: run_f057c364851b, duration: 0.37s, reason: Simulation startup failed: No module named 'torch')

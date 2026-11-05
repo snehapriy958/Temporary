@@ -24,6 +24,11 @@ export function SimulationControls({ simStatus, onStatusRefresh }) {
   const handleStart = async () => {
     setLoading(true);
     try {
+      const checkpointPath = mode === 'marl_ppo'
+        ? 'checkpoints/p6/ppo_stage_a_best.json'
+        : mode === 'marl_dqn'
+          ? 'checkpoints/p6/dqn_stage_a_best.json'
+          : undefined;
       const res = await api.startSimulation({
         mode,
         duration: Number(duration),
@@ -32,6 +37,7 @@ export function SimulationControls({ simStatus, onStatusRefresh }) {
         decision_interval: 5.0,
         enable_emergency: enableEmergency,
         gui,
+        checkpoint_path: checkpointPath,
       });
       showNotice('success', res.message || 'Simulation started.');
       if (onStatusRefresh) onStatusRefresh();
@@ -113,7 +119,7 @@ export function SimulationControls({ simStatus, onStatusRefresh }) {
         <div className="flex items-center gap-3 text-xs">
           <span className="text-slate-500">Simulation Time:</span>
           <span className="font-mono font-bold text-slate-900 bg-slate-100 px-2.5 py-1 rounded border border-slate-200">
-            {simStatus?.simulation_time?.toFixed(1) || '0.0'}s / {simStatus?.duration || duration}s
+            {simStatus?.simulation_time?.toFixed(1) || '0.0'}s / {simStatus?.duration ?? duration}s
           </span>
           <span className="text-slate-500 font-mono">({progressPercent}%)</span>
         </div>

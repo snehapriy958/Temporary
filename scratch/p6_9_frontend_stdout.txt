@@ -1,0 +1,22 @@
+
+> smart-traffic-dashboard@1.0.0 dev
+> vite --host 127.0.0.1 --port 5173 --strictPort
+
+
+  VITE v5.4.21  ready in 428 ms
+
+  ➜  Local:   http://127.0.0.1:5173/
+  ➜  press h + enter to show help
+8:08:34 pm [vite] hmr update /src/App.jsx, /src/index.css
+8:08:35 pm [vite] hmr update /src/components/OverviewKPIs.jsx, /src/index.css
+8:08:36 pm [vite] hmr update /src/components/EmissionAnalytics.jsx, /src/index.css
+8:09:32 pm [vite] hmr update /src/components/EmissionAnalytics.jsx, /src/index.css
+8:10:27 pm [vite] hmr update /src/components/OverviewKPIs.jsx, /src/index.css
+8:30:31 pm [vite] hmr update /src/App.jsx, /src/index.css
+8:30:33 pm [vite] hmr update /src/components/EmissionAnalytics.jsx, /src/index.css
+8:30:34 pm [vite] hmr update /src/components/SimulationControls.jsx, /src/index.css
+8:53:43 pm [vite] hmr update /src/components/EmissionAnalytics.jsx, /src/index.css
+9:02:05 pm [vite] hmr update /src/App.jsx, /src/index.css
+9:33:13 pm [vite] hmr update /src/components/OverviewKPIs.jsx, /src/index.css
+9:33:24 pm [vite] page reload src/components/metricComponents.test.js
+9:34:04 pm [vite] page reload src/components/metricComponents.test.js

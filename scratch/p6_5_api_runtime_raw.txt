@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Developers\Sneha\Projects\hybrid-traffic-control\scratch\p6_5_checkpoint_api_audit.py", line 13, in <module>
+    from fastapi.testclient import TestClient
+ModuleNotFoundError: No module named 'fastapi'

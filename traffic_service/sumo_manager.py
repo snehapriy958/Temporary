@@ -206,6 +206,7 @@ class SumoManager:
 
     def stop(self) -> None:
         """Closes the TraCI connection cleanly."""
+        process = self._process
         try:
             if hasattr(traci, "connection") and traci.connection.has(self.label):
                 con = None
@@ -223,20 +224,37 @@ class SumoManager:
 
         if traci.isLoaded():
             try:
-                traci.close()
-            except Exception:
-                pass
+                traci.close(wait=False)
+            except Exception as exc:
+                logger.debug("TraCI global close fallback failed: %s", exc)
 
-        if self._process is not None:
+        if process is not None:
             try:
-                if self._process.poll() is None:
-                    self._process.terminate()
+                if process.poll() is None:
                     try:
-                        self._process.wait(timeout=2.0)
-                    except Exception:
-                        self._process.kill()
-            except Exception:
-                pass
+                        return_code = process.wait(timeout=2.0)
+                        logger.debug(
+                            "SUMO exited after TraCI close (PID %s, return code %s).",
+                            process.pid,
+                            return_code,
+                        )
+                    except subprocess.TimeoutExpired:
+                        logger.warning(
+                            "SUMO PID %s did not exit within 2.0s after TraCI close; terminating.",
+                            process.pid,
+                        )
+                        process.terminate()
+                        try:
+                            process.wait(timeout=2.0)
+                        except subprocess.TimeoutExpired:
+                            logger.error(
+                                "SUMO PID %s did not exit after terminate; killing as final fallback.",
+                                process.pid,
+                            )
+                            process.kill()
+                            process.wait()
+            except Exception as exc:
+                logger.warning("Error while reaping SUMO process PID %s: %s", process.pid, exc)
 
         self._is_running = False
         self._process = None

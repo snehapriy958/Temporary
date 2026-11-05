@@ -1,0 +1,2645 @@
+{
+  "environment": {
+    "python_version": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\.venv-marl-audit\\Scripts\\python.exe",
+    "torch_version": "2.15.0+cpu",
+    "torch_file": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\.venv-marl-audit\\Lib\\site-packages\\torch\\__init__.py",
+    "cuda_available": false,
+    "numpy_version": "2.5.4",
+    "traci_file": "C:\\Program Files (x86)\\Eclipse\\Sumo\\tools\\traci\\__init__.py",
+    "traci_under_sumo": true,
+    "sumolib_file": "C:\\Program Files (x86)\\Eclipse\\Sumo\\tools\\sumolib\\__init__.py",
+    "sumolib_under_sumo": true,
+    "sumo_home": "C:\\Program Files (x86)\\Eclipse\\Sumo"
+  },
+  "phase3_ppo_historical": {
+    "status": "PASSED",
+    "details": {
+      "import": "OK",
+      "instantiation": "OK",
+      "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\marl_ppo_corridor.json",
+      "checkpoint_algorithm": "ppo",
+      "checkpoint_seed": 42,
+      "checkpoint_junctions": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "weight_shapes": {
+        "J1": {
+          "fc1_w": [
+            14,
+            64
+          ],
+          "fc1_b": [
+            64
+          ],
+          "fc2_w": [
+            64,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "actor_fc_w": [
+            64,
+            32
+          ],
+          "actor_fc_b": [
+            32
+          ],
+          "actor_out_w": [
+            32,
+            3
+          ],
+          "actor_out_b": [
+            3
+          ],
+          "critic_fc_w": [
+            64,
+            32
+          ],
+          "critic_fc_b": [
+            32
+          ],
+          "critic_out_w": [
+            32,
+            1
+          ],
+          "critic_out_b": [
+            1
+          ]
+        },
+        "J2": {
+          "fc1_w": [
+            14,
+            64
+          ],
+          "fc1_b": [
+            64
+          ],
+          "fc2_w": [
+            64,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "actor_fc_w": [
+            64,
+            32
+          ],
+          "actor_fc_b": [
+            32
+          ],
+          "actor_out_w": [
+            32,
+            3
+          ],
+          "actor_out_b": [
+            3
+          ],
+          "critic_fc_w": [
+            64,
+            32
+          ],
+          "critic_fc_b": [
+            32
+          ],
+          "critic_out_w": [
+            32,
+            1
+          ],
+          "critic_out_b": [
+            1
+          ]
+        },
+        "J3": {
+          "fc1_w": [
+            14,
+            64
+          ],
+          "fc1_b": [
+            64
+          ],
+          "fc2_w": [
+            64,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "actor_fc_w": [
+            64,
+            32
+          ],
+          "actor_fc_b": [
+            32
+          ],
+          "actor_out_w": [
+            32,
+            3
+          ],
+          "actor_out_b": [
+            3
+          ],
+          "critic_fc_w": [
+            64,
+            32
+          ],
+          "critic_fc_b": [
+            32
+          ],
+          "critic_out_w": [
+            32,
+            1
+          ],
+          "critic_out_b": [
+            1
+          ]
+        }
+      },
+      "load_checkpoint": "OK",
+      "inference": {
+        "J1": {
+          "action1": 0,
+          "action2": 0,
+          "action_name": "KEEP",
+          "probabilities": [
+            0.3843037188053131,
+            0.35356900095939636,
+            0.2621273100376129
+          ],
+          "value": -0.18003174662590027,
+          "deterministic_match": true,
+          "finite_probs": true,
+          "valid_action_range": true
+        },
+        "J2": {
+          "action1": 0,
+          "action2": 0,
+          "action_name": "KEEP",
+          "probabilities": [
+            0.49288877844810486,
+            0.16967761516571045,
+            0.3374336361885071
+          ],
+          "value": -1.494373083114624,
+          "deterministic_match": true,
+          "finite_probs": true,
+          "valid_action_range": true
+        },
+        "J3": {
+          "action1": 1,
+          "action2": 1,
+          "action_name": "SWITCH",
+          "probabilities": [
+            0.256585955619812,
+            0.49839067459106445,
+            0.24502335488796234
+          ],
+          "value": 0.4988290071487427,
+          "deterministic_match": true,
+          "finite_probs": true,
+          "valid_action_range": true
+        }
+      }
+    }
+  },
+  "phase4_dqn_historical": {
+    "status": "PASSED",
+    "details": {
+      "import": "OK",
+      "checkpoint_algorithm": "dqn",
+      "checkpoint_seed": 42,
+      "weight_shapes": {
+        "J1": {
+          "fc1_w": [
+            14,
+            64
+          ],
+          "fc1_b": [
+            64
+          ],
+          "fc2_w": [
+            64,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "val_fc_w": [
+            64,
+            32
+          ],
+          "val_fc_b": [
+            32
+          ],
+          "val_out_w": [
+            32,
+            1
+          ],
+          "val_out_b": [
+            1
+          ],
+          "adv_fc_w": [
+            64,
+            32
+          ],
+          "adv_fc_b": [
+            32
+          ],
+          "adv_out_w": [
+            32,
+            3
+          ],
+          "adv_out_b": [
+            3
+          ]
+        },
+        "J2": {
+          "fc1_w": [
+            14,
+            64
+          ],
+          "fc1_b": [
+            64
+          ],
+          "fc2_w": [
+            64,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "val_fc_w": [
+            64,
+            32
+          ],
+          "val_fc_b": [
+            32
+          ],
+          "val_out_w": [
+            32,
+            1
+          ],
+          "val_out_b": [
+            1
+          ],
+          "adv_fc_w": [
+            64,
+            32
+          ],
+          "adv_fc_b": [
+            32
+          ],
+          "adv_out_w": [
+            32,
+            3
+          ],
+          "adv_out_b": [
+            3
+          ]
+        },
+        "J3": {
+          "fc1_w": [
+            14,
+            64
+          ],
+          "fc1_b": [
+            64
+          ],
+          "fc2_w": [
+            64,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "val_fc_w": [
+            64,
+            32
+          ],
+          "val_fc_b": [
+            32
+          ],
+          "val_out_w": [
+            32,
+            1
+          ],
+          "val_out_b": [
+            1
+          ],
+          "adv_fc_w": [
+            64,
+            32
+          ],
+          "adv_fc_b": [
+            32
+          ],
+          "adv_out_w": [
+            32,
+            3
+          ],
+          "adv_out_b": [
+            3
+          ]
+        }
+      },
+      "load_checkpoint": "OK",
+      "dueling_arch_verified": true,
+      "inference": {
+        "J1": {
+          "action1": 1,
+          "action2": 1,
+          "action_name": "SWITCH",
+          "q_values": [
+            -0.9014391303062439,
+            0.5306380987167358,
+            0.2388886958360672
+          ],
+          "loaded_epsilon": 0.09721483575406,
+          "deterministic_match": true,
+          "finite_q": true,
+          "valid_action_range": true
+        },
+        "J2": {
+          "action1": 1,
+          "action2": 1,
+          "action_name": "SWITCH",
+          "q_values": [
+            0.11791670322418213,
+            1.5143458843231201,
+            0.07993638515472412
+          ],
+          "loaded_epsilon": 0.09721483575406,
+          "deterministic_match": true,
+          "finite_q": true,
+          "valid_action_range": true
+        },
+        "J3": {
+          "action1": 2,
+          "action2": 2,
+          "action_name": "EXTEND",
+          "q_values": [
+            0.47580069303512573,
+            0.4168512225151062,
+            0.723988950252533
+          ],
+          "loaded_epsilon": 0.09721483575406,
+          "deterministic_match": true,
+          "finite_q": true,
+          "valid_action_range": true
+        }
+      }
+    }
+  },
+  "phase5_p6_ppo": {
+    "ppo_stage_a_best": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\ppo_stage_a_best.json",
+        "checkpoint_algorithm": "ppo",
+        "checkpoint_seed": 55,
+        "algorithm_version": "6.2-ppo-stage_a-best",
+        "saved_at": "2026-11-04T17:06:59.614212+00:00",
+        "metadata_keys": [
+          "algorithm",
+          "curriculum_stage",
+          "seed",
+          "episode",
+          "best_mean_reward",
+          "source_commit",
+          "metrics"
+        ],
+        "weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          }
+        },
+        "step_counters": {
+          "J1": 15,
+          "J2": 15,
+          "J3": 15
+        },
+        "inference": {
+          "J1": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.6886211633682251,
+              0.10483113676309586,
+              0.20654773712158203
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.10487622767686844,
+              0.3136453926563263,
+              0.5814783573150635
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.3185275197029114,
+              0.31295207142829895,
+              0.36852043867111206
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    },
+    "ppo_stage_a_final": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\ppo_stage_a_final.json",
+        "checkpoint_algorithm": "ppo",
+        "checkpoint_seed": 55,
+        "algorithm_version": "6.2-ppo-stage_a-final",
+        "saved_at": "2026-11-04T17:07:42.145541+00:00",
+        "metadata_keys": [
+          "algorithm",
+          "curriculum_stage",
+          "training_seeds",
+          "episodes_per_seed",
+          "total_episodes",
+          "best_mean_reward",
+          "source_commit"
+        ],
+        "weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          }
+        },
+        "step_counters": {
+          "J1": 45,
+          "J2": 45,
+          "J3": 45
+        },
+        "inference": {
+          "J1": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.5930566191673279,
+              0.09306254237890244,
+              0.3138808608055115
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.08045963943004608,
+              0.2886948585510254,
+              0.6308454275131226
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 1,
+            "action2": 1,
+            "action_name": "SWITCH",
+            "values": [
+              0.32656219601631165,
+              0.3449884057044983,
+              0.3284493684768677
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    },
+    "ppo_stage_a_seed11": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\ppo_stage_a_seed11.json",
+        "checkpoint_algorithm": "ppo",
+        "checkpoint_seed": 11,
+        "algorithm_version": "6.2-ppo-stage_a-seed11",
+        "saved_at": "2026-11-04T17:03:15.697858+00:00",
+        "metadata_keys": [
+          "algorithm",
+          "curriculum_stage",
+          "seed",
+          "episodes",
+          "source_commit"
+        ],
+        "weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          }
+        },
+        "step_counters": {
+          "J1": 45,
+          "J2": 45,
+          "J3": 45
+        },
+        "inference": {
+          "J1": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.26577332615852356,
+              0.2941053807735443,
+              0.44012123346328735
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.5974992513656616,
+              0.2568932771682739,
+              0.14560754597187042
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.5400576591491699,
+              0.244551420211792,
+              0.21539093554019928
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    },
+    "ppo_stage_a_seed55": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\ppo_stage_a_seed55.json",
+        "checkpoint_algorithm": "ppo",
+        "checkpoint_seed": 55,
+        "algorithm_version": "6.2-ppo-stage_a-seed55",
+        "saved_at": "2026-11-04T17:07:42.103473+00:00",
+        "metadata_keys": [
+          "algorithm",
+          "curriculum_stage",
+          "seed",
+          "episodes",
+          "source_commit"
+        ],
+        "weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_fc_w": [
+              64,
+              32
+            ],
+            "actor_fc_b": [
+              32
+            ],
+            "actor_out_w": [
+              32,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ],
+            "critic_fc_w": [
+              64,
+              32
+            ],
+            "critic_fc_b": [
+              32
+            ],
+            "critic_out_w": [
+              32,
+              1
+            ],
+            "critic_out_b": [
+              1
+            ]
+          }
+        },
+        "step_counters": {
+          "J1": 45,
+          "J2": 45,
+          "J3": 45
+        },
+        "inference": {
+          "J1": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.5930566191673279,
+              0.09306254237890244,
+              0.3138808608055115
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.08045963943004608,
+              0.2886948585510254,
+              0.6308454275131226
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 1,
+            "action2": 1,
+            "action_name": "SWITCH",
+            "values": [
+              0.32656219601631165,
+              0.3449884057044983,
+              0.3284493684768677
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    }
+  },
+  "phase5_p6_dqn": {
+    "dqn_stage_a_best": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\dqn_stage_a_best.json",
+        "checkpoint_algorithm": "dqn",
+        "checkpoint_seed": 55,
+        "algorithm_version": "6.2-dqn-stage_a-best",
+        "saved_at": "2026-11-04T17:13:50.430686+00:00",
+        "metadata_keys": [
+          "algorithm",
+          "curriculum_stage",
+          "seed",
+          "episode",
+          "best_mean_reward",
+          "source_commit",
+          "metrics"
+        ],
+        "weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          }
+        },
+        "step_counters": {
+          "J1": 705,
+          "J2": 705,
+          "J3": 705
+        },
+        "inference": {
+          "J1": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              1.077416181564331,
+              1.284048080444336,
+              1.3695428371429443
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.12523242831230164,
+              0.03797038644552231,
+              -0.06494367867708206
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.13962802290916443,
+              0.006207108497619629,
+              0.23493073880672455
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    },
+    "dqn_stage_a_final": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\dqn_stage_a_final.json",
+        "checkpoint_algorithm": "dqn",
+        "checkpoint_seed": 55,
+        "algorithm_version": "6.2-dqn-stage_a-final",
+        "saved_at": "2026-11-04T17:13:50.563213+00:00",
+        "metadata_keys": [
+          "algorithm",
+          "curriculum_stage",
+          "training_seeds",
+          "episodes_per_seed",
+          "total_episodes",
+          "best_mean_reward",
+          "source_commit"
+        ],
+        "weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          }
+        },
+        "step_counters": {
+          "J1": 705,
+          "J2": 705,
+          "J3": 705
+        },
+        "inference": {
+          "J1": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              1.077416181564331,
+              1.284048080444336,
+              1.3695428371429443
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.12523242831230164,
+              0.03797038644552231,
+              -0.06494367867708206
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.13962802290916443,
+              0.006207108497619629,
+              0.23493073880672455
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    },
+    "dqn_stage_a_seed11": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\dqn_stage_a_seed11.json",
+        "checkpoint_algorithm": "dqn",
+        "checkpoint_seed": 11,
+        "algorithm_version": "6.2-dqn-stage_a-seed11",
+        "saved_at": "2026-11-04T17:08:58.021121+00:00",
+        "metadata_keys": [
+          "algorithm",
+          "curriculum_stage",
+          "seed",
+          "episodes",
+          "source_commit"
+        ],
+        "weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          }
+        },
+        "step_counters": {
+          "J1": 705,
+          "J2": 705,
+          "J3": 705
+        },
+        "inference": {
+          "J1": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.18853899836540222,
+              -0.04701400548219681,
+              0.12713345885276794
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.20698390901088715,
+              0.08971972018480301,
+              0.12855328619480133
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.21382950246334076,
+              0.11275026202201843,
+              0.22173546254634857
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    },
+    "dqn_stage_a_seed55": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_path": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\dqn_stage_a_seed55.json",
+        "checkpoint_algorithm": "dqn",
+        "checkpoint_seed": 55,
+        "algorithm_version": "6.2-dqn-stage_a-seed55",
+        "saved_at": "2026-11-04T17:13:50.495639+00:00",
+        "metadata_keys": [
+          "algorithm",
+          "curriculum_stage",
+          "seed",
+          "episodes",
+          "source_commit"
+        ],
+        "weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "val_fc_w": [
+              64,
+              32
+            ],
+            "val_fc_b": [
+              32
+            ],
+            "val_out_w": [
+              32,
+              1
+            ],
+            "val_out_b": [
+              1
+            ],
+            "adv_fc_w": [
+              64,
+              32
+            ],
+            "adv_fc_b": [
+              32
+            ],
+            "adv_out_w": [
+              32,
+              3
+            ],
+            "adv_out_b": [
+              3
+            ]
+          }
+        },
+        "step_counters": {
+          "J1": 705,
+          "J2": 705,
+          "J3": 705
+        },
+        "inference": {
+          "J1": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              1.077416181564331,
+              1.284048080444336,
+              1.3695428371429443
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "values": [
+              0.12523242831230164,
+              0.03797038644552231,
+              -0.06494367867708206
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "values": [
+              0.13962802290916443,
+              0.006207108497619629,
+              0.23493073880672455
+            ],
+            "deterministic_match": true,
+            "finite_values": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    }
+  },
+  "phase6_mappo": {
+    "mappo_stage_a_best": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_algorithm": "mappo",
+        "checkpoint_seed": 33,
+        "has_shared_critic_weights": true,
+        "shared_critic_load": "OK",
+        "shared_critic_weight_shapes": {
+          "fc1_w": [
+            42,
+            128
+          ],
+          "fc1_b": [
+            128
+          ],
+          "fc2_w": [
+            128,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "critic_out_w": [
+            64,
+            1
+          ],
+          "critic_out_b": [
+            1
+          ]
+        },
+        "actor_weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          }
+        },
+        "actor_obs_dim_verified": true,
+        "critic_obs_dim_verified": true,
+        "inference": {
+          "J1": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "probabilities": [
+              0.32993605732917786,
+              0.23263271152973175,
+              0.4374312162399292
+            ],
+            "corridor_value": 0.14075013995170593,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 1,
+            "action2": 1,
+            "action_name": "SWITCH",
+            "probabilities": [
+              0.09030978381633759,
+              0.6000301837921143,
+              0.30966004729270935
+            ],
+            "corridor_value": 0.14075013995170593,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 1,
+            "action2": 1,
+            "action_name": "SWITCH",
+            "probabilities": [
+              0.33204901218414307,
+              0.47077468037605286,
+              0.19717633724212646
+            ],
+            "corridor_value": 0.14075013995170593,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    },
+    "mappo_stage_a_final": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_algorithm": "mappo",
+        "checkpoint_seed": 55,
+        "has_shared_critic_weights": true,
+        "shared_critic_load": "OK",
+        "shared_critic_weight_shapes": {
+          "fc1_w": [
+            42,
+            128
+          ],
+          "fc1_b": [
+            128
+          ],
+          "fc2_w": [
+            128,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "critic_out_w": [
+            64,
+            1
+          ],
+          "critic_out_b": [
+            1
+          ]
+        },
+        "actor_weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          }
+        },
+        "actor_obs_dim_verified": true,
+        "critic_obs_dim_verified": true,
+        "inference": {
+          "J1": {
+            "action1": 1,
+            "action2": 1,
+            "action_name": "SWITCH",
+            "probabilities": [
+              0.3790408670902252,
+              0.38940513134002686,
+              0.2315540462732315
+            ],
+            "corridor_value": 0.04371419548988342,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 1,
+            "action2": 1,
+            "action_name": "SWITCH",
+            "probabilities": [
+              0.3699367344379425,
+              0.45672938227653503,
+              0.17333386838436127
+            ],
+            "corridor_value": 0.04371419548988342,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "probabilities": [
+              0.32007431983947754,
+              0.2639541029930115,
+              0.4159715473651886
+            ],
+            "corridor_value": 0.04371419548988342,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    },
+    "mappo_stage_a_seed11": {
+      "status": "PASSED",
+      "details": {
+        "checkpoint_algorithm": "mappo",
+        "checkpoint_seed": 11,
+        "has_shared_critic_weights": true,
+        "shared_critic_load": "OK",
+        "shared_critic_weight_shapes": {
+          "fc1_w": [
+            42,
+            128
+          ],
+          "fc1_b": [
+            128
+          ],
+          "fc2_w": [
+            128,
+            64
+          ],
+          "fc2_b": [
+            64
+          ],
+          "critic_out_w": [
+            64,
+            1
+          ],
+          "critic_out_b": [
+            1
+          ]
+        },
+        "actor_weight_shapes": {
+          "J1": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          },
+          "J2": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          },
+          "J3": {
+            "fc1_w": [
+              14,
+              64
+            ],
+            "fc1_b": [
+              64
+            ],
+            "fc2_w": [
+              64,
+              64
+            ],
+            "fc2_b": [
+              64
+            ],
+            "actor_out_w": [
+              64,
+              3
+            ],
+            "actor_out_b": [
+              3
+            ]
+          }
+        },
+        "actor_obs_dim_verified": true,
+        "critic_obs_dim_verified": true,
+        "inference": {
+          "J1": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "probabilities": [
+              0.4457634687423706,
+              0.40876808762550354,
+              0.14546842873096466
+            ],
+            "corridor_value": -0.517993152141571,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          },
+          "J2": {
+            "action1": 2,
+            "action2": 2,
+            "action_name": "EXTEND",
+            "probabilities": [
+              0.3013494610786438,
+              0.3380320966243744,
+              0.3606184124946594
+            ],
+            "corridor_value": -0.517993152141571,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          },
+          "J3": {
+            "action1": 0,
+            "action2": 0,
+            "action_name": "KEEP",
+            "probabilities": [
+              0.4260268211364746,
+              0.19891352951526642,
+              0.3750596344470978
+            ],
+            "corridor_value": -0.517993152141571,
+            "deterministic_match": true,
+            "finite_probs": true,
+            "finite_critic_value": true,
+            "valid_action_range": true
+          }
+        }
+      }
+    }
+  },
+  "phase7_connectivity": {
+    "ppo": {
+      "api_mode": "marl_ppo",
+      "runtime_constructor": "MARLCorridorController(algorithm='ppo')",
+      "checkpoint_path": "checkpoints/marl_ppo_corridor.json",
+      "model_loader": "MARLCorridorController.load_checkpoint()",
+      "observation_builder": "CorridorObservationSpace.vectorize_junction() \u2014 14-dim",
+      "action_selection": "PPOAgent.select_action(eval_mode=True) \u2014 greedy argmax",
+      "signal_dispatch": "MARLCorridorController.apply_decisions() -> SignalController.request_switch()",
+      "safety_enforcement": "SignalController: min_green, max_green, yellow clearance, emergency_locked",
+      "integration_gaps": [
+        "MAPPO not in MultiIntersectionSimulation.mode dispatch"
+      ],
+      "controller_instantiation": "OK",
+      "agent_ids": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "algorithm_field": "ppo"
+    },
+    "dqn": {
+      "api_mode": "marl_dqn",
+      "runtime_constructor": "MARLCorridorController(algorithm='dqn')",
+      "checkpoint_path": "checkpoints/marl_dqn_corridor.json",
+      "model_loader": "MARLCorridorController.load_checkpoint()",
+      "observation_builder": "CorridorObservationSpace.vectorize_junction() \u2014 14-dim",
+      "action_selection": "DQNAgent.select_action(eval_mode=True, epsilon=0) \u2014 argmax Q",
+      "signal_dispatch": "MARLCorridorController.apply_decisions() -> SignalController.request_switch()",
+      "safety_enforcement": "SignalController: min_green, max_green, yellow clearance, emergency_locked",
+      "integration_gaps": [],
+      "controller_instantiation": "OK",
+      "agent_ids": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "algorithm_field": "dqn"
+    },
+    "mappo": {
+      "api_mode": "marl_mappo (not yet wired into MultiIntersectionSimulation)",
+      "runtime_constructor": "MARLCorridorController(algorithm='mappo')",
+      "checkpoint_path": "checkpoints/p6/mappo_stage_a_best.json",
+      "model_loader": "MARLCorridorController.load_checkpoint() \u2014 also loads shared_critic_weights",
+      "observation_builder": "local: CorridorObservationSpace.vectorize_junction() \u2014 14-dim; corridor: CorridorObservationSpace.vectorize_corridor() \u2014 42-dim",
+      "action_selection": "MAPPOAgent.select_action(local_obs, eval_mode=True) \u2014 greedy argmax probs",
+      "signal_dispatch": "MARLCorridorController.apply_decisions() \u2014 same dispatch as PPO/DQN",
+      "safety_enforcement": "SignalController + StarvationTracker action masking",
+      "integration_gaps": [
+        "MultiIntersectionSimulation.mode does not include 'mappo' \u2014 only 'marl_ppo' and 'marl_dqn'",
+        "MAPPO select_action signature differs: takes local_obs, action_mask, eval_mode (no can_switch positional)",
+        "MARLCorridorController.decide() calls agent.select_action(vec, eval_mode=eval_mode, can_switch=can_switch, action_mask=action_mask) \u2014 MAPPOAgent.select_action() accepts this signature"
+      ],
+      "controller_instantiation": "OK",
+      "agent_ids": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "algorithm_field": "mappo",
+      "shared_critic_created": true
+    },
+    "multi_sim_modes": {
+      "has_marl_ppo": true,
+      "has_marl_dqn": true,
+      "has_mappo": false,
+      "note": "MAPPO is in MARLCorridorController but not in MultiIntersectionSimulation.mode dispatch"
+    }
+  },
+  "phase8_sumo": {
+    "status": "PASSED",
+    "details": {
+      "checkpoint_loaded": "C:\\Developers\\Sneha\\Projects\\hybrid-traffic-control\\checkpoints\\p6\\ppo_stage_a_best.json",
+      "steps_completed": 120,
+      "obs_records_count": 24,
+      "action_records_count": 24,
+      "sample_obs": [
+        {
+          "step": 5,
+          "sim_time": 5.0,
+          "obs": {
+            "J1": {
+              "phase": 0,
+              "total_queue": 0
+            },
+            "J2": {
+              "phase": 0,
+              "total_queue": 0
+            },
+            "J3": {
+              "phase": 0,
+              "total_queue": 0
+            }
+          }
+        },
+        {
+          "step": 10,
+          "sim_time": 10.0,
+          "obs": {
+            "J1": {
+              "phase": 0,
+              "total_queue": 2
+            },
+            "J2": {
+              "phase": 0,
+              "total_queue": 0
+            },
+            "J3": {
+              "phase": 0,
+              "total_queue": 0
+            }
+          }
+        },
+        {
+          "step": 15,
+          "sim_time": 15.0,
+          "obs": {
+            "J1": {
+              "phase": 0,
+              "total_queue": 2
+            },
+            "J2": {
+              "phase": 0,
+              "total_queue": 0
+            },
+            "J3": {
+              "phase": 0,
+              "total_queue": 0
+            }
+          }
+        }
+      ],
+      "sample_actions": [
+        {
+          "step": 5,
+          "decisions": {
+            "J1": {
+              "action": 0,
+              "action_name": "KEEP",
+              "is_fallback": false
+            },
+            "J2": {
+              "action": 2,
+              "action_name": "EXTEND",
+              "is_fallback": false
+            },
+            "J3": {
+              "action": 2,
+              "action_name": "EXTEND",
+              "is_fallback": false
+            }
+          }
+        },
+        {
+          "step": 10,
+          "decisions": {
+            "J1": {
+              "action": 0,
+              "action_name": "KEEP",
+              "is_fallback": false
+            },
+            "J2": {
+              "action": 2,
+              "action_name": "EXTEND",
+              "is_fallback": false
+            },
+            "J3": {
+              "action": 2,
+              "action_name": "EXTEND",
+              "is_fallback": false
+            }
+          }
+        },
+        {
+          "step": 15,
+          "decisions": {
+            "J1": {
+              "action": 0,
+              "action_name": "KEEP",
+              "is_fallback": false
+            },
+            "J2": {
+              "action": 2,
+              "action_name": "EXTEND",
+              "is_fallback": false
+            },
+            "J3": {
+              "action": 2,
+              "action_name": "EXTEND",
+              "is_fallback": false
+            }
+          }
+        }
+      ],
+      "safety_records_count": 72,
+      "all_actions_valid_range": true,
+      "marl_decisions_count": 72,
+      "fallback_decisions_count": 0,
+      "starvation_overrides_count": 0,
+      "safety_note": "SignalControllers not attached in this isolated inference test. MARL decisions computed but not dispatched to TraCI. Safety (min_green, yellow, max_green) is enforced at dispatch time by SignalController."
+    }
+  }
+}

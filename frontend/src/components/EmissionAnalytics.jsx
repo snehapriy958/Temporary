@@ -1,26 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Wind, Fuel, BarChart3, TrendingDown } from 'lucide-react';
+import React from 'react';
+import { Wind, Fuel, BarChart3 } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 
-export function EmissionAnalytics({ metrics }) {
-  const [history, setHistory] = useState([]);
-
-  useEffect(() => {
-    if (metrics?.simulation_time > 0) {
-      setHistory((prev) => {
-        const item = {
-          time: metrics.simulation_time.toFixed(0),
-          co2_kg: metrics.total_co2_kg || 0,
-          fuel_liters: metrics.total_fuel_liters || 0,
-          nox_g: metrics.total_nox_g || 0,
-        };
-        const updated = [...prev, item];
-        // Keep last 30 data points
-        return updated.slice(-30);
-      });
-    }
-  }, [metrics?.simulation_time]);
-
+export function EmissionAnalytics({ metrics, history = [] }) {
   return (
     <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3 mb-4">
@@ -47,12 +29,8 @@ export function EmissionAnalytics({ metrics }) {
             <Wind className="h-4 w-4 text-teal-600" />
           </div>
           <div className="text-2xl font-bold font-mono text-slate-900">
-            {metrics?.total_co2_kg ?? 0} <span className="text-xs text-slate-500">kg</span>
+            {metrics?.total_co2_kg == null ? '—' : Number(metrics.total_co2_kg).toFixed(4)} <span className="text-xs text-slate-500">kg</span>
           </div>
-          <p className="text-[11px] text-teal-700 font-semibold flex items-center gap-1 mt-1">
-            <TrendingDown className="h-3 w-3" />
-            <span>20.6% reduction via coordination</span>
-          </p>
         </div>
 
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
@@ -61,7 +39,7 @@ export function EmissionAnalytics({ metrics }) {
             <Wind className="h-4 w-4 text-purple-600" />
           </div>
           <div className="text-2xl font-bold font-mono text-slate-900">
-            {metrics?.total_nox_g ?? 0} <span className="text-xs text-slate-500">g</span>
+            {metrics?.total_nox_g == null ? '—' : Number(metrics.total_nox_g).toFixed(4)} <span className="text-xs text-slate-500">g</span>
           </div>
           <p className="text-[11px] text-slate-500 mt-1">
             HBEFA 3.1 vehicle emission model
@@ -74,15 +52,11 @@ export function EmissionAnalytics({ metrics }) {
             <Fuel className="h-4 w-4 text-purple-600" />
           </div>
           <div className="text-2xl font-bold font-mono text-slate-900">
-            {metrics?.total_fuel_liters ?? 0} <span className="text-xs text-slate-500">L</span>
+            {metrics?.total_fuel_liters == null ? '—' : Number(metrics.total_fuel_liters).toFixed(4)} <span className="text-xs text-slate-500">L</span>
           </div>
           <div className="mt-1 space-y-0.5">
             <p className="text-[10px] text-slate-500">
               Gasoline equivalent (ρ = 0.75 kg/L)
-            </p>
-            <p className="text-[11px] text-purple-700 font-semibold flex items-center gap-1">
-              <TrendingDown className="h-3 w-3" />
-              <span>20.5% est. fuel saved vs baseline</span>
             </p>
           </div>
         </div>
@@ -95,7 +69,9 @@ export function EmissionAnalytics({ metrics }) {
         </h3>
         {history.length < 2 ? (
           <div className="h-full flex items-center justify-center text-xs text-slate-500 italic border border-dashed border-slate-200 rounded-lg">
-            Awaiting simulation telemetry data points...
+            {history.length === 0
+              ? 'Awaiting simulation telemetry data points...'
+              : 'One current snapshot is available; the accumulation curve fills during a live run.'}
           </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">

@@ -400,7 +400,12 @@ class MARLCorridorController:
             "is_emergency": False,
         }
 
-    def save_checkpoint(self, filepath: Path | str, version: str = "2.0-autograd") -> None:
+    def save_checkpoint(
+        self,
+        filepath: Path | str,
+        version: str = "2.0-autograd",
+        metadata: Optional[Dict[str, Any]] = None,
+    ) -> None:
         """Saves current agent weights and hyperparameters to a JSON checkpoint file."""
         from datetime import datetime, timezone
         path = Path(filepath)
@@ -415,6 +420,8 @@ class MARLCorridorController:
                 j_id: agent.get_state_dict() for j_id, agent in self.agents.items()
             },
         }
+        if metadata:
+            checkpoint_data["metadata"] = metadata
         if self.algorithm == "mappo" and self.shared_critic is not None:
             critic_w = self.shared_critic.get_weights()
             checkpoint_data["shared_critic_weights"] = {

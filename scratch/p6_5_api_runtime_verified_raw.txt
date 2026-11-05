@@ -1,0 +1,490 @@
+C:\Developers\Sneha\Projects\hybrid-traffic-control\.venv-demo\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+Simulation startup requested (UUID: run_b38224736008, mode: marl_ppo, timeout: 20.0s)
+INFO:simulation_service:Simulation startup requested (UUID: run_b38224736008, mode: marl_ppo, timeout: 20.0s)
+Loaded MARL checkpoint (version: 6.2-ppo-stage_a-best) from: C:\Developers\Sneha\Projects\hybrid-traffic-control\checkpoints\p6\ppo_stage_a_best.json
+INFO:marl_controller:Loaded MARL checkpoint (version: 6.2-ppo-stage_a-best) from: C:\Developers\Sneha\Projects\hybrid-traffic-control\checkpoints\p6\ppo_stage_a_best.json
+INFO:simulation:Successfully initialized MARL PPO controller with checkpoint: C:\Developers\Sneha\Projects\hybrid-traffic-control\checkpoints\p6\ppo_stage_a_best.json
+Worker starting SUMO/TraCI (Session: run_b38224736008, seed: 99)...
+INFO:simulation_service:Worker starting SUMO/TraCI (Session: run_b38224736008, seed: 99)...
+INFO:sumo_manager:Captured spawned SUMO process via scoped proxy: PID 34624
+Captured spawned SUMO process handle: PID 34624 (Session: run_b38224736008)
+INFO:simulation_service:Captured spawned SUMO process handle: PID 34624 (Session: run_b38224736008)
+***Starting server on port 49823 ***
+Loading net-file from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\network/silk_board.net.xml' ... done (352ms).
+Loading additional-files from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/vehicle_types.add.xml' ... done (13ms).
+Loading route-files incrementally from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/silk_board.rou.xml'
+Loading done.
+Simulation version 1.26.0 started with time: 0.00.
+INFO:sumo_manager:SUMO connection confirmed: PID 34624 (label: 'default')
+SUMO TraCI connection initialized and ready (Session: run_b38224736008, PID: 34624, duration: 5.88s).
+INFO:simulation_service:SUMO TraCI connection initialized and ready (Session: run_b38224736008, PID: 34624, duration: 5.88s).
+Simulation startup confirmed READY (UUID: run_b38224736008, PID: 34624, duration: 5.88s)
+INFO:simulation_service:Simulation startup confirmed READY (UUID: run_b38224736008, PID: 34624, duration: 5.88s)
+[MARL RUNTIME] SimTime=1.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=1.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=1.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=1.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:httpx:HTTP Request: POST http://testserver/api/simulation/start "HTTP/1.1 200 OK"
+[MARL RUNTIME] SimTime=1.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=1.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=5.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=5.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=5.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=5.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=5.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=5.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=10.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=10.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=10.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=10.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=10.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=10.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=15.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=15.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=15.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=15.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=15.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=15.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=20.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=20.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=20.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=20.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=20.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=20.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=25.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=25.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=25.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=25.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=25.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=25.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=30.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=30.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=30.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=30.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=30.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=30.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=35.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=35.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=35.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=35.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=35.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=35.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=40.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=40.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=40.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=40.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=40.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=40.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=45.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=1 | ExecutedOp=KEEP_PHASE_1 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=45.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=1 | ExecutedOp=KEEP_PHASE_1 | Fallback=False
+[MARL RUNTIME] SimTime=45.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=45.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=45.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=45.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=0 | ExecutedOp=KEEP_PHASE_0 | Fallback=False
+[MARL RUNTIME] SimTime=50.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=50.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=50.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=50.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=50.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=50.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+[MARL RUNTIME] SimTime=55.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=55.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=55.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=55.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=55.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=55.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=60.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=60.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=60.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=60.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=60.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=60.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=65.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=65.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=65.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=1 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=65.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=1 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=65.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=65.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=70.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=70.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=70.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=70.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=70.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=70.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=75.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=75.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=75.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=75.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=75.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=75.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=80.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=80.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=80.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=80.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=80.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=80.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=85.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=85.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=85.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=85.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=85.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=85.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=90.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=3 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=90.0s | Mode=marl_ppo | Junction=J1 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=3 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=90.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=90.0s | Mode=marl_ppo | Junction=J2 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=90.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=90.0s | Mode=marl_ppo | Junction=J3 | Agent=PPO | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+Target duration 90s reached.
+INFO:simulation_service:Target duration 90s reached.
+Cleaning up simulation resources (invoked by thread: SumoSimulationWorker, status: COMPLETED)
+INFO:simulation_service:Cleaning up simulation resources (invoked by thread: SumoSimulationWorker, status: COMPLETED)
+INFO:httpx:HTTP Request: GET http://testserver/api/simulation/status "HTTP/1.1 200 OK"
+Simulation startup requested (UUID: run_f0432411cdce, mode: marl_dqn, timeout: 20.0s)
+INFO:simulation_service:Simulation startup requested (UUID: run_f0432411cdce, mode: marl_dqn, timeout: 20.0s)
+Loaded MARL checkpoint (version: 6.2-dqn-stage_a-best) from: C:\Developers\Sneha\Projects\hybrid-traffic-control\checkpoints\p6\dqn_stage_a_best.json
+INFO:marl_controller:Loaded MARL checkpoint (version: 6.2-dqn-stage_a-best) from: C:\Developers\Sneha\Projects\hybrid-traffic-control\checkpoints\p6\dqn_stage_a_best.json
+INFO:simulation:Successfully initialized MARL DQN controller with checkpoint: C:\Developers\Sneha\Projects\hybrid-traffic-control\checkpoints\p6\dqn_stage_a_best.json
+Worker starting SUMO/TraCI (Session: run_f0432411cdce, seed: 99)...
+INFO:simulation_service:Worker starting SUMO/TraCI (Session: run_f0432411cdce, seed: 99)...
+INFO:sumo_manager:Captured spawned SUMO process via scoped proxy: PID 19528
+Captured spawned SUMO process handle: PID 19528 (Session: run_f0432411cdce)
+INFO:simulation_service:Captured spawned SUMO process handle: PID 19528 (Session: run_f0432411cdce)
+***Starting server on port 61743 ***
+Loading net-file from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\network/silk_board.net.xml' ... done (339ms).
+Loading additional-files from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/vehicle_types.add.xml' ... done (8ms).
+Loading route-files incrementally from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/silk_board.rou.xml'
+Loading done.
+Simulation version 1.26.0 started with time: 0.00.
+INFO:sumo_manager:SUMO connection confirmed: PID 19528 (label: 'default')
+SUMO TraCI connection initialized and ready (Session: run_f0432411cdce, PID: 19528, duration: 1.39s).
+INFO:simulation_service:SUMO TraCI connection initialized and ready (Session: run_f0432411cdce, PID: 19528, duration: 1.39s).
+[MARL RUNTIME] SimTime=1.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=1.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+Simulation startup confirmed READY (UUID: run_f0432411cdce, PID: 19528, duration: 1.39s)
+INFO:simulation_service:Simulation startup confirmed READY (UUID: run_f0432411cdce, PID: 19528, duration: 1.39s)
+INFO:httpx:HTTP Request: POST http://testserver/api/simulation/start "HTTP/1.1 200 OK"
+[MARL RUNTIME] SimTime=1.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=1.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=1.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=1.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=5.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=5.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=5.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=5.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=5.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=5.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=10.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=10.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=10.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=10.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=10.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=10.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=15.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=15.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=15.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=15.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=15.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=15.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=20.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=20.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+[MARL RUNTIME] SimTime=20.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=20.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=20.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=20.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+[MARL RUNTIME] SimTime=25.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=25.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=25.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=25.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=25.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=25.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=30.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=30.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=30.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=30.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+[MARL RUNTIME] SimTime=30.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=30.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=35.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=35.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=35.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=35.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=35.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=35.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=40.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=40.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=40.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=40.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=40.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=40.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=45.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=45.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=45.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=45.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=45.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=45.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=50.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=50.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=50.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=0 | ExecutedOp=REQUEST_SWITCH_TARGET_0_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=50.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=0 | ExecutedOp=REQUEST_SWITCH_TARGET_0_OK | Fallback=False
+[MARL RUNTIME] SimTime=50.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=50.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=55.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=55.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=KEEP (0) | TargetPhase=2 | ExecutedOp=KEEP_PHASE_2 | Fallback=False
+[MARL RUNTIME] SimTime=55.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=55.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=55.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=55.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=60.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=60.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=60.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=60.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=60.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=60.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=65.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=0 | ExecutedOp=REQUEST_SWITCH_TARGET_0_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=65.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=0 | ExecutedOp=REQUEST_SWITCH_TARGET_0_OK | Fallback=False
+[MARL RUNTIME] SimTime=65.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=65.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=65.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=65.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=70.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=70.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=70.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=70.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+[MARL RUNTIME] SimTime=70.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=70.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=75.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=75.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=75.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=75.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=75.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=75.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=80.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=80.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=80.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=80.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=80.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=80.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=85.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=85.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=2 | ExecutedOp=REQUEST_SWITCH_TARGET_2_OK | Fallback=False
+[MARL RUNTIME] SimTime=85.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=85.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=85.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=85.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_REJECTED | Fallback=False
+[MARL RUNTIME] SimTime=90.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=90.0s | Mode=marl_dqn | Junction=J1 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=2 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+[MARL RUNTIME] SimTime=90.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=0 | ExecutedOp=REQUEST_SWITCH_TARGET_0_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=90.0s | Mode=marl_dqn | Junction=J2 | Agent=DQN | ObsShape=(14,) | Action=SWITCH (1) | TargetPhase=0 | ExecutedOp=REQUEST_SWITCH_TARGET_0_OK | Fallback=False
+[MARL RUNTIME] SimTime=90.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+INFO:simulation_service:[MARL RUNTIME] SimTime=90.0s | Mode=marl_dqn | Junction=J3 | Agent=DQN | ObsShape=(14,) | Action=EXTEND (2) | TargetPhase=0 | ExecutedOp=EXTEND_GREEN_OK | Fallback=False
+Target duration 90s reached.
+INFO:simulation_service:Target duration 90s reached.
+Cleaning up simulation resources (invoked by thread: SumoSimulationWorker, status: COMPLETED)
+INFO:simulation_service:Cleaning up simulation resources (invoked by thread: SumoSimulationWorker, status: COMPLETED)
+INFO:httpx:HTTP Request: GET http://testserver/api/simulation/status "HTTP/1.1 200 OK"
+INFO:websocket_manager:WebSocketManager shutdown complete (0 clients closed)
+{
+  "database_url": "sqlite:///./demo_audit_disposable.db",
+  "duration_s": 90,
+  "seed": 99,
+  "emergency_enabled": false,
+  "runs": [
+    {
+      "mode": "marl_ppo",
+      "requested_checkpoint": "checkpoints/p6/ppo_stage_a_best.json",
+      "checkpoint_version": "6.2-ppo-stage_a-best",
+      "loaded_j1_weights_exact_match": true,
+      "agents": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "start_response": {
+        "success": true,
+        "message": "Simulation started in marl_ppo mode (UUID: run_b38224736008, PID: 34624)",
+        "simulation_time": 0.0
+      },
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 90.0,
+        "duration": 90,
+        "mode": "marl_ppo",
+        "seed": 99,
+        "controller": "MARL Proximal Policy Optimization (PPO Corridor)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_b38224736008",
+        "sequence_number": 92
+      },
+      "decision_interval_count": 19,
+      "sample_decisions": [
+        {
+          "time": 1.0,
+          "actions": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "KEEP_PHASE_0",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_OK"
+          }
+        },
+        {
+          "time": 5.0,
+          "actions": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "KEEP_PHASE_0",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_OK"
+          }
+        },
+        {
+          "time": 10.0,
+          "actions": {
+            "J1": 0,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "KEEP_PHASE_0",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_REJECTED"
+          }
+        }
+      ],
+      "phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2
+        ],
+        "J3": [
+          0,
+          1,
+          2
+        ]
+      },
+      "sumo_running_after_completion": false,
+      "result": "PASSED"
+    },
+    {
+      "mode": "marl_dqn",
+      "requested_checkpoint": "checkpoints/p6/dqn_stage_a_best.json",
+      "checkpoint_version": "6.2-dqn-stage_a-best",
+      "loaded_j1_weights_exact_match": true,
+      "agents": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "start_response": {
+        "success": true,
+        "message": "Simulation started in marl_dqn mode (UUID: run_f0432411cdce, PID: 19528)",
+        "simulation_time": 0.0
+      },
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 90.0,
+        "duration": 90,
+        "mode": "marl_dqn",
+        "seed": 99,
+        "controller": "MARL Deep Q-Network (Double-DQN Corridor)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_f0432411cdce",
+        "sequence_number": 92
+      },
+      "decision_interval_count": 19,
+      "sample_decisions": [
+        {
+          "time": 1.0,
+          "actions": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "EXTEND_GREEN_OK",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_OK"
+          }
+        },
+        {
+          "time": 5.0,
+          "actions": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "EXTEND_GREEN_OK",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_OK"
+          }
+        },
+        {
+          "time": 10.0,
+          "actions": {
+            "J1": 2,
+            "J2": 2,
+            "J3": 2
+          },
+          "operations": {
+            "J1": "EXTEND_GREEN_REJECTED",
+            "J2": "EXTEND_GREEN_OK",
+            "J3": "EXTEND_GREEN_REJECTED"
+          }
+        }
+      ],
+      "phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "sumo_running_after_completion": false,
+      "result": "PASSED"
+    }
+  ],
+  "overall": "PASSED"
+}

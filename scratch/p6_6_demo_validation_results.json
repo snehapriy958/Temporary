@@ -1,0 +1,357 @@
+{
+  "milestone": "P6.6 final demo readiness validation",
+  "git": {
+    "branch": "marl-p6-2-curriculum-training",
+    "head": "1d55856b1d8b53278d142537f43e1c79314993a7",
+    "working_tree_preserved": true,
+    "diff_check": "PASSED"
+  },
+  "regression": {
+    "selected_suites": [
+      "marl runtime dispatch",
+      "checkpoint API selection",
+      "emergency metrics reporting",
+      "P6 reward and safety",
+      "simulation integration",
+      "API",
+      "simulation service"
+    ],
+    "summary": "55 passed, 5 warnings in 16.93s",
+    "stale_fixture_corrected": true,
+    "raw_output": "scratch/p6_6_targeted_regression_raw8.txt"
+  },
+  "sequential_controller_runs": {
+    "overall": "PASSED",
+    "run_uuids_unique": true,
+    "runs": [
+      {
+        "mode": "baseline",
+        "result": "PASSED",
+        "run_uuid": "run_845f5680cbd5",
+        "duration_s": 120,
+        "phase_ids_observed": {
+          "J1": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "J2": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "J3": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "action_dispatch_count": 0,
+        "checkpoint_weights_exact_match": null,
+        "metrics": {
+          "simulation_time": 120.0,
+          "total_vehicles": 40,
+          "throughput_vehicles": 0,
+          "mean_corridor_travel_time_s": null,
+          "mean_speed_kmh": 16.66,
+          "total_corridor_waiting_time_s": 728.0,
+          "mean_instantaneous_waiting_time_s": 260.73333333333335,
+          "cumulative_delay_veh_s": 986.0,
+          "cumulative_waiting_time_s": 986.0,
+          "mean_corridor_queue": 9.0,
+          "max_corridor_queue": 17,
+          "total_co2_kg": 5.9143,
+          "total_nox_g": 4.3877,
+          "total_fuel_liters": 2.5504,
+          "emergency_traversal_duration_s": null,
+          "junction_queues": {
+            "J1": 4.0,
+            "J2": 6.0,
+            "J3": 17.0
+          }
+        },
+        "sumo_exit_code": 1,
+        "sumo_running_after_run": false,
+        "backend_simulation_cleared": true,
+        "worker_stopped": true
+      },
+      {
+        "mode": "coordinated",
+        "result": "PASSED",
+        "run_uuid": "run_6757af3bf87a",
+        "duration_s": 120,
+        "phase_ids_observed": {
+          "J1": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "J2": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "J3": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "action_dispatch_count": 0,
+        "checkpoint_weights_exact_match": null,
+        "metrics": {
+          "simulation_time": 120.0,
+          "total_vehicles": 25,
+          "throughput_vehicles": 11,
+          "mean_corridor_travel_time_s": 53.45454545454545,
+          "mean_speed_kmh": 43.19,
+          "total_corridor_waiting_time_s": 66.0,
+          "mean_instantaneous_waiting_time_s": 66.56666666666666,
+          "cumulative_delay_veh_s": 485.0,
+          "cumulative_waiting_time_s": 485.0,
+          "mean_corridor_queue": 1.0,
+          "max_corridor_queue": 3,
+          "total_co2_kg": 5.4427,
+          "total_nox_g": 4.4701,
+          "total_fuel_liters": 2.3463,
+          "emergency_traversal_duration_s": null,
+          "junction_queues": {
+            "J1": 0.0,
+            "J2": 3.0,
+            "J3": 0.0
+          }
+        },
+        "sumo_exit_code": 1,
+        "sumo_running_after_run": false,
+        "backend_simulation_cleared": true,
+        "worker_stopped": true
+      },
+      {
+        "mode": "marl_ppo",
+        "result": "PASSED",
+        "run_uuid": "run_2855e650dbc1",
+        "duration_s": 90,
+        "phase_ids_observed": {
+          "J1": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "J2": [
+            0,
+            1,
+            2
+          ],
+          "J3": [
+            0,
+            1,
+            2
+          ]
+        },
+        "action_dispatch_count": 19,
+        "checkpoint_weights_exact_match": true,
+        "metrics": {
+          "simulation_time": 90.0,
+          "total_vehicles": 25,
+          "throughput_vehicles": 4,
+          "mean_corridor_travel_time_s": 63.0,
+          "mean_speed_kmh": 25.96,
+          "total_corridor_waiting_time_s": 230.0,
+          "mean_instantaneous_waiting_time_s": 94.03333333333333,
+          "cumulative_delay_veh_s": 392.0,
+          "cumulative_waiting_time_s": 392.0,
+          "mean_corridor_queue": 4.33,
+          "max_corridor_queue": 13,
+          "total_co2_kg": 3.457,
+          "total_nox_g": 2.7803,
+          "total_fuel_liters": 1.4904,
+          "emergency_traversal_duration_s": null,
+          "junction_queues": {
+            "J1": 0.0,
+            "J2": 13.0,
+            "J3": 0.0
+          }
+        },
+        "sumo_exit_code": 1,
+        "sumo_running_after_run": false,
+        "backend_simulation_cleared": true,
+        "worker_stopped": true
+      },
+      {
+        "mode": "marl_dqn",
+        "result": "PASSED",
+        "run_uuid": "run_faddee7cb83c",
+        "duration_s": 90,
+        "phase_ids_observed": {
+          "J1": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "J2": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "J3": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "action_dispatch_count": 19,
+        "checkpoint_weights_exact_match": true,
+        "metrics": {
+          "simulation_time": 90.0,
+          "total_vehicles": 17,
+          "throughput_vehicles": 9,
+          "mean_corridor_travel_time_s": 48.888888888888886,
+          "mean_speed_kmh": 38.47,
+          "total_corridor_waiting_time_s": 35.0,
+          "mean_instantaneous_waiting_time_s": 59.71111111111111,
+          "cumulative_delay_veh_s": 299.0,
+          "cumulative_waiting_time_s": 299.0,
+          "mean_corridor_queue": 1.67,
+          "max_corridor_queue": 4,
+          "total_co2_kg": 3.5639,
+          "total_nox_g": 2.9548,
+          "total_fuel_liters": 1.5367,
+          "emergency_traversal_duration_s": null,
+          "junction_queues": {
+            "J1": 1.0,
+            "J2": 4.0,
+            "J3": 0.0
+          }
+        },
+        "sumo_exit_code": 1,
+        "sumo_running_after_run": false,
+        "backend_simulation_cleared": true,
+        "worker_stopped": true
+      }
+    ]
+  },
+  "emergency_scenario": {
+    "overall": "PASSED",
+    "mode": "coordinated",
+    "duration_s": 1000,
+    "seed": 42,
+    "vehicle_id": "ambulance_0",
+    "route_edges_expected": [
+      "172853382#2",
+      "172853382#3",
+      "1148717038#0",
+      "40696223#1"
+    ],
+    "route_edges_seen": [
+      "172853382#2",
+      "172853382#3",
+      "1148717038#0",
+      "40696223#1"
+    ],
+    "emergency_events": {
+      "active_emergency": false,
+      "emergency_locked_junctions": [],
+      "total_completed_events": 1,
+      "active_vehicle_id": null,
+      "events": [
+        {
+          "id": null,
+          "simulation_time": 421.0,
+          "vehicle_id": "ambulance_0",
+          "affected_corridor": "Hosur Road (J1 -> J2 -> J3)",
+          "preemption_active": false,
+          "arrival_time": 421.0,
+          "clearance_time": 458.0,
+          "traversal_duration": 37.0,
+          "completed": true
+        }
+      ]
+    },
+    "priority_green_events": {
+      "J1": {
+        "simulation_time_s": 421.0,
+        "phase": 2,
+        "ryg_state": "rrGGG",
+        "vehicle_edge": "172853382#2",
+        "phase_before_lock": 2,
+        "conflicting_approach_green_lanes": [],
+        "yellow_seen_before_lock": false
+      },
+      "J2": {
+        "simulation_time_s": 427.0,
+        "phase": 0,
+        "ryg_state": "rrrrGGGGgGgGg",
+        "vehicle_edge": "172853382#3",
+        "phase_before_lock": 0,
+        "conflicting_approach_green_lanes": [],
+        "yellow_seen_before_lock": true
+      },
+      "J3": {
+        "simulation_time_s": 447.0,
+        "phase": 2,
+        "ryg_state": "rrrGGGG",
+        "vehicle_edge": "1148717038#0",
+        "phase_before_lock": 2,
+        "conflicting_approach_green_lanes": [],
+        "yellow_seen_before_lock": false
+      }
+    },
+    "normal_control_calls_after_release": 109,
+    "all_junctions_emergency_green": true,
+    "no_conflicting_approach_green": true,
+    "normal_control_resumed": true,
+    "final_metrics": {
+      "simulation_time": 1000.0,
+      "total_vehicles": 0,
+      "throughput_vehicles": 109,
+      "mean_corridor_travel_time_s": 54.25688073394495,
+      "mean_speed_kmh": null,
+      "total_corridor_waiting_time_s": 0.0,
+      "mean_instantaneous_waiting_time_s": 195.301,
+      "cumulative_delay_veh_s": 7158.0,
+      "cumulative_waiting_time_s": 7158.0,
+      "mean_corridor_queue": 0.0,
+      "max_corridor_queue": 0,
+      "total_co2_kg": 45.2777,
+      "total_nox_g": 37.8474,
+      "total_fuel_liters": 19.5441,
+      "emergency_traversal_duration_s": 37.0,
+      "junction_queues": {
+        "J1": 0.0,
+        "J2": 0.0,
+        "J3": 0.0
+      }
+    },
+    "raw_output": "scratch/p6_6_emergency_api_raw6.txt",
+    "full_timestamped_json": "scratch/p6_6_emergency_api_results6.json"
+  },
+  "evidence_files": {
+    "sequential_json": "scratch/p6_6_sequential_demo_results2.json",
+    "sequential_raw": "scratch/p6_6_sequential_demo_raw5.txt",
+    "tests_raw": "scratch/p6_6_targeted_regression_raw8.txt"
+  },
+  "metric_contract": {
+    "cumulative_delay_veh_s": "canonical cumulative vehicle delay in veh*s",
+    "cumulative_waiting_time_s": "legacy-compatible alias; same underlying veh*s value",
+    "mean_speed_kmh": "null when no active vehicles at sample time",
+    "fuel": "estimated liters from explicit 0.750 kg/L reference density",
+    "co2": "kg",
+    "nox": "g"
+  },
+  "limitations": [
+    "Frontend/browser/video recording was outside scope and is reviewed separately.",
+    "Short smoke runs do not establish performance superiority or convergence.",
+    "Final mean_speed_kmh is null because the 1000-second emergency run ended with no active vehicles; it is intentionally not represented as zero."
+  ],
+  "overall": "PASSED_WITH_FRONTEND_REVIEW_PENDING"
+}

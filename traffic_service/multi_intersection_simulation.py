@@ -193,9 +193,9 @@ class MultiIntersectionSimulation:
         """Returns the OS PID from SumoManager if available."""
         return self.sumo_manager.pid
 
-    def start(self, seed: int = 42) -> None:
+    def start(self, seed: int = 42, additional_args: Optional[List[str]] = None) -> None:
         """Starts the SUMO process."""
-        self.sumo_manager.start(seed=seed)
+        self.sumo_manager.start(seed=seed, additional_args=additional_args)
         self._next_decision_time = 0.0
 
     def close(self) -> None:
@@ -263,7 +263,7 @@ class MultiIntersectionSimulation:
         self.hub.publish_upstream_inflow("J2", outflow_rate_veh_s=j2_corridor_q * 0.1, timestamp=sim_time)
 
         # 2b. Anti-starvation monitoring and safety preemption (every simulation second)
-        if self.mode in ("marl_dqn", "marl_ppo") and self.marl_controller is not None:
+        if self.marl_controller is not None:
             curr_phases = {j: ctrl.get_phase() for j, ctrl in self.controllers.items()}
             app_queues = {j: state.approach_queues for j, state in states.items()}
             self.marl_controller.starvation_tracker.update(

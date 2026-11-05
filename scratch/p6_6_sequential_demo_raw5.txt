@@ -1,0 +1,364 @@
+C:\Developers\Sneha\Projects\hybrid-traffic-control\.venv-demo\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+***Starting server on port 52086 ***
+Loading net-file from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\network/silk_board.net.xml' ... done (368ms).
+Loading additional-files from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/vehicle_types.add.xml' ... done (10ms).
+Loading route-files incrementally from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/silk_board.rou.xml'
+Loading done.
+Simulation version 1.26.0 started with time: 0.00.
+***Starting server on port 52088 ***
+Loading net-file from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\network/silk_board.net.xml' ... done (363ms).
+Loading additional-files from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/vehicle_types.add.xml' ... done (9ms).
+Loading route-files incrementally from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/silk_board.rou.xml'
+Loading done.
+Simulation version 1.26.0 started with time: 0.00.
+***Starting server on port 52097 ***
+Loading net-file from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\network/silk_board.net.xml' ... done (357ms).
+Loading additional-files from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/vehicle_types.add.xml' ... done (9ms).
+Loading route-files incrementally from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/silk_board.rou.xml'
+Loading done.
+Simulation version 1.26.0 started with time: 0.00.
+***Starting server on port 52101 ***
+Loading net-file from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\network/silk_board.net.xml' ... done (357ms).
+Loading additional-files from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/vehicle_types.add.xml' ... done (10ms).
+Loading route-files incrementally from 'C:\Developers\Sneha\Projects\hybrid-traffic-control\sumo\silk_board\demand/silk_board.rou.xml'
+Loading done.
+Simulation version 1.26.0 started with time: 0.00.
+{
+  "database_url": "sqlite:///./demo_audit_disposable.db",
+  "runs_in_sequence": [
+    "baseline",
+    "coordinated",
+    "marl_ppo",
+    "marl_dqn"
+  ],
+  "runs": [
+    {
+      "mode": "baseline",
+      "run_uuid": "run_845f5680cbd5",
+      "checkpoint_path": null,
+      "start_http_status": 200,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 120.0,
+        "duration": 120,
+        "mode": "baseline",
+        "seed": 99,
+        "controller": "Fixed-Time Baseline",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_845f5680cbd5",
+        "sequence_number": 122
+      },
+      "final_metrics": {
+        "simulation_time": 120.0,
+        "total_vehicles": 40,
+        "throughput_vehicles": 0,
+        "mean_corridor_travel_time_s": null,
+        "mean_speed_kmh": 16.66,
+        "total_corridor_waiting_time_s": 728.0,
+        "mean_instantaneous_waiting_time_s": 260.73333333333335,
+        "cumulative_delay_veh_s": 986.0,
+        "cumulative_waiting_time_s": 986.0,
+        "mean_corridor_queue": 9.0,
+        "max_corridor_queue": 17,
+        "total_co2_kg": 5.9143,
+        "total_nox_g": 4.3877,
+        "total_fuel_liters": 2.5504,
+        "emergency_traversal_duration_s": null,
+        "junction_queues": {
+          "J1": 4.0,
+          "J2": 6.0,
+          "J3": 17.0
+        }
+      },
+      "phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "action_dispatch_count": 0,
+      "sample_executed_operations": [],
+      "sumo_pid": 9096,
+      "sumo_process_returncode": 1,
+      "sumo_running_after_run": false,
+      "service_sim_is_none_after_cleanup": true,
+      "worker_stopped": true,
+      "checkpoint_weights_exact_match": null,
+      "result": "PASSED"
+    },
+    {
+      "mode": "coordinated",
+      "run_uuid": "run_6757af3bf87a",
+      "checkpoint_path": null,
+      "start_http_status": 200,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 120.0,
+        "duration": 120,
+        "mode": "coordinated",
+        "seed": 99,
+        "controller": "Coordinated Adaptive (Inflow-Aware + Green Wave)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_6757af3bf87a",
+        "sequence_number": 122
+      },
+      "final_metrics": {
+        "simulation_time": 120.0,
+        "total_vehicles": 25,
+        "throughput_vehicles": 11,
+        "mean_corridor_travel_time_s": 53.45454545454545,
+        "mean_speed_kmh": 43.19,
+        "total_corridor_waiting_time_s": 66.0,
+        "mean_instantaneous_waiting_time_s": 66.56666666666666,
+        "cumulative_delay_veh_s": 485.0,
+        "cumulative_waiting_time_s": 485.0,
+        "mean_corridor_queue": 1.0,
+        "max_corridor_queue": 3,
+        "total_co2_kg": 5.4427,
+        "total_nox_g": 4.4701,
+        "total_fuel_liters": 2.3463,
+        "emergency_traversal_duration_s": null,
+        "junction_queues": {
+          "J1": 0.0,
+          "J2": 3.0,
+          "J3": 0.0
+        }
+      },
+      "phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "action_dispatch_count": 0,
+      "sample_executed_operations": [],
+      "sumo_pid": 34184,
+      "sumo_process_returncode": 1,
+      "sumo_running_after_run": false,
+      "service_sim_is_none_after_cleanup": true,
+      "worker_stopped": true,
+      "checkpoint_weights_exact_match": null,
+      "result": "PASSED"
+    },
+    {
+      "mode": "marl_ppo",
+      "run_uuid": "run_2855e650dbc1",
+      "checkpoint_path": "checkpoints/p6/ppo_stage_a_best.json",
+      "start_http_status": 200,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 90.0,
+        "duration": 90,
+        "mode": "marl_ppo",
+        "seed": 99,
+        "controller": "MARL Proximal Policy Optimization (PPO Corridor)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_2855e650dbc1",
+        "sequence_number": 92
+      },
+      "final_metrics": {
+        "simulation_time": 90.0,
+        "total_vehicles": 25,
+        "throughput_vehicles": 4,
+        "mean_corridor_travel_time_s": 63.0,
+        "mean_speed_kmh": 25.96,
+        "total_corridor_waiting_time_s": 230.0,
+        "mean_instantaneous_waiting_time_s": 94.03333333333333,
+        "cumulative_delay_veh_s": 392.0,
+        "cumulative_waiting_time_s": 392.0,
+        "mean_corridor_queue": 4.33,
+        "max_corridor_queue": 13,
+        "total_co2_kg": 3.457,
+        "total_nox_g": 2.7803,
+        "total_fuel_liters": 1.4904,
+        "emergency_traversal_duration_s": null,
+        "junction_queues": {
+          "J1": 0.0,
+          "J2": 13.0,
+          "J3": 0.0
+        }
+      },
+      "phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2
+        ],
+        "J3": [
+          0,
+          1,
+          2
+        ]
+      },
+      "action_dispatch_count": 19,
+      "sample_executed_operations": [
+        {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        },
+        {
+          "J1": "KEEP_PHASE_0",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      ],
+      "sumo_pid": 33084,
+      "sumo_process_returncode": 1,
+      "sumo_running_after_run": false,
+      "service_sim_is_none_after_cleanup": true,
+      "worker_stopped": true,
+      "checkpoint_weights_exact_match": true,
+      "result": "PASSED"
+    },
+    {
+      "mode": "marl_dqn",
+      "run_uuid": "run_faddee7cb83c",
+      "checkpoint_path": "checkpoints/p6/dqn_stage_a_best.json",
+      "start_http_status": 200,
+      "final_status": {
+        "running": false,
+        "paused": false,
+        "simulation_time": 90.0,
+        "duration": 90,
+        "mode": "marl_dqn",
+        "seed": 99,
+        "controller": "MARL Deep Q-Network (Double-DQN Corridor)",
+        "junctions": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "error": null,
+        "status": "COMPLETED",
+        "pid": null,
+        "run_uuid": "run_faddee7cb83c",
+        "sequence_number": 92
+      },
+      "final_metrics": {
+        "simulation_time": 90.0,
+        "total_vehicles": 17,
+        "throughput_vehicles": 9,
+        "mean_corridor_travel_time_s": 48.888888888888886,
+        "mean_speed_kmh": 38.47,
+        "total_corridor_waiting_time_s": 35.0,
+        "mean_instantaneous_waiting_time_s": 59.71111111111111,
+        "cumulative_delay_veh_s": 299.0,
+        "cumulative_waiting_time_s": 299.0,
+        "mean_corridor_queue": 1.67,
+        "max_corridor_queue": 4,
+        "total_co2_kg": 3.5639,
+        "total_nox_g": 2.9548,
+        "total_fuel_liters": 1.5367,
+        "emergency_traversal_duration_s": null,
+        "junction_queues": {
+          "J1": 1.0,
+          "J2": 4.0,
+          "J3": 0.0
+        }
+      },
+      "phase_ids_observed": {
+        "J1": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J2": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "J3": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "action_dispatch_count": 19,
+      "sample_executed_operations": [
+        {
+          "J1": "EXTEND_GREEN_OK",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        },
+        {
+          "J1": "EXTEND_GREEN_OK",
+          "J2": "EXTEND_GREEN_OK",
+          "J3": "EXTEND_GREEN_OK"
+        }
+      ],
+      "sumo_pid": 10056,
+      "sumo_process_returncode": 1,
+      "sumo_running_after_run": false,
+      "service_sim_is_none_after_cleanup": true,
+      "worker_stopped": true,
+      "checkpoint_weights_exact_match": true,
+      "result": "PASSED"
+    }
+  ],
+  "run_uuids_unique": true,
+  "all_runs_passed": true,
+  "overall": "PASSED"
+}

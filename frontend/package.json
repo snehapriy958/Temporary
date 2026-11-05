@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --test src/services/websocket.test.js src/utils/coordinateTransform.test.js src/utils/roadGeometryBuilder.test.js",
+    "test": "node --test src/services/websocket.test.js src/utils/coordinateTransform.test.js src/utils/roadGeometryBuilder.test.js src/utils/emissionHistory.test.js src/components/metricComponents.test.js",
     "test:transform": "node --test src/utils/coordinateTransform.test.js",
     "test:geometry": "node --test src/utils/roadGeometryBuilder.test.js"
   },
